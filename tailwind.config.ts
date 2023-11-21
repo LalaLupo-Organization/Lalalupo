@@ -66,27 +66,7 @@ const config: Config = {
           },
         ],
       },
-      backgroundImage: {
-        "gradient-radial":
-          "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
 
-        "gradient-green":
-          "linear-gradient(to right top, #71E3BB, #12D18E)",
-        "gradient-yellow":
-          "linear-gradient(to right top, #FFE580, #FACC15)",
-        "gradient-blue":
-          "linear-gradient(to right top, #5089FD, #246BFD)",
-        "gradient-purple":
-          "linear-gradient(to right top, #876DFF, #6949FF)",
-        "gradient-teal":
-          "linear-gradient(to right top, #18C6AB, #019B83)",
-        "gradient-red":
-          "linear-gradient(to right top, #FF8A9B, #FF5A5F)",
-        "gradient-orange":
-          "linear-gradient(to right top, #FFAB38, #FB9400)",
-      },
       colors: {
         "primary-500": "#6949FF",
         "primary-400": "#876DFF",
@@ -151,6 +131,19 @@ const config: Config = {
         "red-opacity": "#FF5A5F08",
         "orange-opacity": "#FF980008",
         "cyan-opacity": "#00BCD408",
+        "gradient-green": "linear(to right top, #71E3BB, #12D18E)",
+        "gradient-yellow":
+          "linear-gradient(to right top, #FFE580, #FACC15)",
+        "gradient-blue":
+          "linear-gradient(to right top, #5089FD, #246BFD)",
+        "gradient-purple":
+          "linear-gradient(to right top, #876DFF, #6949FF)",
+        "gradient-teal":
+          "linear-gradient(to right top, #18C6AB, #019B83)",
+        "gradient-red":
+          "linear-gradient(to right top, #FF8A9B, #FF5A5F)",
+        "gradient-orange":
+          "linear-gradient(to right top, #FFAB38, #FB9400)",
       },
     },
   },

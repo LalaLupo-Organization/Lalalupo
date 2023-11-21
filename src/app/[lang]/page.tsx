@@ -1,29 +1,72 @@
-import Nav from "../components/Nav";
 import type { HomeProps } from "../types/types";
-import { Box } from "@chakra-ui/react";
+import {
+  Box,
+  VStack,
+  Input,
+  Divider,
+  Container,
+} from "@chakra-ui/react";
 import { getDictionary } from "./dictionaries";
-import DefaultInput from "../components/inputs/default";
 export default async function Home({ params: { lang } }: HomeProps) {
   const dict = await getDictionary(lang); // en
 
   return (
-    <main className="container mx-auto mt-40">
-      <h1>
-        {/* <button className="bg-green-opacity">
+    <Container maxW="100%" bg="primary-100">
+      {/* <button className="bg-green-opacity">
           {dict.products.cart}
         </button> */}
-        <DefaultInput
-          placeholder={"Placeholder"}
-          htmlFor={"email"}
-          label={"Email"}
-          inputType={"text"}
-          inputName={"name"}
-          theme={"dark"}
-        />
-        <Box bg="tomato" w="100%" p={4} color="white">
-          This is the Box
+      <VStack
+        w="50%"
+        h="full"
+        p="10"
+        spacing="5"
+        alignItems="center"
+        justifyItems="center">
+        <Divider my={5} />
+        <Box w="full">
+          <Input
+            placeholder="Placeholder"
+            _placeholder={{ color: "grey-400" }}
+            fontSize={"md"}
+            letterSpacing={"wider"}
+            rounded={"2xl"}
+            bg={"grey-50"}
+            border={"none"}
+            shadow={"sm"}
+            size="lg"
+            py="30px"
+          />
         </Box>
-      </h1>
-    </main>
+        <Box w="full">
+          <Input
+            placeholder="Placeholder"
+            _placeholder={{ color: "grey-400" }}
+            fontSize={"md"}
+            letterSpacing={"wider"}
+            rounded={"2xl"}
+            bg={"gradient-green"}
+            border={"none"}
+            shadow={"sm"}
+            size="lg"
+            py="30px"
+          />
+        </Box>
+        <Box w="full">
+          <Input
+            placeholder="Placeholder"
+            _placeholder={{ color: "grey-400" }}
+            fontSize={"md"}
+            letterSpacing={"wider"}
+            rounded={"2xl"}
+            bg={"grey-50"}
+            border={"none"}
+            shadow={"sm"}
+            size="lg"
+            py="30px"
+          />
+        </Box>
+      </VStack>
+    </Container>
   );
 }
+// pl-5  pr-28 py-5

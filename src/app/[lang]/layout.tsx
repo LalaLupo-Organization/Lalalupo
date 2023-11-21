@@ -2,6 +2,7 @@
 import { ReduxProvider } from "../redux/provider";
 import { ChakraProvider } from "@chakra-ui/react";
 import { CacheProvider } from "@chakra-ui/next-js";
+import customTheme from "../../../chakra.custom-theme";
 export default function RootLayout({
   children,
 }: {
@@ -12,7 +13,9 @@ export default function RootLayout({
       <body>
         <ReduxProvider>
           <CacheProvider>
-            <ChakraProvider>{children}</ChakraProvider>
+            <ChakraProvider theme={customTheme}>
+              {children}
+            </ChakraProvider>
           </CacheProvider>
         </ReduxProvider>
       </body>
