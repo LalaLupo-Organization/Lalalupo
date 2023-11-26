@@ -11,6 +11,7 @@ const config: Config = {
       fontFamily: {
         sans: ['"Nunito"', ...defaultTheme.fontFamily.sans],
       },
+
       fontSize: {
         xxs: ["10px", "14px"],
         sm: ["14px", "19px"],

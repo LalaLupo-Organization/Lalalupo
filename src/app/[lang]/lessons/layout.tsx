@@ -39,7 +39,7 @@ export default function LessonLayout({
     }
   };
   return (
-    <Container m={0} p={0} h={"100vh"} bg="grey.50">
+    <Container m={0} p={0} h={"100vh"}>
       <Progress colorScheme="success" value={60} rounded={"lg"}>
         <ProgressLabel>60%</ProgressLabel>
       </Progress>
