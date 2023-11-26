@@ -1,14 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import {
-  increment,
-  incrementByAmount,
-  decrement,
-} from "@/app/redux/features/counterSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { Heading } from "@chakra-ui/react";
 import type { User, UserProgressObject } from "@/app/types/types";
 import { useGetCourseStructureQuery } from "@/app/services/data";
-// Function to generate a random string for lessonId
 
 // Define the user progress array with the specified type
 //This Object is specific to each user
@@ -64,7 +58,8 @@ const courseStructure = {
 
 export default function Dashboard() {
   // Initialize state to track processed units
-  const [processedUnits, setProcessedUnits] = useState<string[]>([]);
+  // const [processedUnits, setProcessedUnits] = useState<string[]>([]);
+
   const {
     data: userProgress,
     error,
@@ -72,44 +67,45 @@ export default function Dashboard() {
   } = useGetCourseStructureQuery("");
   useEffect(() => {
     // Extract unique unitIds from userProgressArray
-    const uniqueUnitIds = Array.from(
-      new Set(user.userProgress.map((lesson) => lesson.unitId))
-    );
-    // Set the processed units to uniqueUnitIds
-    setProcessedUnits(uniqueUnitIds);
+    // const uniqueUnitIds = Array.from(
+    //   new Set(user.userProgress.map((lesson) => lesson.unitId))
+    // );
+    // // Set the processed units to uniqueUnitIds
+    // setProcessedUnits(uniqueUnitIds);
   }, [userProgress]);
 
   return (
-    <div>
-      {userProgress &&
-        processedUnits.map((unitId) => {
-          // Render the unit title
-          const { unitTitle, cssClass } = userProgress[1][unitId];
-          return (
-            <div
-              key={unitId}
-              className="container mx-auto text-center">
-              <h2
-                className={`${cssClass} text-2xl  py-4 my-4 font-bold text-white`}>
-                {unitTitle}
-              </h2>
-              {/* Render the array elements for this unit */}
-              {user.userProgress
-                .filter((lesson) => lesson.unitId === unitId)
-                .map((lesson) => (
-                  <div key={lesson.lessonId}>
-                    <p className="text-white text-lg">
-                      {lesson.lessonId}
-                    </p>
-                    <p className="text-white text-lg">
-                      {lesson.lessonLock}
-                    </p>
-                    {/* Rest of your code */}
-                  </div>
-                ))}
-            </div>
-          );
-        })}
-    </div>
+    <Heading>Dashboard</Heading>
+    // <div>
+    //   {userProgress &&
+    //     processedUnits.map((unitId) => {
+    //       // Render the unit title
+    //       const { unitTitle, cssClass } = userProgress[1][unitId];
+    //       return (
+    //         <div
+    //           key={unitId}
+    //           className="container mx-auto text-center">
+    //           <h2
+    //             className={`${cssClass} text-2xl  py-4 my-4 font-bold text-white`}>
+    //             {unitTitle}
+    //           </h2>
+    //           {/* Render the array elements for this unit */}
+    //           {user.userProgress
+    //             .filter((lesson) => lesson.unitId === unitId)
+    //             .map((lesson) => (
+    //               <div key={lesson.lessonId}>
+    //                 <p className="text-white text-lg">
+    //                   {lesson.lessonId}
+    //                 </p>
+    //                 <p className="text-white text-lg">
+    //                   {lesson.lessonLock}
+    //                 </p>
+    //                 {/* Rest of your code */}
+    //               </div>
+    //             ))}
+    //         </div>
+    //       );
+    //     })}
+    // </div>
   );
 }
