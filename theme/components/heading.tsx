@@ -6,7 +6,9 @@ export const Heading = defineStyleConfig({
     borderRadius: "base",
     letterSpacing: "0",
     lineHeight: "160%",
-
+    _dark: {
+      color: "_dark1",
+    },
     // <-- border radius is same for all variants and sizes
   },
   // Two sizes: sm and md
@@ -30,14 +32,7 @@ export const Heading = defineStyleConfig({
       fontSize: "48px",
     },
   },
-  variants: {
-    light: {
-      color: "white",
-    },
-    dark: {
-      color: "grey.900",
-    },
-  },
+
   // The default size and variant values
   defaultProps: {
     size: "md",

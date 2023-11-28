@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "../app/redux/store";
-import { LessonState } from "../app/types/lessons.types";
+import type { RootState } from "@/redux/store";
+import { LessonState } from "@/types/lessons.types";
 // import { AssessmentState } from "../models/test.model";
 
 // Define a type for the slice state

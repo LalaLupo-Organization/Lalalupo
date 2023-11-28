@@ -1,4 +1,4 @@
-import type { HomeProps } from "../types/types";
+import type { HomeProps } from "@/types/types";
 
 import {
   Box,

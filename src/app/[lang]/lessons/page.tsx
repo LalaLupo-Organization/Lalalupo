@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
 import { Heading } from "@chakra-ui/react";
-import { useAppSelector } from "@/app/hooks/useRedux";
+import { useAppSelector } from "@/hooks/useRedux";
 import { selectLesson } from "@/features/lessonSlice";
 
 //Interactive Components
-import ChooseTheRightSolution from "@/app/components/language-challenges/ChooseTheRightSolution";
+import ChooseTheRightSolution from "@/components/language-challenges/ChooseTheRightSolution";
 
 export default function Lessons() {
   const [loadingLesson, setLoadingLesson] = useState(false);

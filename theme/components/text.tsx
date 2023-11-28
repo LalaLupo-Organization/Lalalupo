@@ -5,9 +5,12 @@ export const Text = defineStyleConfig({
     borderRadius: "base",
     letterSpacing: "0",
     lineHeight: "140%",
-
+    _dark: {
+      color: "_dark1",
+    },
     // <-- border radius is same for all variants and sizes
   },
+
   // Two sizes: sm and md
   sizes: {
     xxs: {
@@ -31,14 +34,7 @@ export const Text = defineStyleConfig({
       fontSize: "20px",
     },
   },
-  variants: {
-    light: {
-      color: "grey.700",
-    },
-    dark: {
-      color: "grey.300",
-    },
-  },
+
   // The default size and variant values
   defaultProps: {
     size: "md",

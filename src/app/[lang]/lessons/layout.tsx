@@ -5,10 +5,11 @@ import {
   ProgressLabel,
   Box,
   Heading,
+  Center,
 } from "@chakra-ui/react";
-import { useAppSelector } from "@/app/hooks/useRedux";
+import { useAppSelector } from "@/hooks/useRedux";
 import { selectLesson } from "@/features/lessonSlice";
-import { LessonState } from "@/app/types/lessons.types";
+import { LessonState } from "@/types/lessons.types";
 export default function LessonLayout({
   children, // will be a page or nested layout
 }: {
@@ -39,11 +40,16 @@ export default function LessonLayout({
     }
   };
   return (
-    <Container m={0} p={0} h={"100vh"}>
-      <Progress colorScheme="success" value={60} rounded={"lg"}>
-        <ProgressLabel>60%</ProgressLabel>
-      </Progress>
-      {children}
+    <Box m={0} p={0} h={"100vh"}>
+      <Box mt={20}>
+        <Center>
+          <Progress w={"50%"} value={60} rounded={"lg"}>
+            <ProgressLabel>60%</ProgressLabel>
+          </Progress>
+        </Center>
+      </Box>
+      <Center w={"100%"}>{children}</Center>
+
       <Box
         bg="grey.300"
         pos="fixed"
@@ -53,12 +59,6 @@ export default function LessonLayout({
         color="white">
         {getNavigationComponent(activeExercise)}
       </Box>
-    </Container>
+    </Box>
   );
 }
-
-const LanguageChallengeNavigationsContainer = ({
-  data,
-}: {
-  data: LessonState;
-}) => {};

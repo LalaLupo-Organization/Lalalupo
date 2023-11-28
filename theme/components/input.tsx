@@ -1,3 +1,5 @@
+// inputTheme.js
+
 import { inputAnatomy } from "@chakra-ui/anatomy";
 import {
   createMultiStyleConfigHelpers,
@@ -7,47 +9,62 @@ import {
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(inputAnatomy.keys);
 
-const xl = defineStyle({
-  fontSize: "lg",
-  px: "4",
-  h: "56px",
-});
-
-const sizes = {
-  xl: definePartsStyle({ field: xl, addon: xl }),
+// Common styles for all variants
+const baseStyle = {
+  borderRadius: "16px",
+  height: "56px",
+  borderColor: "grey.200",
+  background: "grey.50",
+  color: "grey.500",
+  width: "382px",
+  fontWeight: "200",
+  fontSize: "sm",
+  pl: "1rem",
+  letterSpacing: "1px",
+  _dark: {
+    color: "grey.500",
+    bg: "_dark2",
+  },
+  _placeholder: {
+    color: "grey.500",
+  },
 };
 
-const pill = definePartsStyle({
+// Variant for input without addon
+const simpleVariant = definePartsStyle({
   field: {
-    borderColor: "gray.200",
-    background: "gray.50",
-    color: "grey.500",
-    borderRadius: "16px",
-    width: "376px",
-    height: "56px",
-
-    // Let's also provide dark mode alternatives
-    _dark: {
-      borderColor: "gray.600",
-      background: "gray.800",
-    },
+    ...baseStyle,
+    pl: "1.5rem",
   },
+});
+
+// Variant for input with addon
+const withAddonVariant = definePartsStyle({
+  field: {
+    ...baseStyle,
+    width: "357px",
+  },
+
   addon: {
-    borderRadius: "16px",
-    height: "56px",
+    ...baseStyle,
+    marginLeft: "-1px", // To avoid double border with the field
+    background: "grey.50",
+    pl: "1rem",
 
-    background: "gray.50",
-    color: "grey.500",
-
-    _dark: {
-      borderColor: "gray.600",
-      background: "gray.600",
-      color: "gray.400",
-    },
+    pr: "0",
   },
+});
+
+// Additional variants if needed
+const otherVariant = definePartsStyle({
+  // Define styles for other variants
 });
 
 export const inputTheme = defineMultiStyleConfig({
-  sizes,
-  variants: { pill },
+  variants: {
+    simple: simpleVariant,
+    withAddon: withAddonVariant,
+    other: otherVariant,
+    // Add more variants as needed
+  },
 });

@@ -1,13 +1,12 @@
 "use client";
-import { UserIcon } from "../icons/Icons";
-import { LessonState } from "@/app/types/lessons.types";
+import { UserIcon } from "@/components/icons/Icons";
+import { LessonState } from "@/types/lessons.types";
 import {
-  Heading,
   useColorMode,
   Button,
+  Box,
   InputLeftAddon,
   InputGroup,
-  Text,
   Input,
 } from "@chakra-ui/react";
 import Image from "next/image";
@@ -26,26 +25,9 @@ const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
   } = data;
 
   return (
-    <>
-      <Button my={4} onClick={toggleColorMode}>
-        {colorMode === "light" ? "Dark mode" : "Light mode"}
-      </Button>
-      <Heading size={"xl"} variant={colorMode}>
-        Choose The Right Solution
-      </Heading>
-      <InputGroup variant={"pill"}>
-        {/* <InputLeftAddon>Phone:</InputLeftAddon> */}
-        <Input
-          placeholder="Placeholder"
-          fontSize={"md"}
-          variant="pill"
-        />
-      </InputGroup>
-      {/* <UserIcon color={"grey.900"} /> */}
-      {/* <Text size={"xl"} color={"grey.900"}>
-        Choose The Right Solution
-      </Text> */}
-    </>
+    <Box>
+      {/* //ChooseTheRightSOlution Component goes here..... */}
+    </Box>
   );
 };
 export default ChooseTheRightSolution;
