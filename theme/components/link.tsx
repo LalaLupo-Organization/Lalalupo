@@ -1,10 +1,7 @@
 import { defineStyleConfig } from "@chakra-ui/react";
-export const Text = defineStyleConfig({
+export const Link = defineStyleConfig({
   // The styles all button have in common
   baseStyle: {
-    borderRadius: "base",
-    letterSpacing: "0",
-    lineHeight: "140%",
     _dark: {
       color: "grey.500",
     },

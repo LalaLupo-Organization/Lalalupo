@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Heading } from "@chakra-ui/react";
+import { Heading, Box, Text } from "@chakra-ui/react";
 import type { User, UserProgressObject } from "@/types/types";
 import { useGetCourseStructureQuery } from "@/services/data";
 
@@ -58,7 +58,7 @@ const courseStructure = {
 
 export default function Dashboard() {
   // Initialize state to track processed units
-  // const [processedUnits, setProcessedUnits] = useState<string[]>([]);
+  const [processedUnits, setProcessedUnits] = useState<string[]>([]);
 
   const {
     data: userProgress,
@@ -67,15 +67,23 @@ export default function Dashboard() {
   } = useGetCourseStructureQuery("");
   useEffect(() => {
     // Extract unique unitIds from userProgressArray
-    // const uniqueUnitIds = Array.from(
-    //   new Set(user.userProgress.map((lesson) => lesson.unitId))
-    // );
-    // // Set the processed units to uniqueUnitIds
-    // setProcessedUnits(uniqueUnitIds);
+    const uniqueUnitIds = Array.from(
+      new Set(user.userProgress.map((lesson) => lesson.unitId))
+    );
+    // Set the processed units to uniqueUnitIds
+    setProcessedUnits(uniqueUnitIds);
   }, [userProgress]);
 
   return (
-    <Heading>Dashboard</Heading>
+    <Box>
+      <Heading>Dashboard</Heading>
+      <Text>
+        {" "}
+        The idea here is to have the userProgress data come in from
+        sanity.io and render in the UI - the data structure in
+        sanity.io will be the same for all languages.
+      </Text>
+    </Box>
     // <div>
     //   {userProgress &&
     //     processedUnits.map((unitId) => {

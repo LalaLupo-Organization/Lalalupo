@@ -1,6 +1,10 @@
 import type { Preview } from "@storybook/react";
+const theme = require("../theme/theme");
 const preview: Preview = {
   parameters: {
+    chakra: {
+      theme,
+    },
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
       matchers: {

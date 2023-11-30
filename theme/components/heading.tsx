@@ -7,7 +7,7 @@ export const Heading = defineStyleConfig({
     letterSpacing: "0",
     lineHeight: "160%",
     _dark: {
-      color: "_dark1",
+      color: "grey.500",
     },
     // <-- border radius is same for all variants and sizes
   },

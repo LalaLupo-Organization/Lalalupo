@@ -1,5 +1,4 @@
 "use client";
-import { UserIcon } from "@/components/icons/Icons";
 import { LessonState } from "@/types/lessons.types";
 import {
   useColorMode,

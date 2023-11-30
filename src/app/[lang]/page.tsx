@@ -1,73 +1,31 @@
+"use client";
 import type { HomeProps } from "@/types/types";
 
 import {
-  Box,
-  VStack,
-  Input,
-  Divider,
+  Link,
   Container,
+  Heading,
+  Text,
+  Button,
+  useColorMode,
 } from "@chakra-ui/react";
 import { getDictionary } from "./dictionaries";
-export default async function Home({ params: { lang } }: HomeProps) {
-  const dict = await getDictionary(lang); // en
+export default function Home({ params: { lang } }: HomeProps) {
+  // const dict = await getDictionary(lang); // en
+  const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <Container maxW="100%" bg="primary-100">
-      {/* <button className="bg-green-opacity">
-          {dict.products.cart}
-        </button> */}
-      <VStack
-        w="50%"
-        h="full"
-        p="10"
-        spacing="5"
-        alignItems="center"
-        justifyItems="center">
-        <Divider my={5} />
-        <Box w="full">
-          <Input
-            placeholder="Placeholder"
-            _placeholder={{ color: "grey-400" }}
-            fontSize={"md"}
-            letterSpacing={"wider"}
-            rounded={"2xl"}
-            bg={"grey-50"}
-            border={"none"}
-            shadow={"sm"}
-            size="lg"
-            py="30px"
-          />
-        </Box>
-        <Box w="full">
-          <Input
-            placeholder="Placeholder"
-            _placeholder={{ color: "grey-400" }}
-            fontSize={"md"}
-            letterSpacing={"wider"}
-            rounded={"2xl"}
-            bg={"gradient-green"}
-            border={"none"}
-            shadow={"sm"}
-            size="lg"
-            py="30px"
-          />
-        </Box>
-        <Box w="full">
-          <Input
-            placeholder="Placeholder"
-            _placeholder={{ color: "grey-400" }}
-            fontSize={"md"}
-            letterSpacing={"wider"}
-            rounded={"2xl"}
-            bg={"grey-50"}
-            border={"none"}
-            shadow={"sm"}
-            size="lg"
-            py="30px"
-          />
-        </Box>
-      </VStack>
+      <Button my={4} onClick={toggleColorMode}>
+        {colorMode === "light" ? "Dark mode" : "Light mode"}
+      </Button>
+      <Heading>Homepage</Heading>
+      <Text>
+        Home page requires a request to sanity.io to fetch content for
+        specific language depending on lanaguge code in url
+      </Text>
+
+      <Link href="/sandbox">Sandbox</Link>
     </Container>
   );
 }
-// pl-5  pr-28 py-5

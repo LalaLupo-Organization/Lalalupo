@@ -36,7 +36,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "sanity/schemas/lesson.js"
+    "sanity/schemas/lesson.js",
+    "src/app/components/icons/Icons.stosries.js"
   ],
   "exclude": ["node_modules"]
 }

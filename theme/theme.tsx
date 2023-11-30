@@ -1,6 +1,6 @@
 // 1. Import `extendTheme`
 import { extendTheme } from "@chakra-ui/react";
-import { colors } from "./base-styles/colors";
+import { colors } from "@/theme/base-styles/colors";
 import { mode } from "@chakra-ui/theme-tools";
 import type { StyleFunctionProps } from "@chakra-ui/styled-system";
 import { fontSizes } from "@/theme/base-styles/fontSizes";
@@ -14,13 +14,16 @@ const customTheme = extendTheme({
     Heading,
     Text,
     Input: inputTheme,
+    baseStyle: {
+      color: "grey.500",
+    },
   },
   styles: {
     global: {
       body: {
         _dark: {
           background: "_dark1",
-          color: "_dark1",
+          color: "grey.500",
         },
       },
     },

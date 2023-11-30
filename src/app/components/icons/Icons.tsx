@@ -16,11 +16,3 @@ export const MessageIcon = (props: any) => (
     />
   </Icon>
 );
-
-<svg
-  width="20"
-  height="20"
-  fill="none"
-  xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" clip-rule="evenodd" fill="#9E9E9E" />
-</svg>;

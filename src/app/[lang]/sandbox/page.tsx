@@ -1,5 +1,5 @@
 "use client";
-import { UserIcon, MessageIcon } from "@/components/icons/Icons";
+import UserIcon, { MessageIcon } from "@/components/icons/Icons";
 import {
   useColorMode,
   Button,
