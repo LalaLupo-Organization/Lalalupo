@@ -19,7 +19,16 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/components/*": ["./src/app/components/*"],
+      "@/api/*": ["./src/app/api/*"],
+      "@/features/*": ["./src/features/*"],
+      "@/hooks/*": ["./src/app/hooks/*"],
+      "@/redux/*": ["./src/app/redux/*"],
+      "@/services/*": ["./src/app/services/*"],
+      "@/studio/*": ["./src/app/studio/*"],
+      "@/stories/*": ["./src/stories/*"],
+      "@/types/*": ["./src/app/types/*"],
+      "@/theme/*": ["./theme/*"]
     }
   },
   "include": [
@@ -27,7 +36,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "sanity/schemas/lesson.js"
+    "sanity/schemas/lesson.js",
+    "src/app/components/icons/Icons.stosries.js"
   ],
   "exclude": ["node_modules"]
 }
