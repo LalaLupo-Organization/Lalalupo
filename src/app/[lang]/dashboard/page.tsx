@@ -1,8 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Heading, Box, Text } from "@chakra-ui/react";
-import type { User, UserProgressObject } from "@/types/types";
-import { useGetCourseStructureQuery } from "@/services/data";
+import type {
+  User,
+  UserProgressObject,
+} from "@/types/user-progress.types";
+import { useGetCourseStructureQuery } from "@/services/api";
 
 // Define the user progress array with the specified type
 //This Object is specific to each user

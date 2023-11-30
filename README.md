@@ -36,3 +36,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Importing files
 
 The easiest and cleanest way to import files into the application is to use alias. Aliases are defined in the tsconfig.json file in the paths property. This allows you to import files with the @ symbol instead of having to traverse the path.
+
+## Importing files

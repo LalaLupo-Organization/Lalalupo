@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "../../features/counterSlice"; //exampleCounter
 import lessonReducer from "../../features/lessonSlice"; //exampleCounter
-import { languageCourseApi } from "@/services/data";
+import { languageCourseApi } from "@/services/api";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { useDispatch } from "react-redux";
 

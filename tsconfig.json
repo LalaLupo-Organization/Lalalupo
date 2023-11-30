@@ -28,7 +28,7 @@
       "@/studio/*": ["./src/app/studio/*"],
       "@/stories/*": ["./src/stories/*"],
       "@/types/*": ["./src/app/types/*"],
-      "@/theme/*": ["./theme/*"]
+      "@/theme/*": ["./src/theme/*"]
     }
   },
   "include": [

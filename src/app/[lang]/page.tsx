@@ -1,5 +1,5 @@
 "use client";
-import type { HomeProps } from "@/types/types";
+import type { HomeProps } from "@/types/user-progress.types";
 
 import {
   Link,
