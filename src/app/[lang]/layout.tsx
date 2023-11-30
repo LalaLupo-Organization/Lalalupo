@@ -3,7 +3,7 @@ import { ReduxProvider } from "../redux/provider";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import { CacheProvider } from "@chakra-ui/next-js";
 import Script from "next/script";
-// import theme from "@/theme/theme";
+import theme from "@/theme/theme";
 import { v4 as uuid } from "uuid";
 export default function RootLayout({
   children,
@@ -20,7 +20,7 @@ export default function RootLayout({
                 initialColorMode={theme.initialColorMode}
               /> */}
             </Script>
-            <ChakraProvider>{children}</ChakraProvider>
+            <ChakraProvider theme={theme}>{children}</ChakraProvider>
           </CacheProvider>
         </ReduxProvider>
       </body>

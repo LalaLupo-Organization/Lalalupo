@@ -12,23 +12,23 @@ module.exports = {
     "@storybook/addon-interactions",
     "@chakra-ui/storybook-addon",
   ],
-  // webpackFinal: async (config) => {
-  //   return {
-  //     ...config,
-  //     plugins: [...config.plugins],
-  //     resolve: {
-  //       ...config.resolve,
-  //       alias: {
-  //         ...config.resolve.alias,
-  //         "@/theme": path.resolve(__dirname, "../theme"),
-  //         "@/components": path.resolve(
-  //           __dirname,
-  //           "../src/app/components"
-  //         ),
-  //       },
-  //     },
-  //   };
-  // },
+  webpackFinal: async (config) => {
+    return {
+      ...config,
+      plugins: [...config.plugins],
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve.alias,
+          "@/theme": path.resolve(__dirname, "../src/theme"),
+          "@/components": path.resolve(
+            __dirname,
+            "../src/app/components"
+          ),
+        },
+      },
+    };
+  },
 
   framework: {
     name: "@storybook/nextjs",

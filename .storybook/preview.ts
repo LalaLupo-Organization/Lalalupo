@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/react";
-const theme = require("../theme/theme");
+const theme = require("../src/theme/theme");
 const preview: Preview = {
   parameters: {
     chakra: {
