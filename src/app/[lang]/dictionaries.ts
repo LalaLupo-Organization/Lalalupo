@@ -1,4 +1,4 @@
-import "server-only";
+"use client";
 
 const dictionaries: any = {
   en: () =>
