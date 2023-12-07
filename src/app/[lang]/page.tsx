@@ -1,6 +1,6 @@
 "use client";
 import type { HomeProps } from "@/types/user-progress.types";
-
+import { useState } from "react";
 import {
   Link,
   Container,
@@ -11,9 +11,11 @@ import {
 } from "@chakra-ui/react";
 import { getDictionary } from "./dictionaries";
 export default function Home({ params: { lang } }: HomeProps) {
-  // const dict = await getDictionary(lang); // en
-  const { colorMode, toggleColorMode } = useColorMode();
+const [lanaguge, setLanguage] = useState(lang)
 
+  const dict = getDictionary(lang); // en
+  const { colorMode, toggleColorMode } = useColorMode();
+console.log(lang)
   return (
     <Container maxW="100%" bg="primary-100">
       <Button my={4} onClick={toggleColorMode}>
