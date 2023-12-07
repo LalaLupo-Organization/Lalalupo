@@ -58,6 +58,22 @@
     "concurrently": "^8.2.2",
     "cypress": "^13.6.1",
     "eslint-plugin-storybook": "^0.6.15",
-    "storybook": "^7.5.3"
+    "storybook": "^7.5.3",
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
+    "husky": "^4.3.8",
+    "prettier": "^2.3.1",
+    "pretty-quick": "^3.1.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }
