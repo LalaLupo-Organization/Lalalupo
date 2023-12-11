@@ -53,13 +53,13 @@ export const lessonSlice = createSlice({
   reducers: {
     putInteractiveExerciseDataIntoState: (
       state,
-      action: PayloadAction<LessonState>
+      action: PayloadAction<LessonState>,
     ) => {
       state = action.payload;
     },
     putActiveExerciseIntoState: (state) => {
       let found = state.interactiveExercises.find(
-        (item) => !item.isComplete && !item.hasFailed && item
+        (item) => !item.isComplete && !item.hasFailed && item,
       );
 
       if (found) {
@@ -80,7 +80,7 @@ export const lessonSlice = createSlice({
       }
       //set the interactiveExercise to isComplete
       const found = state.interactiveExercises.find(
-        (item) => item._id === state.activeExercise?._id
+        (item) => item._id === state.activeExercise?._id,
       );
       if (found) {
         Object.assign(found, state.activeExercise);
@@ -105,7 +105,7 @@ export const lessonSlice = createSlice({
       }
       //set the interactiveExercise to isComplete
       const found = state.interactiveExercises.find(
-        (item) => item._id === state.activeExercise?._id
+        (item) => item._id === state.activeExercise?._id,
       );
       if (found) {
         Object.assign(found, state.activeExercise);
@@ -136,8 +136,7 @@ export const {
 } = lessonSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectLesson = (state: RootState) =>
-  state.lessonReduxState;
+export const selectLesson = (state: RootState) => state.lessonReduxState;
 
 // export const selectCurrentUnitIsComplete = (state: RootState) =>
 //   state.isComplete;

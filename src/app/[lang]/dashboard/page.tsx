@@ -1,10 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Heading, Box, Text } from "@chakra-ui/react";
-import type {
-  User,
-  UserProgressObject,
-} from "@/types/user-progress.types";
+import type { User, UserProgressObject } from "@/types/user-progress.types";
 import { useGetCourseStructureQuery } from "@/services/api";
 
 // Define the user progress array with the specified type
@@ -30,13 +27,10 @@ const user: User = {
 };
 
 // Convert userProgressArray to an object with TypeScript type
-const objectData: UserProgressObject = user.userProgress.reduce(
-  (acc, item) => {
-    acc[item.lessonId] = item;
-    return acc;
-  },
-  {} as UserProgressObject
-); // Use type assertion here
+const objectData: UserProgressObject = user.userProgress.reduce((acc, item) => {
+  acc[item.lessonId] = item;
+  return acc;
+}, {} as UserProgressObject); // Use type assertion here
 
 const courseStructure = {
   courseUnits: {
@@ -49,8 +43,7 @@ const courseStructure = {
     },
     unit2: {
       title: "Unit 2: Vocabulary Building",
-      description:
-        "Expand your vocabulary with new words and phrases.",
+      description: "Expand your vocabulary with new words and phrases.",
       cssClass: "bg-blue-600",
       readingUrl: "https://example.com/unit2-reading",
       videoUrl: "https://example.com/unit2-video",
@@ -71,7 +64,7 @@ export default function Dashboard() {
   useEffect(() => {
     // Extract unique unitIds from userProgressArray
     const uniqueUnitIds = Array.from(
-      new Set(user.userProgress.map((lesson) => lesson.unitId))
+      new Set(user.userProgress.map((lesson) => lesson.unitId)),
     );
     // Set the processed units to uniqueUnitIds
     setProcessedUnits(uniqueUnitIds);
@@ -82,9 +75,9 @@ export default function Dashboard() {
       <Heading>Dashboard</Heading>
       <Text>
         {" "}
-        The idea here is to have the userProgress data come in from
-        sanity.io and render in the UI - the data structure in
-        sanity.io will be the same for all languages.
+        The idea here is to have the userProgress data come in from sanity.io
+        and render in the UI - the data structure in sanity.io will be the same
+        for all languages.
       </Text>
     </Box>
     // <div>

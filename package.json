@@ -9,8 +9,10 @@
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "cypress:open": "concurrently \"npm run dev\" \"cypress open\""
-
+    "cypress:open": "concurrently \"npm run dev\" \"cypress open\"",
+    "prepare": "husky install",
+    "prettier:check": "prettier --check .",
+    "prettier:write": "prettier --write ."
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.2.0",
@@ -58,22 +60,8 @@
     "concurrently": "^8.2.2",
     "cypress": "^13.6.1",
     "eslint-plugin-storybook": "^0.6.15",
-    "storybook": "^7.5.3",
-    "@commitlint/cli": "^12.1.1",
-    "@commitlint/config-conventional": "^12.1.1",
-    "husky": "^4.3.8",
-    "prettier": "^2.3.1",
-    "pretty-quick": "^3.1.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
+    "husky": "^8.0.0",
+    "prettier": "^3.1.1",
+    "storybook": "^7.5.3"
   }
 }

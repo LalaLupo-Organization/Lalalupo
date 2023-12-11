@@ -23,10 +23,6 @@ const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
     remainingExercises,
   } = data;
 
-  return (
-    <Box>
-      {/* //ChooseTheRightSOlution Component goes here..... */}
-    </Box>
-  );
+  return <Box>{/* //ChooseTheRightSOlution Component goes here..... */}</Box>;
 };
 export default ChooseTheRightSolution;
