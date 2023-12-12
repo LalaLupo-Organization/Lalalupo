@@ -1,4 +1,9 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-BRANCH_NAME=$(git symbolic-ref --short HEAD) && if ! [[ $BRANCH_NAME =~ ^(master|main|staging|develop|feature\/.*|release\/.*|bugfix\/.*|hotfix\/.*)$ ]]; then echo "Invalid branch name"; exit 1; fi
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+
+if ! echo "$BRANCH_NAME" | grep -Eq "^(master|main|staging|develop|feature\/.*|release\/.*|bugfix\/.*|hotfix\/.*)$"; then
+  echo "Invalid branch name"
+  exit 1
+fi
