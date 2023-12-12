@@ -3,7 +3,7 @@
 
 BRANCH_NAME=$(git symbolic-ref --short HEAD)
 
-if ! echo "$BRANCH_NAME" | grep -Eq "^(master|main|staging|develop|feature\/.*|release\/.*|bugfix\/.*|hotfix\/.*)$"; then
+if ! npx --no-install validate-branch-name "$BRANCH_NAME"; then
   echo "Invalid branch name"
   exit 1
 fi
