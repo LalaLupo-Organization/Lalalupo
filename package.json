@@ -12,7 +12,8 @@
     "cypress:open": "concurrently \"npm run dev\" \"cypress open\"",
     "prepare": "husky install",
     "prettier:check": "prettier --check .",
-    "prettier:write": "prettier --write ."
+    "prettier:write": "prettier --write .",
+    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.2.0",
@@ -47,6 +48,8 @@
   },
   "devDependencies": {
     "@chakra-ui/storybook-addon": "^5.1.0",
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
     "@storybook/addon-essentials": "^7.5.3",
     "@storybook/addon-interactions": "^7.5.3",
     "@storybook/addon-links": "^7.5.3",

@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-if ! grep -E "^(feat|fix|chore|docs|style|refactor|test|perf|build|ci|revert)(\([A-Za-z0-9]*\))*: .+" "$1"; then
-  echo "Invalid commit message"
-  exit 1
-fi
