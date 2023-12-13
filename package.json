@@ -10,7 +10,6 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "cypress:open": "concurrently \"npm run dev\" \"cypress open\"",
-    "prepare": "husky install",
     "prettier:check": "prettier --check .",
     "prettier:write": "prettier --write .",
     "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
