@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { useAppSelector } from "@/hooks/useRedux";
 import { selectLesson } from "@/features/lessonSlice";
-import { LessonState } from "@/types/lessons.types";
+import { LessonState } from "@/types/lesson.types";
 export default function LessonLayout({
   children, // will be a page or nested layout
 }: {
@@ -50,9 +50,17 @@ export default function LessonLayout({
       </Box>
       <Center w={"100%"}>{children}</Center>
 
-      <Box bg="grey.300" pos="fixed" bottom={"0"} w="100%" p={4} color="white">
+
+      <Box
+        bg="grey.300"
+        pos="absolute"
+        bottom={"70"}
+        w="100%"
+        p={4}
+        color="white">
+
         {getNavigationComponent(activeExercise)}
-      </Box>
+
     </Box>
   );
 }

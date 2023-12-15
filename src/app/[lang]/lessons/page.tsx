@@ -6,6 +6,7 @@ import { selectLesson } from "@/features/lessonSlice";
 
 //Interactive Components
 import ChooseTheRightSolution from "@/components/language-challenges/ChooseTheRightSolution";
+import MatchPairs from "@/components/language-challenges/MatchPairs";
 
 export default function Lessons() {
   const [loadingLesson, setLoadingLesson] = useState(false);
@@ -19,7 +20,7 @@ export default function Lessons() {
     case "chooseTheRightSolution":
       return <ChooseTheRightSolution data={lesson} />;
     case "matchPairs":
-      return <Heading>MatchPairs</Heading>;
+      return <MatchPairs data={lesson}/>;
   }
 
   return <Heading>Error with a redirect link</Heading>;
