@@ -42,6 +42,7 @@ availableWords: {
 },
   },
   interactiveExercises: [
+    //ChooseTheRightSolution
     {
       type: "chooseTheRightSolution",
       _id: "635f9a0fefff76c1f466c9be",
@@ -54,6 +55,7 @@ availableWords: {
       isComplete: false,
       hasFailed: false,
     },
+    //MatchPairsExercise
     {
   _id: "12345",
   instructions: "Match the corresponding words.",
@@ -76,7 +78,333 @@ availableWords: {
       read: false,
     },
   },
-    }
+    },
+    //ConjugationExercise
+    {
+      _id: "12345",
+      instructions: "Match the corresponding words.",
+      isComplete: false,
+      hasFailed: false,
+      solution: "Some solution here",
+      display: "ANDARE (TO GO)",
+      type: "conjugation",
+     
+        availableWords: {
+          pairs: [
+            [
+              "io",
+              "andrei"
+            ],
+            [
+              "tu",
+              "andresti"
+            ],
+            [
+              "lui/lei",
+              "andrebbe"
+            ],
+            [
+              "noi",
+              "andremmo"
+            ],
+            [
+              "voi",
+              "andreste"
+            ],
+            [
+              "loro",
+              "andrebbero"
+            ]
+          ],
+      
+  
+      },
+   
+    },
+    //FillInTheBlankExercise
+    {
+    type: "fillInTheBlank",
+    _id: "12345",
+    instructions: "Fill in the blank with the correct conjugation of the verb.",
+    displayText: "We are looking for a job.",
+    doubleSolution: false,
+    isComplete: false,
+    hasFailed: false,
+    missingWord: "cerchiamo",
+    solution: [
+      "Noi",
+      "cerchiamo",
+      "un lavoro."
+    ],
+    vocabularyHelper: [
+      "to look for = cercare"
+    ]
+    },
+    //FillInWhatYouHear
+    {
+      _id: "12234",
+      type: "fillInWhatYouHear",
+        "solution": [
+          "Abbiamo deciso",
+          "che fare."
+        ],
+        instructions: "Type the missing word(s).",
+        displayMeaning: true,
+        english: "We decided what to do.",
+        missingWord: "Abbiamo deciso",
+       
+    
+      isComplete: false,
+      hasFailed: false, 
+    }, 
+    //ListenAndSelect
+    {
+      type: "listenAndSelect",
+    _id: "12345",
+      solution: "chiuso",
+      instructions: "Select the correct spelling of the word.",
+      english: "closed",
+      audio: "chiuso",
+      availableWords: [
+        [
+          "ciuso"
+        ],
+        [
+          "chiuso"
+        ]
+      ],
+ 
+  
+    isComplete: false,
+    hasFailed: false,
+    },
+    //missingSyllable
+    {
+      type: "missingSyllable",
+      _id: "1234455",
+          solution: "gni",
+          instructions: "Select the missing part of the word.",
+          display: [
+            "ra",
+            "gni"
+          ],
+          italian: "ragni",
+          english: "spiders",
+          availableWords: [
+            "ni",
+            "gni"
+          ],
+     
+    
+        "isComplete": false,
+        "hasFailed": false,
+    }, 
+    //multipleAnswers
+    {
+      type: "multipleAnswers",
+      _id: '12345',
+     
+      instructions: "Select all verbs conjugated with 'avere' in the present perfect.",
+      availableWords: [
+        {
+          italian: "portare",
+          correct: true,
+          english: "(to bring)"
+        },
+        {
+          italian: "dire",
+          correct: true,
+          english: "(to tell)"
+        },
+        {
+          italian: "comprare",
+          correct: true,
+          english: "(to buy)"
+        },
+        {
+          italian: "vendere",
+          correct: true,
+          english: "(to sell)"
+        },
+        {
+          italian: "partire",
+          correct: false,
+          english: "(to leave)"
+        },
+        {
+          italian: "tornare",
+          correct: false,
+          english: "(to return)"
+        }
+      ],
+      targetNumber: 4,
+      displayMeaning: true,
+    
+
+    isComplete: false,
+    hasFailed: false,
+    },
+    //partOfAWord
+    {
+      type: "partOfAWord",
+      _id: "12345",
+      instructions: "Type the missing part of the word.",
+      missing: [
+        "chi"
+      ],
+      word: [
+        "fuo",
+        "chi"
+      ],
+      english: "fires",
+
+  
+    isComplete: false,
+    hasFailed: false,
+    }, 
+    //reorder
+    {
+      type: "reorder",
+      _id: "12345",
+      solution: "Non giocare con il fuoco!",
+      instructions: "Reorder the words to translate the sentence.",
+      displayText: "Do not play with fire!",
+      availableWords: [
+        "Non",
+        "giocare",
+        "con",
+        "il",
+        "fuoco!",
+        "gioco",
+        "lo",
+        "fuochi!",
+        "suonare"
+      ],
+  
+    isComplete: false,
+    hasFailed: false,
+    }, 
+    //reorderWhatYouHear
+    {
+      type: "reorderWhatYouHear",
+      _id: "123456",
+      solution: "Mia figlia sta imparando a camminare.",
+      instructions: "Reorder the words to replicate the sentence.",
+      english: "My daughter is learning to walk.",
+      availableWords: [
+        "Mia",
+        "figlia",
+        "sta",
+        "imparando",
+        "a",
+        "camminare.",
+        "impara",
+        "stai",
+        "Mie",
+        "cammina",
+        "le."
+      ],
+   
+    isComplete: false,
+    hasFailed: false,
+    },
+    //selectTheMissingWords
+    {
+      type: "selectTheMissingWord",
+      _id: '123555',
+      solution: "stanno",
+      instructions: "Choose the correct conjugation of the verb.",
+      displayText: [
+        "loro",
+        "stanno",
+        "(they stay)"
+      ],
+      "availableWords": [
+        "sto",
+        "stai",
+        "sta",
+        "stiamo",
+        "state",
+        "stanno"
+      ],
+ 
+    isComplete: false,
+    hasFailed: false,
+    }, 
+    //speakingAndPrononcing
+    {
+      type: "speakingAndPronunciation",
+      _id: "2343423",
+      solution: "Vado da Marco.",
+      doubleSolution: false,
+      instructions: "Say this in Italian. Omit the subject pronoun (if present).",
+      vocabularyHelper: [
+        "to go = andare",
+        "Mark = Marco"
+      ],
+      display: "I am going to Mark's.",
+      displayMeaning: false,
+  
+    isComplete: false,
+    hasFailed: false,
+    },
+    //twoBlanks
+    {
+      type: "twoBlanks",
+      _id: "123454",
+      solutions: [
+        "sei uscito",
+        "Sono uscito"
+      ],
+      instructions: "Fill in the blanks with the correct conjugation of the verb.",
+      vocabularyHelper: [
+        "to go out = uscire"
+      ],
+      italian: [
+        "Paolo, quando",
+        "sei uscito",
+        "?",
+        "Sono uscito",
+        "questo pomeriggio."
+      ],
+      english: [
+        "Paul, when did you go out? I went out this afternoon."
+      ],
+
+    "isComplete": false,
+    "hasFailed": false,
+    },
+    //typeInWhatYouHear
+    {
+      type: "typeInWhatYouHear",
+      _id: "123434",
+      solution: "Sai chi mi ha scritto?",
+      instructions: "Type what you hear.",
+      english: "Do you<sup>(s)</sup> know who wrote to me?",
+      doubleSolution: false,
+      displayMeaning: true,
+      audio: "Sai chi mi ha scritto?",
+ 
+    isComplete: false,
+    hasFailed: false,
+    },
+    //writeInItalian
+    {
+      type: "writeInItalian",
+      _id: "1223423",
+      solution: "L'esercizio è semplice.",
+      instructions: "Translate this into Italian. Include the subject pronoun (if present).",
+      displayMeaning: false,
+      display: "The exercise is simple.",
+      doubleSolution: false,
+      vocabularyHelper: [
+        "exercise = esercizio",
+        "simple = semplice"
+      ],
+  
+    isComplete: false,
+    hasFailed: false,
+    } 
   ],
 };
 

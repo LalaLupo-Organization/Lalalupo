@@ -11,3 +11,23 @@ export type MissingSyllableExercise = BaseExercise & {
    
   };
   
+  const data: MissingSyllableExercise = {
+    type: "missingSyllable",
+  _id: "1234455",
+      solution: "gni",
+      instructions: "Select the missing part of the word.",
+      display: [
+        "ra",
+        "gni"
+      ],
+      italian: "ragni",
+      english: "spiders",
+      availableWords: [
+        "ni",
+        "gni"
+      ],
+ 
+
+    "isComplete": false,
+    "hasFailed": false,
+  }

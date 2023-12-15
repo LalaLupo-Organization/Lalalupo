@@ -10,6 +10,7 @@ import { PartOfAWordExercise } from "./part-of-a-word.types";
 import { ReorderExercise } from "./reorder.types";
 import { ReorderWhatYouHearExercise } from "./reorder-what-you-hear.types";
 import { SelectTheMissingWordExercise } from "./select-the-missing-word.types";
+import { SpeakingAndPronunciationExercise } from "./speaking-and-pronunciation.types";
 import { TwoBlanksExercise } from "./two-blanks.types";
 import { TypeInWhatYouHearExercise } from "./type-in-what-you-hear.types";
 import { WriteInItalianExercise } from "./write-in-italian.types";
@@ -18,7 +19,8 @@ export interface BaseExercise {
   instructions: string;
   isComplete: boolean;
   hasFailed: boolean;
-  solution: string;
+  solution?: string | string[];
+  
   // Add other common properties here
 }
 
@@ -34,8 +36,8 @@ export type LessonState = {
   numberComplete: number;
   numberFailed: number;
   correctLetters: string[];
-  activeExercise: ChooseTheRightSolutionExercise | MatchPairsExercise | ConjugationExercise | FillInTheBlankExercise | FillInWhatYouHearExercise | ListenAndSelectExercise | MissingSyllableExercise | MultipleAnswersExercise | PartOfAWordExercise | ReorderExercise | ReorderWhatYouHearExercise | SelectTheMissingWordExercise | TwoBlanksExercise | TypeInWhatYouHearExercise | WriteInItalianExercise;
-  interactiveExercises: (ChooseTheRightSolutionExercise | MatchPairsExercise | ConjugationExercise | FillInTheBlankExercise |FillInWhatYouHearExercise | ListenAndSelectExercise | MissingSyllableExercise | MultipleAnswersExercise | PartOfAWordExercise | ReorderExercise | ReorderWhatYouHearExercise | SelectTheMissingWordExercise | TwoBlanksExercise | TypeInWhatYouHearExercise | WriteInItalianExercise)[];
+  activeExercise: ChooseTheRightSolutionExercise | MatchPairsExercise | ConjugationExercise | FillInTheBlankExercise | FillInWhatYouHearExercise | ListenAndSelectExercise | MissingSyllableExercise | MultipleAnswersExercise | PartOfAWordExercise | ReorderExercise | ReorderWhatYouHearExercise | SelectTheMissingWordExercise | SpeakingAndPronunciationExercise | TwoBlanksExercise | TypeInWhatYouHearExercise | WriteInItalianExercise;
+  interactiveExercises: (ChooseTheRightSolutionExercise | MatchPairsExercise | ConjugationExercise | FillInTheBlankExercise |FillInWhatYouHearExercise | ListenAndSelectExercise | MissingSyllableExercise | MultipleAnswersExercise | PartOfAWordExercise | ReorderExercise | ReorderWhatYouHearExercise | SelectTheMissingWordExercise | SpeakingAndPronunciationExercise | TwoBlanksExercise | TypeInWhatYouHearExercise | WriteInItalianExercise)[];
 };
 
 

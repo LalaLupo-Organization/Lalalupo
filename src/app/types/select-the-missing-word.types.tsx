@@ -4,7 +4,7 @@ export type SelectTheMissingWordExercise = BaseExercise & {
     type: "selectTheMissingWord";
   
       solution: string;
-      displayText: [string, string];
+      displayText: [string, string, string];
       availableWords: string[];
 
   };
