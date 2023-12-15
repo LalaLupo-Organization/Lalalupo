@@ -1,10 +1,7 @@
 const path = require("path");
 const toPath = (_path) => path.join(process.cwd(), _path);
 module.exports = {
-  stories: [
-    "../src/**/*.mdx",
-    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-  ],
+  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -21,10 +18,7 @@ module.exports = {
         alias: {
           ...config.resolve.alias,
           "@/theme": path.resolve(__dirname, "../src/theme"),
-          "@/components": path.resolve(
-            __dirname,
-            "../src/app/components"
-          ),
+          "@/components": path.resolve(__dirname, "../src/app/components"),
         },
       },
     };

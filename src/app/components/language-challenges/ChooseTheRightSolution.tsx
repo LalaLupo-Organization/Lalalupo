@@ -44,6 +44,7 @@ const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
   } = data;
 
 
+
   
 
 
@@ -58,5 +59,7 @@ Choose the Right Solution
       </Container>
     </Box>
   );
+
+
 };
 export default ChooseTheRightSolution;

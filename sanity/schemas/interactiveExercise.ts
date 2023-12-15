@@ -42,7 +42,7 @@ export const exercise = {
           // Conditionally show this field for 'chooseTheRightSolution' and other applicable exercise types
           hidden: ({ parent }: any) =>
             !["chooseTheRightSolution", "otherExerciseType"].includes(
-              parent?.exerciseType
+              parent?.exerciseType,
             ),
         },
         {
