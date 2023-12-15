@@ -62,5 +62,6 @@ export default function LessonLayout({
         {getNavigationComponent(activeExercise)}
 
     </Box>
+    </Box>
   );
 }
