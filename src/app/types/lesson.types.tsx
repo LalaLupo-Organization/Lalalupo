@@ -20,7 +20,7 @@ export interface BaseExercise {
   isComplete: boolean;
   hasFailed: boolean;
   solution?: string | string[];
-  
+
   // Add other common properties here
 }
 
@@ -36,12 +36,42 @@ export type LessonState = {
   numberComplete: number;
   numberFailed: number;
   correctLetters: string[];
-  activeExercise: ChooseTheRightSolutionExercise | MatchPairsExercise | ConjugationExercise | FillInTheBlankExercise | FillInWhatYouHearExercise | ListenAndSelectExercise | MissingSyllableExercise | MultipleAnswersExercise | PartOfAWordExercise | ReorderExercise | ReorderWhatYouHearExercise | SelectTheMissingWordExercise | SpeakingAndPronunciationExercise | TwoBlanksExercise | TypeInWhatYouHearExercise | WriteInItalianExercise;
-  interactiveExercises: (ChooseTheRightSolutionExercise | MatchPairsExercise | ConjugationExercise | FillInTheBlankExercise |FillInWhatYouHearExercise | ListenAndSelectExercise | MissingSyllableExercise | MultipleAnswersExercise | PartOfAWordExercise | ReorderExercise | ReorderWhatYouHearExercise | SelectTheMissingWordExercise | SpeakingAndPronunciationExercise | TwoBlanksExercise | TypeInWhatYouHearExercise | WriteInItalianExercise)[];
+  activeExercise:
+    | ChooseTheRightSolutionExercise
+    | MatchPairsExercise
+    | ConjugationExercise
+    | FillInTheBlankExercise
+    | FillInWhatYouHearExercise
+    | ListenAndSelectExercise
+    | MissingSyllableExercise
+    | MultipleAnswersExercise
+    | PartOfAWordExercise
+    | ReorderExercise
+    | ReorderWhatYouHearExercise
+    | SelectTheMissingWordExercise
+    | SpeakingAndPronunciationExercise
+    | TwoBlanksExercise
+    | TypeInWhatYouHearExercise
+    | WriteInItalianExercise;
+  interactiveExercises: (
+    | ChooseTheRightSolutionExercise
+    | MatchPairsExercise
+    | ConjugationExercise
+    | FillInTheBlankExercise
+    | FillInWhatYouHearExercise
+    | ListenAndSelectExercise
+    | MissingSyllableExercise
+    | MultipleAnswersExercise
+    | PartOfAWordExercise
+    | ReorderExercise
+    | ReorderWhatYouHearExercise
+    | SelectTheMissingWordExercise
+    | SpeakingAndPronunciationExercise
+    | TwoBlanksExercise
+    | TypeInWhatYouHearExercise
+    | WriteInItalianExercise
+  )[];
 };
-
-
-
 
 const exercise: LessonState = {
   _id: "string",
@@ -81,28 +111,28 @@ const exercise: LessonState = {
     },
     {
       _id: "12345",
-  instructions: "Match the corresponding words.",
-  isComplete: false,
-  hasFailed: false,
-  solution: "Some solution here",
-  type: "matchPairs",
-  availableWords: {
-    pairs: [ 
-      [ "attenzione","attention"],
-      ["stazione","station"],
-      ["possibile", "possible"],
-    ],
-    column1: {
-      column: "1",
-      read: true,
-    },
-    column2: {
-      column: "2",
-      read: false,
-    },
-  },
+      instructions: "Match the corresponding words.",
+      isComplete: false,
+      hasFailed: false,
+      solution: "Some solution here",
+      type: "matchPairs",
+      availableWords: {
+        pairs: [
+          ["attenzione", "attention"],
+          ["stazione", "station"],
+          ["possibile", "possible"],
+        ],
+        column1: {
+          column: "1",
+          read: true,
+        },
+        column2: {
+          column: "2",
+          read: false,
+        },
+      },
 
-  // Add other specific properties here
-    }
+      // Add other specific properties here
+    },
   ],
 };

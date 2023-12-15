@@ -50,18 +50,16 @@ export default function LessonLayout({
       </Box>
       <Center w={"100%"}>{children}</Center>
 
-
       <Box
         bg="grey.300"
         pos="absolute"
         bottom={"70"}
         w="100%"
         p={4}
-        color="white">
-
+        color="white"
+      >
         {getNavigationComponent(activeExercise)}
-
-    </Box>
+      </Box>
     </Box>
   );
 }

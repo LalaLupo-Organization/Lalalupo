@@ -1,22 +1,8 @@
 "use client";
 import { LessonState } from "@/types/lesson.types";
-import {
-
-  Box,
-
-  Heading,
-  Container,
-} from "@chakra-ui/react";
-
-
-
+import { Box, Heading, Container } from "@chakra-ui/react";
 
 const MatchPairs = ({ data }: { data: LessonState }) => {
- 
-
-  
-
-
   const {
     activeExercise,
     totalExercises,
@@ -27,18 +13,13 @@ const MatchPairs = ({ data }: { data: LessonState }) => {
     remainingExercises,
   } = data;
 
-
-  
-
-
   return (
     <Box>
-      <Container w={'60%'}>
-
-      <Heading  mt={10} mx={'auto'} textAlign={'center'} fontSize={'sm'}>
-    MatchPairs
-      </Heading>
-     {JSON.stringify(data.activeExercise)}
+      <Container w={"60%"}>
+        <Heading mt={10} mx={"auto"} textAlign={"center"} fontSize={"sm"}>
+          MatchPairs
+        </Heading>
+        {JSON.stringify(data.activeExercise)}
       </Container>
     </Box>
   );

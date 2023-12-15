@@ -24,15 +24,7 @@ import { v4 as uuid } from "uuid";
 // import InteractiveLayout from "../interactive_exercise_layouts/InteractiveLayout";
 // import useSpeechSynthesis from "../hooks/useSpeechSynthesis";
 
-
-
-
 const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
- 
-
-  
-
-
   const {
     activeExercise,
     totalExercises,
@@ -43,23 +35,15 @@ const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
     remainingExercises,
   } = data;
 
-
-
-  
-
-
   return (
     <Box>
-      <Container w={'60%'}>
-
-      <Heading  mt={10} mx={'auto'} textAlign={'center'} fontSize={'sm'}>
-Choose the Right Solution
-      </Heading>
-     {JSON.stringify(data.activeExercise)}
+      <Container w={"60%"}>
+        <Heading mt={10} mx={"auto"} textAlign={"center"} fontSize={"sm"}>
+          Choose the Right Solution
+        </Heading>
+        {JSON.stringify(data.activeExercise)}
       </Container>
     </Box>
   );
-
-
 };
 export default ChooseTheRightSolution;

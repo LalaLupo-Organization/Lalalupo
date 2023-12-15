@@ -20,7 +20,7 @@ export default function Lessons() {
     case "chooseTheRightSolution":
       return <ChooseTheRightSolution data={lesson} />;
     case "matchPairs":
-      return <MatchPairs data={lesson}/>;
+      return <MatchPairs data={lesson} />;
   }
 
   return <Heading>Error with a redirect link</Heading>;
