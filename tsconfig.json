@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "es5",
+    "lib": ["es5", "dom", "dom.iterable", "esnext"],
+    "types": ["cypress", "node"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -26,6 +27,7 @@
       "@/hooks/*": ["./src/app/hooks/*"],
       "@/redux/*": ["./src/app/redux/*"],
       "@/services/*": ["./src/app/services/*"],
+      "@/sanity/*": ["./sanity/*"],
       "@/studio/*": ["./src/app/studio/*"],
       "@/stories/*": ["./src/stories/*"],
       "@/types/*": ["./src/app/types/*"],
