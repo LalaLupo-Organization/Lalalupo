@@ -8,10 +8,7 @@ import {
   Center,
   Button,
 } from "@chakra-ui/react";
-import type {
-  User,
-  UserProgressObject,
-} from "@/types/user-progress.types";
+import type { User, UserProgressObject } from "@/types/user-progress.types";
 import { useGetCourseStructureQuery } from "@/services/api";
 
 //TODO - THE USER OBJECT ARRAY BELOW IS TEMPORARY - IT REPRESENTS THE USER PROGRESS WHEN COMPLETING LESSONS.
@@ -44,7 +41,7 @@ export default function Dashboard() {
   useEffect(() => {
     // Extract unique unitIds from userProgressArray
     const uniqueUnitIds = Array.from(
-      new Set(user.userProgress.map((lesson) => lesson.unitId))
+      new Set(user.userProgress.map((lesson) => lesson.unitId)),
     );
     // Set the processed units to uniqueUnitIds
     setProcessedUnits(uniqueUnitIds);
@@ -59,11 +56,7 @@ export default function Dashboard() {
           const { unitTitle, cssClass } = data[0][unitId];
           return (
             <Box key={unitId} mx={"auto"} textAlign={"center"}>
-              <Heading
-                bg={cssClass}
-                py={"4"}
-                my={"4"}
-                fontWeight={"900"}>
+              <Heading bg={cssClass} py={"4"} my={"4"} fontWeight={"900"}>
                 {unitTitle}
               </Heading>
               {/* MAP OVER USER PROGRESS OBJECT  */}

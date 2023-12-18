@@ -97,15 +97,13 @@ const courseStructure = {
               hidden: ({ parent }: any) => {
                 console.log(
                   "🚀 ~ file: courseStructure.ts:78 ~ parent:",
-                  parent
+                  parent,
                 );
 
                 if (parent.selectOption === undefined) {
                   return true;
                 }
-                if (
-                  parent.selectOption !== "chooseTheRightSolution"
-                ) {
+                if (parent.selectOption !== "chooseTheRightSolution") {
                   return true;
                 }
               },
@@ -134,7 +132,7 @@ const courseStructure = {
               hidden: ({ parent }: any) => {
                 console.log(
                   "🚀 ~ file: courseStructure.ts:78 ~ parent:",
-                  parent
+                  parent,
                 );
 
                 if (parent.selectOption === undefined) {

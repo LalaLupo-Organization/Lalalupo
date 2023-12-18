@@ -16,7 +16,7 @@ const structure = (S: StructureBuilder) =>
                 .child(
                   S.list()
                     .title("English to Italian")
-                    .items([S.listItem().title("Users")])
+                    .items([S.listItem().title("Users")]),
                 ),
 
               S.listItem()
@@ -24,14 +24,14 @@ const structure = (S: StructureBuilder) =>
                 .child(
                   S.list()
                     .title("English to Chinese")
-                    .items([S.listItem().title("Users")])
+                    .items([S.listItem().title("Users")]),
                 ),
               S.listItem()
                 .title("English to More langugaes")
                 .child(
                   S.list()
                     .title("English to More languages")
-                    .items([S.listItem().title("Users")])
+                    .items([S.listItem().title("Users")]),
                 ),
               S.divider(),
               S.listItem()
@@ -41,7 +41,7 @@ const structure = (S: StructureBuilder) =>
                   S.documentTypeList("courseStructure")
                     .title("Course Structure")
                     .apiVersion("v2023-12-15")
-                    .filter('_type == "courseStructure"')
+                    .filter('_type == "courseStructure"'),
                   // Specify the API version
                 ),
 
@@ -92,7 +92,7 @@ const structure = (S: StructureBuilder) =>
               //             .filter(' == "usesPage"'),
 
               //       // You can add more categories here as needed
-            ])
+            ]),
         ),
       S.listItem()
         .title("Chinese")
@@ -106,7 +106,7 @@ const structure = (S: StructureBuilder) =>
                 .child(
                   S.list()
                     .title("Chinese to English")
-                    .items([S.listItem().title("Users")])
+                    .items([S.listItem().title("Users")]),
                 ),
 
               S.listItem()
@@ -114,18 +114,18 @@ const structure = (S: StructureBuilder) =>
                 .child(
                   S.list()
                     .title("Chinese to Japansese")
-                    .items([S.listItem().title("Users")])
+                    .items([S.listItem().title("Users")]),
                 ),
               S.listItem()
                 .title("Chinese to More langugaes")
                 .child(
                   S.list()
                     .title("Chinese to More languages")
-                    .items([S.listItem().title("Users")])
+                    .items([S.listItem().title("Users")]),
                 ),
               S.divider(),
               S.listItem().title("Course Structure"),
-            ])
+            ]),
         ),
 
       S.divider(),
