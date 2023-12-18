@@ -29,6 +29,7 @@ export default function LessonLayout({
   const getNavigationComponent = (
     activeExercise: LessonState["activeExercise"],
   ) => {
+    //This function
     switch (activeExercise.type) {
       case "chooseTheRightSolution":
         return <Heading> ChooseTheRightSolution Nav</Heading>;

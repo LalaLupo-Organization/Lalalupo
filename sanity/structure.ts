@@ -16,7 +16,7 @@ const structure = (S: StructureBuilder) =>
                 .child(
                   S.list()
                     .title("English to Italian")
-                    .items([S.listItem().title("Users")]),
+                    .items([S.listItem().title("Users")])
                 ),
 
               S.listItem()
@@ -24,14 +24,14 @@ const structure = (S: StructureBuilder) =>
                 .child(
                   S.list()
                     .title("English to Chinese")
-                    .items([S.listItem().title("Users")]),
+                    .items([S.listItem().title("Users")])
                 ),
               S.listItem()
                 .title("English to More langugaes")
                 .child(
                   S.list()
                     .title("English to More languages")
-                    .items([S.listItem().title("Users")]),
+                    .items([S.listItem().title("Users")])
                 ),
               S.divider(),
               S.listItem()
@@ -40,7 +40,9 @@ const structure = (S: StructureBuilder) =>
                 .child(
                   S.documentTypeList("courseStructure")
                     .title("Course Structure")
-                    .filter('_type == "courseStructure"'),
+                    .apiVersion("v2023-12-15")
+                    .filter('_type == "courseStructure"')
+                  // Specify the API version
                 ),
 
               //children for TO
@@ -71,7 +73,7 @@ const structure = (S: StructureBuilder) =>
               //         .child(
               //           S.documentTypeList('projectPage')
               //             .title('Project Page')
-              //             .filter('_type == "projectPage"'),
+              //             .filter(' == "projectPage"'),
               //         ),
               //       // Panel for Speaking category
               //       S.listItem()
@@ -87,10 +89,10 @@ const structure = (S: StructureBuilder) =>
               //         .child(
               //           S.documentTypeList('usesPage')
               //             .title('Uses Page')
-              //             .filter('_type == "usesPage"'),
+              //             .filter(' == "usesPage"'),
 
               //       // You can add more categories here as needed
-            ]),
+            ])
         ),
       S.listItem()
         .title("Chinese")
@@ -104,7 +106,7 @@ const structure = (S: StructureBuilder) =>
                 .child(
                   S.list()
                     .title("Chinese to English")
-                    .items([S.listItem().title("Users")]),
+                    .items([S.listItem().title("Users")])
                 ),
 
               S.listItem()
@@ -112,29 +114,21 @@ const structure = (S: StructureBuilder) =>
                 .child(
                   S.list()
                     .title("Chinese to Japansese")
-                    .items([S.listItem().title("Users")]),
+                    .items([S.listItem().title("Users")])
                 ),
               S.listItem()
                 .title("Chinese to More langugaes")
                 .child(
                   S.list()
                     .title("Chinese to More languages")
-                    .items([S.listItem().title("Users")]),
+                    .items([S.listItem().title("Users")])
                 ),
               S.divider(),
               S.listItem().title("Course Structure"),
-            ]),
+            ])
         ),
 
       S.divider(),
-      S.listItem()
-        .title("Pages")
-        .child(
-          S.documentTypeList("exercise")
-            .title("Home Page")
-            .filter('_type == "exercise"'),
-        ),
-      S.listItem().title("Sections"),
     ]);
 
 export default structure;
