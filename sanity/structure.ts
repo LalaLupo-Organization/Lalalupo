@@ -16,7 +16,17 @@ const structure = (S: StructureBuilder) =>
                 .child(
                   S.list()
                     .title("English to Italian")
-                    .items([S.listItem().title("Users")]),
+                    .items([
+                      S.listItem().title("Users"),
+                      S.listItem()
+                        .title("Course Structure")
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter('_type == "courseStructure"'),
+                        ),
+                    ]),
                 ),
 
               S.listItem()
@@ -34,16 +44,6 @@ const structure = (S: StructureBuilder) =>
                     .items([S.listItem().title("Users")]),
                 ),
               S.divider(),
-              S.listItem()
-                .title("Course Structure")
-
-                .child(
-                  S.documentTypeList("courseStructure")
-                    .title("Course Structure")
-                    .apiVersion("v2023-12-15")
-                    .filter('_type == "courseStructure"'),
-                  // Specify the API version
-                ),
 
               //children for TO
               // .child(

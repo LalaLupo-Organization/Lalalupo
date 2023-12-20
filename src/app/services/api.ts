@@ -13,7 +13,6 @@ export const languageCourseApi = createApi({
   reducerPath: "languageCourseApi",
   baseQuery: () => {
     // Use Sanity's client to fetch data
-
     return { data: client.fetch(`*[_type == "courseStructure"]`) };
   },
   endpoints: (builder) => ({

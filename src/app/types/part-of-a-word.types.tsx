@@ -7,15 +7,3 @@ export type PartOfAWordExercise = BaseExercise & {
   word: string[];
   english: string;
 };
-
-const data: PartOfAWordExercise = {
-  type: "partOfAWord",
-  _id: "12345",
-  instructions: "Type the missing part of the word.",
-  missing: ["chi"],
-  word: ["fuo", "chi"],
-  english: "fires",
-
-  isComplete: false,
-  hasFailed: false,
-};
