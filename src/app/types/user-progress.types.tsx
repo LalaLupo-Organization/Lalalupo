@@ -1,6 +1,6 @@
 // Define a type for a user progress item
 export type UserProgressItem = {
-  unitId: string;
+  unitTitle: string;
   lessonId: string;
   lessonLock: boolean;
   hasAnimated: boolean;
@@ -16,7 +16,7 @@ export type User = {
 // Define a type for the object data
 export type UserProgressObject = Record<string, UserProgressItem>;
 
-export interface HomeProps {
+export interface LocalParamProps {
   params: {
     lang: string;
   };

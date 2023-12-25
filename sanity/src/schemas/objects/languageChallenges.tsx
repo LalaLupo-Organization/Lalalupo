@@ -38,14 +38,11 @@ export const languageChallenges = ({
                 title: "Listen And Select",
                 value: "listenAndSelect",
               },
-              {
-                title: "Listen And Select",
-                value: "listenAndSelect",
-              },
+
               { title: "Match Pairs", value: "matchPairs" },
               {
                 title: "Missing Syllables",
-                value: "missingSyllables",
+                value: "missingSyllable",
               },
               { title: "Multiple Answers", value: "multipleAnswers" },
               { title: "Part Of A Word", value: "partOfAWord" },
@@ -67,7 +64,10 @@ export const languageChallenges = ({
                 title: "Type In What You Hear",
                 value: "typeInWhatYouHear",
               },
-              { title: "Write In Italian", value: "writeInItalian" },
+              {
+                title: "Write The Sentence",
+                value: "writeTheSentence",
+              },
               // Add more options as needed
             ],
           },
@@ -79,14 +79,6 @@ export const languageChallenges = ({
           type: "object",
           fields: [
             ...baseChallenges.fields,
-            {
-              name: "type",
-              title: "Type",
-              type: "string",
-              readOnly: true,
-              hidden: true,
-              initialValue: "chooseTheRightSolution",
-            },
 
             {
               name: "availableWords",
@@ -121,14 +113,7 @@ export const languageChallenges = ({
           type: "object",
           fields: [
             ...baseChallenges.fields,
-            {
-              name: "type",
-              title: "Type",
-              type: "string",
-              readOnly: true,
-              hidden: true,
-              initialValue: "conjunction",
-            },
+
             {
               name: "displayText",
               title: "Display Text",
@@ -174,14 +159,7 @@ export const languageChallenges = ({
           type: "object",
           fields: [
             ...baseChallenges.fields,
-            {
-              name: "type",
-              title: "Type",
-              type: "string",
-              readOnly: true,
-              hidden: true,
-              initialValue: "fillInTheBlanks",
-            },
+
             {
               name: "display",
               title: "Display", //"MANGIARE (TO EAT)"
@@ -214,7 +192,7 @@ export const languageChallenges = ({
             if (parent.selectOption === undefined) {
               return true;
             }
-            if (parent.selectOption !== "conjunction") {
+            if (parent.selectOption !== "fillInTheBlanks") {
               return true;
             }
           },
@@ -225,14 +203,7 @@ export const languageChallenges = ({
           type: "object",
           fields: [
             ...baseChallenges.fields,
-            {
-              name: "type",
-              title: "Type",
-              type: "string",
-              readOnly: true,
-              hidden: true,
-              initialValue: "fillInWhatYouHear",
-            },
+
             {
               name: "displayMeaning",
               title: "Display Meaning",
@@ -264,14 +235,7 @@ export const languageChallenges = ({
           type: "object",
           fields: [
             ...baseChallenges.fields,
-            {
-              name: "type",
-              title: "Type",
-              type: "string",
-              readOnly: true,
-              hidden: true,
-              initialValue: "listenAndSelect",
-            },
+
             {
               name: "audio",
               title: "Audio",
@@ -316,14 +280,7 @@ export const languageChallenges = ({
           type: "object",
           fields: [
             ...baseChallenges.fields,
-            {
-              name: "type",
-              title: "Type",
-              type: "string",
-              readOnly: true,
-              hidden: true,
-              initialValue: "matchPairs",
-            },
+
             {
               name: "pairs",
               title: "Pairs",
@@ -380,18 +337,28 @@ export const languageChallenges = ({
           type: "object",
           fields: [
             ...baseChallenges.fields,
+
             {
-              name: "type",
-              title: "Type",
-              type: "string",
-              readOnly: true,
-              hidden: true,
-              initialValue: "missingSyllable",
+              name: "display",
+              title: "Display",
+              type: "array",
+              of: [{ type: "string" }],
             },
             {
-              name: "fieldD",
-              title: "Field D",
+              name: "italian",
+              title: "Italian",
               type: "string",
+            },
+            {
+              name: "english",
+              title: "English",
+              type: "string",
+            },
+            {
+              name: "availableWords",
+              title: "Available Words",
+              type: "array",
+              of: [{ type: "string" }],
             },
           ],
           hidden: ({ parent }: any) => {
@@ -409,14 +376,7 @@ export const languageChallenges = ({
           type: "object",
           fields: [
             ...baseChallenges.fields,
-            {
-              name: "type",
-              title: "Type",
-              type: "string",
-              readOnly: true,
-              hidden: true,
-              initialValue: "multipleAnswers",
-            },
+
             {
               name: "availableWords",
               title: "Available Words",
@@ -470,14 +430,7 @@ export const languageChallenges = ({
           type: "object",
           fields: [
             ...baseChallenges.fields,
-            {
-              name: "type",
-              title: "Type",
-              type: "string",
-              readOnly: true,
-              hidden: true,
-              initialValue: "partOfAWord",
-            },
+
             {
               name: "missing",
               title: "Missing",
@@ -511,14 +464,7 @@ export const languageChallenges = ({
           type: "object",
           fields: [
             ...baseChallenges.fields,
-            {
-              name: "type",
-              title: "Type",
-              type: "string",
-              readOnly: true,
-              hidden: true,
-              initialValue: "reorderWhatYouHear",
-            },
+
             {
               name: "english",
               title: "English",
@@ -546,14 +492,7 @@ export const languageChallenges = ({
           type: "object",
           fields: [
             ...baseChallenges.fields,
-            {
-              name: "type",
-              title: "Type",
-              type: "string",
-              readOnly: true,
-              hidden: true,
-              initialValue: "reorder",
-            },
+
             {
               name: "displayText",
               title: "Display Text",
@@ -581,14 +520,7 @@ export const languageChallenges = ({
           type: "object",
           fields: [
             ...baseChallenges.fields,
-            {
-              name: "type",
-              title: "Type",
-              type: "string",
-              readOnly: true,
-              hidden: true,
-              initialValue: "selectTheMissingWord",
-            },
+
             {
               name: "displayText",
               title: "Display Text",
@@ -618,14 +550,7 @@ export const languageChallenges = ({
           type: "object",
           fields: [
             ...baseChallenges.fields,
-            {
-              name: "type",
-              title: "Type",
-              type: "string",
-              readOnly: true,
-              hidden: true,
-              initialValue: "speakingAndPronunciation",
-            },
+
             {
               name: "doubleSolution",
               title: "Double Solution",
@@ -663,14 +588,7 @@ export const languageChallenges = ({
           type: "object",
           fields: [
             ...baseChallenges.fields,
-            {
-              name: "type",
-              title: "Type",
-              type: "string",
-              readOnly: true,
-              hidden: true,
-              initialValue: "twoBlanks",
-            },
+
             {
               name: "vocabularyHelper",
               title: "Vocabulary Helper",
@@ -705,14 +623,7 @@ export const languageChallenges = ({
           type: "object",
           fields: [
             ...baseChallenges.fields,
-            {
-              name: "type",
-              title: "Type",
-              type: "string",
-              readOnly: true,
-              hidden: true,
-              initialValue: "typeInWhatYouHear",
-            },
+
             {
               name: "english",
               title: "English",
@@ -749,14 +660,7 @@ export const languageChallenges = ({
           type: "object",
           fields: [
             ...baseChallenges.fields,
-            {
-              name: "type",
-              title: "Type",
-              type: "string",
-              readOnly: true,
-              hidden: true,
-              initialValue: "writeTheSentence",
-            },
+
             {
               name: "displayMeaning",
               title: "Display Meaning",

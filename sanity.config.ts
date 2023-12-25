@@ -8,8 +8,8 @@ import { deskTool } from "sanity/desk";
 import { documentInternationalization } from "@sanity/document-internationalization";
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import { apiVersion, dataset, projectId } from "./sanity/env";
-import { schema } from "./sanity/schema";
-import structure from "./sanity/structure";
+import { schema } from "./sanity/src/parts/schema";
+import structure from "./sanity/src/parts/structure";
 export default defineConfig({
   basePath: "/studio",
   projectId,

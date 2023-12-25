@@ -24,6 +24,7 @@
       "@/components/*": ["./src/app/components/*"],
       "@/api/*": ["./src/app/api/*"],
       "@/features/*": ["./src/features/*"],
+      "@/firebase/*": ["./src/firebase/*"],
       "@/hooks/*": ["./src/app/hooks/*"],
       "@/redux/*": ["./src/app/redux/*"],
       "@/services/*": ["./src/app/services/*"],
@@ -39,7 +40,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "sanity/schemas/lesson.js",
+    "sanity/src/lesson.js",
     "src/app/components/icons/Icons.stosries.js"
   ],
   "exclude": ["node_modules"]

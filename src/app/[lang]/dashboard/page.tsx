@@ -1,74 +1,110 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { Heading, Box, Text, Button } from "@chakra-ui/react";
 import {
-  Heading,
-  Box,
-  Text,
-  Container,
-  Center,
-  Button,
-} from "@chakra-ui/react";
-import type { User, UserProgressObject } from "@/types/user-progress.types";
-import { useGetCourseStructureQuery } from "@/services/api";
-
+  useGetCourseStructureQuery,
+  useGetUserQuery,
+  useGetLessonQuery,
+} from "@/services/api";
+import { v4 as uuid } from "uuid";
+import Link from "next/link";
+import { LocalParamProps } from "@/types/user-progress.types";
 //TODO - THE USER OBJECT ARRAY BELOW IS TEMPORARY - IT REPRESENTS THE USER PROGRESS WHEN COMPLETING LESSONS.
+//! CYPRESS TEST - We have to check that the length of userProgress === length of courseStructureUnits
+// const user: User = {
+//   userId: "user1",
+//   userProgress: [
+//     {
+//       unitTitle: "unit1",
+//       lessonId: "1",
+//       lessonLock: false,
+//       hasAnimated: false,
+//       isCompleted: false,
+//     },
+//     {
+//       unitTitle: "unit1",
+//       lessonId: "2",
+//       lessonLock: false,
+//       hasAnimated: false,
+//       isCompleted: false,
+//     },
+//     {
+//       unitTitle: "unit2",
+//       lessonId: "1",
+//       lessonLock: false,
+//       hasAnimated: false,
+//       isCompleted: false,
+//     },
+//   ],
+// };
 
-const user: User = {
-  userId: "user1",
-  userProgress: [
-    {
-      unitId: "unit1",
-      lessonId: "1",
-      lessonLock: false,
-      hasAnimated: false,
-      isCompleted: false,
-    },
-    {
-      unitId: "unit2",
-      lessonId: "2",
-      lessonLock: true,
-      hasAnimated: true,
-      isCompleted: false,
-    },
-  ],
-};
-
-export default function Dashboard() {
+export default function Dashboard({
+  params: { lang },
+}: LocalParamProps) {
   // Initialize state to track processed units
   const [processedUnits, setProcessedUnits] = useState<string[]>([]);
+  const {
+    data: sanityData,
+    error: sanityDataError,
+    isLoading: sanityDataIsLoading,
+  } = useGetCourseStructureQuery("");
+  const {
+    data: firebaseUserData,
+    error: firebaseUserError,
+    isLoading: firebaseUserIsLoading,
+  } = useGetUserQuery(null);
 
-  const { data, error, isLoading } = useGetCourseStructureQuery("");
   useEffect(() => {
     // Extract unique unitIds from userProgressArray
-    const uniqueUnitIds = Array.from(
-      new Set(user.userProgress.map((lesson) => lesson.unitId)),
-    );
-    // Set the processed units to uniqueUnitIds
-    setProcessedUnits(uniqueUnitIds);
-  }, [data]);
-  console.log("🚀 ~ file: page.tsx:64 ~ Dashboard ~ data:", data);
+
+    if (sanityData && firebaseUserData) {
+      const uniqueUnitIds = firebaseUserData.userProgress.map(
+        (lesson: any) => lesson.unitTitle
+      ); // ['unit1', 'unit2']
+
+      const test = sanityData.map((item: any) => item.lessons);
+
+      console.log("🚀 ~ file: page.tsx:68 ~ useEffect ~ test:", test);
+
+      setProcessedUnits(uniqueUnitIds);
+    }
+  }, [sanityData, firebaseUserData]);
 
   return (
     <div>
-      {data ? (
-        processedUnits.map((unitId) => {
+      {sanityData ? (
+        processedUnits.map((unitId, i) => {
           // Render the unit title
-          const { unitTitle, cssClass } = data[0][unitId];
+          const { unitTitle, color } = sanityData[i];
           return (
-            <Box key={unitId} mx={"auto"} textAlign={"center"}>
-              <Heading bg={cssClass} py={"4"} my={"4"} fontWeight={"900"}>
+            <Box key={uuid()} mx={"auto"} textAlign={"center"}>
+              <Heading
+                bg={color}
+                py={"4"}
+                my={"4"}
+                fontWeight={"900"}>
                 {unitTitle}
               </Heading>
-              {/* MAP OVER USER PROGRESS OBJECT  */}
-              {user.userProgress
-                .filter((lesson) => lesson.unitId === unitId)
-                .map((lesson) => (
-                  <Heading key={lesson.lessonId}>
-                    <Text fontSize={"lg"}>{lesson.lessonId}</Text>
-                    <Text fontSize={"lg"}></Text>
-                    <Button> Lesson </Button>
-                  </Heading>
-                ))}
+              {/* MAP OVER USER PROGRESS ARRAY  */}
+              {firebaseUserData &&
+                firebaseUserData.userProgress
+                  // .filter((lesson) => lesson.unitTitle === unitId)
+                  .map((lesson) => (
+                    <Heading key={uuid()}>
+                      <Text fontSize={"lg"}></Text>
+                      <Link
+                        prefetch={true}
+                        href={{
+                          pathname: `/${lang}/lessons`,
+                          query: {
+                            documentIndex: i,
+                            fieldName: "B",
+                          },
+                        }}>
+                        {lesson.lessonId}{" "}
+                      </Link>
+                    </Heading>
+                  ))}
             </Box>
           );
         })

@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "../../features/counterSlice"; //exampleCounter
 import lessonReducer from "../../features/lessonSlice"; //exampleCounter
-import { languageCourseApi } from "@/services/api";
+import { api } from "@/services/api";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { useDispatch } from "react-redux";
 
@@ -9,10 +9,10 @@ export const store = configureStore({
   reducer: {
     counter: counterReducer,
     lessonReduxState: lessonReducer,
-    [languageCourseApi.reducerPath]: languageCourseApi.reducer,
+    [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(languageCourseApi.middleware),
+    getDefaultMiddleware().concat(api.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

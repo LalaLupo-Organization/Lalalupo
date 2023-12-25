@@ -16,7 +16,9 @@ export default function RootLayout({
         <ReduxProvider>
           <CacheProvider>
             <Script id={uuid()}>
-              <ColorModeScript initialColorMode={theme.initialColorMode} />
+              <ColorModeScript
+                initialColorMode={theme.initialColorMode}
+              />
             </Script>
             <ChakraProvider theme={theme}>{children}</ChakraProvider>
           </CacheProvider>
