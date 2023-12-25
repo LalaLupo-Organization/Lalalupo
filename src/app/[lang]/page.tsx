@@ -23,8 +23,8 @@ export default function Home({ params: { lang } }: LocalParamProps) {
       </Button>
       <Heading>Homepage</Heading>
       <Text>
-        Home page requires a request to sanity.io to fetch content for
-        specific language depending on lanaguge code in url
+        Home page requires a request to sanity.io to fetch content for specific
+        language depending on lanaguge code in url
       </Text>
 
       <Link href="/sandbox">Sandbox</Link>

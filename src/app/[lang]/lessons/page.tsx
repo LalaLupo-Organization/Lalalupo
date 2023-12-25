@@ -28,7 +28,7 @@ export default function Lessons() {
     if (sanityLessonData) {
       console.log(
         "🚀 ~ file: page.tsx:29 ~ useEffect ~ sanityLessonData:",
-        sanityLessonData
+        sanityLessonData,
       );
     }
   }, [sanityLessonData]);

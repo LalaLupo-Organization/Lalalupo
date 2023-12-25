@@ -38,9 +38,7 @@ import { LocalParamProps } from "@/types/user-progress.types";
 //   ],
 // };
 
-export default function Dashboard({
-  params: { lang },
-}: LocalParamProps) {
+export default function Dashboard({ params: { lang } }: LocalParamProps) {
   // Initialize state to track processed units
   const [processedUnits, setProcessedUnits] = useState<string[]>([]);
   const {
@@ -59,7 +57,7 @@ export default function Dashboard({
 
     if (sanityData && firebaseUserData) {
       const uniqueUnitIds = firebaseUserData.userProgress.map(
-        (lesson: any) => lesson.unitTitle
+        (lesson: any) => lesson.unitTitle,
       ); // ['unit1', 'unit2']
 
       const test = sanityData.map((item: any) => item.lessons);
@@ -78,11 +76,7 @@ export default function Dashboard({
           const { unitTitle, color } = sanityData[i];
           return (
             <Box key={uuid()} mx={"auto"} textAlign={"center"}>
-              <Heading
-                bg={color}
-                py={"4"}
-                my={"4"}
-                fontWeight={"900"}>
+              <Heading bg={color} py={"4"} my={"4"} fontWeight={"900"}>
                 {unitTitle}
               </Heading>
               {/* MAP OVER USER PROGRESS ARRAY  */}
@@ -100,7 +94,8 @@ export default function Dashboard({
                             documentIndex: i,
                             fieldName: "B",
                           },
-                        }}>
+                        }}
+                      >
                         {lesson.lessonId}{" "}
                       </Link>
                     </Heading>
