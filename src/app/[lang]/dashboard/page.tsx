@@ -2,22 +2,14 @@
 import React, { useState, useEffect } from "react";
 import { Heading, Box, Text, Button } from "@chakra-ui/react";
 
-import {
-  useGetCourseStructureQuery,
-  useGetUserQuery,
-} from "@/services/api";
+import { useGetCourseStructureQuery, useGetUserQuery } from "@/services/api";
 import { v4 as uuid } from "uuid";
 import Link from "next/link";
-import {
-  LocalParamProps,
-  UserProgressItem,
-} from "@/types/user-progress.types";
+import { LocalParamProps, UserProgressItem } from "@/types/user-progress.types";
 //TODO - THE USER OBJECT ARRAY BELOW IS TEMPORARY - IT REPRESENTS THE USER PROGRESS WHEN COMPLETING LESSONS.
 //! CYPRESS TEST - We have to check that the length of userProgress === length of courseStructure
 
-export default function Dashboard({
-  params: { lang },
-}: LocalParamProps) {
+export default function Dashboard({ params: { lang } }: LocalParamProps) {
   const {
     data: sanityData,
     error: sanityDataError,
@@ -39,10 +31,9 @@ export default function Dashboard({
           mx={"auto"}
           py={"4"}
           my={"4"}
-          textAlign={"center"}>
-          <Heading fontWeight={"900"}>
-            {sanityData[0].unitTitle}
-          </Heading>
+          textAlign={"center"}
+        >
+          <Heading fontWeight={"900"}>{sanityData[0].unitTitle}</Heading>
           <Text>{sanityData[0].description}</Text>
         </Box>
       )}
