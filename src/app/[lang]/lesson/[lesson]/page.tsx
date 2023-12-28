@@ -25,7 +25,7 @@ export default function Lessons() {
     if (sanityLessonData) {
       console.log(
         "🚀 ~ file: page.tsx:29 ~ useEffect ~ sanityLessonData:",
-        sanityLessonData
+        sanityLessonData,
       );
     }
   }, [sanityLessonData]);
@@ -34,10 +34,7 @@ export default function Lessons() {
     return <Heading>Loading</Heading>;
   }
 
-  switch (
-    sanityLessonData &&
-    sanityLessonData.exercise[0].selectOption
-  ) {
+  switch (sanityLessonData && sanityLessonData.exercise[0].selectOption) {
     case "chooseTheRightSolution":
       return <ChooseTheRightSolution data={lesson} />;
     case "matchPairs":

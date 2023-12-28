@@ -108,8 +108,7 @@ export const languageChallenges = {
           name: "displayText",
           title: "Display Text",
           type: "string",
-          description:
-            "Some exericises need helpers, ex. MANGIARE (TO EAT)",
+          description: "Some exericises need helpers, ex. MANGIARE (TO EAT)",
         },
         {
           name: "pairs",
