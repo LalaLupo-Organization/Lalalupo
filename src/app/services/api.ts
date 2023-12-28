@@ -5,7 +5,12 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import { SanityDocument } from "@/types/sanity-io.types";
 import client from "@/sanity/src/parts/config";
-import { collection, getDoc, doc, DocumentData } from "firebase/firestore";
+import {
+  collection,
+  getDoc,
+  doc,
+  DocumentData,
+} from "firebase/firestore";
 import { db } from "@/firebase/firebase";
 import { CustomErrorType } from "@/types/sanity-io.types";
 import { User } from "@/types/user-progress.types";
@@ -17,7 +22,7 @@ export const api = createApi({
       queryFn: async (id) => {
         try {
           const data = await client.fetch<any[]>(
-            `*[_type == "courseStructure"] | order(_createdAt asc)`,
+            `*[_type == "courseStructure"] | order(_createdAt asc)`
           );
           return { data };
         } catch (error) {
@@ -25,25 +30,23 @@ export const api = createApi({
         }
       },
     }),
-    getLesson: builder.query<any, { documentIndex: string; fieldName: string }>(
-      {
-        queryFn: async ({ documentIndex, fieldName }) => {
-          try {
-            const data = await client.fetch<any[]>(
-              `*[_type == "courseStructure"] | order(_createdAt asc) [${documentIndex}] {
-              lessons {
-             ${fieldName}
-              }
+    getLesson: builder.query<any, { index: string }>({
+      queryFn: async ({ index }) => {
+        try {
+          const data = await client.fetch<any[]>(
+            `*[_type == "courseStructure"] | order(_createdAt asc) [${index}] {
+              exercise 
+            
+              
             }
-          `,
-            );
-            return { data };
-          } catch (error) {
-            return { error: { status: "CUSTOM_ERROR", data: error } };
-          }
-        },
+          `
+          );
+          return { data };
+        } catch (error) {
+          return { error: { status: "CUSTOM_ERROR", data: error } };
+        }
       },
-    ),
+    }),
 
     getUser: builder.query<User, any>({
       queryFn: async (): Promise<any> => {

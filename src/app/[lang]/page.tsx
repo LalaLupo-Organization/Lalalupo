@@ -1,6 +1,6 @@
 "use client";
 import type { LocalParamProps } from "@/types/user-progress.types";
-import { useState } from "react";
+
 import {
   Link,
   Container,
@@ -9,10 +9,8 @@ import {
   Button,
   useColorMode,
 } from "@chakra-ui/react";
-import { getDictionary } from "./dictionaries";
-export default function Home({ params: { lang } }: LocalParamProps) {
-  const [lanaguge, setLanguage] = useState(lang);
 
+export default function Home({ params: { lang } }: LocalParamProps) {
   // const dict = getDictionary(lang); // en
   const { colorMode, toggleColorMode } = useColorMode();
 
@@ -23,8 +21,8 @@ export default function Home({ params: { lang } }: LocalParamProps) {
       </Button>
       <Heading>Homepage</Heading>
       <Text>
-        Home page requires a request to sanity.io to fetch content for specific
-        language depending on lanaguge code in url
+        Home page requires a request to sanity.io to fetch content for
+        specific language depending on lanaguge code in url
       </Text>
 
       <Link href="/sandbox">Sandbox</Link>

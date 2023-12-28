@@ -53,21 +53,11 @@ const courseStructure = {
       title: "Video URL",
       type: "url",
     },
-
     {
-      name: "lessons",
-      title: "Lessons",
-      type: "object",
-      fields: [
-        languageChallenges({
-          name: "A",
-          title: "Lesson One",
-        }),
-        languageChallenges({
-          name: "B",
-          title: "Lesson Two",
-        }),
-      ],
+      name: "exercise",
+      title: "Exercise",
+      type: "array",
+      of: [languageChallenges],
     },
   ],
 
