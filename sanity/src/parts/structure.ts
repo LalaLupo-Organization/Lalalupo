@@ -68,7 +68,7 @@ const structure = (S: StructureBuilder) =>
               S.divider(),
               S.listItem().title("Account").icon(Icons.Page),
               S.listItem().title("Settings").icon(Icons.Page),
-            ])
+            ]),
         ),
       S.listItem()
         .title("Course Structure")
@@ -76,7 +76,7 @@ const structure = (S: StructureBuilder) =>
           S.documentTypeList("courseStructure")
             .title("Course Structure")
             .apiVersion("v2023-12-15")
-            .filter('_type == "courseStructure"')
+            .filter('_type == "courseStructure"'),
         ),
       S.listItem()
         .title("Articles")
@@ -111,36 +111,26 @@ const structure = (S: StructureBuilder) =>
                               S.listItem()
                                 .title("Course Structure")
                                 .child(
-                                  S.documentTypeList(
-                                    "courseStructure"
-                                  )
+                                  S.documentTypeList("courseStructure")
                                     .title("Course Structure")
                                     .apiVersion("v2023-12-15")
-                                    .filter(
-                                      '_type == "courseStructure"'
-                                    )
+                                    .filter('_type == "courseStructure"'),
                                 ),
-                            ])
+                            ]),
                         ),
 
                       S.listItem()
                         .title("Chinese")
-                        .child(
-                          S.list()
-                            .title("English to Chinese")
-                            .items([])
-                        ),
+                        .child(S.list().title("English to Chinese").items([])),
                       S.listItem()
                         .title("English to More langugaes")
                         .child(
-                          S.list()
-                            .title("English to More languages")
-                            .items([])
+                          S.list().title("English to More languages").items([]),
                         ),
                       S.divider(),
-                    ])
+                    ]),
                 ),
-            ])
+            ]),
         ),
 
       S.listItem()
