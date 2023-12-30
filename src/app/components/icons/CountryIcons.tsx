@@ -7,14 +7,16 @@ export const AmericaFlagIcon = (props: any) => (
       height="18"
       viewBox="0 0 24 18"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg">
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <mask
         id="mask0_442_2792"
         maskUnits="userSpaceOnUse"
         x="0"
         y="0"
         width="24"
-        height="18">
+        height="18"
+      >
         <rect width="24" height="18" fill="white" />
       </mask>
       <g mask="url(#mask0_442_2792)">
