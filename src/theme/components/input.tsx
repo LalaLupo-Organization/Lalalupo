@@ -1,29 +1,53 @@
 // inputTheme.js
 
 import { inputAnatomy } from "@chakra-ui/anatomy";
-import { createMultiStyleConfigHelpers, defineStyle } from "@chakra-ui/react";
+import {
+  PartsStyleInterpolation,
+  createMultiStyleConfigHelpers,
+  defineStyle,
+} from "@chakra-ui/react";
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(inputAnatomy.keys);
 
-// Common styles for all variants
-const baseStyle = {
+const sharedStyles = {
   borderRadius: "16px",
   height: "56px",
   borderColor: "grey.200",
   background: "grey.50",
   color: "grey.500",
-  width: "382px",
-  fontWeight: "200",
-  fontSize: "sm",
-  pl: "1rem",
-  letterSpacing: "1px",
+
   _dark: {
     color: "grey.500",
     bg: "_dark2",
   },
   _placeholder: {
     color: "grey.500",
+  },
+};
+
+const baseStyle: PartsStyleInterpolation<{
+  keys: ("group" | "addon" | "field" | "element")[];
+}> = {
+  group: {},
+  addon: {
+    ...sharedStyles,
+    marginLeft: "-1px", // To avoid double border with the field
+    pl: "1rem",
+    pr: "0",
+  },
+  element: {
+    ...sharedStyles,
+    marginRight: "-1px", // To avoid double border with the field
+    pl: "1rem",
+  },
+  field: {
+    ...sharedStyles,
+    width: "385px",
+    fontWeight: "200",
+    fontSize: "sm",
+    pl: "1rem",
+    letterSpacing: "1px",
   },
 };
 
@@ -39,29 +63,37 @@ const simpleVariant = definePartsStyle({
 const withAddonVariant = definePartsStyle({
   field: {
     ...baseStyle,
-    width: "357px",
+    maxW: "357px",
   },
 
   addon: {
-    ...baseStyle,
-    marginLeft: "-1px", // To avoid double border with the field
-    background: "grey.50",
-    pl: "1rem",
-
-    pr: "0",
+    ...baseStyle.addon,
+  },
+  element: {
+    left: "328px",
+    cursor: "pointer",
   },
 });
 
 // Additional variants if needed
-const otherVariant = definePartsStyle({
-  // Define styles for other variants
+const telephoneVariant = definePartsStyle({
+  field: {
+    ...baseStyle,
+    width: "335px",
+
+    // Add this to make the positioning relative
+  },
+  addon: {
+    ...baseStyle.addon,
+  },
 });
 
 export const inputTheme = defineMultiStyleConfig({
+  baseStyle,
   variants: {
     simple: simpleVariant,
     withAddon: withAddonVariant,
-    other: otherVariant,
+    telephone: telephoneVariant,
     // Add more variants as needed
   },
 });

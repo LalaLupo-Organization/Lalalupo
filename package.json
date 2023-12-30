@@ -3,16 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"next dev\" \"npm run theme:watch\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "cypress:open": "concurrently \"npm run dev\" \"cypress open\"",
+    "cypress:open": "concurrently \"npm run dev\" \"cypress open\" \"npm run them:watch\"",
     "prettier:check": "prettier --check .",
     "prettier:write": "prettier --write .",
-    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+    "theme:watch": "chakra-cli tokens src/theme/theme.tsx --watch"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.2.0",
@@ -47,6 +48,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@chakra-ui/cli": "^2.4.1",
     "@chakra-ui/storybook-addon": "^5.1.0",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
