@@ -23,10 +23,7 @@ import {
 import { AppLogo, AppLogoText } from "@/components/icons/Icons";
 import { Dropdown } from "@/components/inputs/Dropdown";
 import { useMediaQuery } from "@chakra-ui/react";
-import {
-  useGetSiteLanguagesQuery,
-  useGetHomePageQuery,
-} from "@/services/api";
+import { useGetSiteLanguagesQuery, useGetHomePageQuery } from "@/services/api";
 import localFont from "@next/font/local";
 import type { ResponsiveValue } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
@@ -66,7 +63,8 @@ export default function Home({ params: { lang } }: LocalParamProps) {
         bgPosition="center"
         bgRepeat="no-repeat"
         height="70vh" // Adjust the height as needed
-        position="relative">
+        position="relative"
+      >
         {/* Content overlay */}
         <Box
           position="absolute"
@@ -77,12 +75,7 @@ export default function Home({ params: { lang } }: LocalParamProps) {
           color="black" // Text color
         >
           {homePageIsLoading ? (
-            <SkeletonText
-              mt="4"
-              noOfLines={1}
-              spacing="8"
-              skeletonHeight="6"
-            />
+            <SkeletonText mt="4" noOfLines={1} spacing="8" skeletonHeight="6" />
           ) : (
             <Box>
               <Container>
@@ -97,7 +90,8 @@ export default function Home({ params: { lang } }: LocalParamProps) {
                     left: isLargerThan600 ? "6.3rem" : "3.2rem",
                     zIndex: "-10",
                     opacity: "0.8",
-                  }}>
+                  }}
+                >
                   <Controls
                     visible={false}
                     buttons={["play", "repeat", "frame", "debug"]}
@@ -112,9 +106,10 @@ export default function Home({ params: { lang } }: LocalParamProps) {
                     textAlign="center"
                     color="grey.900"
                     mt="-16"
-                    className={myFont.className}>
-                    The new interactive course teaching you languages
-                    online, for free!{" "}
+                    className={myFont.className}
+                  >
+                    The new interactive course teaching you languages online,
+                    for free!{" "}
                   </Heading>
                 </Center>
 
@@ -125,7 +120,8 @@ export default function Home({ params: { lang } }: LocalParamProps) {
                     borderBottom={"3px"}
                     borderStyle="solid"
                     borderBottomColor="grey.700"
-                    variant="buttonPrimary">
+                    variant="buttonPrimary"
+                  >
                     GET STARTED
                   </Button>
                   <Button
@@ -133,7 +129,8 @@ export default function Home({ params: { lang } }: LocalParamProps) {
                     variant="buttonSecondary"
                     borderBottom={"3px"}
                     borderBottomColor="primary.300"
-                    borderStyle="solid">
+                    borderStyle="solid"
+                  >
                     I ALREADY HAVE AN ACCOUNT
                   </Button>
                   <Text fontSize={"xxs"} color="grey.500">
@@ -146,7 +143,8 @@ export default function Home({ params: { lang } }: LocalParamProps) {
           <Button
             colorScheme="black" // Adjust color scheme as needed
             size="lg"
-            mt="4">
+            mt="4"
+          >
             Your Button
           </Button>
         </Box>
