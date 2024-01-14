@@ -87,8 +87,9 @@ export default function Home({ params: { lang } }: LocalParamProps) {
                     height: "310px",
                     width: "310px",
                     position: "absolute",
-                    left: isLargerThan600 ? "6rem" : "3.2rem",
+                    left: isLargerThan600 ? "6.3rem" : "3.2rem",
                     zIndex: "-10",
+                    opacity: "0.7",
                   }}
                 >
                   <Controls
@@ -107,7 +108,8 @@ export default function Home({ params: { lang } }: LocalParamProps) {
                     mt="-16"
                     className={myFont.className}
                   >
-                    The free, fun, and effective way to learn a language!
+                    The new interactive course that will teach you Italian
+                    online, for free!
                   </Heading>
                 </Center>
 
