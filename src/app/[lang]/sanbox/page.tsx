@@ -1,5 +1,5 @@
 "use client";
-import type { LocalParamProps } from "@/types/user-progress.types";
+import type { LocalParamProps } from "@/types/languageCodeParams.types";
 import { Simple } from "@/components/inputs/Simple";
 import {
   Link,
@@ -31,7 +31,7 @@ export default function Home({ params: { lang } }: LocalParamProps) {
         <Password />
         <Username />
         <Heading>Menus</Heading>
-        <Dropdown />
+
         <Heading>Buttons</Heading>
         <Button variant="buttonPrimary">Primary</Button>
         <Button variant="buttonSecondary">Secondary</Button>
