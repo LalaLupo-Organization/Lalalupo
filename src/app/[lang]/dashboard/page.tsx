@@ -5,7 +5,8 @@ import { Heading, Box, Text, Button } from "@chakra-ui/react";
 import { useGetCourseStructureQuery, useGetUserQuery } from "@/services/api";
 import { v4 as uuid } from "uuid";
 import Link from "next/link";
-import { LocalParamProps, UserProgressItem } from "@/types/user-progress.types";
+import { UserProgressItem } from "@/types/user-progress.types";
+import { LocalParamProps } from "@/types/languageCodeParams.types";
 //TODO - THE USER OBJECT ARRAY BELOW IS TEMPORARY - IT REPRESENTS THE USER PROGRESS WHEN COMPLETING LESSONS.
 //! CYPRESS TEST - We have to check that the length of userProgress === length of courseStructure
 
