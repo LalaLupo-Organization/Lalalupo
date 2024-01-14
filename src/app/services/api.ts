@@ -9,6 +9,8 @@ import { collection, getDoc, doc, DocumentData } from "firebase/firestore";
 import { db } from "@/firebase/firebase";
 import { CustomErrorType } from "@/types/sanity-io.types";
 import { User } from "@/types/user-progress.types";
+import { HomePageData } from "@/types/homepage-data.types";
+import { AboutPageData } from "@/types/aboutpage-data.types";
 
 export const api = createApi({
   reducerPath: "api",
@@ -43,6 +45,68 @@ export const api = createApi({
         }
       },
     }),
+    getHomePage: builder.query<HomePageData, object>({
+      queryFn: async ({ languageCode }: { languageCode: string }) => {
+        try {
+          const data = await client.fetch<HomePageData>(
+            `*[_type == 'homepage' && languageCode == "${languageCode}"] {
+              _id,
+              title,
+              subtitle,
+              languageCode,
+              
+            }[0]`,
+          );
+          return { data };
+        } catch (error) {
+          return { error: { status: "CUSTOM_ERROR", data: error } };
+        }
+      },
+    }),
+    getAboutPage: builder.query<AboutPageData, object>({
+      queryFn: async ({ languageCode }: { languageCode: string }) => {
+        try {
+          const data = await client.fetch<AboutPageData>(
+            `*[_type == 'aboutpage' && languageCode == "${languageCode}"] {
+              _id,
+              title,
+              subtitle,
+              languageCode,
+              
+            }[0]`,
+          );
+          return { data };
+        } catch (error) {
+          return { error: { status: "CUSTOM_ERROR", data: error } };
+        }
+      },
+    }),
+    getSiteLanguages: builder.query<any, void>({
+      queryFn: async () => {
+        try {
+          const data = await client.fetch<any[]>(
+            `*[_type == "siteLanguages"]{
+              languages[] {
+                active,
+                language,
+                languageCode,
+                icon {
+                  _type,
+                  asset-> {
+                    _id,
+                    _type,
+                    url
+                  }
+                }
+              }
+            }[0].languages`,
+          );
+          return { data };
+        } catch (error) {
+          return { error: { status: "CUSTOM_ERROR", data: error } };
+        }
+      },
+    }),
 
     getUser: builder.query<User, any>({
       queryFn: async (): Promise<any> => {
@@ -68,4 +132,7 @@ export const {
   useGetCourseStructureQuery,
   useGetUserQuery,
   useGetLessonQuery,
+  useGetSiteLanguagesQuery,
+  useGetHomePageQuery,
+  useGetAboutPageQuery,
 } = api;

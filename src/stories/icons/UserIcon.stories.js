@@ -1,4 +1,4 @@
-import { UserIcon } from "./Icons";
+import { UserIcon } from "@/components/icons/Icons";
 
 export default {
   title: "Icons",

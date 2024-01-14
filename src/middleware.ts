@@ -1,7 +1,8 @@
 import { match } from "@formatjs/intl-localematcher";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-
+import { authMiddleware } from "@clerk/nextjs";
+export default authMiddleware({});
 export async function middleware(request: NextRequest) {
   // The languages we cater for
   let AvailableLocales = ["en", "nl", "es", "it"];
@@ -41,6 +42,7 @@ export async function middleware(request: NextRequest) {
     // Redirect if there is no locale
     if (pathnameIsMissingLocale) {
       // Don't add locale if studio is in pathname
+
       return NextResponse.redirect(
         new URL(`/${resolvedLocale}/${pathname}`, request.url),
       );
@@ -51,5 +53,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next).*)"],
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };

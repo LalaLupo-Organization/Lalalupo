@@ -26,6 +26,7 @@
       "@/api/*": ["./src/app/api/*"],
       "@/features/*": ["./src/features/*"],
       "@/firebase/*": ["./src/firebase/*"],
+      "@/helpers/*": ["./src/app/helpers/*"],
       "@/hooks/*": ["./src/app/hooks/*"],
       "@/redux/*": ["./src/app/redux/*"],
       "@/services/*": ["./src/app/services/*"],
@@ -33,7 +34,8 @@
       "@/studio/*": ["./src/app/studio/*"],
       "@/stories/*": ["./src/stories/*"],
       "@/types/*": ["./src/app/types/*"],
-      "@/theme/*": ["./src/theme/*"]
+      "@/theme/*": ["./src/theme/*"],
+      "@/fonts/*": ["./src/fonts/*"]
     }
   },
   "include": [
@@ -42,7 +44,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "sanity/src/lesson.js",
-    "src/app/components/icons/Icons.stosries.js"
+    "src/app/components/icons/Icons.stosries.js",
+    "src/stories/icons/UserIcon.stories.js",
+    "sanity/src/components/TwitterUrl.js"
   ],
   "exclude": ["node_modules"]
 }
