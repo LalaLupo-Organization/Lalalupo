@@ -20,6 +20,7 @@ import {
   BiPlayCircle,
   BiNetworkChart,
   BiSend,
+  BiMap,
   BiDollarCircle,
 } from "react-icons/bi";
 
@@ -30,7 +31,7 @@ const Icons = {
   Author: BiUser,
   Article: BiFile,
   Event: BiCalendar,
-  Store: BiMapPin,
+  Map: BiMap,
   Swatch: BiPalette,
   Product: BiCart,
   Collection: BiCollection,
@@ -59,10 +60,16 @@ const structure = (S: StructureBuilder) =>
           S.list()
             .title("Pages")
             .items([
-              S.listItem().title("Home").icon(Icons.Page),
+              S.listItem()
+                .title("Home")
+                .icon(Icons.Page)
+                .child(S.documentTypeList("homepage").title("Home Page")),
               S.listItem().title("Articles").icon(Icons.Page),
               S.listItem().title("Cart").icon(Icons.Page),
-              S.listItem().title("About").icon(Icons.Page),
+              S.listItem()
+                .title("About")
+                .icon(Icons.Page)
+                .child(S.documentTypeList("aboutpage").title("About Page")),
               S.listItem().title("FAQ").icon(Icons.Page),
               S.listItem().title("Contact").icon(Icons.Page),
               S.divider(),
@@ -147,6 +154,11 @@ const structure = (S: StructureBuilder) =>
         .title("Settings")
         .icon(Icons.Setting)
         .child(S.list().title("Articles").items([])),
+      S.divider(),
+      S.listItem()
+        .title("Site Languages")
+        .icon(Icons.Map)
+        .child(S.documentTypeList("siteLanguages").title("Site Languages")),
       S.divider(),
     ]);
 

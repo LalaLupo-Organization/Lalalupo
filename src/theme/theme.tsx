@@ -6,12 +6,16 @@ import { fonts } from "@/theme/base-styles/fonts";
 import { Heading } from "@/theme/components/heading";
 import { Text } from "@/theme/components/text";
 import { inputTheme } from "@/theme/components/input";
+import { menuTheme } from "@/theme/components/menu";
+import { buttonTheme } from "@/theme/components/buttons";
 // 2. Call `extendTheme` and pass your custom values
 const customTheme = extendTheme({
   components: {
     Heading,
     Text,
     Input: inputTheme,
+    Menu: menuTheme,
+    Button: buttonTheme,
     baseStyle: {
       color: "grey.500",
     },

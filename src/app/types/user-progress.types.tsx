@@ -16,12 +16,6 @@ export type User = {
 // Define a type for the object data
 export type UserProgressObject = Record<string, UserProgressItem>;
 
-export interface LocalParamProps {
-  params: {
-    lang: string;
-  };
-}
-
 export interface DictionaryProps {
   product: {
     cart: string;

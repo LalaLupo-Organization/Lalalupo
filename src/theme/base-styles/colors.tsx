@@ -1,10 +1,13 @@
 export const colors = {
   primary: {
+    50: "rgba(105, 73, 255, 0.08)",
     100: "#F0EDFF",
     200: "#C3B6FF",
     300: "#A592FF",
     400: "#876DFF",
+    450: "#7A5EFC",
     500: "#6949FF",
+    550: "#421BFA",
   },
   secondary: {
     500: "#FFC107",
@@ -74,7 +77,7 @@ export const colors = {
   "teal-light": "#F2FFFD",
   "red-light": "#FFF7F8",
   "orange-light": "#FFF8ED",
-  "purple-opacity": "#6949FF08",
+
   "yellow-opacity": "#FFD30008",
   "green-opacity": "#1BAC4B08",
   "blue-opacity": "#246BFD08",
