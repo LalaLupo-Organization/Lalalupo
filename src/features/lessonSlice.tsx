@@ -288,7 +288,7 @@ const initialState: LessonState = {
     {
       type: "twoBlanks",
       _id: "123454",
-      solutions: ["sei uscito", "Sono uscito"],
+      solution: ["sei uscito", "Sono uscito"],
       instructions:
         "Fill in the blanks with the correct conjugation of the verb.",
       vocabularyHelper: ["to go out = uscire"],
@@ -318,9 +318,9 @@ const initialState: LessonState = {
       isComplete: false,
       hasFailed: false,
     },
-    //writeInItalian
+    //writeTheSentence
     {
-      type: "writeInItalian",
+      type: "writeTheSentence",
       _id: "1223423",
       solution: "L'esercizio è semplice.",
       instructions:
