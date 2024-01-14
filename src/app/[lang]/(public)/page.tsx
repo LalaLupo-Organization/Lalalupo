@@ -58,7 +58,7 @@ export default function Home({ params: { lang } }: LocalParamProps) {
     <Box>
       {/* Hero Section */}
       <Box
-        bgImage="https://cdn.sanity.io/images/zqzeoj70/production/0560c61e54f9ceaded032a60f8ee480a4aaa533f-1366x768.png"
+        bgImage="https://cdn.sanity.io/images/zqzeoj70/production/d02e4623830c3527bb013130d475cb672e8f4bb8-1366x768.png"
         bgSize="cover"
         bgPosition="center"
         bgRepeat="no-repeat"
@@ -89,7 +89,7 @@ export default function Home({ params: { lang } }: LocalParamProps) {
                     position: "absolute",
                     left: isLargerThan600 ? "6.3rem" : "3.2rem",
                     zIndex: "-10",
-                    opacity: "0.7",
+                    opacity: "0.8",
                   }}
                 >
                   <Controls
@@ -108,8 +108,8 @@ export default function Home({ params: { lang } }: LocalParamProps) {
                     mt="-16"
                     className={myFont.className}
                   >
-                    The new interactive course that will teach you Italian
-                    online, for free!
+                    The new interactive course teaching you languages online,
+                    for free!{" "}
                   </Heading>
                 </Center>
 
@@ -133,6 +133,9 @@ export default function Home({ params: { lang } }: LocalParamProps) {
                   >
                     I ALREADY HAVE AN ACCOUNT
                   </Button>
+                  <Text fontSize={"xxs"} color="grey.500">
+                    No credit card required
+                  </Text>
                 </VStack>
               </Container>
             </Box>
