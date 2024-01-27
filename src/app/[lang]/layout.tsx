@@ -8,8 +8,9 @@ import Script from "next/script";
 import theme from "@/theme/theme";
 import { StrictMode } from "react";
 import { v4 as uuid } from "uuid";
-import Navbar from "@/components/Navbar";
+import { init as initFullStory } from "@fullstory/browser";
 export default function RootLayout({ children }: { children: any }) {
+  initFullStory({ orgId: "'o-1VMWFF-na1" });
   return (
     <ClerkProvider>
       <html lang="en">

@@ -1,5 +1,3 @@
-// schemas/myDocument.js
-
 import { languageChallenges } from "../objects/languageChallenges";
 
 const courseStructure = {
@@ -13,11 +11,24 @@ const courseStructure = {
       type: "string",
     },
     {
+      name: "languageCode",
+      title: "Language Code",
+      type: "string",
+    },
+    {
       name: "language",
       title: "Language",
       type: "string",
-      initialValue: "it",
-      readOnly: true,
+    },
+    {
+      name: "totalUserCount",
+      title: "Total User Count",
+      type: "number",
+    },
+    {
+      name: "lessonNumber",
+      title: "Lesson Number",
+      type: "number",
     },
 
     {
@@ -59,18 +70,49 @@ const courseStructure = {
       type: "array",
       of: [languageChallenges],
     },
-  ],
+    {
+      title: "Icon",
+      name: "icon",
+      type: "image",
+      options: {
+        hotspot: true, // <-- Defaults to false
+      },
+      fields: [
+        {
+          name: "caption",
+          type: "string",
+          title: "Caption",
+        },
+        {
+          name: "attribution",
+          type: "string",
+          title: "Attribution",
+        },
+      ],
+      // Set up conditional fields to show either option1Fields or option2Fields based on selectOption
+      preview: {
+        select: {
+          unitTitle: "unitTitle",
+        },
 
-  // Set up conditional fields to show either option1Fields or option2Fields based on selectOption
-  // preview: {
-  //   select: {
-  //     selectOption: "selectOption",
-  //   },
-  //   prepare: ({ selectOption }: any) => ({
-  //     title: `Selected Option: ${selectOption}`,
-  //     subtitle: "Preview",
-  //   }),
-  // },
+        prepare: ({ unitTitle }: { unitTitle: string }) => ({
+          title: `${unitTitle || "No Language"}`,
+        }),
+      },
+    },
+  ],
+  orderings: [
+    {
+      title: "Lesson Number, Asc",
+      name: "lessonNumberAsc",
+      by: [{ field: "lessonNumber", direction: "asc" }],
+    },
+    {
+      title: "Lesson Number, Desc",
+      name: "lessonNumberAsc",
+      by: [{ field: "lessonNumber", direction: "desc" }],
+    },
+  ],
 };
 
 export default courseStructure;

@@ -22,6 +22,7 @@ import {
   BiSend,
   BiMap,
   BiDollarCircle,
+  BiBook,
 } from "react-icons/bi";
 
 const Icons = {
@@ -47,6 +48,7 @@ const Icons = {
   Affiliate: BiNetworkChart,
   Send: BiSend,
   Dollar: BiDollarCircle,
+  Book: BiBook,
 };
 const structure = (S: StructureBuilder) =>
   S.list()
@@ -77,14 +79,7 @@ const structure = (S: StructureBuilder) =>
               S.listItem().title("Settings").icon(Icons.Page),
             ]),
         ),
-      S.listItem()
-        .title("Course Structure")
-        .child(
-          S.documentTypeList("courseStructure")
-            .title("Course Structure")
-            .apiVersion("v2023-12-15")
-            .filter('_type == "courseStructure"'),
-        ),
+
       S.listItem()
         .title("Articles")
         .icon(Icons.Article)
@@ -102,7 +97,7 @@ const structure = (S: StructureBuilder) =>
             .title("Site Language")
             .items([
               S.listItem()
-                .title("English")
+                .title("English to Italian")
                 .icon(Icons.Page)
                 .child(
                   S.list()
@@ -110,29 +105,457 @@ const structure = (S: StructureBuilder) =>
                     .items([
                       // Panel for Home category
                       S.listItem()
-                        .title("Italian")
+                        .title("Italian Course")
+                        .icon(Icons.Book)
                         .child(
-                          S.list()
-                            .title("English to Italian")
-                            .items([
-                              S.listItem()
-                                .title("Course Structure")
-                                .child(
-                                  S.documentTypeList("courseStructure")
-                                    .title("Course Structure")
-                                    .apiVersion("v2023-12-15")
-                                    .filter('_type == "courseStructure"'),
-                                ),
-                            ]),
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-it"',
+                            ),
                         ),
+                      S.divider(),
+                    ]),
+                ),
+              S.listItem()
+                .title("English to Chinese")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
 
-                      S.listItem()
-                        .title("Chinese")
-                        .child(S.list().title("English to Chinese").items([])),
-                      S.listItem()
-                        .title("English to More langugaes")
+                        .title("Chinese Course")
+                        .icon(Icons.Book)
                         .child(
-                          S.list().title("English to More languages").items([]),
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-ch"',
+                            ),
+                        ),
+                    ]),
+                ),
+              S.listItem()
+                .title("English to Spanish")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
+
+                        .title("Spanish Course")
+                        .icon(Icons.Book)
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-es"',
+                            ),
+                        ),
+                    ]),
+                ),
+              S.listItem()
+                .title("English to French")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
+
+                        .title("French Course")
+                        .icon(Icons.Book)
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-fr"',
+                            ),
+                        ),
+                    ]),
+                ),
+              S.listItem()
+                .title("English to Japanese")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
+
+                        .title("Japanese Course")
+                        .icon(Icons.Book)
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-ja"',
+                            ),
+                        ),
+                    ]),
+                ),
+              S.listItem()
+                .title("English to Korean")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
+
+                        .title("Korean Course")
+                        .icon(Icons.Book)
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-ko"',
+                            ),
+                        ),
+                    ]),
+                ),
+              S.listItem()
+                .title("English to German")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
+
+                        .title("German Course")
+                        .icon(Icons.Book)
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-de"',
+                            ),
+                        ),
+                    ]),
+                ),
+              S.listItem()
+                .title("English to Hindi")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
+
+                        .title("Hindi Course")
+                        .icon(Icons.Book)
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-in"',
+                            ),
+                        ),
+                    ]),
+                ),
+              S.listItem()
+                .title("English to Russian")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
+
+                        .title("Russian Course")
+                        .icon(Icons.Book)
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-ru"',
+                            ),
+                        ),
+                    ]),
+                ),
+              S.listItem()
+                .title("English to Arabic")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
+
+                        .title("Arabic Course")
+                        .icon(Icons.Book)
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-ar-sa"',
+                            ),
+                        ),
+                    ]),
+                ),
+              S.listItem()
+                .title("English to English")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
+
+                        .title("English Course")
+                        .icon(Icons.Book)
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-en"',
+                            ),
+                        ),
+                    ]),
+                ),
+              S.listItem()
+                .title("English to Portuguese")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
+                        .title("Portuguese Course")
+                        .icon(Icons.Book)
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-pt"',
+                            ),
+                        ),
+                    ]),
+                ),
+
+              S.listItem()
+                .title("English to Turkish")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
+
+                        .title("Turkish Course")
+                        .icon(Icons.Book)
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-tr"',
+                            ),
+                        ),
+                    ]),
+                ),
+              S.listItem()
+                .title("English to Dutch")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
+                        .title("Dutch Course")
+                        .icon(Icons.Book)
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-nl"',
+                            ),
+                        ),
+                    ]),
+                ),
+              S.listItem()
+                .title("English to Vietnamese")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
+
+                        .title("Vietnamese Course")
+                        .icon(Icons.Book)
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-vi"',
+                            ),
+                        ),
+                    ]),
+                ),
+              S.listItem()
+                .title("English to Greek")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
+
+                        .title("Greek Course")
+                        .icon(Icons.Book)
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-el"',
+                            ),
+                        ),
+                    ]),
+                ),
+              S.listItem()
+                .title("English to Polish")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
+
+                        .title("Polish Course")
+                        .icon(Icons.Book)
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-pl"',
+                            ),
+                        ),
+                    ]),
+                ),
+              S.listItem()
+                .title("English to Swedish")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
+
+                        .title("Swedish Course")
+                        .icon(Icons.Book)
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-sv"',
+                            ),
+                        ),
+                    ]),
+                ),
+              S.listItem()
+                .title("English to Latin")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
+
+                        .title("Latin Course")
+                        .icon(Icons.Book)
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-la"',
+                            ),
+                        ),
+                    ]),
+                ),
+              S.listItem()
+                .title("English to Irish")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
+
+                        .title("Irish Course")
+                        .icon(Icons.Book)
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "en-ga"',
+                            ),
+                        ),
+                    ]),
+                ),
+              S.divider(),
+
+              S.listItem()
+                .title("Chinese to Turkish")
+                .icon(Icons.Page)
+                .child(
+                  S.list()
+                    .title("Language Choice")
+                    .items([
+                      // Panel for Home category
+                      S.listItem()
+
+                        .title("Turkish Course")
+                        .icon(Icons.Book)
+                        .child(
+                          S.documentTypeList("courseStructure")
+                            .title("Course Structure")
+                            .apiVersion("v2023-12-15")
+                            .filter(
+                              '_type == "courseStructure" && languageCode == "ch-en"',
+                            ),
                         ),
                       S.divider(),
                     ]),

@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { SiteLanguages } from "@/types/site-languages.types";
 import { v4 as uuid } from "uuid";
 import { Image } from "@chakra-ui/react";
+import Link from "next/link";
 export function Dropdown({
   languageCode = "en",
   languages,
@@ -57,21 +58,23 @@ export function Dropdown({
             {languages.map((item) => {
               return (
                 <MenuItem key={uuid()} p="2" fontSize={"sm"}>
-                  <Flex
-                    minWidth="max-content"
-                    alignItems="center"
-                    justifyItems="center"
-                    gap="4"
-                  >
-                    <Box boxSize="6">
-                      <Image
-                        rounded={"2"}
-                        src={`${item.icon.asset.url}`}
-                        alt="Dan Abramov"
-                      />
-                    </Box>
-                    {item.language}
-                  </Flex>
+                  <Link href={`/${item.languageCode}`}>
+                    <Flex
+                      minWidth="max-content"
+                      alignItems="center"
+                      justifyItems="center"
+                      gap="4"
+                    >
+                      <Box boxSize="6">
+                        <Image
+                          rounded={"2"}
+                          src={`${item.icon.asset.url}`}
+                          alt="Country flag"
+                        />
+                      </Box>
+                      {item.language}
+                    </Flex>
+                  </Link>
                 </MenuItem>
               );
             })}
