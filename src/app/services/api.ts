@@ -5,7 +5,12 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import { SanityDocument } from "@/types/sanity-io.types";
 import client from "@/sanity/src/parts/config";
-import { collection, getDoc, doc, DocumentData } from "firebase/firestore";
+import {
+  collection,
+  getDoc,
+  doc,
+  DocumentData,
+} from "firebase/firestore";
 import { db } from "@/firebase/firebase";
 import { CustomErrorType } from "@/types/sanity-io.types";
 import { User } from "@/types/user-progress.types";
@@ -20,7 +25,7 @@ export const api = createApi({
       queryFn: async (id) => {
         try {
           const data = await client.fetch<any[]>(
-            `*[_type == "courseStructure"] | order(_createdAt asc)`,
+            `*[_type == "courseStructure"] | order(_createdAt asc)`
           );
           return { data };
         } catch (error) {
@@ -37,7 +42,7 @@ export const api = createApi({
             
               
             }
-          `,
+          `
           );
           return { data };
         } catch (error) {
@@ -55,7 +60,7 @@ export const api = createApi({
               subtitle,
               languageCode,
               
-            }[0]`,
+            }[0]`
           );
           return { data };
         } catch (error) {
@@ -73,7 +78,7 @@ export const api = createApi({
               subtitle,
               languageCode,
               
-            }[0]`,
+            }[0]`
           );
           return { data };
         } catch (error) {
@@ -81,10 +86,10 @@ export const api = createApi({
         }
       },
     }),
-    getSiteLanguages: builder.query<LanguageSelect[], void>({
+    getSiteLanguages: builder.query<any, void>({
       queryFn: async () => {
         try {
-          const data = await client.fetch<LanguageSelect[]>(
+          const data = await client.fetch<any>(
             `*[_type == "siteLanguages"]{
               languages[] {
                 active,
@@ -99,7 +104,7 @@ export const api = createApi({
                   }
                 }
               }
-            }[0].languages`,
+            }[0].languages`
           );
           return { data };
         } catch (error) {
@@ -119,7 +124,7 @@ export const api = createApi({
                 url
                   }
               }
-            }`,
+            }`
           );
           return { data };
         } catch (error) {
