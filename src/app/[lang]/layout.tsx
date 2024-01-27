@@ -1,10 +1,6 @@
 "use client";
 import { ReduxProvider } from "../redux/provider";
-import {
-  ChakraProvider,
-  ColorModeScript,
-  Text,
-} from "@chakra-ui/react";
+import { ChakraProvider, ColorModeScript, Text } from "@chakra-ui/react";
 import { ClerkProvider, useAuth } from "@clerk/nextjs";
 import { CacheProvider } from "@chakra-ui/next-js";
 import theme from "@/theme/theme";
@@ -20,12 +16,8 @@ export default function RootLayout({ children }: { children: any }) {
           <StrictMode>
             <ReduxProvider>
               <CacheProvider>
-                <ColorModeScript
-                  initialColorMode={theme.initialColorMode}
-                />
-                <ChakraProvider theme={theme}>
-                  {children}
-                </ChakraProvider>
+                <ColorModeScript initialColorMode={theme.initialColorMode} />
+                <ChakraProvider theme={theme}>{children}</ChakraProvider>
               </CacheProvider>
             </ReduxProvider>
           </StrictMode>
