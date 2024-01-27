@@ -32,7 +32,6 @@ const Page = ({ params: { lang } }: LocalParamProps) => {
           <Heading
             size={{ base: "sm", sm: "md" }}
             style={myFont.style}
-            className={myFont.className}
             textAlign={"center"}
           >
             What do you want to learn

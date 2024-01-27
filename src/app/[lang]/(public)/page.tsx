@@ -17,7 +17,6 @@ import {
 import { useMediaQuery } from "@chakra-ui/react";
 import { useGetSiteLanguagesQuery, useGetHomePageQuery } from "@/services/api";
 import localFont from "@next/font/local";
-
 import { MascotHiIcon } from "@/components/mascot/icons";
 
 const myFont = localFont({
