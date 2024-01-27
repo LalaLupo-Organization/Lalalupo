@@ -1,6 +1,10 @@
 "use client";
 import { ReduxProvider } from "../redux/provider";
-import { ChakraProvider, ColorModeScript, Text } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  ColorModeScript,
+  Text,
+} from "@chakra-ui/react";
 
 import { ClerkProvider, useAuth } from "@clerk/nextjs";
 import { CacheProvider } from "@chakra-ui/next-js";
@@ -9,8 +13,12 @@ import theme from "@/theme/theme";
 import { StrictMode } from "react";
 import { v4 as uuid } from "uuid";
 import { init as initFullStory } from "@fullstory/browser";
+import { useEffect } from "react";
 export default function RootLayout({ children }: { children: any }) {
-  initFullStory({ orgId: "'o-1VMWFF-na1" });
+  useEffect(() => {
+    initFullStory({ orgId: "'o-1VMWFF-na1" });
+  }, []);
+
   return (
     <ClerkProvider>
       <html lang="en">
@@ -19,9 +27,13 @@ export default function RootLayout({ children }: { children: any }) {
             <ReduxProvider>
               <CacheProvider>
                 <Script id={uuid()}>
-                  <ColorModeScript initialColorMode={theme.initialColorMode} />
+                  <ColorModeScript
+                    initialColorMode={theme.initialColorMode}
+                  />
                 </Script>
-                <ChakraProvider theme={theme}>{children}</ChakraProvider>
+                <ChakraProvider theme={theme}>
+                  {children}
+                </ChakraProvider>
               </CacheProvider>
             </ReduxProvider>
           </StrictMode>
