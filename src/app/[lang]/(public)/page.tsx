@@ -15,9 +15,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/react";
-import { useGetSiteLanguagesQuery, useGetHomePageQuery } from "@/services/api";
+import {
+  useGetSiteLanguagesQuery,
+  useGetHomePageQuery,
+} from "@/services/api";
 import localFont from "@next/font/local";
-
 import { MascotHiIcon } from "@/components/mascot/icons";
 
 const myFont = localFont({
@@ -52,8 +54,7 @@ export default function Home({ params: { lang } }: LocalParamProps) {
         bgPosition="center"
         bgRepeat="no-repeat"
         height="70vh" // Adjust the height as needed
-        position="relative"
-      >
+        position="relative">
         {/* Content overlay */}
         <Box
           position="absolute"
@@ -64,20 +65,23 @@ export default function Home({ params: { lang } }: LocalParamProps) {
           color="black" // Text color
         >
           {homePageIsLoading ? (
-            <SkeletonText mt="4" noOfLines={1} spacing="8" skeletonHeight="6" />
+            <SkeletonText
+              mt="4"
+              noOfLines={1}
+              spacing="8"
+              skeletonHeight="6"
+            />
           ) : (
             <Box>
               <Flex
                 mt="28"
                 direction="column"
-                h={{ base: "100vh", sm: "50vh" }}
-              >
+                h={{ base: "100vh", sm: "50vh" }}>
                 <Box
                   flex="2"
                   display="flex"
                   justifyContent="center"
-                  alignItems="center"
-                >
+                  alignItems="center">
                   <Container>
                     <Player
                       autoplay
@@ -90,8 +94,7 @@ export default function Home({ params: { lang } }: LocalParamProps) {
                         left: isLargerThan600 ? "6.3rem" : "3.2rem",
                         zIndex: "-10",
                         opacity: "0.8",
-                      }}
-                    >
+                      }}>
                       <Controls
                         visible={false}
                         buttons={["play", "repeat", "frame", "debug"]}
@@ -104,10 +107,9 @@ export default function Home({ params: { lang } }: LocalParamProps) {
                         textAlign="center"
                         color="grey.900"
                         mt="-16"
-                        style={myFont.style}
-                      >
-                        The new interactive course teaching languages online,
-                        for free!{" "}
+                        style={myFont.style}>
+                        The new interactive course teaching languages
+                        online, for free!{" "}
                       </Heading>
                     </Center>
                   </Container>
@@ -120,8 +122,7 @@ export default function Home({ params: { lang } }: LocalParamProps) {
                       borderBottom={"3px"}
                       borderStyle="solid"
                       borderBottomColor="grey.700"
-                      variant="buttonPrimary"
-                    >
+                      variant="buttonPrimary">
                       GET STARTED
                     </Button>
                     <Button
@@ -129,8 +130,7 @@ export default function Home({ params: { lang } }: LocalParamProps) {
                       variant="buttonSecondary"
                       borderBottom={"3px"}
                       borderBottomColor="primary.300"
-                      borderStyle="solid"
-                    >
+                      borderStyle="solid">
                       I ALREADY HAVE AN ACCOUNT
                     </Button>
                     <Text fontSize={"xxs"} color="grey.500">
@@ -156,8 +156,7 @@ export default function Home({ params: { lang } }: LocalParamProps) {
         bgPosition="center"
         bgRepeat="no-repeat"
         height="70vh" // Adjust the height as needed
-        position="relative"
-      >
+        position="relative">
         {/* Content overlay */}
         <Box
           position="absolute"

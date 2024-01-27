@@ -2,7 +2,13 @@
 import React, { useEffect } from "react";
 import type { LocalParamProps } from "@/types/languageCodeParams.types";
 import { useGetAboutPageQuery } from "@/services/api";
-import { SkeletonText, Text, Box, Container, Heading } from "@chakra-ui/react";
+import {
+  SkeletonText,
+  Text,
+  Box,
+  Container,
+  Heading,
+} from "@chakra-ui/react";
 import { useGetLanguageDataQuery } from "@/services/api";
 import { v4 as uuid } from "uuid";
 import localFont from "@next/font/local";
@@ -21,7 +27,10 @@ const Page = ({ params: { lang } }: LocalParamProps) => {
 
   useEffect(() => {
     if (languagePageData) {
-      console.log("🚀 ~ useEffect ~ languagePageDatas:", languagePageData);
+      console.log(
+        "🚀 ~ useEffect ~ languagePageDatas:",
+        languagePageData
+      );
     }
   }, []);
 
@@ -32,9 +41,7 @@ const Page = ({ params: { lang } }: LocalParamProps) => {
           <Heading
             size={{ base: "sm", sm: "md" }}
             style={myFont.style}
-            className={myFont.className}
-            textAlign={"center"}
-          >
+            textAlign={"center"}>
             What do you want to learn
           </Heading>
         </Box>
@@ -42,7 +49,9 @@ const Page = ({ params: { lang } }: LocalParamProps) => {
           {languagePageData &&
             languagePageData.map((item: LanguageSelect) => {
               return (
-                <Heading key={uuid()}>{item.totalUserCount.toString()}</Heading>
+                <Heading key={uuid()}>
+                  {item.totalUserCount.toString()}
+                </Heading>
               );
             })}
         </Box>
