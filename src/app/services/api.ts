@@ -11,7 +11,7 @@ import { CustomErrorType } from "@/types/sanity-io.types";
 import { User } from "@/types/user-progress.types";
 import { HomePageData } from "@/types/homepage-data.types";
 import { AboutPageData } from "@/types/aboutpage-data.types";
-
+import { LanguageSelect } from "@/types/languageSelect.types";
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fakeBaseQuery(),
@@ -81,10 +81,10 @@ export const api = createApi({
         }
       },
     }),
-    getSiteLanguages: builder.query<any, void>({
+    getSiteLanguages: builder.query<LanguageSelect[], void>({
       queryFn: async () => {
         try {
-          const data = await client.fetch<any[]>(
+          const data = await client.fetch<LanguageSelect[]>(
             `*[_type == "siteLanguages"]{
               languages[] {
                 active,
@@ -100,6 +100,26 @@ export const api = createApi({
                 }
               }
             }[0].languages`,
+          );
+          return { data };
+        } catch (error) {
+          return { error: { status: "CUSTOM_ERROR", data: error } };
+        }
+      },
+    }),
+    getLanguageData: builder.query<any, void>({
+      queryFn: async () => {
+        try {
+          const data = await client.fetch<any[]>(
+            `*[_type == 'courseStructure' && lessonNumber == 1] {
+              totalUserCount,
+                language,
+             icon {
+              asset-> {
+                url
+                  }
+              }
+            }`,
           );
           return { data };
         } catch (error) {
@@ -135,4 +155,5 @@ export const {
   useGetSiteLanguagesQuery,
   useGetHomePageQuery,
   useGetAboutPageQuery,
+  useGetLanguageDataQuery,
 } = api;
