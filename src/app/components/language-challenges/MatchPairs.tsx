@@ -16,11 +16,7 @@ export default function MatchPairs({ data }: { data: LessonState }) {
   return (
     <Box>
       <Container w={"60%"}>
-        <Heading
-          mt={10}
-          mx={"auto"}
-          textAlign={"center"}
-          fontSize={"sm"}>
+        <Heading mt={10} mx={"auto"} textAlign={"center"} fontSize={"sm"}>
           MatchPairs
         </Heading>
         {JSON.stringify(data.activeExercise)}

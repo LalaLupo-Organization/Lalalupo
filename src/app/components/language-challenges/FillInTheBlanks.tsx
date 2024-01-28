@@ -2,11 +2,7 @@
 import { LessonState } from "@/types/lesson.types";
 import { Box, Heading, Container } from "@chakra-ui/react";
 
-export default function FillInTheBlanks({
-  data,
-}: {
-  data: LessonState;
-}) {
+export default function FillInTheBlanks({ data }: { data: LessonState }) {
   const {
     activeExercise,
     totalExercises,
@@ -20,11 +16,7 @@ export default function FillInTheBlanks({
   return (
     <Box>
       <Container w={"60%"}>
-        <Heading
-          mt={10}
-          mx={"auto"}
-          textAlign={"center"}
-          fontSize={"sm"}>
+        <Heading mt={10} mx={"auto"} textAlign={"center"} fontSize={"sm"}>
           FillInTheBlanks
         </Heading>
         {JSON.stringify(data.activeExercise)}

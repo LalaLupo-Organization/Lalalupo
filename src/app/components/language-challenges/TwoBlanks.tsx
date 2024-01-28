@@ -16,11 +16,7 @@ export default function TwoBlanks({ data }: { data: LessonState }) {
   return (
     <Box>
       <Container w={"60%"}>
-        <Heading
-          mt={10}
-          mx={"auto"}
-          textAlign={"center"}
-          fontSize={"sm"}>
+        <Heading mt={10} mx={"auto"} textAlign={"center"} fontSize={"sm"}>
           TwoBlanks
         </Heading>
         {JSON.stringify(data.activeExercise)}
