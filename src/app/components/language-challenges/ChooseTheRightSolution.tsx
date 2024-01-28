@@ -39,11 +39,7 @@ const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
   return (
     <Box>
       <Container>
-        <Heading
-          mt={10}
-          mx={"auto"}
-          textAlign={"center"}
-          fontSize={"sm"}>
+        <Heading mt={10} mx={"auto"} textAlign={"center"} fontSize={"sm"}>
           Choose the Right Solution
         </Heading>
         <Flex gap={8} mt="20" justifyContent={"center"}>

@@ -5,12 +5,7 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import { SanityDocument } from "@/types/sanity-io.types";
 import client from "@/sanity/src/parts/config";
-import {
-  collection,
-  getDoc,
-  doc,
-  DocumentData,
-} from "firebase/firestore";
+import { collection, getDoc, doc, DocumentData } from "firebase/firestore";
 import { db } from "@/firebase/firebase";
 import { CustomErrorType } from "@/types/sanity-io.types";
 import { User } from "@/types/user-progress.types";
@@ -27,7 +22,7 @@ export const api = createApi({
           const data = await client.fetch<any[]>(
             `*[_type == 'courseStructure' && languageCode == "${languageCode}"] | order(unitTitle asc, lessonNumber asc)
 
-            `
+            `,
           );
           console.log(data);
           return { data };
@@ -45,7 +40,7 @@ export const api = createApi({
             
               
             }
-          `
+          `,
           );
           return { data };
         } catch (error) {
@@ -63,7 +58,7 @@ export const api = createApi({
               subtitle,
               languageCode,
               
-            }[0]`
+            }[0]`,
           );
           return { data };
         } catch (error) {
@@ -81,7 +76,7 @@ export const api = createApi({
               subtitle,
               languageCode,
               
-            }[0]`
+            }[0]`,
           );
           return { data };
         } catch (error) {
@@ -107,7 +102,7 @@ export const api = createApi({
                   }
                 }
               }
-            }[0].languages`
+            }[0].languages`,
           );
           return { data };
         } catch (error) {
@@ -127,7 +122,7 @@ export const api = createApi({
                 url
                   }
               }
-            }`
+            }`,
           );
           return { data };
         } catch (error) {

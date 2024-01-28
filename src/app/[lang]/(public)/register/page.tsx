@@ -31,10 +31,7 @@ const Page = ({ params: { lang } }: LocalParamProps) => {
 
   useEffect(() => {
     if (languagePageData) {
-      console.log(
-        "🚀 ~ useEffect ~ languagePageDatas:",
-        languagePageData
-      );
+      console.log("🚀 ~ useEffect ~ languagePageDatas:", languagePageData);
     }
   }, []);
 
@@ -45,7 +42,8 @@ const Page = ({ params: { lang } }: LocalParamProps) => {
           <Heading
             size={{ base: "sm", sm: "md" }}
             style={myFont.style}
-            textAlign={"center"}>
+            textAlign={"center"}
+          >
             I want to learn...
           </Heading>
         </Box>
@@ -53,7 +51,8 @@ const Page = ({ params: { lang } }: LocalParamProps) => {
           columns={{ base: 2, sm: 4 }}
           justifyItems={"center"}
           mt="10"
-          rowGap="4">
+          rowGap="4"
+        >
           {languagePageData &&
             languagePageData.map((item: LanguageSelect) => {
               return (
@@ -68,10 +67,9 @@ const Page = ({ params: { lang } }: LocalParamProps) => {
                     py="8"
                     border="1px"
                     borderColor={"grey.200"}
-                    rounded={"lg"}>
-                    <Flex
-                      flexDirection={"column"}
-                      alignItems={"center"}>
+                    rounded={"lg"}
+                  >
+                    <Flex flexDirection={"column"} alignItems={"center"}>
                       <Image
                         border={"1px"}
                         borderColor={"grey.100"}
@@ -84,17 +82,15 @@ const Page = ({ params: { lang } }: LocalParamProps) => {
                         height={55}
                       />
 
-                      <Text
-                        mt="4"
-                        fontSize={"sm"}
-                        style={myFont.style}>
+                      <Text mt="4" fontSize={"sm"} style={myFont.style}>
                         {item.language}
                       </Text>
                       <Text
                         mt="4"
                         size={"xs"}
                         fontWeight={"light"}
-                        color={"grey.500"}>
+                        color={"grey.500"}
+                      >
                         {item.totalUserCount + " " + "learners"}
                       </Text>
                     </Flex>
