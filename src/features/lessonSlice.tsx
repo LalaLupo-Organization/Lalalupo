@@ -46,27 +46,24 @@ const initialState: LessonState = {
     },
     //MatchPairsExercise
     {
+      type: "reorder",
       _id: "12345",
-      instructions: "Match the corresponding words.",
+      solution: "Non giocare con il fuoco!",
+      instructions: "Reorder the words to translate the sentence.",
+      displayText: "Do not play with fire!",
+      availableWords: [
+        "Non",
+        "giocare",
+        "con",
+        "il",
+        "fuoco!",
+        "gioco",
+        "lo",
+        "fuochi!",
+        "suonare",
+      ],
       isComplete: false,
       hasFailed: false,
-      solution: "Some solution here",
-      type: "matchPairs",
-      availableWords: {
-        pairs: [
-          ["attenzione", "attention"],
-          ["stazione", "station"],
-          ["possibile", "possible"],
-        ],
-        column1: {
-          column: "1",
-          read: true,
-        },
-        column2: {
-          column: "2",
-          read: false,
-        },
-      },
     },
     //ConjugationExercise
     {
@@ -203,27 +200,7 @@ const initialState: LessonState = {
       hasFailed: false,
     },
     //reorder
-    {
-      type: "reorder",
-      _id: "12345",
-      solution: "Non giocare con il fuoco!",
-      instructions: "Reorder the words to translate the sentence.",
-      displayText: "Do not play with fire!",
-      availableWords: [
-        "Non",
-        "giocare",
-        "con",
-        "il",
-        "fuoco!",
-        "gioco",
-        "lo",
-        "fuochi!",
-        "suonare",
-      ],
 
-      isComplete: false,
-      hasFailed: false,
-    },
     //reorderWhatYouHear
     {
       type: "reorderWhatYouHear",
@@ -255,7 +232,14 @@ const initialState: LessonState = {
       solution: "stanno",
       instructions: "Choose the correct conjugation of the verb.",
       displayText: ["loro", "stanno", "(they stay)"],
-      availableWords: ["sto", "stai", "sta", "stiamo", "state", "stanno"],
+      availableWords: [
+        "sto",
+        "stai",
+        "sta",
+        "stiamo",
+        "state",
+        "stanno",
+      ],
 
       isComplete: false,
       hasFailed: false,
@@ -291,7 +275,9 @@ const initialState: LessonState = {
         "Sono uscito",
         "questo pomeriggio.",
       ],
-      english: ["Paul, when did you go out? I went out this afternoon."],
+      english: [
+        "Paul, when did you go out? I went out this afternoon.",
+      ],
 
       isComplete: false,
       hasFailed: false,
@@ -336,13 +322,13 @@ export const lessonSlice = createSlice({
   reducers: {
     putInteractiveExerciseDataIntoState: (
       state,
-      action: PayloadAction<LessonState>,
+      action: PayloadAction<LessonState>
     ) => {
       state = action.payload;
     },
     putActiveExerciseIntoState: (state) => {
       let found = state.interactiveExercises.find(
-        (item) => !item.isComplete && !item.hasFailed && item,
+        (item) => !item.isComplete && !item.hasFailed && item
       );
 
       if (found) {
@@ -363,7 +349,7 @@ export const lessonSlice = createSlice({
       }
       //set the interactiveExercise to isComplete
       const found = state.interactiveExercises.find(
-        (item) => item._id === state.activeExercise?._id,
+        (item) => item._id === state.activeExercise?._id
       );
       if (found) {
         Object.assign(found, state.activeExercise);
@@ -388,7 +374,7 @@ export const lessonSlice = createSlice({
       }
       //set the interactiveExercise to isComplete
       const found = state.interactiveExercises.find(
-        (item) => item._id === state.activeExercise?._id,
+        (item) => item._id === state.activeExercise?._id
       );
       if (found) {
         Object.assign(found, state.activeExercise);
@@ -419,17 +405,19 @@ export const {
 } = lessonSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectLesson = (state: RootState) => state.lessonReduxState;
-export const selectAssessment = (state: RootState) => state.lessonReduxState;
+export const selectLesson = (state: RootState) =>
+  state.lessonReduxState;
+export const selectAssessment = (state: RootState) =>
+  state.lessonReduxState;
 export const selectCurrentUnitIsComplete = (state: RootState) =>
   state.lessonReduxState.isComplete;
 export const selectActiveExercise = (state: RootState) =>
   state.lessonReduxState.activeExercise;
 export const selectToSeeIfAllInteractiveExercisesAreComplete = (
-  state: RootState,
+  state: RootState
 ) => {
   const found = state.lessonReduxState.interactiveExercises?.some(
-    (item) => !item.isComplete && !item.hasFailed && item,
+    (item) => !item.isComplete && !item.hasFailed && item
   );
   return found;
 };

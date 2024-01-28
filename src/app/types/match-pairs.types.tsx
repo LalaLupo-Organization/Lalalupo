@@ -9,3 +9,28 @@ export type MatchPairsExercise = BaseExercise & {
   };
   englishAnswers?: string[];
 };
+
+//?This is the matchpairs data structure - I am going to recreate the matchpairs interactive component as the current one is not how I want it.
+// {
+//   _id: "12345",
+//   instructions: "Match the corresponding words.",
+//   isComplete: false,
+//   hasFailed: false,
+//   solution: "Some solution here",
+//   type: "matchPairs",
+//   availableWords: {
+//     pairs: [
+//       ["attenzione", "attention"],
+//       ["stazione", "station"],
+//       ["possibile", "possible"],
+//     ],
+//     column1: {
+//       column: "1",
+//       read: true,
+//     },
+//     column2: {
+//       column: "2",
+//       read: false,
+//     },
+//   },
+// },

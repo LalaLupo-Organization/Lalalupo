@@ -28,15 +28,42 @@ export default function LessonLayout({
     remainingExercises,
   } = lesson;
   const getNavigationComponent = (
-    activeExercise: LessonState["activeExercise"],
+    activeExercise: LessonState["activeExercise"]
   ) => {
     //This function
     switch (activeExercise.type) {
       case "chooseTheRightSolution":
         return <InteractiveBottomNav />;
       case "matchPairs":
-        return <Heading> MatchPairs Nav</Heading>;
-
+        return <InteractiveBottomNav />;
+      case "conjugation":
+        return <InteractiveBottomNav />;
+      case "reorder":
+        return <InteractiveBottomNav />;
+      case "reorderWhatYouHear":
+        return <InteractiveBottomNav />;
+      case "fillInTheBlank":
+        return <InteractiveBottomNav />;
+      case "fillInWhatYouHear":
+        return <InteractiveBottomNav />;
+      case "listenAndSelect":
+        return <InteractiveBottomNav />;
+      case "missingSyllable":
+        return <InteractiveBottomNav />;
+      case "multipleAnswers":
+        return <InteractiveBottomNav />;
+      case "partOfAWord":
+        return <InteractiveBottomNav />;
+      case "selectTheMissingWord":
+        return <InteractiveBottomNav />;
+      case "speakingAndPronunciation":
+        return <InteractiveBottomNav />;
+      case "twoBlanks":
+        return <InteractiveBottomNav />;
+      case "typeInWhatYouHear":
+        return <InteractiveBottomNav />;
+      case "writeTheSentence":
+        return <InteractiveBottomNav />;
       default:
         return null;
     }
@@ -59,8 +86,7 @@ export default function LessonLayout({
         bottom={"70"}
         w="100%"
         p={4}
-        color="white"
-      >
+        color="white">
         {getNavigationComponent(activeExercise)}
       </Box>
     </Box>

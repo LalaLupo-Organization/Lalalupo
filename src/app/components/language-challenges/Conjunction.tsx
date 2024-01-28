@@ -2,7 +2,7 @@
 import { LessonState } from "@/types/lesson.types";
 import { Box, Heading, Container } from "@chakra-ui/react";
 
-export default function MatchPairs({ data }: { data: LessonState }) {
+export default function Conjunction({ data }: { data: LessonState }) {
   const {
     activeExercise,
     totalExercises,
@@ -21,7 +21,7 @@ export default function MatchPairs({ data }: { data: LessonState }) {
           mx={"auto"}
           textAlign={"center"}
           fontSize={"sm"}>
-          MatchPairs
+          Conjunction
         </Heading>
         {JSON.stringify(data.activeExercise)}
       </Container>
