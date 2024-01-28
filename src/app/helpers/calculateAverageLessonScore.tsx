@@ -1,7 +1,4 @@
-import {
-  ActivityFields,
-  UnitStructure,
-} from "@/types/user-progress.types";
+import { ActivityFields, UnitStructure } from "@/types/user-progress.types";
 //This function assumes that the first array item is a readng without any activityScore
 export function calculateLessonAverage(array: any) {
   let average = 0;
@@ -25,7 +22,7 @@ export function calculateUnitAverage(array: UnitStructure) {
 export function calculateCourseAverage(unitStats: any) {
   let finalUnitScore = 0;
   Object.entries(unitStats).forEach(
-    (item: any) => (finalUnitScore += item[1].finalUnitScore)
+    (item: any) => (finalUnitScore += item[1].finalUnitScore),
   );
   return Math.floor(finalUnitScore / 15);
 }

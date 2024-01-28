@@ -21,25 +21,21 @@ import {
 } from "@/features/userSlice";
 import RegexParser from "regex-parser";
 
-import {
-  selectUserInput,
-  clearUserInput,
-} from "@/features/userInputSlice";
+import { selectUserInput, clearUserInput } from "@/features/userInputSlice";
 // import { toast } from "react-toastify";
 
 export default function useAssessment() {
   const dispatch = useAppDispatch();
   const interactiveExercisesComplete = useAppSelector((state) =>
-    selectToSeeIfAllInteractiveExercisesAreComplete(state)
+    selectToSeeIfAllInteractiveExercisesAreComplete(state),
   );
-  const activeExercise = useAppSelector((state) =>
-    selectActiveExercise(state)
+  const activeExercise = useAppSelector((state) => selectActiveExercise(state));
+  const { userInput, userArrayInput, userObjectInput } = useAppSelector(
+    (state) => selectUserInput(state),
   );
-  const { userInput, userArrayInput, userObjectInput } =
-    useAppSelector((state) => selectUserInput(state));
   const messages = useAppSelector((state) => selectMessage(state));
   const currentUnitForAssessment = useAppSelector((state) =>
-    selectAssessment(state)
+    selectAssessment(state),
   );
   const { numberComplete, totalExercises } = currentUnitForAssessment;
 
@@ -110,7 +106,7 @@ export default function useAssessment() {
             activeExercise.availableWords.pairs[index][1]
               .toLowerCase()
               .trim()
-              .replace(/[^\w\sÀ-ú’']|_/g, "")
+              .replace(/[^\w\sÀ-ú’']|_/g, ""),
         );
         if (result) {
           setSuccess();
@@ -179,7 +175,7 @@ export default function useAssessment() {
     }
     if (activeExercise.type === "matchPairs" && userObjectInput) {
       let allCorrect = Object.entries(userObjectInput).some(
-        (item: [string, any]) => !item[1].correct
+        (item: [string, any]) => !item[1].correct,
       );
       //Has the user matched all the pairs correctly
       if (!allCorrect) {
@@ -199,15 +195,12 @@ export default function useAssessment() {
         return;
       }
     }
-    if (
-      activeExercise.type === "multipleAnswers" &&
-      userObjectInput
-    ) {
+    if (activeExercise.type === "multipleAnswers" && userObjectInput) {
       let correctAnswers = activeExercise.availableWords.filter(
         (word) =>
           word.italian === userObjectInput[word.italian] &&
           word.correct &&
-          word
+          word,
       );
 
       if (
@@ -243,17 +236,11 @@ export default function useAssessment() {
       }
     }
 
-    if (
-      activeExercise.type === "reorder" &&
-      activeExercise.solution
-    ) {
+    if (activeExercise.type === "reorder" && activeExercise.solution) {
       if (
         userInput &&
         userInput.toLowerCase().replace(/\s+/g, "") ===
-          activeExercise.solution
-            .toString()
-            .toLowerCase()
-            .replace(/\s+/g, "")
+          activeExercise.solution.toString().toLowerCase().replace(/\s+/g, "")
       ) {
         setSuccess();
         return;
@@ -269,10 +256,7 @@ export default function useAssessment() {
       if (
         userInput &&
         userInput.toLowerCase().replace(/\s+/g, "") ===
-          activeExercise.solution
-            .toString()
-            .toLowerCase()
-            .replace(/\s+/g, "")
+          activeExercise.solution.toString().toLowerCase().replace(/\s+/g, "")
       ) {
         setSuccess();
         return;

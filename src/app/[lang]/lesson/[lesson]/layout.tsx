@@ -28,7 +28,7 @@ export default function LessonLayout({
     remainingExercises,
   } = lesson;
   const getNavigationComponent = (
-    activeExercise: LessonState["activeExercise"]
+    activeExercise: LessonState["activeExercise"],
   ) => {
     //This function
     switch (activeExercise.type) {
@@ -59,7 +59,8 @@ export default function LessonLayout({
         bottom={"70"}
         w="100%"
         p={4}
-        color="white">
+        color="white"
+      >
         {getNavigationComponent(activeExercise)}
       </Box>
     </Box>

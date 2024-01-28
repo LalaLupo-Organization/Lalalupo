@@ -9,13 +9,9 @@ import { useAppSelector } from "@/hooks/useRedux";
 export function InteractiveBottomNav() {
   const { lessonButtonClick } = useAssessment();
 
-  const { userInput } = useAppSelector((state) =>
-    selectUserInput(state)
-  );
+  const { userInput } = useAppSelector((state) => selectUserInput(state));
   const messages = useAppSelector((state) => selectMessage(state));
-  const { isComplete } = useAppSelector((state) =>
-    selectActiveExercise(state)
-  );
+  const { isComplete } = useAppSelector((state) => selectActiveExercise(state));
   useEffect(() => {}, [messages]);
 
   return (
@@ -23,13 +19,11 @@ export function InteractiveBottomNav() {
       <Grid templateColumns="repeat(3, 1fr)" gap={6}>
         <GridItem w="100%" h="20" bg="grey.100"></GridItem>
         <GridItem w="100%" h="20" bg="grey.100">
-          <Flex
-            justifyContent="center"
-            alignItems="center"
-            height="100%">
+          <Flex justifyContent="center" alignItems="center" height="100%">
             <Button
               onClick={() => lessonButtonClick()}
-              isDisabled={!userInput ? true : false}>
+              isDisabled={!userInput ? true : false}
+            >
               {isComplete ? "CONTINUE" : "CHECK"}
             </Button>
           </Flex>
