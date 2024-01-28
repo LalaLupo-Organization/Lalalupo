@@ -19,27 +19,16 @@ const initialState: LessonState = {
   numberFailed: 0,
   correctLetters: [],
   activeExercise: {
-    _id: "12345",
-    instructions: "Match the corresponding words.",
+    type: "chooseTheRightSolution",
+    _id: "635f9a0fefff76c1f466c9be",
+    solution: "panino",
+    availableWords: ["panino", "ravioli", "espresso"],
+    instructions: "What is this?",
+    displayImage: true,
+    displayImageSrc:
+      "https://imagedelivery.net/_Fh-Z9aj1rlSxXMDl1yqsg/b753daa9-b6c7-4773-a681-e1f881c9f600/character",
     isComplete: false,
     hasFailed: false,
-    solution: "Some solution here",
-    type: "matchPairs",
-    availableWords: {
-      pairs: [
-        ["attenzione", "attention"],
-        ["stazione", "station"],
-        ["possibile", "possible"],
-      ],
-      column1: {
-        column: "1",
-        read: true,
-      },
-      column2: {
-        column: "2",
-        read: false,
-      },
-    },
   },
   interactiveExercises: [
     //ChooseTheRightSolution
@@ -107,6 +96,8 @@ const initialState: LessonState = {
       instructions:
         "Fill in the blank with the correct conjugation of the verb.",
       displayText: "We are looking for a job.",
+      couldBeEmpty: "",
+      regex: "",
       doubleSolution: false,
       isComplete: false,
       hasFailed: false,
@@ -275,6 +266,7 @@ const initialState: LessonState = {
       _id: "2343423",
       solution: "Vado da Marco.",
       doubleSolution: false,
+      regex: "",
       instructions:
         "Say this in Italian. Omit the subject pronoun (if present).",
       vocabularyHelper: ["to go = andare", "Mark = Marco"],
@@ -326,6 +318,7 @@ const initialState: LessonState = {
       instructions:
         "Translate this into Italian. Include the subject pronoun (if present).",
       displayMeaning: false,
+      regex: "",
       display: "The exercise is simple.",
       doubleSolution: false,
       vocabularyHelper: ["exercise = esercizio", "simple = semplice"],
@@ -427,29 +420,29 @@ export const {
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectLesson = (state: RootState) => state.lessonReduxState;
+export const selectAssessment = (state: RootState) => state.lessonReduxState;
+export const selectCurrentUnitIsComplete = (state: RootState) =>
+  state.lessonReduxState.isComplete;
+export const selectActiveExercise = (state: RootState) =>
+  state.lessonReduxState.activeExercise;
+export const selectToSeeIfAllInteractiveExercisesAreComplete = (
+  state: RootState,
+) => {
+  const found = state.lessonReduxState.interactiveExercises?.some(
+    (item) => !item.isComplete && !item.hasFailed && item,
+  );
+  return found;
+};
+export const selectTotalNumberOfExercises = (state: RootState) =>
+  state.lessonReduxState.totalExercises;
+export const selectRemainingLengthOfExercises = (state: RootState) =>
+  state.lessonReduxState.remainingExercises;
+export const selectNumberOfExercisesComplete = (state: RootState) =>
+  state.lessonReduxState.numberComplete;
+export const selectNumberOfExercisesFailed = (state: RootState) =>
+  state.lessonReduxState.numberFailed;
 
-// export const selectCurrentUnitIsComplete = (state: RootState) =>
-//   state.isComplete;
-// export const selectActiveExercise = (state: RootState) =>
-//   state.activeExercise;
-// export const selectToSeeIfAllInteractiveExercisesAreComplete = (
-//   state: RootState
-// ) => {
-//   const found = state.interactiveExercises?.some(
-//     (item) => !item.isComplete && !item.hasFailed && item
-//   );
-//   return found;
-// };
-// export const selectTotalNumberOfExercises = (state: RootState) =>
-//   state.totalExercises;
-// export const selectRemainingLengthOfExercises = (state: RootState) =>
-//   state.remainingExercises;
-// export const selectNumberOfExercisesComplete = (state: RootState) =>
-//   state.numberComplete;
-// export const selectNumberOfExercisesFailed = (state: RootState) =>
-//   state.numberFailed;
-
-// export const selectInteractiveExercises = (state: RootState) =>
-//   state.interactiveExercises;
+export const selectInteractiveExercises = (state: RootState) =>
+  state.lessonReduxState.interactiveExercises;
 
 export default lessonSlice.reducer;

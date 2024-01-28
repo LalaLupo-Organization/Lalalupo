@@ -16,12 +16,15 @@ export const api = createApi({
   reducerPath: "api",
   baseQuery: fakeBaseQuery(),
   endpoints: (builder) => ({
-    getCourseStructure: builder.query<any, string>({
-      queryFn: async (id) => {
+    getCourseStructure: builder.query<any, { languageCode: string }>({
+      queryFn: async ({ languageCode }) => {
         try {
           const data = await client.fetch<any[]>(
-            `*[_type == "courseStructure"] | order(_createdAt asc)`,
+            `*[_type == 'courseStructure' && languageCode == "${languageCode}"] | order(unitTitle asc, lessonNumber asc)
+
+            `,
           );
+          console.log(data);
           return { data };
         } catch (error) {
           return { error: { status: "CUSTOM_ERROR", data: error } };
@@ -131,9 +134,8 @@ export const api = createApi({
     getUser: builder.query<User, any>({
       queryFn: async (): Promise<any> => {
         try {
-          const docRef = doc(db, "users", "u2QgD1RHzRQAm8iFUBaw");
+          const docRef = doc(db, "user", "FZq8d7VRkH5vAdu5bbnA");
           const docSnap = await getDoc(docRef);
-
           if (docSnap.exists()) {
             return { data: docSnap.data() };
           } else {

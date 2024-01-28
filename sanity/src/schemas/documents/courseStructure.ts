@@ -8,18 +8,78 @@ const courseStructure = {
     {
       name: "unitTitle",
       title: "Unit Title",
-      type: "string",
+      type: "number",
+      options: {
+        list: [
+          { title: 1, value: 1 },
+          { title: 2, value: 2 },
+          { title: 3, value: 3 },
+        ],
+      },
+      // validation: (Rule: any) => Rule.required(),
     },
     {
       name: "languageCode",
       title: "Language Code",
       type: "string",
+      // options: {
+      //   list: [
+      //     { title: "English to Arabic", value: "en-ar-sa" },
+      //     { title: "English to Chinese", value: "en-ch" },
+      //     { title: "English to German", value: "en-de" },
+      //     { title: "English to Greek", value: "en-el" },
+      //     { title: "English to English", value: "en-en" },
+      //     { title: "English to Spanish", value: "en-es" },
+      //     { title: "English to French", value: "en-fr" },
+      //     { title: "English to Irish", value: "en-ga" },
+      //     { title: "English to Hindi", value: "en-in" },
+      //     { title: "English to Italian", value: "en-it" },
+      //     { title: "English to Japanese", value: "en-ja" },
+      //     { title: "English to Korean", value: "en-ko" },
+      //     { title: "English to Latin", value: "en-la" },
+      //     { title: "English to Dutch", value: "en-nl" },
+      //     { title: "English to Polish", value: "en-pl" },
+      //     { title: "English to Portuguese", value: "en-pt" },
+      //     { title: "English to Russian", value: "en-ru" },
+      //     { title: "English to Swedish", value: "en-sw" },
+      //     { title: "English to Turkish", value: "en-tr" },
+      //     { title: "English to Vietnamese", value: "en-vt" },
+      //   ],
+      // },
+      // validation: (Rule: any) => Rule.required(),
     },
     {
       name: "language",
       title: "Language",
       type: "string",
+      // options: {
+      //   list: [
+      //     { title: "Arabic", value: "Arabic" },
+      //     { title: "Chinese", value: "Chinese" },
+      //     { title: "German", value: "German" },
+      //     { title: "Greek", value: "Greek" },
+      //     { title: "English", value: "English" },
+      //     { title: "Spanish", value: "Spanish" },
+      //     { title: "French", value: "French" },
+      //     { title: "Irish", value: "Irish" },
+      //     { title: "Hindi", value: "Hindi" },
+      //     { title: "Italian", value: "Italian" },
+      //     { title: "Japanese", value: "Japanese" },
+      //     { title: "Korean", value: "Korean" },
+      //     { title: "Latin", value: "Latin" },
+      //     { title: "Dutch", value: "Dutch" },
+      //     { title: "Polish", value: "Polish" },
+      //     { title: "Portuguese", value: "Portuguese" },
+      //     { title: "Russian", value: "Russian" },
+      //     { title: "Swedish", value: "Swedish" },
+      //     { title: "Turkish", value: "Turkish" },
+      //     { title: "Vietnamese", value: "Vietnamese" },
+      //   ],
+      // },
+
+      // validation: (Rule: any) => Rule.required(),
     },
+
     {
       name: "totalUserCount",
       title: "Total User Count",
@@ -29,6 +89,20 @@ const courseStructure = {
       name: "lessonNumber",
       title: "Lesson Number",
       type: "number",
+      // options: {
+      //   list: [
+      //     { title: "1", value: "1" },
+      //     { title: "2", value: "2" },
+      //     { title: "3", value: "3" },
+      //     { title: "4", value: "4" },
+      //     { title: "5", value: "5" },
+      //     { title: "6", value: "6" },
+      //     { title: "7", value: "7" },
+      //     { title: "8", value: "8" },
+      //     { title: "9", value: "9" },
+      //     { title: "10", value: "10" },
+      //   ],
+      // },
     },
 
     {
@@ -90,29 +164,36 @@ const courseStructure = {
         },
       ],
       // Set up conditional fields to show either option1Fields or option2Fields based on selectOption
-      preview: {
-        select: {
-          unitTitle: "unitTitle",
-        },
-
-        prepare: ({ unitTitle }: { unitTitle: string }) => ({
-          title: `${unitTitle || "No Language"}`,
-        }),
-      },
     },
   ],
   orderings: [
     {
-      title: "Lesson Number, Asc",
-      name: "lessonNumberAsc",
-      by: [{ field: "lessonNumber", direction: "asc" }],
-    },
-    {
-      title: "Lesson Number, Desc",
-      name: "lessonNumberAsc",
-      by: [{ field: "lessonNumber", direction: "desc" }],
+      title: "Unit Title Asc, Lesson Number Asc",
+      name: "unitTitleAscLessonNumberAsc",
+      by: [
+        { field: "unitTitle", direction: "asc" },
+        { field: "lessonNumber", direction: "asc" },
+      ],
     },
   ],
+
+  preview: {
+    select: {
+      title: "unitTitle",
+      subtitle: "lessonNumber",
+      media: "icon",
+    },
+    preview: ({
+      unitTitle,
+      lessonNumber,
+    }: {
+      unitTitle: string;
+      lessonNumber: string;
+    }) => ({
+      title: `Unit ${unitTitle || "No Language"}`,
+      subtitle: `Lesson ${lessonNumber || "No Language"}`,
+    }),
+  },
 };
 
 export default courseStructure;
