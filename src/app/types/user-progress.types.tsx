@@ -1,7 +1,8 @@
 // Define a type for a user progress item
 export type UserProgressItem = {
   _id: string;
-  lessonId: string;
+  lessonNumber: number;
+  unitTitle: number;
   lessonLock: boolean;
   hasAnimated: boolean;
   isCompleted: boolean;

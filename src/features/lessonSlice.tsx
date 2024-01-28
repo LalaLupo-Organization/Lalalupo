@@ -19,27 +19,16 @@ const initialState: LessonState = {
   numberFailed: 0,
   correctLetters: [],
   activeExercise: {
-    _id: "12345",
-    instructions: "Match the corresponding words.",
+    type: "chooseTheRightSolution",
+    _id: "635f9a0fefff76c1f466c9be",
+    solution: "panino",
+    availableWords: ["panino", "ravioli", "espresso"],
+    instructions: "What is this?",
+    displayImage: true,
+    displayImageSrc:
+      "https://imagedelivery.net/_Fh-Z9aj1rlSxXMDl1yqsg/b753daa9-b6c7-4773-a681-e1f881c9f600/character",
     isComplete: false,
     hasFailed: false,
-    solution: "Some solution here",
-    type: "matchPairs",
-    availableWords: {
-      pairs: [
-        ["attenzione", "attention"],
-        ["stazione", "station"],
-        ["possibile", "possible"],
-      ],
-      column1: {
-        column: "1",
-        read: true,
-      },
-      column2: {
-        column: "2",
-        read: false,
-      },
-    },
   },
   interactiveExercises: [
     //ChooseTheRightSolution
@@ -264,7 +253,14 @@ const initialState: LessonState = {
       solution: "stanno",
       instructions: "Choose the correct conjugation of the verb.",
       displayText: ["loro", "stanno", "(they stay)"],
-      availableWords: ["sto", "stai", "sta", "stiamo", "state", "stanno"],
+      availableWords: [
+        "sto",
+        "stai",
+        "sta",
+        "stiamo",
+        "state",
+        "stanno",
+      ],
 
       isComplete: false,
       hasFailed: false,
@@ -299,7 +295,9 @@ const initialState: LessonState = {
         "Sono uscito",
         "questo pomeriggio.",
       ],
-      english: ["Paul, when did you go out? I went out this afternoon."],
+      english: [
+        "Paul, when did you go out? I went out this afternoon.",
+      ],
 
       isComplete: false,
       hasFailed: false,
@@ -343,13 +341,13 @@ export const lessonSlice = createSlice({
   reducers: {
     putInteractiveExerciseDataIntoState: (
       state,
-      action: PayloadAction<LessonState>,
+      action: PayloadAction<LessonState>
     ) => {
       state = action.payload;
     },
     putActiveExerciseIntoState: (state) => {
       let found = state.interactiveExercises.find(
-        (item) => !item.isComplete && !item.hasFailed && item,
+        (item) => !item.isComplete && !item.hasFailed && item
       );
 
       if (found) {
@@ -370,7 +368,7 @@ export const lessonSlice = createSlice({
       }
       //set the interactiveExercise to isComplete
       const found = state.interactiveExercises.find(
-        (item) => item._id === state.activeExercise?._id,
+        (item) => item._id === state.activeExercise?._id
       );
       if (found) {
         Object.assign(found, state.activeExercise);
@@ -395,7 +393,7 @@ export const lessonSlice = createSlice({
       }
       //set the interactiveExercise to isComplete
       const found = state.interactiveExercises.find(
-        (item) => item._id === state.activeExercise?._id,
+        (item) => item._id === state.activeExercise?._id
       );
       if (found) {
         Object.assign(found, state.activeExercise);
@@ -426,7 +424,8 @@ export const {
 } = lessonSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectLesson = (state: RootState) => state.lessonReduxState;
+export const selectLesson = (state: RootState) =>
+  state.lessonReduxState;
 
 // export const selectCurrentUnitIsComplete = (state: RootState) =>
 //   state.isComplete;

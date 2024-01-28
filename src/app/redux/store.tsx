@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "../../features/counterSlice"; //exampleCounter
-import lessonReducer from "../../features/lessonSlice"; //exampleCounter
+import counterReducer from "../../features/counterSlice";
+import lessonReducer from "../../features/lessonSlice";
+import userInputReducer from "../../features/userInputSlice";
 import { api } from "@/services/api";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { useDispatch } from "react-redux";
@@ -9,6 +10,7 @@ export const store = configureStore({
   reducer: {
     counter: counterReducer,
     lessonReduxState: lessonReducer,
+    userInputReduxState: userInputReducer,
     [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) =>

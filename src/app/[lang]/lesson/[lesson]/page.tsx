@@ -23,10 +23,6 @@ export default function Lessons() {
 
   useEffect(() => {
     if (sanityLessonData) {
-      console.log(
-        "🚀 ~ file: page.tsx:29 ~ useEffect ~ sanityLessonData:",
-        sanityLessonData,
-      );
     }
   }, [sanityLessonData]);
 
@@ -34,7 +30,9 @@ export default function Lessons() {
     return <Heading>Loading</Heading>;
   }
 
-  switch (sanityLessonData && sanityLessonData.exercise[0].selectOption) {
+  switch (lesson.activeExercise.type) {
+    // sanityLessonData &&
+    // sanityLessonData.exercise[0].selectOption
     case "chooseTheRightSolution":
       return <ChooseTheRightSolution data={lesson} />;
     case "matchPairs":

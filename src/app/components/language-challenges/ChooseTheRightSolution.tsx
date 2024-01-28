@@ -9,6 +9,7 @@ import {
   Input,
   Heading,
   Container,
+  Flex,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
@@ -37,12 +38,24 @@ const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
 
   return (
     <Box>
-      <Container w={"60%"}>
-        <Heading mt={10} mx={"auto"} textAlign={"center"} fontSize={"sm"}>
+      <Container>
+        <Heading
+          mt={10}
+          mx={"auto"}
+          textAlign={"center"}
+          fontSize={"sm"}>
           Choose the Right Solution
         </Heading>
-        {JSON.stringify(data.activeExercise)}
+        <Flex gap={8} mt="20" justifyContent={"center"}>
+          {data.activeExercise.type === "chooseTheRightSolution" &&
+            data.activeExercise.availableWords.map((words) => (
+              <Box key={uuid()}>
+                <Button>{words}</Button>
+              </Box>
+            ))}
+        </Flex>
       </Container>
+      <Box m="40">{JSON.stringify(data.activeExercise)}</Box>
     </Box>
   );
 };
