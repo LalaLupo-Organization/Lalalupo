@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "../../features/counterSlice";
 import lessonReducer from "../../features/lessonSlice";
 import userInputReducer from "../../features/userInputSlice";
+import userReducer from "@/features/userSlice";
 import { api } from "@/services/api";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { useDispatch } from "react-redux";
@@ -11,6 +12,7 @@ export const store = configureStore({
     counter: counterReducer,
     lessonReduxState: lessonReducer,
     userInputReduxState: userInputReducer,
+    userReduxState: userReducer,
     [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) =>

@@ -10,6 +10,7 @@ import {
 import { useAppSelector } from "@/hooks/useRedux";
 import { selectLesson } from "@/features/lessonSlice";
 import { LessonState } from "@/types/lesson.types";
+import { InteractiveBottomNav } from "@/components/userInputBottomNavigation/InteractiveBottomNav";
 export default function LessonLayout({
   children, // will be a page or nested layout
 }: {
@@ -27,12 +28,12 @@ export default function LessonLayout({
     remainingExercises,
   } = lesson;
   const getNavigationComponent = (
-    activeExercise: LessonState["activeExercise"],
+    activeExercise: LessonState["activeExercise"]
   ) => {
     //This function
     switch (activeExercise.type) {
       case "chooseTheRightSolution":
-        return <Heading> ChooseTheRightSolution Nav</Heading>;
+        return <InteractiveBottomNav />;
       case "matchPairs":
         return <Heading> MatchPairs Nav</Heading>;
 
@@ -53,12 +54,12 @@ export default function LessonLayout({
 
       <Box
         bg="grey.300"
+        height={115}
         pos="absolute"
         bottom={"70"}
         w="100%"
         p={4}
-        color="white"
-      >
+        color="white">
         {getNavigationComponent(activeExercise)}
       </Box>
     </Box>

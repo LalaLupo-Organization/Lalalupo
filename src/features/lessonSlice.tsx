@@ -96,6 +96,8 @@ const initialState: LessonState = {
       instructions:
         "Fill in the blank with the correct conjugation of the verb.",
       displayText: "We are looking for a job.",
+      couldBeEmpty: "",
+      regex: "",
       doubleSolution: false,
       isComplete: false,
       hasFailed: false,
@@ -253,7 +255,14 @@ const initialState: LessonState = {
       solution: "stanno",
       instructions: "Choose the correct conjugation of the verb.",
       displayText: ["loro", "stanno", "(they stay)"],
-      availableWords: ["sto", "stai", "sta", "stiamo", "state", "stanno"],
+      availableWords: [
+        "sto",
+        "stai",
+        "sta",
+        "stiamo",
+        "state",
+        "stanno",
+      ],
 
       isComplete: false,
       hasFailed: false,
@@ -264,6 +273,7 @@ const initialState: LessonState = {
       _id: "2343423",
       solution: "Vado da Marco.",
       doubleSolution: false,
+      regex: "",
       instructions:
         "Say this in Italian. Omit the subject pronoun (if present).",
       vocabularyHelper: ["to go = andare", "Mark = Marco"],
@@ -288,7 +298,9 @@ const initialState: LessonState = {
         "Sono uscito",
         "questo pomeriggio.",
       ],
-      english: ["Paul, when did you go out? I went out this afternoon."],
+      english: [
+        "Paul, when did you go out? I went out this afternoon.",
+      ],
 
       isComplete: false,
       hasFailed: false,
@@ -315,6 +327,7 @@ const initialState: LessonState = {
       instructions:
         "Translate this into Italian. Include the subject pronoun (if present).",
       displayMeaning: false,
+      regex: "",
       display: "The exercise is simple.",
       doubleSolution: false,
       vocabularyHelper: ["exercise = esercizio", "simple = semplice"],
@@ -332,13 +345,13 @@ export const lessonSlice = createSlice({
   reducers: {
     putInteractiveExerciseDataIntoState: (
       state,
-      action: PayloadAction<LessonState>,
+      action: PayloadAction<LessonState>
     ) => {
       state = action.payload;
     },
     putActiveExerciseIntoState: (state) => {
       let found = state.interactiveExercises.find(
-        (item) => !item.isComplete && !item.hasFailed && item,
+        (item) => !item.isComplete && !item.hasFailed && item
       );
 
       if (found) {
@@ -359,7 +372,7 @@ export const lessonSlice = createSlice({
       }
       //set the interactiveExercise to isComplete
       const found = state.interactiveExercises.find(
-        (item) => item._id === state.activeExercise?._id,
+        (item) => item._id === state.activeExercise?._id
       );
       if (found) {
         Object.assign(found, state.activeExercise);
@@ -384,7 +397,7 @@ export const lessonSlice = createSlice({
       }
       //set the interactiveExercise to isComplete
       const found = state.interactiveExercises.find(
-        (item) => item._id === state.activeExercise?._id,
+        (item) => item._id === state.activeExercise?._id
       );
       if (found) {
         Object.assign(found, state.activeExercise);
@@ -415,30 +428,32 @@ export const {
 } = lessonSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectLesson = (state: RootState) => state.lessonReduxState;
+export const selectLesson = (state: RootState) =>
+  state.lessonReduxState;
+export const selectAssessment = (state: RootState) =>
+  state.lessonReduxState;
+export const selectCurrentUnitIsComplete = (state: RootState) =>
+  state.lessonReduxState.isComplete;
+export const selectActiveExercise = (state: RootState) =>
+  state.lessonReduxState.activeExercise;
+export const selectToSeeIfAllInteractiveExercisesAreComplete = (
+  state: RootState
+) => {
+  const found = state.lessonReduxState.interactiveExercises?.some(
+    (item) => !item.isComplete && !item.hasFailed && item
+  );
+  return found;
+};
+export const selectTotalNumberOfExercises = (state: RootState) =>
+  state.lessonReduxState.totalExercises;
+export const selectRemainingLengthOfExercises = (state: RootState) =>
+  state.lessonReduxState.remainingExercises;
+export const selectNumberOfExercisesComplete = (state: RootState) =>
+  state.lessonReduxState.numberComplete;
+export const selectNumberOfExercisesFailed = (state: RootState) =>
+  state.lessonReduxState.numberFailed;
 
-// export const selectCurrentUnitIsComplete = (state: RootState) =>
-//   state.isComplete;
-// export const selectActiveExercise = (state: RootState) =>
-//   state.activeExercise;
-// export const selectToSeeIfAllInteractiveExercisesAreComplete = (
-//   state: RootState
-// ) => {
-//   const found = state.interactiveExercises?.some(
-//     (item) => !item.isComplete && !item.hasFailed && item
-//   );
-//   return found;
-// };
-// export const selectTotalNumberOfExercises = (state: RootState) =>
-//   state.totalExercises;
-// export const selectRemainingLengthOfExercises = (state: RootState) =>
-//   state.remainingExercises;
-// export const selectNumberOfExercisesComplete = (state: RootState) =>
-//   state.numberComplete;
-// export const selectNumberOfExercisesFailed = (state: RootState) =>
-//   state.numberFailed;
-
-// export const selectInteractiveExercises = (state: RootState) =>
-//   state.interactiveExercises;
+export const selectInteractiveExercises = (state: RootState) =>
+  state.lessonReduxState.interactiveExercises;
 
 export default lessonSlice.reducer;
