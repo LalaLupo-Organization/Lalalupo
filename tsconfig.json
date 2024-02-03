@@ -1,54 +1,26 @@
 {
   "compilerOptions": {
-    "target": "ES2015",
-    "lib": ["es5", "dom", "dom.iterable", "esnext"],
-    "types": ["cypress", "node"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "downlevelIteration": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
     "plugins": [
       {
-        "name": "next",
-      },
+        "name": "next"
+      }
     ],
-
     "paths": {
-      "@/components/*": ["./src/components/*"],
-      "@/api/*": ["./src/app/api/*"],
-      "@/features/*": ["./src/features/*"],
-      "@/public/*": ["./public/*"],
-      // "@/global.css/*": ["./src/app/globals.css"],
-      "@/firebase/*": ["./src/firebase/*"],
-      "@/helpers/*": ["./src/helpers/*"],
-      "@/hooks/*": ["./src/hooks/*"],
-      "@/redux/*": ["./src/redux/*"],
-      "@/services/*": ["./src/services/*"],
-      "@/sanity/*": ["./sanity/*"],
-      "@/studio/*": ["./src/app/studio/*"],
-      "@/stories/*": ["./src/stories/*"],
-      "@/types/*": ["./src/types/*"],
-      "@/theme/*": ["./src/theme/*"],
-      "@/fonts/*": ["./src/fonts/*"],
-    },
+      "@@/*": ["./src/*"]
+    }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "sanity/src/lesson.js",
-    "src/components/icons/Icons.stosries.js",
-    "src/stories/icons/UserIcon.stories.js",
-    "sanity/src/components/TwitterUrl.js",
-  ],
-  "exclude": ["node_modules"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }
