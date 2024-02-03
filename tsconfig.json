@@ -17,8 +17,8 @@
     "incremental": true,
     "plugins": [
       {
-        "name": "next"
-      }
+        "name": "next",
+      },
     ],
 
     "paths": {
@@ -26,7 +26,7 @@
       "@/api/*": ["./src/app/api/*"],
       "@/features/*": ["./src/features/*"],
       "@/public/*": ["./public/*"],
-      "@/global.css/*": ["./src/globals.css/*"],
+      // "@/global.css/*": ["./src/app/globals.css"],
       "@/firebase/*": ["./src/firebase/*"],
       "@/helpers/*": ["./src/helpers/*"],
       "@/hooks/*": ["./src/hooks/*"],
@@ -37,8 +37,8 @@
       "@/stories/*": ["./src/stories/*"],
       "@/types/*": ["./src/types/*"],
       "@/theme/*": ["./src/theme/*"],
-      "@/fonts/*": ["./src/fonts/*"]
-    }
+      "@/fonts/*": ["./src/fonts/*"],
+    },
   },
   "include": [
     "next-env.d.ts",
@@ -48,7 +48,7 @@
     "sanity/src/lesson.js",
     "src/components/icons/Icons.stosries.js",
     "src/stories/icons/UserIcon.stories.js",
-    "sanity/src/components/TwitterUrl.js"
+    "sanity/src/components/TwitterUrl.js",
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
 }
