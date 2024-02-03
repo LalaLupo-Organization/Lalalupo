@@ -5,10 +5,7 @@ import FullStoryScript from "../../scripts/fullstory";
 import ThemeProvider from "../../components/providers/theme-provider";
 export default function RootLayout({ children }: { children: any }) {
   return (
-    <html
-      suppressHydrationWarning={true}
-      lang="en"
-      className="h-full bg-white">
+    <html suppressHydrationWarning={true} lang="en" className="h-full bg-white">
       <body>
         <FullStoryScript />
         <StrictMode>

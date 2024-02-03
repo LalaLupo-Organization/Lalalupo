@@ -44,21 +44,14 @@ export function Dropdown({
         colorMode === "light"
           ? "simpleDefaultMenuLight"
           : "simpleDefaultMenuDark"
-      }>
+      }
+    >
       {({ isOpen }) => (
         <>
-          <MenuButton
-            variant={"simpleDropdownButtonLight"}
-            as={Button}>
+          <MenuButton variant={"simpleDropdownButtonLight"} as={Button}>
             SITE LANGUAGE:{" "}
-            {convertLangugageCodeToSiteLangugage(
-              languageCode
-            ).toUpperCase()}
-            {isOpen ? (
-              <ArrowUpIcon ml="4" />
-            ) : (
-              <ArrowDownIcon ml="4" />
-            )}
+            {convertLangugageCodeToSiteLangugage(languageCode).toUpperCase()}
+            {isOpen ? <ArrowUpIcon ml="4" /> : <ArrowDownIcon ml="4" />}
           </MenuButton>
 
           <MenuList py="6" px="4" bg="white" rounded="12">
@@ -70,7 +63,8 @@ export function Dropdown({
                       minWidth="max-content"
                       alignItems="center"
                       justifyItems="center"
-                      gap="4">
+                      gap="4"
+                    >
                       <Box boxSize="6">
                         <Image
                           rounded={"2"}

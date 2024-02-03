@@ -13,9 +13,7 @@ import {
 import { useGetSiteLanguagesQuery } from "@/services/api";
 import { AppLogo, AppLogoText } from "./icons/Icons";
 import { Dropdown } from "./inputs/Dropdown";
-export default function Navbar({
-  params: { lang },
-}: LocalParamProps) {
+export default function Navbar({ params: { lang } }: LocalParamProps) {
   const [isLargerThan600] = useMediaQuery("(min-width: 600px)");
 
   const bottom = useBreakpointValue({ base: "8", md: "auto" });
@@ -36,8 +34,7 @@ export default function Navbar({
       window.addEventListener("scroll", updateScrollPos);
       updateScrollPos(); // Set the initial scroll position
 
-      return () =>
-        window.removeEventListener("scroll", updateScrollPos);
+      return () => window.removeEventListener("scroll", updateScrollPos);
     }, []);
 
     return scrollPos;
@@ -52,7 +49,8 @@ export default function Navbar({
       bg="white"
       position={"sticky"}
       top="0"
-      zIndex={100}>
+      zIndex={100}
+    >
       <Container maxW={{ xl: "8xl", lg: "4xl" }}>
         <Flex top="0" alignItems="center" justifyContent="center">
           <AppLogo boxSize={8} />
@@ -61,10 +59,7 @@ export default function Navbar({
             <>
               <Spacer />
               {siteLanguageData && (
-                <Dropdown
-                  languageCode={lang}
-                  languages={siteLanguageData}
-                />
+                <Dropdown languageCode={lang} languages={siteLanguageData} />
               )}
             </>
           )}

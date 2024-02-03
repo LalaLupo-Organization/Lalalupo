@@ -33,7 +33,8 @@ export function Username({
       }
       _focus={{
         _placeholder: { opacity: 0 },
-      }}>
+      }}
+    >
       <InputLeftAddon>
         <UserIcon />
       </InputLeftAddon>

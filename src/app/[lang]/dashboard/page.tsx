@@ -10,18 +10,13 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 import { BiBook } from "react-icons/bi";
-import {
-  useGetCourseStructureQuery,
-  useGetUserQuery,
-} from "@/services/api";
+import { useGetCourseStructureQuery, useGetUserQuery } from "@/services/api";
 import Image from "next/image";
 import { v4 as uuid } from "uuid";
 import { LocalParamProps } from "@/types/languageCodeParams.types";
 import LevelStepLocked from "@/public/LeveStepLocked.svg";
 
-export default function Dashboard({
-  params: { lang },
-}: LocalParamProps) {
+export default function Dashboard({ params: { lang } }: LocalParamProps) {
   const {
     data: sanityData,
     error: sanityDataError,
@@ -48,12 +43,10 @@ export default function Dashboard({
           const isFirstLessonOfUnit = unit.lessonNumber === 1;
           const isFirstLesson =
             i === 0 ||
-            (i > 0 &&
-              sanityData[i - 1]?.unitTitle !== unit.unitTitle);
+            (i > 0 && sanityData[i - 1]?.unitTitle !== unit.unitTitle);
           const isFirstUnit =
             i === 0 ||
-            (i > 0 &&
-              sanityData[i - 1]?.unitTitle !== unit.unitTitle);
+            (i > 0 && sanityData[i - 1]?.unitTitle !== unit.unitTitle);
 
           return (
             <Box
@@ -67,7 +60,8 @@ export default function Dashboard({
                   : i % 4 === 1 || i % 4 === 2
                     ? "40px"
                     : "-40px"
-              })`}>
+              })`}
+            >
               {isFirstLessonOfUnit && (
                 <Box
                   h="100"
@@ -77,14 +71,11 @@ export default function Dashboard({
                   w="500px"
                   bg="primary.400"
                   rounded="2xl"
-                  mx={"auto"}>
-                  <Flex
-                    justifyContent="space-between"
-                    alignItems="center">
+                  mx={"auto"}
+                >
+                  <Flex justifyContent="space-between" alignItems="center">
                     <Box textAlign="left">
-                      <Heading size="sm">
-                        Unit {unit.unitTitle}
-                      </Heading>
+                      <Heading size="sm">Unit {unit.unitTitle}</Heading>
                       <Text>Lorem ipsum dolor sit amet.</Text>
                     </Box>
                     <Box>
@@ -104,7 +95,8 @@ export default function Dashboard({
                 mt={isFirstLessonOfUnit ? "20px" : undefined}
                 p={8}
                 rowGap={100}
-                textAlign={"center"}>
+                textAlign={"center"}
+              >
                 <Box>
                   <Image
                     alt="levelStep"

@@ -37,7 +37,8 @@ export function Password({
       }
       _focus={{
         _placeholder: { opacity: 0 },
-      }}>
+      }}
+    >
       <InputLeftAddon>
         <LockIcon />
       </InputLeftAddon>
