@@ -1,7 +1,7 @@
 // Dropdown.stories.js
 
 import React from "react";
-import { Dropdown } from "@/components/inputs/Dropdown"; // Update the import path to match your project
+import { Dropdown } from "../../components/inputs/Dropdown"; // Update the import path to match your project
 import { SiteLanguages } from "@/types/site-languages.types";
 
 let dummyData: SiteLanguages[] = [

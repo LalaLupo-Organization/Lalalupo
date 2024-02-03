@@ -4,9 +4,13 @@ import {
   InputLeftAddon,
   useColorMode,
 } from "@chakra-ui/react";
-import { MessageIcon } from "@/components/icons/Icons";
+import { MessageIcon } from "../icons/Icons";
 import { useState } from "react";
-export function Email({ placeholder = "Email" }: { placeholder?: string }) {
+export function Email({
+  placeholder = "Email",
+}: {
+  placeholder?: string;
+}) {
   //isFilled transalates to input field with value and not focused or active
   const [isFilled, setIsFilled] = useState(false);
   const { colorMode, toggleColorMode } = useColorMode();
@@ -29,8 +33,7 @@ export function Email({ placeholder = "Email" }: { placeholder?: string }) {
       }
       _focus={{
         _placeholder: { opacity: 0 },
-      }}
-    >
+      }}>
       <InputLeftAddon>
         <MessageIcon />
       </InputLeftAddon>

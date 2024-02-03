@@ -20,7 +20,12 @@ const Page = ({ params: { lang } }: LocalParamProps) => {
   return (
     <Box>
       {aboutPageIsLoading ? (
-        <SkeletonText mt="4" noOfLines={1} spacing="8" skeletonHeight="6" />
+        <SkeletonText
+          mt="4"
+          noOfLines={1}
+          spacing="8"
+          skeletonHeight="6"
+        />
       ) : (
         <Text>{aboutPageData?.subtitle}</Text>
       )}

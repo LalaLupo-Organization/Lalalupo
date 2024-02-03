@@ -1,4 +1,4 @@
-import { MessageIcon } from "@/components/icons/Icons";
+import { MessageIcon } from "../../components/icons/Icons";
 
 export default {
   title: "Icons",

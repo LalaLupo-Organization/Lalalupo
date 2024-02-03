@@ -30,13 +30,14 @@ export async function middleware(request: NextRequest) {
     const resolvedLocale = match(
       languagePreference,
       AvailableLocales,
-      defaultLocale,
+      defaultLocale
     );
 
     const pathnameIsMissingLocale = AvailableLocales.every(
       (locale) =>
-        (!pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`) ||
-        (pathname === "" && pathname !== `/${locale}`),
+        (!pathname.startsWith(`/${locale}/`) &&
+          pathname !== `/${locale}`) ||
+        (pathname === "" && pathname !== `/${locale}`)
     );
 
     // Redirect if there is no locale
@@ -44,7 +45,7 @@ export async function middleware(request: NextRequest) {
       // Don't add locale if studio is in pathname
 
       return NextResponse.redirect(
-        new URL(`/${resolvedLocale}/${pathname}`, request.url),
+        new URL(`/${resolvedLocale}/${pathname}`, request.url)
       );
     }
   } catch (error) {

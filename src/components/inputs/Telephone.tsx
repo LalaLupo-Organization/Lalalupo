@@ -15,7 +15,7 @@ import {
   Text,
   CircularProgress,
 } from "@chakra-ui/react";
-import { ArrowDownIcon, ArrowUpIcon } from "@/components/icons/Icons";
+import { ArrowDownIcon, ArrowUpIcon } from "../icons/Icons";
 import { PhoneNumberUtil } from "google-libphonenumber";
 import { useState, useCallback, useEffect } from "react";
 import {
@@ -29,18 +29,25 @@ import "react-international-phone/style.css";
 export function Telephone() {
   const [value, setValue] = useState("");
   const [expectedNumberLength, setExpectedNumberLength] = useState(0);
-  const [isNumberLengthValid, setIsNumberLengthValid] = useState(false);
+  const [isNumberLengthValid, setIsNumberLengthValid] =
+    useState(false);
   const phoneUtil = PhoneNumberUtil.getInstance();
-  const [countryNumberCodeLength, setCountryNumberCodeLength] = useState(0);
-  const { inputValue, handlePhoneValueChange, inputRef, country, setCountry } =
-    usePhoneInput({
-      defaultCountry: "au",
-      value,
-      countries: defaultCountries,
-      onChange: (data) => {
-        handleChange(data);
-      },
-    });
+  const [countryNumberCodeLength, setCountryNumberCodeLength] =
+    useState(0);
+  const {
+    inputValue,
+    handlePhoneValueChange,
+    inputRef,
+    country,
+    setCountry,
+  } = usePhoneInput({
+    defaultCountry: "au",
+    value,
+    countries: defaultCountries,
+    onChange: (data) => {
+      handleChange(data);
+    },
+  });
   useEffect(() => {
     if (
       expectedNumberLength > 0 &&
@@ -69,7 +76,10 @@ export function Telephone() {
   const handleChange = useCallback(
     (data: any) => {
       setCountryNumberCodeLength(data.country.dialCode.length + 1);
-      if (expectedNumberLength === 0 || data !== countryNumberCodeLength) {
+      if (
+        expectedNumberLength === 0 ||
+        data !== countryNumberCodeLength
+      ) {
         getExpectedNumberLength();
       }
 
@@ -77,7 +87,7 @@ export function Telephone() {
       console.log(inputValue.replace(/\s/g, ""));
     },
     //eslint-disable-next-line
-    [inputValue],
+    [inputValue]
   );
 
   const handleCountryChange = (selectedCountry: any) => {
@@ -86,7 +96,7 @@ export function Telephone() {
 
   const getExpectedNumberLength = () => {
     let expectedTelephoneNumberLength = new String(
-      phoneUtil.getExampleNumber(country.iso2).getNationalNumber(),
+      phoneUtil.getExampleNumber(country.iso2).getNationalNumber()
     ).length;
     setExpectedNumberLength(expectedTelephoneNumberLength);
   };
@@ -116,16 +126,19 @@ export function Telephone() {
                       const country = parseCountry(c);
                       return (
                         <MenuItem
-                          onClick={() => handleCountryChange(country.iso2)}
+                          onClick={() =>
+                            handleCountryChange(country.iso2)
+                          }
                           key={country.iso2}
-                          value={country.iso2}
-                        >
+                          value={country.iso2}>
                           <FlagImage
                             iso2={country.iso2}
                             style={{ marginRight: "8px" }}
                           />
                           <Text mr="8px">{country.name}</Text>
-                          <Text color="gray">+{country.dialCode}</Text>
+                          <Text color="gray">
+                            +{country.dialCode}
+                          </Text>
                         </MenuItem>
                       );
                     })}
@@ -145,7 +158,8 @@ export function Telephone() {
             <CircularProgress
               value={
                 (100 / expectedNumberLength) *
-                (inputValue.replace(/\s/g, "").length - countryNumberCodeLength)
+                (inputValue.replace(/\s/g, "").length -
+                  countryNumberCodeLength)
               }
               size="15px"
               color="green"
@@ -159,9 +173,10 @@ export function Telephone() {
       <Flex ml="1rem" alignItems="center">
         <FormHelperText
           fontSize="xs"
-          color={isNumberLengthValid ? "green" : "grey.700"}
-        >
-          {isNumberLengthValid ? "Looks Good!" : "Enter telephone number"}
+          color={isNumberLengthValid ? "green" : "grey.700"}>
+          {isNumberLengthValid
+            ? "Looks Good!"
+            : "Enter telephone number"}
         </FormHelperText>
       </Flex>
     </FormControl>

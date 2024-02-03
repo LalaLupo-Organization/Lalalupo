@@ -1,6 +1,6 @@
 "use client";
 import type { LocalParamProps } from "@/types/languageCodeParams.types";
-import { Simple } from "@/components/inputs/Simple";
+import { Simple } from "../../../components/inputs/Simple";
 import {
   Link,
   Container,

@@ -1,22 +1,32 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Heading, Box, Text, Button, Container } from "@chakra-ui/react";
-
-import { useGetCourseStructureQuery, useGetUserQuery } from "@/services/api";
+import {
+  Heading,
+  Box,
+  Text,
+  Button,
+  Container,
+  Flex,
+  Spacer,
+} from "@chakra-ui/react";
+import { BiBook } from "react-icons/bi";
+import {
+  useGetCourseStructureQuery,
+  useGetUserQuery,
+} from "@/services/api";
+import Image from "next/image";
 import { v4 as uuid } from "uuid";
-import Link from "next/link";
-import { UserProgressItem } from "@/types/user-progress.types";
 import { LocalParamProps } from "@/types/languageCodeParams.types";
-//TODO - THE USER OBJECT ARRAY BELOW IS TEMPORARY - IT REPRESENTS THE USER PROGRESS WHEN COMPLETING LESSONS.
-//! CYPRESS TEST - We have to check that the length of userProgress === length of courseStructure
+import LevelStepLocked from "@/public/LeveStepLocked.svg";
 
-export default function Dashboard({ params: { lang } }: LocalParamProps) {
+export default function Dashboard({
+  params: { lang },
+}: LocalParamProps) {
   const {
     data: sanityData,
     error: sanityDataError,
     isLoading: sanityDataIsLoading,
   } = useGetCourseStructureQuery({ languageCode: "en-it" });
-
   const {
     data: firebaseUserData,
     error: firebaseUserError,
@@ -25,8 +35,8 @@ export default function Dashboard({ params: { lang } }: LocalParamProps) {
 
   useEffect(() => {
     if (firebaseUserData && sanityData) {
-      console.log("🚀 ~ useEffect ~ sanityData:", sanityData);
-      console.log(firebaseUserData);
+      console.log("Firebase user data:", firebaseUserData);
+      console.log("Sanity data:", sanityData);
     }
   }, [firebaseUserData, sanityData]);
 
@@ -35,35 +45,85 @@ export default function Dashboard({ params: { lang } }: LocalParamProps) {
       {sanityData && firebaseUserData ? (
         firebaseUserData &&
         sanityData.map((unit: any, i: number) => {
+          const isFirstLessonOfUnit = unit.lessonNumber === 1;
+          const isFirstLesson =
+            i === 0 ||
+            (i > 0 &&
+              sanityData[i - 1]?.unitTitle !== unit.unitTitle);
+          const isFirstUnit =
+            i === 0 ||
+            (i > 0 &&
+              sanityData[i - 1]?.unitTitle !== unit.unitTitle);
+
           return (
-            <Box key={uuid()} mx={"auto"} p={4} textAlign={"center"}>
-              {unit.unitTitle === firebaseUserData.userProgress[i].unitTitle &&
-                unit.lessonNumber === 1 && (
-                  <Heading>Unit {unit.unitTitle}</Heading>
-                )}
-              <Box mx={"auto"} p={4} textAlign={"center"}>
-                <Text fontSize={"xxs"}>
-                  {firebaseUserData?.userProgress[i].lessonNumber}
-                </Text>
-              </Box>
+            <Box
+              key={uuid()}
+              mx={"auto"}
+              p={4}
+              textAlign={"center"}
+              transform={`translateX(${
+                i % 2 === 0
+                  ? "0"
+                  : i % 4 === 1 || i % 4 === 2
+                    ? "40px"
+                    : "-40px"
+              })`}>
+              {isFirstLessonOfUnit && (
+                <Box
+                  h="100"
+                  p="4"
+                  shadow="sm"
+                  color="white"
+                  w="500px"
+                  bg="primary.400"
+                  rounded="2xl"
+                  mx={"auto"}>
+                  <Flex
+                    justifyContent="space-between"
+                    alignItems="center">
+                    <Box textAlign="left">
+                      <Heading size="sm">
+                        Unit {unit.unitTitle}
+                      </Heading>
+                      <Text>Lorem ipsum dolor sit amet.</Text>
+                    </Box>
+                    <Box>
+                      <Button>
+                        <BiBook size={"24"} /> GuideBook
+                      </Button>
+                    </Box>
+                  </Flex>
+                </Box>
+              )}
+
+              <Flex
+                h="11px"
+                alignItems="center"
+                justifyContent="center"
+                mx={"auto"}
+                mt={isFirstLessonOfUnit ? "20px" : undefined}
+                p={8}
+                rowGap={100}
+                textAlign={"center"}>
+                <Box>
+                  <Image
+                    alt="levelStep"
+                    width={85}
+                    height={85}
+                    src={LevelStepLocked}
+                  />
+                  {/* {firebaseUserData?.userProgress[i].lessonNumber} */}
+                </Box>
+              </Flex>
             </Box>
           );
         })
       ) : (
         <Box mx={"auto"} textAlign={"center"}>
-          {" "}
           <Text>Loading</Text>
         </Box>
       )}
-      <Container>
-        <Text align="center" bg="grey.100" p="6">
-          Note to self - to render the dashboard I am using 2 data sets. One
-          from firebase and the other from sanity. The unitTitle field in each
-          dataset needs to match up accordingly or this dashboard wont render
-          correctly. Also the both datasets needs to be exactly the same length
-          for this dashboard to render correctly.
-        </Text>
-      </Container>
+      <Container></Container>
     </div>
   );
 }

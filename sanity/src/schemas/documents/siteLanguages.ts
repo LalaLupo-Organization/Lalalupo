@@ -49,7 +49,8 @@ const siteLanguages = {
               icon: "icon",
             },
             prepare(selection: any) {
-              const { language, languageCode, icon, active } = selection;
+              const { language, languageCode, icon, active } =
+                selection;
 
               return {
                 title: `${language} (${languageCode})`,

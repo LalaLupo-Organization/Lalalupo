@@ -1,7 +1,7 @@
 // Dropdown.stories.js
 
 import React from "react";
-import { Telephone } from "@/components/inputs/Telephone"; // Update the import path to match your project
+import { Telephone } from "../../components/inputs/Telephone"; // Update the import path to match your project
 
 export default {
   title: "Inputs",

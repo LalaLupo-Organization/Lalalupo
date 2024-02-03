@@ -19,7 +19,7 @@ import ReorderWhatYouHear from "@/components/language-challenges/ReorderWhatYouH
 import SelectTheMissingWord from "@/components/language-challenges/SelectTheMissingWord";
 import SpeakingAndPronunciation from "@/components/language-challenges/SpeakingAndPronunciation";
 import TwoBlanks from "@/components/language-challenges/TwoBlanks";
-import TypeInWhatYouHear from "@/components/language-challenges/TypeInWhatYOuHear";
+import TypeInWhatYouHear from "@/components/language-challenges/TypeInWhatYouHear";
 import WriteTheSentence from "@/components/language-challenges/WriteTheSentence";
 import { useParams } from "next/navigation";
 export default function Lessons() {
