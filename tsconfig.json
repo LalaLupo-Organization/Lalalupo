@@ -14,13 +14,36 @@
     "incremental": true,
     "plugins": [
       {
-        "name": "next"
-      }
+        "name": "next",
+      },
     ],
     "paths": {
-      "@@/*": ["./src/*"]
-    }
+      "@/components/*": ["./src/components/*"],
+      "@/api/*": ["./src/app/api/*"],
+      "@/features/*": ["./src/features/*"],
+      "@/public/*": ["./public/*"],
+      "@/icons/*": ["./src/components/icons*"],
+      "@/global.css/*": ["./src/app/globals.css"],
+      "@/firebase/*": ["./src/firebase/*"],
+      "@/helpers/*": ["./src/helpers/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/redux/*": ["./src/redux/*"],
+      "@/services/*": ["./src/services/*"],
+      "@/sanity/*": ["./sanity/*"],
+      "@/scripts/*": ["./src/scripts/*"],
+      "@/studio/*": ["./src/app/studio/*"],
+      "@/stories/*": ["./src/stories/*"],
+      "@/types/*": ["./src/types/*"],
+      "@/theme/*": ["./src/theme/*"],
+      "@/fonts/*": ["./src/fonts/*"],
+    },
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/components/progress-bar",
+  ],
+  "exclude": ["node_modules"],
 }
