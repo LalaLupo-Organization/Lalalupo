@@ -25,7 +25,7 @@ const initialState: LessonState = {
     availableWords: ["panino", "ravioli", "espresso"],
     instructions: "What is this?",
     displayImage: true,
-    displayImageSrc: "public/sandwich.avif",
+    displayImageSrc: "public/sandwich.png",
     isComplete: false,
     hasFailed: false,
   },

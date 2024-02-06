@@ -10,7 +10,7 @@ import ProgressBar from "@/components/progress-bar/ProgressBar";
 import Instruction from "@/components/instruction/Instruction";
 import InteractiveLayout from "@/components/layouts/InteractiveLayout";
 // import useSpeechSynthesis from "../hooks/useSpeechSynthesis";
-import mockimage from "@/public/sandwich.avif";
+import mockimage from "@/public/sandwich.png";
 import Image from "next/image";
 const ChooseTheRightSolution = ({ data }: { data: any }) => {
   console.log(
