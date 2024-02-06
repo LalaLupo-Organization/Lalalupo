@@ -22,6 +22,7 @@ import Link from "next/link";
 const myFont = localFont({
   src: "../../../../../public/MoreSugarRegular.ttf",
 });
+console.log("");
 const Page = ({ params: { lang } }: LocalParamProps) => {
   const {
     data: languagePageData,
