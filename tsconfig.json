@@ -35,7 +35,6 @@
       "@/stories/*": ["./src/stories/*"],
       "@/types/*": ["./src/types/*"],
       "@/theme/*": ["./src/theme/*"],
-      "@/fonts/*": ["./src/fonts/*"],
     },
   },
   "include": [
