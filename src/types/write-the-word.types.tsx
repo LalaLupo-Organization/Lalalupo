@@ -7,4 +7,5 @@ export type WriteTheSentenceExercise = BaseExercise & {
   display: string;
   doubleSolution: boolean;
   vocabularyHelper: string[];
+  english: string;
 };

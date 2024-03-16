@@ -1,14 +1,7 @@
 import type { Preview } from "@storybook/react";
-import {
-  Title,
-  Subtitle,
-  Description,
-  Primary,
-  Controls,
-  Stories,
-} from "@storybook/blocks";
-const theme = require("../src/theme/theme");
-console.log(theme.default);
+
+// const theme = require("../src/theme/theme");
+// console.log(theme.default);
 const preview: Preview = {
   parameters: {
     backgrounds: {
@@ -25,7 +18,7 @@ const preview: Preview = {
       ],
     },
     chakra: {
-      theme: theme.default,
+      // theme: theme.default,
     },
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {

@@ -49,6 +49,7 @@ export interface UserState {
   };
 
   user: {
+    current: ActivityFields | null;
     _id: string;
     isSubscribed: boolean;
     lifetimeAccess: boolean;

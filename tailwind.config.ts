@@ -18,10 +18,6 @@ const config: Config = {
       display: ["Nuninto"],
       body: ["Nuninto"],
     },
-    screens: {
-      sm: "700px",
-      md: "900px",
-    },
 
     borderWidth: {
       1: "1px",
@@ -32,7 +28,6 @@ const config: Config = {
       6: "6px",
       12: "12px",
     },
-
     extend: {
       colors: {
         outline_gray: "#4F4F4F",
@@ -43,7 +38,6 @@ const config: Config = {
           lighter: "#78BFFD",
           darker: "#0088FF",
         },
-
         nouns: {
           default: "#925FFF",
           lighter: "#B492FF",
@@ -64,7 +58,6 @@ const config: Config = {
           lighter: "#113975",
           darker: "#000000",
         },
-
         color: {
           purple_default: "#666FFB",
           purple_lighter: "#7F86E8",
@@ -75,7 +68,6 @@ const config: Config = {
           default: "#F96262",
         },
       },
-
       fontFamily: {
         fredoka: "FredokaOne",
         WillyntaScript: "WillyntaScript",
@@ -87,7 +79,6 @@ const config: Config = {
       margin: {
         xs: "0px 2px",
       },
-
       fontSize: {
         xxs: "0.75rem",
         xxxs: "0.6rem",
@@ -101,7 +92,6 @@ const config: Config = {
         10: "10",
         11: "11",
       },
-
       lineHeight: {
         loose: "1.5",
       },
@@ -111,6 +101,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };
 export default config;

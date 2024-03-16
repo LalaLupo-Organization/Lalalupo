@@ -6,5 +6,6 @@ export type SpeakingAndPronunciationExercise = BaseExercise & {
   doubleSolution: boolean;
   vocabularyHelper: string[];
   display: string;
+  english: string;
   displayMeaning: boolean;
 };

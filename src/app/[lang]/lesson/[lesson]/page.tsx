@@ -31,28 +31,29 @@ export default function Lessons() {
     isLoading: sanityLessonIsLoading,
     //@ts-ignore
   } = useGetLessonQuery({ index: params.lesson });
-  console.log(params);
-  const [loadingLesson, setLoadingLesson] = useState(false);
   const lesson = useAppSelector((state) => selectLesson(state));
 
   useEffect(() => {
     if (sanityLessonData) {
+      console.log("🚀 ~ useEffect ~ sanityLessonData:", sanityLessonData);
+      console.log("🚀 ~ useEffect ~ params.lesson:", params);
+      console.log("🚀 ~ Lessons ~ lesson:", lesson);
     }
   }, [sanityLessonData]);
 
-  if (sanityLessonIsLoading) {
-    return <Heading>Loading</Heading>;
-  }
-
+  // if (sanityLessonIsLoading) {
+  //   return <Heading>Loading</Heading>;
+  // }
   switch (lesson.activeExercise.type) {
     // sanityLessonData &&
     // sanityLessonData.exercise[0].selectOption
     case "chooseTheRightSolution":
       return <ChooseTheRightSolution data={lesson} />;
-    case "matchPairs":
-      return <MatchPairs data={lesson} />;
+    // case "matchPairs":
+    //   return <MatchPairs data={lesson} />;
     case "conjugation":
       return <Conjunction data={lesson} />;
+
     case "reorder":
       return <Reorder data={lesson} />;
     case "reorderWhatYouHear":
@@ -81,5 +82,5 @@ export default function Lessons() {
       return <WriteTheSentence data={lesson} />;
   }
 
-  return <Heading>Error with a redirect link</Heading>;
+  return <Heading>Something went wrong in the switch statement</Heading>;
 }

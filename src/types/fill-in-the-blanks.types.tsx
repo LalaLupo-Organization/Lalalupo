@@ -7,5 +7,6 @@ export type FillInTheBlankExercise = BaseExercise & {
   doubleSolution: boolean;
   vocabularyHelper: string[];
   missingWord: string;
+  availableWords: string[];
   regex: string;
 };

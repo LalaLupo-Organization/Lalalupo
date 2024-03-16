@@ -43,6 +43,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/components/progress-bar",
+    "next.config.js",
   ],
   "exclude": ["node_modules"],
 }

@@ -22,7 +22,7 @@ export const api = createApi({
           const data = await client.fetch<any[]>(
             `*[_type == 'courseStructure' && languageCode == "${languageCode}"] | order(unitTitle asc, lessonNumber asc)
 
-            `,
+            `
           );
           console.log(data);
           return { data };
@@ -35,12 +35,8 @@ export const api = createApi({
       queryFn: async ({ index }) => {
         try {
           const data = await client.fetch<any[]>(
-            `*[_type == "courseStructure"] | order(_createdAt asc) [${index}] {
-              exercise 
-            
-              
-            }
-          `,
+            `*[_type == "courseStructure" && languageCode == "en-it" && lessonNumber == 1] 
+          `
           );
           return { data };
         } catch (error) {
@@ -58,7 +54,7 @@ export const api = createApi({
               subtitle,
               languageCode,
               
-            }[0]`,
+            }[0]`
           );
           return { data };
         } catch (error) {
@@ -76,7 +72,7 @@ export const api = createApi({
               subtitle,
               languageCode,
               
-            }[0]`,
+            }[0]`
           );
           return { data };
         } catch (error) {
@@ -102,7 +98,7 @@ export const api = createApi({
                   }
                 }
               }
-            }[0].languages`,
+            }[0].languages`
           );
           return { data };
         } catch (error) {
@@ -122,7 +118,7 @@ export const api = createApi({
                 url
                   }
               }
-            }`,
+            }`
           );
           return { data };
         } catch (error) {

@@ -12,20 +12,53 @@ const initialState: LessonState = {
   isComplete: false,
   hasFailed: false,
   attempts: 0,
-  totalExercises: 10,
-  remainingExercises: 10,
+  totalExercises: 15,
+  remainingExercises: 15,
   lives: null,
   numberComplete: 0,
   numberFailed: 0,
   correctLetters: [],
   activeExercise: {
-    type: "chooseTheRightSolution",
-    _id: "635f9a0fefff76c1f466c9be",
-    solution: "panino",
-    availableWords: ["panino", "ravioli", "espresso"],
-    instructions: "What is this?",
-    displayImage: true,
-    displayImageSrc: "public/sandwich.png",
+    type: "multipleAnswers",
+    _id: "12345",
+
+    instructions:
+      "Select all verbs conjugated with 'avere' in the present perfect.",
+    availableWords: [
+      {
+        italian: "portare",
+        correct: true,
+        english: "(to bring)",
+      },
+      {
+        italian: "dire",
+        correct: true,
+        english: "(to tell)",
+      },
+      {
+        italian: "comprare",
+        correct: true,
+        english: "(to buy)",
+      },
+      {
+        italian: "vendere",
+        correct: true,
+        english: "(to sell)",
+      },
+      {
+        italian: "partire",
+        correct: false,
+        english: "(to leave)",
+      },
+      {
+        italian: "tornare",
+        correct: false,
+        english: "(to return)",
+      },
+    ],
+    targetNumber: 4,
+    displayMeaning: true,
+
     isComplete: false,
     hasFailed: false,
   },
@@ -43,7 +76,7 @@ const initialState: LessonState = {
       isComplete: false,
       hasFailed: false,
     },
-    //MatchPairsExercise
+    //Reorder
     {
       type: "reorder",
       _id: "12345",
@@ -95,6 +128,7 @@ const initialState: LessonState = {
       couldBeEmpty: "",
       regex: "",
       doubleSolution: false,
+      availableWords: ["here"],
       isComplete: false,
       hasFailed: false,
       missingWord: "cerchiamo",
@@ -231,14 +265,7 @@ const initialState: LessonState = {
       solution: "stanno",
       instructions: "Choose the correct conjugation of the verb.",
       displayText: ["loro", "stanno", "(they stay)"],
-      availableWords: [
-        "sto",
-        "stai",
-        "sta",
-        "stiamo",
-        "state",
-        "stanno",
-      ],
+      availableWords: ["sto", "stai", "sta", "stiamo", "state", "stanno"],
 
       isComplete: false,
       hasFailed: false,
@@ -255,7 +282,7 @@ const initialState: LessonState = {
       vocabularyHelper: ["to go = andare", "Mark = Marco"],
       display: "I am going to Mark's.",
       displayMeaning: false,
-
+      english: "",
       isComplete: false,
       hasFailed: false,
     },
@@ -274,9 +301,7 @@ const initialState: LessonState = {
         "Sono uscito",
         "questo pomeriggio.",
       ],
-      english: [
-        "Paul, when did you go out? I went out this afternoon.",
-      ],
+      english: ["Paul, when did you go out? I went out this afternoon."],
 
       isComplete: false,
       hasFailed: false,
@@ -307,7 +332,7 @@ const initialState: LessonState = {
       display: "The exercise is simple.",
       doubleSolution: false,
       vocabularyHelper: ["exercise = esercizio", "simple = semplice"],
-
+      english: "",
       isComplete: false,
       hasFailed: false,
     },
@@ -329,7 +354,7 @@ export const lessonSlice = createSlice({
       let found = state.interactiveExercises.find(
         (item) => !item.isComplete && !item.hasFailed && item
       );
-
+      console.log("🚀 ~ found:", found);
       if (found) {
         state.activeExercise = found;
       }
@@ -404,10 +429,8 @@ export const {
 } = lessonSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectLesson = (state: RootState) =>
-  state.lessonReduxState;
-export const selectAssessment = (state: RootState) =>
-  state.lessonReduxState;
+export const selectLesson = (state: RootState) => state.lessonReduxState;
+export const selectAssessment = (state: RootState) => state.lessonReduxState;
 export const selectCurrentUnitIsComplete = (state: RootState) =>
   state.lessonReduxState.isComplete;
 export const selectActiveExercise = (state: RootState) =>

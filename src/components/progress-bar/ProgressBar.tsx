@@ -7,6 +7,7 @@ import classNames from "@/helpers/classNames";
 import { useAppDispatch } from "@/hooks/useRedux";
 // import { setExitDisplay } from "../features/userSlice";
 import { v4 as uuid } from "uuid";
+import Image from "next/image";
 export default function ProgressBar({
   remainingExercises,
   totalNumberOfExercises,
@@ -42,7 +43,7 @@ export default function ProgressBar({
   }, [numberOfExercisesComplete, numberOfExercisesFailed]);
 
   return (
-    <div className="container mx-auto bg-white px-7 sm:px-0  mt-6 sm:mb-18 mb-10 sm:w-full">
+    <div className="container sm:w-1/3 mx-auto px-7 sm:px-0  mt-6 sm:mb-18 mb-10 w-full">
       <div className="flex items-center">
         {/* {interactiveExercises && (
           <div
@@ -79,17 +80,21 @@ export default function ProgressBar({
         {lives &&
           hearts.map((item) => {
             return lives >= item ? (
-              <img
+              <Image
+                height={20}
+                width={20}
                 key={uuid()}
                 src="http://ispeakitalian.herokuapp.com/heart.svg"
-                className="h-7 mr-1"
+                className="mr-1"
                 alt=""
               />
             ) : (
-              <img
+              <Image
+                height={20}
+                width={20}
                 key={uuid()}
                 src="https://ispeakitalian.herokuapp.com/heart_placeholder.svg"
-                className="h-7 mr-1"
+                className="mr-1"
                 alt=""
               />
             );

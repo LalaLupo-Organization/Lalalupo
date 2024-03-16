@@ -27,15 +27,15 @@ import { selectUserInput, clearUserInput } from "@/features/userInputSlice";
 export default function useAssessment() {
   const dispatch = useAppDispatch();
   const interactiveExercisesComplete = useAppSelector((state) =>
-    selectToSeeIfAllInteractiveExercisesAreComplete(state),
+    selectToSeeIfAllInteractiveExercisesAreComplete(state)
   );
   const activeExercise = useAppSelector((state) => selectActiveExercise(state));
   const { userInput, userArrayInput, userObjectInput } = useAppSelector(
-    (state) => selectUserInput(state),
+    (state) => selectUserInput(state)
   );
   const messages = useAppSelector((state) => selectMessage(state));
   const currentUnitForAssessment = useAppSelector((state) =>
-    selectAssessment(state),
+    selectAssessment(state)
   );
   const { numberComplete, totalExercises } = currentUnitForAssessment;
 
@@ -46,7 +46,6 @@ export default function useAssessment() {
     }
     // eslint-disable-next-line
   }, [activeExercise]);
-
   function setSuccess() {
     dispatch(setCorrectAnswer());
     dispatch(setSuccessMessage(true));
@@ -59,16 +58,15 @@ export default function useAssessment() {
 
   function lessonButtonClick(input?: string) {
     //If the user hasn't made choice then I avoid dispatching to reducer and instead send a prompt
-
     // This conditional checks to see if there is at least one activity not complete, if all activities are complete we return a flasy value, hence that's why I'm looking for a false return.
     if (!interactiveExercisesComplete) {
       dispatch(setScore({ numberComplete, totalExercises }));
       dispatch(setLoading(true));
-
       setTimeout(() => {
         dispatch(setLoading(false));
         dispatch(setActivityComplete(true));
       }, 3000);
+
       return;
     }
 
@@ -84,7 +82,6 @@ export default function useAssessment() {
 
       return;
     }
-
     if (!activeExercise?.isComplete) {
       if (activeExercise?.type === "chooseTheRightSolution") {
         if (userInput === activeExercise?.solution) {
@@ -106,7 +103,7 @@ export default function useAssessment() {
             activeExercise.availableWords.pairs[index][1]
               .toLowerCase()
               .trim()
-              .replace(/[^\w\sÀ-ú’']|_/g, ""),
+              .replace(/[^\w\sÀ-ú’']|_/g, "")
         );
         if (result) {
           setSuccess();
@@ -133,7 +130,7 @@ export default function useAssessment() {
             return;
           }
         }
-        console.log("USERINPUT: " + userInput);
+
         if (
           userInput?.trim().toLowerCase() ===
             activeExercise.missingWord.toLowerCase() ||
@@ -173,19 +170,19 @@ export default function useAssessment() {
         return;
       }
     }
-    if (activeExercise.type === "matchPairs" && userObjectInput) {
-      let allCorrect = Object.entries(userObjectInput).some(
-        (item: [string, any]) => !item[1].correct,
-      );
-      //Has the user matched all the pairs correctly
-      if (!allCorrect) {
-        setSuccess();
-        return;
-      } else {
-        setFailed();
-        return;
-      }
-    }
+    // if (activeExercise.type === "matchPairs" && userObjectInput) {
+    //   let allCorrect = Object.entries(userObjectInput).some(
+    //     (item: [string, any]) => !item[1].correct
+    //   );
+    //   //Has the user matched all the pairs correctly
+    //   if (!allCorrect) {
+    //     setSuccess();
+    //     return;
+    //   } else {
+    //     setFailed();
+    //     return;
+    //   }
+    // }
     if (activeExercise.type === "missingSyllable") {
       if (userInput === activeExercise.solution) {
         setSuccess();
@@ -198,9 +195,7 @@ export default function useAssessment() {
     if (activeExercise.type === "multipleAnswers" && userObjectInput) {
       let correctAnswers = activeExercise.availableWords.filter(
         (word) =>
-          word.italian === userObjectInput[word.italian] &&
-          word.correct &&
-          word,
+          word.italian === userObjectInput[word.italian] && word.correct && word
       );
 
       if (
@@ -222,12 +217,14 @@ export default function useAssessment() {
         return;
       }
     }
-
+    console.log(activeExercise.type);
     if (activeExercise.type === "partOfAWord") {
+      console.log("step4");
       if (
         userInput?.trim().toLowerCase() ===
         activeExercise.missing[0].trim().toLowerCase()
       ) {
+        console.log("step5");
         setSuccess();
         return;
       } else {

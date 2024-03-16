@@ -9,14 +9,12 @@ import classNames from "@/helpers/classNames";
 import ProgressBar from "@/components/progress-bar/ProgressBar";
 import Instruction from "@/components/instruction/Instruction";
 import InteractiveLayout from "@/components/layouts/InteractiveLayout";
+import { BaseExercise, LessonState } from "@/types/lesson.types";
 // import useSpeechSynthesis from "../hooks/useSpeechSynthesis";
 import mockimage from "@/public/sandwich.png";
 import Image from "next/image";
-const ChooseTheRightSolution = ({ data }: { data: any }) => {
-  console.log(
-    "🚀 ~ ChooseTheRightSolution ~ data:",
-    data.activeExercise.availableWords
-  );
+import { ChooseTheRightSolutionExercise } from "@/types/choose-the-right-solution.types";
+const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
   const {
     activeExercise,
     totalExercises,
@@ -26,17 +24,23 @@ const ChooseTheRightSolution = ({ data }: { data: any }) => {
     numberFailed,
     remainingExercises,
   } = data;
-
+  function getType(
+    exercise: BaseExercise
+  ): exercise is ChooseTheRightSolutionExercise {
+    return exercise.type === "chooseTheRightSolution";
+  }
   // const speak = useSpeechSynthesis();
   const dispatch = useAppDispatch();
 
-  const [randomizedData, setRandomizedData] = useState(() =>
-    activeExercise?.availableWords
+  const [randomizedData, setRandomizedData] = useState(
+    () =>
+      getType(activeExercise) &&
+      activeExercise.availableWords
 
-      .map((item: any) => {
-        return item;
-      })
-      .sort(() => Math.random() - 0.5)
+        .map((item: any) => {
+          return item;
+        })
+        .sort(() => Math.random() - 0.5)
   );
   const [showSelected, setShowSelected] = useState({
     word: "",
@@ -49,7 +53,7 @@ const ChooseTheRightSolution = ({ data }: { data: any }) => {
     e: React.SyntheticEvent,
     userAnswer: string
   ) => {
-    if (activeExercise?.displayImage) {
+    if (getType(activeExercise) && activeExercise.displayImage) {
       // speak(userAnswer);
     }
 
@@ -62,19 +66,23 @@ const ChooseTheRightSolution = ({ data }: { data: any }) => {
       setActiveExerciseId(() => activeExercise?._id);
       dispatch(clearUserInput());
       setShowSelected({ word: "", status: false });
-      setRandomizedData(() =>
-        activeExercise.availableWords
-          //@ts-ignore
-          .map((item) => {
-            return item;
-          })
-          .sort(() => Math.random() - 0.5)
+      setRandomizedData(
+        () =>
+          getType(activeExercise) &&
+          activeExercise.availableWords //@ts-ignore
+            .map((item) => {
+              return item;
+            })
+            .sort(() => Math.random() - 0.5)
       );
     }
     //eslint-disable-next-line
   }, [showSelected, activeExercise?._id]);
   return (
-    <>
+    <div
+      className="flex flex-col
+
+     justify-center w-full items-center">
       <ProgressBar
         remainingExercises={remainingExercises}
         totalNumberOfExercises={totalExercises}
@@ -88,18 +96,20 @@ const ChooseTheRightSolution = ({ data }: { data: any }) => {
           instruction={activeExercise && activeExercise?.instructions}
         />
 
-        {activeExercise?.displayImage && (
+        {getType(activeExercise) && activeExercise.displayImage && (
           <div className=" rounded-2xl pt-8 sm:pt-16 sm:w-2/4 md:w-1/3  mx-auto">
             <Image
               src={mockimage}
-              className="sm:h-44 h-28 rounded-2xl mx-auto "
+              className="rounded-2xl mx-auto "
               alt=""
             />
           </div>
         )}
         <div
           className={classNames(
-            activeExercise?.displayImage ? "mt-10" : "mt-18",
+            getType(activeExercise) && activeExercise.displayImage
+              ? "mt-10"
+              : "mt-18",
             "grid-cols-1 mx-auto mt-12 sm:mt-16    flex-wrap justify-center  w-full  sm:w-2/3"
           )}>
           {randomizedData &&
@@ -130,7 +140,7 @@ const ChooseTheRightSolution = ({ data }: { data: any }) => {
                           ? "text-color-purple_darker border-color-purple_default cursor-pointer"
                           : "cursor-pointer",
 
-                    "text-center bg-white box-border p-2 sm:p-2 border  rounded-lg font-bold active:duration-300 active:ease-in outline-none"
+                    "text-center bg-white box-border p-2 sm:p-2 border border-2 rounded-lg font-bold active:duration-300 active:ease-in outline-none"
                   )}>
                   {word}
                 </div>
@@ -138,7 +148,7 @@ const ChooseTheRightSolution = ({ data }: { data: any }) => {
             ))}
         </div>
       </InteractiveLayout>
-    </>
+    </div>
   );
 };
 export default ChooseTheRightSolution;

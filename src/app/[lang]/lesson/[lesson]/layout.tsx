@@ -10,7 +10,21 @@ import {
 import { useAppSelector } from "@/hooks/useRedux";
 import { selectLesson } from "@/features/lessonSlice";
 import { LessonState } from "@/types/lesson.types";
-import { InteractiveBottomNav } from "../../../../components/userInputBottomNavigation/InteractiveBottomNav";
+import ChooseTheRightSolutionBottomNav from "@/components/interactive-bottom-navbars/ChooseTheRightSolutionNav";
+import ReorderBottomNav from "@/components/interactive-bottom-navbars/ReorderNav";
+import FillInTheBlankNav from "@/components/interactive-bottom-navbars/FillnTheBlanksNav";
+import ConjugationNav from "@/components/interactive-bottom-navbars/ConjugationNav";
+import ReorderWhatYouHearNav from "@/components/interactive-bottom-navbars/ReorderWhatYouHearNav";
+import FillInWhatYouHearNav from "@/components/interactive-bottom-navbars/FillInWhatYouHear";
+import ListenAndSelectNav from "@/components/interactive-bottom-navbars/ListenAndSelectNav";
+import MissingSyllableNav from "@/components/interactive-bottom-navbars/MissingSyllableNav";
+import MultipleAnswersNav from "@/components/interactive-bottom-navbars/MultipleAnswersNav";
+import PartOfAWordNav from "@/components/interactive-bottom-navbars/PartOfAWordNav";
+import SelectTheMissingWordNav from "@/components/interactive-bottom-navbars/SelectTheMissingWordNav";
+import SpeakingAndPronunciationNav from "@/components/interactive-bottom-navbars/SpeakingAndPronunciationNav";
+import TwoBlanksNav from "@/components/interactive-bottom-navbars/TwoBlanksNav";
+import TypeInWhatYouHearNav from "@/components/interactive-bottom-navbars/TypeInWhatYouHearNav";
+import WriteTheSentenceNav from "@/components/interactive-bottom-navbars/WriteTheSentenceNav";
 export default function LessonLayout({
   children, // will be a page or nested layout
 }: {
@@ -33,56 +47,47 @@ export default function LessonLayout({
     //This function
     switch (activeExercise.type) {
       case "chooseTheRightSolution":
-        return <InteractiveBottomNav />;
-      case "matchPairs":
-        return <InteractiveBottomNav />;
+        return <ChooseTheRightSolutionBottomNav />;
+      // case "matchPairs":
+      //   return <BottomNavigation />;
       case "conjugation":
-        return <InteractiveBottomNav />;
+        return <ConjugationNav />;
       case "reorder":
-        return <InteractiveBottomNav />;
+        return <ReorderBottomNav />;
       case "reorderWhatYouHear":
-        return <InteractiveBottomNav />;
+        return <ReorderWhatYouHearNav />;
       case "fillInTheBlank":
-        return <InteractiveBottomNav />;
+        return <FillInTheBlankNav />;
       case "fillInWhatYouHear":
-        return <InteractiveBottomNav />;
+        return <FillInWhatYouHearNav />;
       case "listenAndSelect":
-        return <InteractiveBottomNav />;
+        return <ListenAndSelectNav />;
       case "missingSyllable":
-        return <InteractiveBottomNav />;
+        return <MissingSyllableNav />;
       case "multipleAnswers":
-        return <InteractiveBottomNav />;
+        return <MultipleAnswersNav />;
       case "partOfAWord":
-        return <InteractiveBottomNav />;
+        return <PartOfAWordNav />;
       case "selectTheMissingWord":
-        return <InteractiveBottomNav />;
+        return <SelectTheMissingWordNav />;
       case "speakingAndPronunciation":
-        return <InteractiveBottomNav />;
+        return <SpeakingAndPronunciationNav />;
       case "twoBlanks":
-        return <InteractiveBottomNav />;
+        return <TwoBlanksNav />;
       case "typeInWhatYouHear":
-        return <InteractiveBottomNav />;
+        return <TypeInWhatYouHearNav />;
       case "writeTheSentence":
-        return <InteractiveBottomNav />;
+        return <WriteTheSentenceNav />;
       default:
         return null;
     }
   };
   return (
-    <Box m={0} p={0} h={"100vh"}>
-      {/* Bring in progress bar here */}
-      <Center w={"100%"}>{children}</Center>
-
-      <Box
-        bg="grey.300"
-        height={115}
-        pos="absolute"
-        bottom={"70"}
-        w="100%"
-        p={4}
-        color="white">
+    <div className='flex flex-col h-screen'>
+      <Center className='flex-grow'>{children}</Center>
+      <footer className='flex-none'>
         {getNavigationComponent(activeExercise)}
-      </Box>
-    </Box>
+      </footer>
+    </div>
   );
 }
