@@ -6,7 +6,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const nextConfig = {
   images: {
     unoptimized: true,
-    domains: ["tailwindui.com"], // Add any domains you want to use with Next.js Image Optimization
+    domains: ["tailwindui.com", "img.clerk.com"], // Add any domains you want to use with Next.js Image Optimization
   },
 };
 

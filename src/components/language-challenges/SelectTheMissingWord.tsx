@@ -1,5 +1,4 @@
 import { BaseExercise, LessonState } from "@/types/lesson.types";
-import { Box, Heading, Container } from "@chakra-ui/react";
 import { useRef, useState, useEffect } from "react";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { v4 as uuid } from "uuid";

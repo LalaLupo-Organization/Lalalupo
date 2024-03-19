@@ -24,7 +24,7 @@ export const api = createApi({
 
             `
           );
-          console.log(data);
+         
           return { data };
         } catch (error) {
           return { error: { status: "CUSTOM_ERROR", data: error } };
@@ -136,7 +136,7 @@ export const api = createApi({
             return { data: docSnap.data() };
           } else {
             // docSnap.data() will be undefined in this case
-            console.log("No such document!");
+       
           }
         } catch (error) {
           return { error };

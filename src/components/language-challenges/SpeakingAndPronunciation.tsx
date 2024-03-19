@@ -1,5 +1,4 @@
 import { BaseExercise, LessonState } from "@/types/lesson.types";
-import { Box, Heading, Container } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { SpeakingAndPronunciationExercise } from "@/types/speaking-and-pronunciation.types";
 import {

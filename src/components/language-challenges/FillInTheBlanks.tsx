@@ -1,5 +1,4 @@
 import { BaseExercise, LessonState } from "@/types/lesson.types";
-import { Box, Heading, Container } from "@chakra-ui/react";
 import React, { useState, useEffect, useRef } from "react";
 
 import { FillInTheBlankExercise } from "@/types/fill-in-the-blanks.types";

@@ -1,5 +1,4 @@
 import { BaseExercise, LessonState } from "@/types/lesson.types";
-import { Box, Heading, Container } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { TypeInWhatYouHearExercise } from "@/types/type-in-what-you-hear.types";
 import { setSingleInput, clearUserInput } from "@/features/userInputSlice";
