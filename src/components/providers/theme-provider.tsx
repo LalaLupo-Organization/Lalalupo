@@ -1,8 +1,10 @@
 "use client";
-import { ChakraProvider, ColorModeScript, Text } from "@chakra-ui/react";
-import { CacheProvider } from "@chakra-ui/next-js";
-import theme from "@/theme/theme";
+
+
 import { createContext } from "react";
+import StoreProvider from "@/redux/StoreProvider";
+
+
 
 export const ThemeContext = createContext({});
 
@@ -12,9 +14,8 @@ export default function ThemeProvider({
   children: React.ReactNode;
 }) {
   return (
-    <CacheProvider>
-      <ColorModeScript initialColorMode={theme.initialColorMode} />
-      <ChakraProvider theme={theme}>{children}</ChakraProvider>
-    </CacheProvider>
+      
+        <StoreProvider>{children}</StoreProvider>
+  
   );
 }

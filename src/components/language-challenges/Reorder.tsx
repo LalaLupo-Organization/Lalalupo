@@ -1,6 +1,5 @@
 "use client";
 import { BaseExercise, LessonState } from "@/types/lesson.types";
-import { Box, Heading, Container } from "@chakra-ui/react";
 import { ReorderExercise } from "@/types/reorder.types";
 import { setSingleInput, clearUserInput } from "@/features/userInputSlice";
 import { useAppDispatch } from "@/hooks/useRedux";

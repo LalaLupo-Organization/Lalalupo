@@ -34,7 +34,6 @@
       "@/studio/*": ["./src/app/studio/*"],
       "@/stories/*": ["./src/stories/*"],
       "@/types/*": ["./src/types/*"],
-      "@/theme/*": ["./src/theme/*"],
     },
   },
   "include": [

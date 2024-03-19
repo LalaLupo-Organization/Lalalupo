@@ -32,7 +32,7 @@ export const updateUserDatabase = createAsyncThunk(
         unit: user.user.iSpeakItalian.units[user.current.unit],
         current: user.current,
       };
-      console.log(data);
+      
 
       return await updateUser(data);
     } catch (error) {

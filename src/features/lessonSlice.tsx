@@ -354,7 +354,7 @@ export const lessonSlice = createSlice({
       let found = state.interactiveExercises.find(
         (item) => !item.isComplete && !item.hasFailed && item
       );
-      console.log("🚀 ~ found:", found);
+
       if (found) {
         state.activeExercise = found;
       }

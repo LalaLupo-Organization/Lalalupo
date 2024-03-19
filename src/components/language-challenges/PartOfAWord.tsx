@@ -1,6 +1,6 @@
 "use client";
 import { BaseExercise, LessonState } from "@/types/lesson.types";
-import { Box, Heading, Container } from "@chakra-ui/react";
+
 import React, { useState, useEffect, useRef } from "react";
 // import '../style.css';
 import { PartOfAWordExercise } from "@/types/part-of-a-word.types";
@@ -77,7 +77,7 @@ export default function PartOfAWord({ data }: { data: LessonState }) {
     if (activeExercise && activeExercise._id !== activeExerciseId) {
       setActiveExerciseId(() => activeExercise?._id);
       dispatch(clearUserInput());
-      console.log("finished");
+      
       setInput("");
       setOpt([]);
     }
