@@ -19,46 +19,14 @@ const initialState: LessonState = {
   numberFailed: 0,
   correctLetters: [],
   activeExercise: {
-    type: "multipleAnswers",
-    _id: "12345",
-
-    instructions:
-      "Select all verbs conjugated with 'avere' in the present perfect.",
-    availableWords: [
-      {
-        italian: "portare",
-        correct: true,
-        english: "(to bring)",
-      },
-      {
-        italian: "dire",
-        correct: true,
-        english: "(to tell)",
-      },
-      {
-        italian: "comprare",
-        correct: true,
-        english: "(to buy)",
-      },
-      {
-        italian: "vendere",
-        correct: true,
-        english: "(to sell)",
-      },
-      {
-        italian: "partire",
-        correct: false,
-        english: "(to leave)",
-      },
-      {
-        italian: "tornare",
-        correct: false,
-        english: "(to return)",
-      },
-    ],
-    targetNumber: 4,
-    displayMeaning: true,
-
+    type: "chooseTheRightSolution",
+    _id: "635f9a0fefff76c1f466c9be",
+    solution: "panino",
+    availableWords: ["panino", "ravioli", "espresso"],
+    instructions: "What is this?",
+    displayImage: true,
+    displayImageSrc:
+      "https://imagedelivery.net/_Fh-Z9aj1rlSxXMDl1yqsg/b753daa9-b6c7-4773-a681-e1f881c9f600/character",
     isComplete: false,
     hasFailed: false,
   },
