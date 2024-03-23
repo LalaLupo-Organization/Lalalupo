@@ -31,10 +31,7 @@ export default function ProgressBar({
   });
   const [play, setPlay] = useState(false);
   useEffect(() => {
-    if (
-      numberOfExercisesComplete > 0 ||
-      numberOfExercisesFailed > 0
-    ) {
+    if (numberOfExercisesComplete > 0 || numberOfExercisesFailed > 0) {
       setPlay(true);
       setTimeout(() => {
         setPlay(false);
@@ -43,8 +40,8 @@ export default function ProgressBar({
   }, [numberOfExercisesComplete, numberOfExercisesFailed]);
 
   return (
-    <div className="container sm:w-1/3 mx-auto px-7 sm:px-0  mt-6 sm:mb-18 mb-10 w-full">
-      <div className="flex items-center">
+    <div className='container  mx-auto px-7 sm:px-0  mt-6 sm:mb-18 mb-10 w-full'>
+      <div className='flex items-center'>
         {/* {interactiveExercises && (
           <div
             onClick={(e) => dispatch(setExitDisplay(true))}
@@ -53,18 +50,20 @@ export default function ProgressBar({
           </div>
         )} */}
 
-        <div className="h-5 rounded-lg bg-gray-200 md:w-full  sm:w-3/4   mr-4 border-2 flex items-center w-full ">
+        <div className='h-5 rounded-lg bg-gray-200 md:w-full  sm:w-3/4   mr-4 border-2 flex items-center w-full '>
           <motion.div
             transition={{ type: "spring" }}
-            className="bg-color-purple_default h-4 rounded-lg relative  transition-all flex pt-1  justify-end"
+            className='bg-color-purple_default h-4 rounded-lg relative  transition-all flex pt-1  justify-end'
             style={{
               width: `${((numberOfExercisesComplete + numberOfExercisesFailed) / totalNumberOfExercises) * 100}%`,
-            }}>
+            }}
+          >
             <div
               className={classNames(
                 play ? "flex" : "hidden",
                 "justify-end absolute -bottom-6 -right-6 "
-              )}>
+              )}
+            >
               <Lottie
                 animationData={bubbles}
                 loop={true}
@@ -72,8 +71,9 @@ export default function ProgressBar({
               />
             </div>
             <div
-              className="bg-color-purple_lighter rounded-3xl  mx-auto "
-              style={{ height: "4px", width: "92%" }}></div>
+              className='bg-color-purple_lighter rounded-3xl  mx-auto '
+              style={{ height: "4px", width: "92%" }}
+            ></div>
           </motion.div>
         </div>
 
@@ -84,18 +84,18 @@ export default function ProgressBar({
                 height={20}
                 width={20}
                 key={uuid()}
-                src="http://ispeakitalian.herokuapp.com/heart.svg"
-                className="mr-1"
-                alt=""
+                src='http://ispeakitalian.herokuapp.com/heart.svg'
+                className='mr-1'
+                alt=''
               />
             ) : (
               <Image
                 height={20}
                 width={20}
                 key={uuid()}
-                src="https://ispeakitalian.herokuapp.com/heart_placeholder.svg"
-                className="mr-1"
-                alt=""
+                src='https://ispeakitalian.herokuapp.com/heart_placeholder.svg'
+                className='mr-1'
+                alt=''
               />
             );
           })}

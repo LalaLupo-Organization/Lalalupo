@@ -1,10 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { v4 as uuid } from "uuid";
-import {
-  setSingleInput,
-  clearUserInput,
-} from "@/features/userInputSlice";
+import { setSingleInput, clearUserInput } from "@/features/userInputSlice";
 import classNames from "@/helpers/classNames";
 import ProgressBar from "@/components/progress-bar/ProgressBar";
 import Instruction from "@/components/instruction/Instruction";
@@ -49,10 +46,7 @@ const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
   const [activeExerciseId, setActiveExerciseId] = useState(
     () => activeExercise?._id
   );
-  const handleSelectedItem = (
-    e: React.SyntheticEvent,
-    userAnswer: string
-  ) => {
+  const handleSelectedItem = (e: React.SyntheticEvent, userAnswer: string) => {
     if (getType(activeExercise) && activeExercise.displayImage) {
       // speak(userAnswer);
     }
@@ -80,9 +74,10 @@ const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
   }, [showSelected, activeExercise?._id]);
   return (
     <div
-      className="flex flex-col
+      className='flex flex-col
 
-     justify-center w-full items-center">
+     justify-center w-full items-center'
+    >
       <ProgressBar
         remainingExercises={remainingExercises}
         totalNumberOfExercises={totalExercises}
@@ -97,11 +92,13 @@ const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
         />
 
         {getType(activeExercise) && activeExercise.displayImage && (
-          <div className=" rounded-2xl pt-8 sm:pt-16 sm:w-2/4 md:w-1/3  mx-auto">
+          <div className=' rounded-2xl pt-8  sm:w-2/4 md:w-1/3  mx-auto'>
             <Image
               src={mockimage}
-              className="rounded-2xl mx-auto "
-              alt=""
+              height={600}
+              width={600}
+              className='rounded-2xl mx-auto '
+              alt=''
             />
           </div>
         )}
@@ -110,8 +107,9 @@ const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
             getType(activeExercise) && activeExercise.displayImage
               ? "mt-10"
               : "mt-18",
-            "grid-cols-1 mx-auto mt-12 sm:mt-16    flex-wrap justify-center  w-full  sm:w-2/3"
-          )}>
+            "grid-cols-1 mx-auto mt-12   flex-wrap justify-center  w-full  sm:w-2/3"
+          )}
+        >
           {randomizedData &&
             activeExercise &&
             //@ts-ignore
@@ -119,17 +117,16 @@ const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
             randomizedData.map((word, index) => (
               <div
                 key={uuid()}
-                className="m-1 flex-1 cursor-pointer"
+                className='m-1 flex-1 cursor-pointer'
                 onClick={
-                  activeExercise?.isComplete ||
-                  activeExercise?.hasFailed
+                  activeExercise?.isComplete || activeExercise?.hasFailed
                     ? undefined
                     : (e) => handleSelectedItem(e, word)
-                }>
+                }
+              >
                 <div
                   className={classNames(
-                    (activeExercise?.isComplete ||
-                      activeExercise?.hasFailed) &&
+                    (activeExercise?.isComplete || activeExercise?.hasFailed) &&
                       showSelected.word === word
                       ? "text-blue_border_darker border-blue_border cursor-not-allowed"
                       : (activeExercise?.isComplete ||
@@ -140,8 +137,9 @@ const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
                           ? "text-color-purple_darker border-color-purple_default cursor-pointer"
                           : "cursor-pointer",
 
-                    "text-center bg-white box-border p-2 sm:p-2 border border-2 rounded-lg font-bold active:duration-300 active:ease-in outline-none"
-                  )}>
+                    "text-center bg-white box-border p-2 sm:p-2 border rounded-lg font-bold active:duration-300 active:ease-in outline-none"
+                  )}
+                >
                   {word}
                 </div>
               </div>

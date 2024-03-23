@@ -13,7 +13,6 @@ import InteractiveLayout from "@/components/layouts/InteractiveLayout";
 import classNames from "@/helpers/classNames";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 import parse from "html-react-parser";
-import { ChooseTheRightSolutionExercise } from "@/types/choose-the-right-solution.types";
 
 type Input = {
   [name: string]: string;

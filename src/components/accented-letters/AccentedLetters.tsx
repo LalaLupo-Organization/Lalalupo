@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  ArrowUpIcon,
-  ArrowDownIcon,
-} from "@heroicons/react/24/solid";
+import { ArrowUpIcon, ArrowDownIcon } from "@heroicons/react/24/solid";
 import { v4 as uuid } from "uuid";
 import { motion } from "framer-motion";
 export default function AccentedLetters({
@@ -21,13 +18,7 @@ export default function AccentedLetters({
     "ò",
     "ù",
   ]);
-  const [bigVowels, setBigVowles] = useState([
-    "À",
-    "È",
-    "Ì",
-    "Ò",
-    "Ù",
-  ]);
+  const [bigVowels, setBigVowles] = useState(["À", "È", "Ì", "Ò", "Ù"]);
   const setCase = () => {
     vowelCase === "capitalize"
       ? setVowelCase("lowercase")
@@ -36,18 +27,19 @@ export default function AccentedLetters({
   useEffect(() => {}, [activeExercise]);
 
   return (
-    <div className=" w-full">
-      <div className="flex border mt-4">
+    <div className='w-full'>
+      <div className='flex  mt-4'>
         <motion.button
           onClick={setCase}
           key={uuid()}
           whileHover={{ scale: 1.1 }}
-          className="bg-gray-200  rounded-full cursor-pointer">
-          <div className="border border-2 bg-white flex items-center h-9 mr-1 px-2 py-1 text-base font-bold text-gray-400 rounded-full shadow-sm">
+          className='bg-gray-200  rounded-full cursor-pointer'
+        >
+          <div className='border  bg-white flex items-center h-9 mr-1 px-2 py-1 text-base font-bold text-gray-400 rounded-full shadow-sm'>
             {vowelCase === "capitalize" ? (
-              <ArrowDownIcon className="h-4" />
+              <ArrowDownIcon className='h-4' />
             ) : (
-              <ArrowUpIcon className="h-4" />
+              <ArrowUpIcon className='h-4' />
             )}
           </div>
         </motion.button>
@@ -55,15 +47,15 @@ export default function AccentedLetters({
           ? littleVowels.map((vowel) => (
               <motion.button
                 onClick={
-                  activeExercise?.isComplete ||
-                  activeExercise?.hasFailed
+                  activeExercise?.isComplete || activeExercise?.hasFailed
                     ? undefined
                     : (e) => insertAccentedVowel(e)
                 }
                 key={uuid()}
                 whileHover={{ scale: 1.1 }}
-                className="bg-gray-200   rounded-full cursor-pointer">
-                <div className="border border-2 flex items-center bg-white mr-1 px-2 py-1 text-base font-bold text-gray-400 rounded-full shadow-sm">
+                className='bg-gray-200   rounded-full cursor-pointer'
+              >
+                <div className='border flex items-center bg-white mr-1 px-2 py-1 text-base font-bold text-gray-400 rounded-full shadow-sm'>
                   {vowel}
                 </div>
               </motion.button>
@@ -72,15 +64,15 @@ export default function AccentedLetters({
             bigVowels.map((vowel) => (
               <motion.button
                 onClick={
-                  activeExercise?.isComplete ||
-                  activeExercise?.hasFailed
+                  activeExercise?.isComplete || activeExercise?.hasFailed
                     ? undefined
                     : (e) => insertAccentedVowel(e)
                 }
                 key={uuid()}
                 whileHover={{ scale: 1.1 }}
-                className="bg-gray-200 rounded-full cursor-pointer">
-                <div className="border border-2 flex items-center  bg-white mr-1 px-2 py-1 text-base font-bold text-gray-400 rounded-full shadow-sm">
+                className='bg-gray-200 rounded-full cursor-pointer'
+              >
+                <div className='border  flex items-center  bg-white mr-1 px-2 py-1 text-base font-bold text-gray-400 rounded-full shadow-sm'>
                   {vowel}
                 </div>
               </motion.button>

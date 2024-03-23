@@ -1,9 +1,6 @@
 import { LessonState } from "@/types/lesson.types";
 import React, { useState, useEffect } from "react";
-import {
-  setSingleInput,
-  clearUserInput,
-} from "@/features/userInputSlice";
+import { setSingleInput, clearUserInput } from "@/features/userInputSlice";
 import { useAppDispatch } from "@/hooks/useRedux";
 import ProgressBar from "@/components/progress-bar/ProgressBar";
 import { v4 as uuid } from "uuid";
@@ -12,11 +9,7 @@ import Instruction from "@/components/instruction/Instruction";
 import AccentedLetters from "@/components/accented-letters/AccentedLetters";
 import AudioBubble from "@/components/audio-bubble/AudioBubble";
 
-export default function FillInWhatYouHear({
-  data,
-}: {
-  data: LessonState;
-}) {
+export default function FillInWhatYouHear({ data }: { data: LessonState }) {
   const {
     activeExercise,
     totalExercises,
@@ -30,18 +23,14 @@ export default function FillInWhatYouHear({
   const [input, setInput] = useState("");
   const dispatch = useAppDispatch();
 
-  const [activeExerciseId, setActiveExerciseId] = useState(
-    activeExercise?._id
-  );
+  const [activeExerciseId, setActiveExerciseId] = useState(activeExercise?._id);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSingleInput(e.target.value));
     setInput(e.target.value);
   };
 
-  const insertAccentedVowel = (
-    e: React.MouseEvent<HTMLButtonElement>
-  ) => {
+  const insertAccentedVowel = (e: React.MouseEvent<HTMLButtonElement>) => {
     setInput(input + e.currentTarget.innerText);
     dispatch(setSingleInput(input + e.currentTarget.innerText));
   };
@@ -60,7 +49,7 @@ export default function FillInWhatYouHear({
   }, [activeExercise]);
 
   return (
-    <div className="flex flex-col justify-center w-full items-center">
+    <>
       <ProgressBar
         remainingExercises={remainingExercises}
         totalNumberOfExercises={totalExercises}
@@ -82,7 +71,7 @@ export default function FillInWhatYouHear({
           }
         />
 
-        <div className="flex outline-none p-2 text-base font-bold text-gray-600 tracking-wider border border-2 bg-gray-100 rounded-lg h-32">
+        <div className='flex outline-none p-2 text-base font-bold text-gray-600 tracking-wider w-full border-2 bg-gray-100 rounded-lg h-32'>
           {activeExercise &&
             Array.isArray(activeExercise.solution) &&
             activeExercise.solution.map((word: string) => {
@@ -94,6 +83,6 @@ export default function FillInWhatYouHear({
           activeExercise={activeExercise}
         />
       </InteractiveLayout>
-    </div>
+    </>
   );
 }
