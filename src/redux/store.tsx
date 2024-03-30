@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "@/features/counterSlice";
 import lessonReducer from "@/features/lessonSlice";
 import userInputReducer from "@/features/userInputSlice";
 import userReducer from "@/features/userSlice";
@@ -11,7 +10,6 @@ import { useDispatch } from "react-redux";
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      counter: counterReducer,
       lessonReduxState: lessonReducer,
       userInputReduxState: userInputReducer,
       userReduxState: userReducer,

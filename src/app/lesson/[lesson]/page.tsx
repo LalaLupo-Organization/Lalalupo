@@ -4,22 +4,22 @@ import { useAppSelector } from "@/hooks/useRedux";
 import { selectLesson } from "@/features/lessonSlice";
 import { useGetLessonQuery } from "@/services/api";
 //Interactive Components
-import ChooseTheRightSolution from "@/components/language-challenges/ChooseTheRightSolution";
-import MatchPairs from "@/components/language-challenges/MatchPairs";
-import Conjunction from "@/components/language-challenges/Conjunction";
-import FillInTheBlank from "@/components/language-challenges/FillInTheBlanks";
-import FillInWhatYouHear from "@/components/language-challenges/FillInWhatYouHear";
-import ListenAndSelect from "@/components/language-challenges/ListenAndSelect";
-import MissingSyllable from "@/components/language-challenges/MissingSyllable";
-import MultipleAnswers from "@/components/language-challenges/MultipleAnswers";
-import PartOfAWord from "@/components/language-challenges/PartOfAWord";
-import Reorder from "@/components/language-challenges/Reorder";
-import ReorderWhatYouHear from "@/components/language-challenges/ReorderWhatYouHear";
-import SelectTheMissingWord from "@/components/language-challenges/SelectTheMissingWord";
-import SpeakingAndPronunciation from "@/components/language-challenges/SpeakingAndPronunciation";
-import TwoBlanks from "@/components/language-challenges/TwoBlanks";
-import TypeInWhatYouHear from "@/components/language-challenges/TypeInWhatYouHear";
-import WriteTheSentence from "@/components/language-challenges/WriteTheSentence";
+import { ChooseTheRightSolution } from "@/components/LessonChallenges/ChooseTheRightSolution";
+import MatchPairs from "@/components/LessonChallenges/MatchPairs";
+import Conjunction from "@/components/LessonChallenges/Conjunction";
+import FillInTheBlank from "@/components/LessonChallenges/FillInTheBlanks";
+import FillInWhatYouHear from "@/components/LessonChallenges/FillInWhatYouHear";
+import ListenAndSelect from "@/components/LessonChallenges/ListenAndSelect";
+import MissingSyllable from "@/components/LessonChallenges/MissingSyllable";
+import MultipleAnswers from "@/components/LessonChallenges/MultipleAnswers";
+import PartOfAWord from "@/components/LessonChallenges/PartOfAWord";
+import Reorder from "@/components/LessonChallenges/Reorder";
+import ReorderWhatYouHear from "@/components/LessonChallenges/ReorderWhatYouHear";
+import SelectTheMissingWord from "@/components/LessonChallenges/SelectTheMissingWord";
+import SpeakingAndPronunciation from "@/components/LessonChallenges/SpeakingAndPronunciation";
+import TwoBlanks from "@/components/LessonChallenges/TwoBlanks";
+import TypeInWhatYouHear from "@/components/LessonChallenges/TypeInWhatYouHear";
+import WriteTheSentence from "@/components/LessonChallenges/WriteTheSentence";
 import { useParams } from "next/navigation";
 export default function Lessons() {
   const params = useParams();
@@ -34,7 +34,6 @@ export default function Lessons() {
 
   useEffect(() => {
     if (sanityLessonData) {
-
     }
   }, [sanityLessonData]);
 

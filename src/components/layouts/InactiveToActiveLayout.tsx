@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonInteractiveLesson from "@/components/button-interactive/ButtonInteractive";
+import ButtonInteractiveLesson from "@/components/Buttons/ButtonInteractive";
 import { selectMessage, selectUser } from "@/features/userSlice";
 import { useAppSelector } from "@/hooks/useRedux";
 import { usePathname, useSearchParams } from "next/navigation";

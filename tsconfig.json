@@ -27,6 +27,7 @@
       "@/firebase/*": ["./src/firebase/*"],
       "@/helpers/*": ["./src/helpers/*"],
       "@/hooks/*": ["./src/hooks/*"],
+      "@/providers/*": ["./src/providers/*"],
       "@/redux/*": ["./src/redux/*"],
       "@/services/*": ["./src/services/*"],
       "@/sanity/*": ["./sanity/*"],

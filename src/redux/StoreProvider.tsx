@@ -9,7 +9,6 @@
 import { useRef } from "react";
 import { Provider } from "react-redux";
 import { makeStore, AppStore } from "./store";
-import {} from "@/features/lessonSlice";
 export default function StoreProvider({
   children,
 }: {

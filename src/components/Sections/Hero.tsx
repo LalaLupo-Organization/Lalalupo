@@ -8,7 +8,7 @@ const myFont = localFont({ src: "../../../public/MoreSugarRegular.ttf" });
 export const Hero: React.FC = () => {
   return (
     <div>
-      <div className='flex items-center justify-center flex-col m-3 sm:m-0'>
+      <div className='flex items-center pb-60 justify-center flex-col m-3 sm:m-0'>
         <Image
           width={500}
           height={500}
@@ -27,7 +27,7 @@ export const Hero: React.FC = () => {
         <div className='sm:flex items-center mx-auto  justify-center mt-4'>
           <Link
             href='sign-up'
-            className='inline-flex register sm:w-auto w-full items-center justify-center rounded-md border border-transparent bg-indigo-700 px-8 py-4 text-xl font-semibold text-white shadow-sm hover:bg-indigo-700'
+            className='inline-flex register sm:w-auto w-full items-center justify-center rounded-md border border-transparent px-8 py-4 text-xl font-semibold text-white bg-gradient-to-r from-indigo-500 from-10%  to-purple-500 to-90%'
           >
             Get started here
           </Link>
