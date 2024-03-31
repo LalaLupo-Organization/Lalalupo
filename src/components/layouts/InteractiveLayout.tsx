@@ -1,13 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-export default function InteractiveLayout({
+export const InteractiveLayout = ({
   id,
   children,
 }: {
   id: string | null;
   children: React.ReactNode;
-}) {
+}) => {
   return (
     <motion.div
       key={id}
@@ -19,4 +19,4 @@ export default function InteractiveLayout({
       {children}
     </motion.div>
   );
-}
+};

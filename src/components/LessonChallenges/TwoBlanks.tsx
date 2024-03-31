@@ -9,7 +9,7 @@ import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { v4 as uuid } from "uuid";
 import AccentedLetters from "@/components/AccentedLetters/AccentedLetters";
-import InteractiveLayout from "@/components/Layouts/InteractiveLayout";
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import Instruction from "@/components/Headings/Instruction";
 import SpeechBubble from "@/components/SpeechBubble/SpeechBubble";
 import parse from "html-react-parser";

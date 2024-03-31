@@ -8,7 +8,7 @@ import { setSingleInput, clearUserInput } from "@/features/userInputSlice";
 
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 import Instruction from "@/components/Headings/Instruction";
-import InteractiveLayout from "@/components/Layouts/InteractiveLayout";
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import classNames from "@/helpers/classNames";
 import AudioBubble from "@/components/AudioBubble/AudioBubble";
 export default function MissingSyllable({ data }: { data: LessonState }) {

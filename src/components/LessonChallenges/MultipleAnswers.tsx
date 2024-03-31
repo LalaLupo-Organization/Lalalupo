@@ -8,7 +8,7 @@ import { setObjectInput, clearUserInput } from "@/features/userInputSlice";
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 import ImageOfProfessor from "@/components/Layouts/ImageOfProfessor";
 import classNames from "@/helpers/classNames";
-import InteractiveLayout from "@/components/Layouts/InteractiveLayout";
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import Instruction from "@/components/Headings/Instruction";
 import Image from "next/image";
 // import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";

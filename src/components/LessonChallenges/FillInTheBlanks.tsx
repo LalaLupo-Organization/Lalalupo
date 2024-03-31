@@ -7,7 +7,7 @@ import { setSingleInput, clearUserInput } from "@/features/userInputSlice";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 import { v4 as uuid } from "uuid";
-import InteractiveLayout from "@/components/Layouts/InteractiveLayout";
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import Instruction from "@/components/Headings/Instruction";
 import SpeechBubble from "@/components/SpeechBubble/SpeechBubble";
 import AccentedLetters from "@/components/AccentedLetters/AccentedLetters";

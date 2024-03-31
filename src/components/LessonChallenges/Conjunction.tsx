@@ -1,7 +1,6 @@
 import { BaseExercise, LessonState } from "@/types/lesson.types";
 import React, { useState, useEffect, useRef } from "react";
 // import '../style.css';
-console.log("123");
 import { ConjugationExercise } from "@/types/conjunction.types";
 import { setArrayInput, clearUserInput } from "@/features/userInputSlice";
 import { useAppDispatch } from "@/hooks/useRedux";
@@ -9,7 +8,7 @@ import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 import { v4 as uuid } from "uuid";
 import Instruction from "@/components/Headings/Instruction";
 import ImageOfProfessor from "@/components/Layouts/ImageOfProfessor";
-import InteractiveLayout from "@/components/Layouts/InteractiveLayout";
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import classNames from "@/helpers/classNames";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 import parse from "html-react-parser";

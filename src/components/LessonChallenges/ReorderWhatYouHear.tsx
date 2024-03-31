@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { ReorderWhatYouHearExercise } from "@/types/reorder-what-you-hear.types";
 import { setSingleInput, clearUserInput } from "@/features/userInputSlice";
 import { useAppDispatch } from "@/hooks/useRedux";
-import InteractiveLayout from "@/components/Layouts/InteractiveLayout";
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 // import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";
 import classNames from "@/helpers/classNames";
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
