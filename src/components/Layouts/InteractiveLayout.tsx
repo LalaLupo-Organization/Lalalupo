@@ -8,6 +8,7 @@ export const InteractiveLayout = ({
   id: string | null;
   children: React.ReactNode;
 }) => {
+  console.log("123");
   return (
     <motion.div
       key={id}
