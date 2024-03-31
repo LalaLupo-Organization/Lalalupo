@@ -1,7 +1,7 @@
 import { BaseExercise, LessonState } from "@/types/lesson.types";
 import React, { useState, useEffect, useRef } from "react";
 // import '../style.css';
-
+console.log("123");
 import { ConjugationExercise } from "@/types/conjunction.types";
 import { setArrayInput, clearUserInput } from "@/features/userInputSlice";
 import { useAppDispatch } from "@/hooks/useRedux";
