@@ -70,9 +70,9 @@ export default function ListenAndSelect({ data }: { data: LessonState }) {
 
   return (
     <div
-      className='flex flex-col
+      className="flex flex-col
 
-   justify-center w-full items-center'
+   justify-center w-full items-center"
     >
       <ProgressBar
         remainingExercises={remainingExercises}
@@ -92,12 +92,12 @@ export default function ListenAndSelect({ data }: { data: LessonState }) {
           solution={getType(activeExercise) && activeExercise.audio}
         />
 
-        <div className='flex-col -mt-2 sm:flex-row flex-wrap flex-1 items-center  mx-auto  w-full'>
+        <div className="flex-col -mt-2 sm:flex-row flex-wrap flex-1 items-center  mx-auto  w-full">
           {randomizedData &&
             randomizedData.map((word: [string], index) => (
               <div
                 key={uuid()}
-                className='m-1 flex flex-1  cursor-pointer'
+                className="m-1 flex flex-1  cursor-pointer"
                 onClick={
                   activeExercise?.isComplete || activeExercise?.hasFailed
                     ? undefined
@@ -122,7 +122,7 @@ export default function ListenAndSelect({ data }: { data: LessonState }) {
                 >
                   <p>
                     {word[0]}{" "}
-                    <span className='text-gray-500 font-light italic'>
+                    <span className="text-gray-500 font-light italic">
                       {/* {word[1]} */}
                     </span>
                   </p>

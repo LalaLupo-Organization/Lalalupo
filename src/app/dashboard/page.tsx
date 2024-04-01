@@ -123,7 +123,10 @@ export default function Example() {
 
   useEffect(() => {
     if (firebaseUserData && sanityData) {
+<<<<<<< HEAD
     
+=======
+>>>>>>> 2ce02c791e0ae117a649d719e08f86bf37509bab
     }
   }, [firebaseUserData, sanityData]);
 
@@ -408,7 +411,11 @@ export default function Example() {
                     (i > 0 && sanityData[i - 1]?.unitTitle !== unit.unitTitle);
 
                   return (
+<<<<<<< HEAD
                     <div></div>
+=======
+                    <div key={uuid()}></div>
+>>>>>>> 2ce02c791e0ae117a649d719e08f86bf37509bab
                     // <Box
                     //   key={uuid()}
                     //   mx={"auto"}

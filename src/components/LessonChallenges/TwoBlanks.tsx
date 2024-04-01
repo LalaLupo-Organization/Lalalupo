@@ -120,9 +120,9 @@ export default function TwoBlanks({ data }: { data: LessonState }) {
 
   return (
     <div
-      className='flex flex-col
+      className="flex flex-col
 
-   justify-center w-full items-center'
+   justify-center w-full items-center"
     >
       <ProgressBar
         remainingExercises={remainingExercises}

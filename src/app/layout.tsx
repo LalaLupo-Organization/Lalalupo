@@ -3,6 +3,7 @@ import FullStoryScript from "@/scripts/fullstory";
 import { ThemeProvider } from "@/providers/themeProvider";
 // These styles apply to every route in the application
 import "./globals.css";
+<<<<<<< HEAD
 import Navbar from "@/components/Navbars/Navbar";
 import { ClerkProvider } from "@clerk/nextjs";
 import Footer from "@/components/Footers/Footer";
@@ -39,3 +40,27 @@ function LayoutBody({ children }: { children: any }) {
     </body>
   );
 }
+=======
+import { Suspense } from "react";
+import Navbar from "@/components/Navbars/Navbar";
+import { ClerkProvider } from "@clerk/nextjs";
+import Footer from "@/components/Footers/Footer";
+export default function RootLayout({ children }: { children: any }) {
+  return (
+    <html lang='en'>
+      <body>
+        <Suspense fallback={<div>Loading...</div>}>
+          <ClerkProvider>
+            <ThemeProvider>
+              <Navbar />
+              <FullStoryScript />
+              {children}
+              <Footer />
+            </ThemeProvider>
+          </ClerkProvider>
+        </Suspense>
+      </body>
+    </html>
+  );
+}
+>>>>>>> 2ce02c791e0ae117a649d719e08f86bf37509bab

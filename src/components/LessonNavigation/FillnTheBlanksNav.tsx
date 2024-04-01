@@ -7,7 +7,11 @@ import ButtonInteractiveLesson from "@/components/Buttons/ButtonInteractive";
 import { selectUserInput } from "@/features/userInputSlice";
 import NavbarLayout from "@/components/Layouts/NavbarLayout";
 import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout";
+<<<<<<< HEAD
 import { Loader } from "@/components/Loaders/Loader";
+=======
+import { Loader } from "@/components/Loaders1/Loader";
+>>>>>>> 2ce02c791e0ae117a649d719e08f86bf37509bab
 import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure";
 import isArrayItemsEmpty from "@/helpers/isArrayItemsEmpty";
 import { FillInWhatYouHearExercise } from "@/types/fill-in-what-you-hear.types";

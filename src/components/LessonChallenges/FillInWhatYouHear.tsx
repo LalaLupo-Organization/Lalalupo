@@ -71,7 +71,7 @@ export default function FillInWhatYouHear({ data }: { data: LessonState }) {
           }
         />
 
-        <div className='flex outline-none p-2 text-base font-bold text-gray-600 tracking-wider w-full border-2 bg-gray-100 rounded-lg h-32'>
+        <div className="flex outline-none p-2 text-base font-bold text-gray-600 tracking-wider w-full border-2 bg-gray-100 rounded-lg h-32">
           {activeExercise &&
             Array.isArray(activeExercise.solution) &&
             activeExercise.solution.map((word: string) => {

@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+<<<<<<< HEAD
 
 .striped-bg {
     background: repeating-linear-gradient(-45deg,
@@ -52,3 +53,5 @@
     font-weight: 400;
     font-style: normal;
 }
+=======
+>>>>>>> 2ce02c791e0ae117a649d719e08f86bf37509bab
