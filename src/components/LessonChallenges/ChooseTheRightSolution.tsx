@@ -125,7 +125,7 @@ export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
             // getType(activeExercise) && activeExercise.displayImage
             //   ? "mt-10"
             //   : "mt-18",
-            "grid grid-cols-2 grid-rows-2  mt-12 sm:mt-0 flex-wrap sm:p-10 justify-center  w-full sm:w-[90%]  gap-2"
+            "grid grid-cols-2 grid-rows-2  mt-12 sm:mt-0 flex-wrap sm:p-10 justify-center  w-full sm:w-[90%] 2xl:w-full  gap-2"
           )}
         >
           {randomizedData &&

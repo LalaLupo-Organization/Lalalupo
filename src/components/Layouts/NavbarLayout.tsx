@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "@/helpers/classNames";
 import "@fontsource/nunito";
 import { motion } from "framer-motion";
+import Container from "../Container";
 //classes
 
 type Props = {
@@ -36,14 +37,16 @@ export default function BottomNavigation({
     >
       <div
         className={classNames(
-          "mx-auto w-full flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-center sm:px-10 md:px-16 lg:px-44",
+          "sm:px-10 md:px-16 lg:px-44",
           color,
           dashed ? "sm:py-10 striped-bg-light" : "",
           message ? "p-4" : "py-4 px-2"
         )}
       >
         {/* <div className={`grid-cols-${gridColsNumber} grid`}>{children}</div> */}
-        {children}
+        <Container className="flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-center">
+          {children}
+        </Container>
       </div>
     </motion.div>
   );

@@ -11,7 +11,7 @@ export default function Instruction({
 }) {
   return (
     <h1
-      className={`${myFont.className} text-xl text-center sm:text-left w-[90%] sm:text-2xl px-10`}
+      className={`${myFont.className} text-xl text-center sm:text-left w-[90%] sm:text-2xl 2xl:text-3xl px-10 2xl:px-6`}
     >
       {instruction}
     </h1>
