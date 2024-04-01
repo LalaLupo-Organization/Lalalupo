@@ -7,9 +7,9 @@ import { selectActiveExercise } from "@/features/lessonSlice";
 import ButtonInteractive from "@/components/Buttons/ButtonInteractive";
 import { selectUserInput } from "@/features/userInputSlice";
 import { Loader } from "@/components/Loaders/Loader";
-import NavbarLayout from "@/components/layouts/NavbarLayout";
-import InActiveToActiveLayout from "@/components/layouts/InactiveToActiveLayout";
-import SuccessToFailureLayout from "@/components/layouts/SuccessToFailure";
+import NavbarLayout from "@/components/Layouts/NavbarLayout";
+import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout";
+import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure";
 export const ChooseTheRightSolutionBottomNav: React.FC = () => {
   const { lessonButtonClick } = useAssessment();
 

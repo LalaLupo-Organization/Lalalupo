@@ -4,7 +4,7 @@ import { TypeInWhatYouHearExercise } from "@/types/type-in-what-you-hear.types";
 import { setSingleInput, clearUserInput } from "@/features/userInputSlice";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
-import { InteractiveLayout } from "@/components/layouts/InteractiveLayout";
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import AccentedLetters from "@/components/AccentedLetters/AccentedLetters";
 
 import Instruction from "@/components/Headings/Instruction";

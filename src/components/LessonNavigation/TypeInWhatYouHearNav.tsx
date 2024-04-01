@@ -5,10 +5,10 @@ import useAssessment from "@/hooks/useAssessment";
 import { selectActiveExercise } from "@/features/lessonSlice";
 import ButtonInteractiveLesson from "@/components/Buttons/ButtonInteractive";
 import { selectUserInput } from "@/features/userInputSlice";
-import NavbarLayout from "@/components/layouts/NavbarLayout";
-import InActiveToActiveLayout from "@/components/layouts/InactiveToActiveLayout";
+import NavbarLayout from "@/components/Layouts/NavbarLayout";
+import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout";
 import { Loader } from "@/components/Loaders/Loader";
-import SuccessToFailureLayout from "@/components/layouts/SuccessToFailure";
+import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure";
 
 import { BaseExercise } from "@/types/lesson.types";
 import { TypeInWhatYouHearExercise } from "@/types/type-in-what-you-hear.types";
