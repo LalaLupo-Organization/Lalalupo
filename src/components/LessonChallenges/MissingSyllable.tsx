@@ -10,7 +10,7 @@ import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 import Instruction from "@/components/Headings/Instruction";
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import classNames from "@/helpers/classNames";
-import AudioBubble from "@/components/AudioBubble/AudioBubble";
+import AudioBubble from "@/components/AudioBubble1/AudioBubble";
 export default function MissingSyllable({ data }: { data: LessonState }) {
   const {
     activeExercise,

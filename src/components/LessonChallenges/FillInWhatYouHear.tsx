@@ -7,7 +7,7 @@ import { v4 as uuid } from "uuid";
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import Instruction from "@/components/Headings/Instruction";
 import AccentedLetters from "@/components/AccentedLetters/AccentedLetters";
-import AudioBubble from "@/components/AudioBubble/AudioBubble";
+import AudioBubble from "@/components/AudioBubble1/AudioBubble";
 
 export default function FillInWhatYouHear({ data }: { data: LessonState }) {
   const {

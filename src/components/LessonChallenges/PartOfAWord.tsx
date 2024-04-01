@@ -10,7 +10,7 @@ import { useAppDispatch } from "@/hooks/useRedux";
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 import { v4 as uuid } from "uuid";
 import Instruction from "@/components/Headings/Instruction";
-import AudioBubble from "@/components/AudioBubble/AudioBubble";
+import AudioBubble from "@/components/AudioBubble1/AudioBubble";
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 export default function PartOfAWord({ data }: { data: LessonState }) {
   const {
