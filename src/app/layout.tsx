@@ -10,18 +10,18 @@ import Footer from "@/components/Footers/Footer";
 export default function RootLayout({ children }: { children: any }) {
   return (
     <html lang='en'>
-      <Suspense fallback={<div>Loading...</div>}>
-        <ClerkProvider>
-          <ThemeProvider>
-            <body>
+      <body>
+        <Suspense fallback={<div>Loading...</div>}>
+          <ClerkProvider>
+            <ThemeProvider>
               <Navbar />
               <FullStoryScript />
               {children}
               <Footer />
-            </body>
-          </ThemeProvider>
-        </ClerkProvider>
-      </Suspense>
+            </ThemeProvider>
+          </ClerkProvider>
+        </Suspense>
+      </body>
     </html>
   );
 }

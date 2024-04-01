@@ -1,3 +1,7 @@
 export default function Loading() {
-  return <section>Home</section>;
+  return (
+    <html>
+      <body>Home</body>
+    </html>
+  );
 }
