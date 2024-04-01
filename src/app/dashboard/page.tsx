@@ -123,7 +123,6 @@ export default function Example() {
 
   useEffect(() => {
     if (firebaseUserData && sanityData) {
-    
     }
   }, [firebaseUserData, sanityData]);
 
@@ -408,7 +407,7 @@ export default function Example() {
                     (i > 0 && sanityData[i - 1]?.unitTitle !== unit.unitTitle);
 
                   return (
-                    <div></div>
+                    <div key={uuid()}></div>
                     // <Box
                     //   key={uuid()}
                     //   mx={"auto"}

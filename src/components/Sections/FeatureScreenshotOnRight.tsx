@@ -54,7 +54,7 @@ export const FeatureScreenshotOnRight: React.FC = () => {
                 Is this course for you?
               </p>
               <p className='mt-6 text-lg leading-8 text-gray-600'>
-                If you can answer "yes" to both of these:
+                If you can answer &quot;yes&quot; to both of these:
               </p>
               <dl className='mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none'>
                 {dotPointsPostive.map((dotpoint) => (
@@ -84,7 +84,7 @@ export const FeatureScreenshotOnRight: React.FC = () => {
                 Should I ditch this language course?
               </p>
               <p className='mt-6 text-lg leading-8 text-gray-600'>
-                If you can answer "yes" to any one of these:
+                If you can answer &quot;yes&quot; to any one of these:
               </p>
               <dl className='mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none'>
                 {dotPointsNegative.map((dotpoint) => (
