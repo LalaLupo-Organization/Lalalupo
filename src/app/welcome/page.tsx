@@ -1,14 +1,14 @@
-
-"use client"
-import React from 'react'
-import { UserProfile } from '@clerk/nextjs'
+"use client";
+import React, { Suspense } from "react";
+import { UserProfile } from "@clerk/nextjs";
 const Welcome = () => {
   return (
-    <section className='container mx-auto w-full   flex justify-center'>
+    <Suspense>
+      <section className='container mx-auto w-full   flex justify-center'>
+        <UserProfile />
+      </section>
+    </Suspense>
+  );
+};
 
-      <UserProfile/>
-    </section>
-  )
-}
-
-export default Welcome
+export default Welcome;

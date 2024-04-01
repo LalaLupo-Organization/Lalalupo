@@ -14,7 +14,7 @@ import {
   XMarkIcon,
   Bars3Icon,
 } from "@heroicons/react/24/outline";
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment, useEffect, Suspense } from "react";
 import { v4 as uuid } from "uuid";
 import LevelStepLocked from "@/public/LeveStepLocked.svg";
 import Link from "next/link";
@@ -128,7 +128,7 @@ export default function Example() {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
-    <>
+    <Suspense>
       {/*
         This example requires updating your template:
 
@@ -489,6 +489,6 @@ export default function Example() {
           {/* Secondary column (hidden on smaller screens) */}
         </aside>
       </div>
-    </>
+    </Suspense>
   );
 }
