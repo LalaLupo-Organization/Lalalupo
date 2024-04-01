@@ -11,6 +11,7 @@ import NavbarLayout from "@/components/Layouts/NavbarLayout";
 import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout";
 import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure";
 import { motion } from "framer-motion";
+import { Confetti } from "../Confetti/Confetti";
 export const ChooseTheRightSolutionBottomNav: React.FC = () => {
   const { lessonButtonClick, skipCurrentExercise } = useAssessment();
 
@@ -52,6 +53,7 @@ export const ChooseTheRightSolutionBottomNav: React.FC = () => {
               />
             ) : (
               <div className="text-center w-full mt-4 sm:mt-0">
+                <Confetti />
                 <ButtonInteractive
                   background={
                     "bg-white w-full cursor-pointer text-color-green_default font-semibold text-lg px-16"
