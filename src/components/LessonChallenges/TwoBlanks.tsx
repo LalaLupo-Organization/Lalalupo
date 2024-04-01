@@ -4,7 +4,7 @@ import { TwoBlanksExercise } from "@/types/two-blanks.types";
 import { setArrayInput, clearUserInput } from "@/features/userInputSlice";
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 // import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";
-import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper";
+import VocabularyHelper from "@/components/VocabularyHelper1/VocabularyHelper";
 
 import { useAppDispatch } from "@/hooks/useRedux";
 import { v4 as uuid } from "uuid";

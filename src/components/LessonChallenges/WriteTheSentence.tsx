@@ -6,7 +6,7 @@ import { setSingleInput, clearUserInput } from "@/features/userInputSlice";
 // import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
-import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper";
+import VocabularyHelper from "@/components/VocabularyHelper1/VocabularyHelper";
 import parse from "html-react-parser";
 
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";

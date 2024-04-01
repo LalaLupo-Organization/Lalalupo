@@ -14,7 +14,7 @@ import { motion } from "framer-motion";
 import audiowave from "@/public/audiowave.json";
 import Lottie from "lottie-react";
 import useAssessment from "@/hooks/useAssessment";
-import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper";
+import VocabularyHelper from "@/components/VocabularyHelper1/VocabularyHelper";
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import Instruction from "@/components/Headings/Instruction";
 import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble";
