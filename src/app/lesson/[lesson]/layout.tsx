@@ -76,15 +76,9 @@ export default function LessonLayout({
     }
   };
   return (
-<<<<<<< HEAD
     <div className="flex flex-col min-h-screen relative">
       <div className="flex-grow px-4">{children}</div>
       <footer className="flex-none">
-=======
-    <div className='flex flex-col h-screen'>
-      <div className='flex-grow mx-auto'>{children}</div>
-      <footer className='flex-none'>
->>>>>>> 2ce02c791e0ae117a649d719e08f86bf37509bab
         {getNavigationComponent(activeExercise)}
       </footer>
     </div>
