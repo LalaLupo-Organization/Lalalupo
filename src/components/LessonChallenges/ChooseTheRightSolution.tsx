@@ -1,0 +1,250 @@
+import "@fontsource/nunito";
+import localFont from "next/font/local";
+import { useRef, useState, useEffect } from "react";
+import { useAppDispatch } from "@/hooks/useRedux";
+import { v4 as uuid } from "uuid";
+import { setSingleInput, clearUserInput } from "@/features/userInputSlice";
+import classNames from "@/helpers/classNames";
+import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
+import Instruction from "@/components/Headings/Instruction";
+import { BaseExercise, LessonState } from "@/types/lesson.types";
+import HintArrow from "../../../public/HintArrow.svg";
+// import useSpeechSynthesis from "../hooks/useSpeechSynthesis";
+import mockimage from "@/public/sandwich.png";
+import Image from "next/image";
+import {
+  ChooseTheRightSolutionExercise,
+  IAvailableWord,
+  IHint,
+} from "@/types/choose-the-right-solution.types";
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
+import useWindowSize from "@/hooks/useWindowSize";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+
+const MoreSugarRegular = localFont({
+  src: "../../../public/MoreSugarRegular.ttf",
+  display: "swap",
+});
+export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
+  const {
+    activeExercise,
+    totalExercises,
+    lives,
+    numberComplete,
+    interactiveExercises,
+    numberFailed,
+    remainingExercises,
+  } = data;
+  function getType(
+    exercise: BaseExercise
+  ): exercise is ChooseTheRightSolutionExercise {
+    return exercise.type === "chooseTheRightSolution";
+  }
+  // const speak = useSpeechSynthesis();
+  const dispatch = useAppDispatch();
+
+  const [randomizedData, setRandomizedData] = useState(
+    () =>
+      getType(activeExercise) &&
+      [...activeExercise.availableWords, activeExercise.hint!]
+
+        .map((item: IAvailableWord | IHint) => item)
+        .sort(() => Math.random() - 0.5)
+  );
+  const windowSize = useWindowSize();
+  const [showSelected, setShowSelected] = useState({
+    word: "",
+    status: false,
+  });
+  const [activeExerciseId, setActiveExerciseId] = useState(
+    () => activeExercise?._id
+  );
+  const handleSelectedItem = (e: React.SyntheticEvent, userAnswer: string) => {
+    if (getType(activeExercise) && activeExercise.displayImage) {
+      // speak(userAnswer);
+    }
+
+    dispatch(setSingleInput(userAnswer));
+    setShowSelected({ word: userAnswer, status: true });
+  };
+
+  useEffect(() => {
+    if (activeExercise && activeExercise?._id !== activeExerciseId) {
+      setActiveExerciseId(() => activeExercise?._id);
+      dispatch(clearUserInput());
+      setShowSelected({ word: "", status: false });
+      setRandomizedData(
+        //@ts-ignore
+        () =>
+          getType(activeExercise) &&
+          [...activeExercise.availableWords, activeExercise.hint]
+            .map((item) => {
+              return item;
+            })
+            .sort(() => Math.random() - 0.5)
+      );
+    }
+    //eslint-disable-next-line
+  }, [showSelected, activeExercise?._id]);
+  return (
+    <div
+      className="flex flex-col
+
+     justify-center w-full items-center"
+    >
+      <ProgressBar
+        activeExercise={activeExercise}
+        remainingExercises={remainingExercises}
+        totalNumberOfExercises={totalExercises}
+        numberOfExercisesComplete={numberComplete}
+        interactiveExercises={interactiveExercises}
+        numberOfExercisesFailed={numberFailed}
+        lives={lives && lives}
+      />
+      <InteractiveLayout id={activeExercise && activeExercise._id}>
+        <Instruction
+          instruction={activeExercise && activeExercise?.instructions}
+        />
+
+        {/* {getType(activeExercise) && activeExercise.displayImage && (
+          <div className=" rounded-2xl pt-8  sm:w-2/4 md:w-1/3  mx-auto">
+            <Image
+              src={activeExercise.displayImageSrc}
+              height={600}
+              width={600}
+              className="rounded-2xl mx-auto "
+              alt=""
+            />
+          </div>
+        )} */}
+        <div
+          style={{
+            fontFamily: "Nunito, sans-serif",
+          }}
+          className={classNames(
+            // getType(activeExercise) && activeExercise.displayImage
+            //   ? "mt-10"
+            //   : "mt-18",
+            "grid grid-cols-2 grid-rows-2  mt-12 sm:mt-0 flex-wrap sm:p-10 justify-center  w-full sm:w-[90%]  gap-2"
+          )}
+        >
+          {randomizedData &&
+            activeExercise &&
+            //@ts-ignore
+
+            randomizedData.map((word, index) => {
+              //@ts-ignore
+              if (word?.type === "hint")
+                return <Hint index={index} hint={word as IHint} />;
+              return (
+                <AvailableAnswer
+                  word={word as IAvailableWord}
+                  handleSelectedItem={handleSelectedItem}
+                  showSelected={showSelected}
+                  activeExercise={
+                    activeExercise as ChooseTheRightSolutionExercise
+                  }
+                  key={index}
+                />
+              );
+            })}
+        </div>
+      </InteractiveLayout>
+    </div>
+  );
+};
+
+interface IAvailableAnswerProps {
+  word: IAvailableWord;
+  activeExercise: ChooseTheRightSolutionExercise;
+  handleSelectedItem: any;
+  showSelected: any;
+}
+
+function AvailableAnswer({
+  word,
+  activeExercise,
+  handleSelectedItem,
+  showSelected,
+}: IAvailableAnswerProps) {
+  return (
+    <div
+      key={uuid()}
+      className="cursor-pointer h-full w-full aspect-square"
+      onClick={
+        activeExercise?.isComplete || activeExercise?.hasFailed
+          ? undefined
+          : (e) => handleSelectedItem(e, word.label)
+      }
+    >
+      <div
+        className={classNames(
+          "bg-white",
+          (activeExercise?.isComplete || activeExercise?.hasFailed) &&
+            showSelected.word === word.label
+            ? "text-color-purple_darker border-color-purple_default !bg-active-card cursor-not-allowed"
+            : (activeExercise?.isComplete || activeExercise?.hasFailed) &&
+                showSelected.word !== word.label
+              ? "text-gray-800  cursor-not-allowed"
+              : showSelected.word === word.label
+                ? "text-color-purple_darker border-color-purple_default !bg-active-card cursor-pointer"
+                : "cursor-pointer text-gray_default",
+
+          "text-left box-border p-2 sm:p-2 border-2 rounded-lg font-bold active:duration-300 active:ease-in outline-none h-full flex flex-col gap-1 capitalize relative z-1"
+        )}
+      >
+        <div className="h-full w-full absolute rounded-lg striped-bg -z-10 border"></div>
+
+        {word.hasImage && word.imageSrc && (
+          <div className="flex-1 flex justify-center items-center overflow-hidden">
+            <Image
+              src={word.imageSrc}
+              height={200}
+              width={200}
+              className="rounded-2xl mx-auto "
+              alt=""
+            />
+          </div>
+        )}
+        {word.label}
+      </div>
+    </div>
+  );
+}
+
+function Hint({ hint, index }: { hint: IHint; index: number }) {
+  const windowSize = useWindowSize();
+  return (
+    <div className="group bg-white relative rounded-lg p-4 flex flex-col items-center justify-center z-1 text-hint border-2 border-hint">
+      <div className="h-full w-full absolute  rounded-lg striped-bg hint -z-10 border-hint border"></div>
+      <span
+        className={classNames(
+          index % 2 === 0
+            ? "md:-left-[103%] md:flex-row-reverse"
+            : "md:-right-[103%]",
+          "absolute top-1 flex gap-2"
+        )}
+      >
+        {windowSize.width > 768 && (
+          <Image
+            className={index % 2 === 0 ? "rotate-180" : ``}
+            src={HintArrow}
+            width={60}
+            height={10}
+            alt="Arrow"
+          />
+        )}
+        <p
+          className={classNames(
+            index % 2 === 0 ? "mt-[12px]" : "mb-[12px]",
+            "text-hint font-medium text-lg",
+            MoreSugarRegular.className
+          )}
+        >
+          Memory helper
+        </p>
+      </span>
+      <p className="text-hint text-center font-semibold flex">{hint.label}</p>
+    </div>
+  );
+}

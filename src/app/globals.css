@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.striped-bg {
+    background: repeating-linear-gradient(-45deg,
+                #d1d1d1,
+                #d1d1d1 4px,
+                #ffffff 4px,
+                #ffffff 8px);
+                
+}
+
+
+.striped-bg-light {
+    background: repeating-linear-gradient(-45deg,
+                #d1d1d1,
+                #d1d1d1 2px,
+                #ffffff 2px,
+                #ffffff 10px);
+                
+}
+
+.striped-bg.absolute {
+    top: 5px;
+        left: 5px
+}
+
+.text-color-purple_darker.border-color-purple_default .striped-bg {
+    border: 2px solid #6949FF;
+    background: #6949FF !important;
+    
+}
+
+.striped-bg.hint {
+    background: repeating-linear-gradient(-45deg,
+                #3EEDF7,
+                #3EEDF7 2px,
+                #ffffff 4px,
+                #ffffff 8px);
+}
+
+@font-face {
+    font-family: 'More Sugar';
+    src: url('../../public/MoreSugar-Thin.ttf') format('ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'More Sugar';
+    src: url('../../public/MoreSugarRegular.ttf') format('ttf');
+    font-weight: 400;
+    font-style: normal;
+}
