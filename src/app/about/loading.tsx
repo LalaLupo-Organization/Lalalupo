@@ -1,3 +1,3 @@
-export const About = () => {
-  return <section>About</section>;
-};
+export default function Loading() {
+  return <section>Home</section>;
+}
