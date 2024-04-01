@@ -10,8 +10,8 @@ import Footer from "@/components/Footers/Footer";
 export default function RootLayout({ children }: { children: any }) {
   return (
     <html lang='en'>
-      <Suspense fallback={<div>Loading...</div>}>
-        <ClerkProvider>
+      <ClerkProvider>
+        <Suspense fallback={<div>Loading...</div>}>
           <ThemeProvider>
             <body>
               <Navbar />
@@ -20,8 +20,8 @@ export default function RootLayout({ children }: { children: any }) {
               <Footer />
             </body>
           </ThemeProvider>
-        </ClerkProvider>
-      </Suspense>
+        </Suspense>
+      </ClerkProvider>
     </html>
   );
 }
