@@ -35,7 +35,7 @@ export default function SuccessToFailureLayout({
           src="https://ispeakitalian.herokuapp.com/incorrect.mp3"
         ></audio>
       )}
-      <div className="sm:col-span-5 col-span-4 flex items-center col-start-1">
+      <div className="sm:col-span-5 col-span-4 flex items-center col-start-1 ml-4 sm:ml-0">
         <div>
           {success ? (
             <CheckIcon className="h-12 sm:h-14 text-color-green_default bg-white rounded-xl" />
