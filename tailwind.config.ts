@@ -22,6 +22,7 @@ module.exports = {
         hint: "#3EEDF7",
         disabled: "#D8D8D8",
         "active-card": "#F0EDFF",
+        "nav-border-color": "#E0DFDF",
       },
       borderRadius: {
         primary: "50px",

@@ -30,17 +30,17 @@ export default function BottomNavigation({
       transition={{ duration: 0.5 }}
       className={classNames(
         message
-          ? "sm:border-t am:p-2 sm:p-4 sm:px-6"
-          : "p-2 sm:p-4 sm:px-6 border-t",
-        "fixed left-0 bottom-0 w-full bg-white"
+          ? "sm:border-t sm:p-4 sm:px-6"
+          : "p-2 py-5 sm:p-4 sm:px-6 border-t",
+        "fixed left-0 bottom-0 w-full bg-white border-nav-border-color"
       )}
     >
       <div
         className={classNames(
-          "sm:px-10 md:px-16 lg:px-44",
+          "sm:px-10 md:px-16 lg:px-44 sm:flex sm:items-center sm:h-[133px]",
           color,
           dashed ? "sm:py-10 striped-bg-light" : "",
-          message ? "p-4" : "py-4 px-2"
+          message ? "p-4 sm:py-10" : "py-4 px-2"
         )}
       >
         {/* <div className={`grid-cols-${gridColsNumber} grid`}>{children}</div> */}
