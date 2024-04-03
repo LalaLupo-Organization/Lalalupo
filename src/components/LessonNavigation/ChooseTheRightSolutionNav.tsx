@@ -81,11 +81,7 @@ export const ChooseTheRightSolutionBottomNav: React.FC = () => {
   if (messages.activeExerciseWrongAnswer) {
     return (
       <motion.div>
-        <NavbarLayout
-          message
-          color={"bg-error sm:px-10 md:px-14 lg:px-24"}
-          gridColsNumber={6}
-        >
+        <NavbarLayout message color={"bg-error"} gridColsNumber={6}>
           <SuccessToFailureLayout
             success={false}
             solution={
