@@ -39,7 +39,7 @@ export default function BottomNavigation({
           "p-2 py-4 sm:flex sm:items-center",
           color,
           dashed ? "sm:py-10 striped-bg-light" : "",
-          message ? "pt-6 pb-3 sm:pb-6" : ""
+          message ? "pt-6 pb-3 sm:pb-6 px-4 sm:px-2" : ""
         )}
       >
         <Container>
