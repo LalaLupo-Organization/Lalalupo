@@ -4,14 +4,6 @@ import confetti from "@/public/confetti.json";
 import { useEffect, useState } from "react";
 export const Confetti = () => {
   const [play, setPlay] = useState(true);
-  useEffect(() => {
-    let timeout;
-    if (play) {
-      timeout = setTimeout(() => {
-        setPlay(false);
-      }, 3000);
-    }
-  }, [play]);
   return play ? (
     <motion.div
       initial={{ opacity: 1 }}
