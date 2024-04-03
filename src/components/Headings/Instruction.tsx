@@ -16,7 +16,7 @@ export default function Instruction({ instruction, position }: Props) {
     <h1
       className={classNames(
         position ? `text-${position}` : "text-center  sm:text-left",
-        `${myFont.className} text-xl w-[90%] sm:text-2xl 2xl:text-3xl px-10 2xl:px-6`
+        `${myFont.className} text-xl w-[90%] mb-12 sm:mb-0 sm:text-2xl 2xl:text-3xl px-10 2xl:px-6`
       )}
     >
       {instruction}
