@@ -34,12 +34,14 @@ export const ChooseTheRightSolutionBottomNav: React.FC = () => {
 
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [userInput, messages, lessonButtonClick]);
+
   if (messages.activeExerciseComplete) {
+    // if (true) {
     return (
-      <motion.div className="bg-white p-4">
+      <motion.div className="bg-white">
         <NavbarLayout
           message
-          color={"bg-color-green_default sm:px-10 md:px-14 lg:px-24"}
+          color={"bg-color-green_default"}
           gridColsNumber={1}
         >
           <SuccessToFailureLayout success={true}>

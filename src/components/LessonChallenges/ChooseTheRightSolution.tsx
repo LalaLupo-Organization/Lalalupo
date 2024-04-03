@@ -15,11 +15,11 @@ import Image from "next/image";
 import {
   ChooseTheRightSolutionExercise,
   IAvailableWord,
-  IHint,
 } from "@/types/choose-the-right-solution.types";
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import useWindowSize from "@/hooks/useWindowSize";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { Icon } from "../Icons/Icon";
 
 const MoreSugarRegular = localFont({
   src: "../../../public/MoreSugarRegular.ttf",
@@ -46,9 +46,9 @@ export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
   const [randomizedData, setRandomizedData] = useState(
     () =>
       getType(activeExercise) &&
-      [...activeExercise.availableWords, activeExercise.hint!]
+      activeExercise.availableWords
 
-        .map((item: IAvailableWord | IHint) => item)
+        .map((item) => item)
         .sort(() => Math.random() - 0.5)
   );
   const windowSize = useWindowSize();
@@ -77,7 +77,7 @@ export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
         //@ts-ignore
         () =>
           getType(activeExercise) &&
-          [...activeExercise.availableWords, activeExercise.hint]
+          activeExercise.availableWords
             .map((item) => {
               return item;
             })
@@ -103,6 +103,7 @@ export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
       />
       <InteractiveLayout id={activeExercise && activeExercise._id}>
         <Instruction
+          position="center"
           instruction={activeExercise && activeExercise?.instructions}
         />
 
@@ -125,29 +126,24 @@ export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
             // getType(activeExercise) && activeExercise.displayImage
             //   ? "mt-10"
             //   : "mt-18",
-            "grid grid-cols-2 grid-rows-2  mt-12 sm:mt-0 flex-wrap sm:p-10 justify-center  w-full sm:w-[90%] 2xl:w-full  gap-2"
+            "grid grid-cols-3  mt-12 sm:mt-0 flex-wrap sm:p-10 justify-center  w-full sm:w-[90%] 2xl:w-full gap-3"
           )}
         >
           {randomizedData &&
             activeExercise &&
             //@ts-ignore
 
-            randomizedData.map((word, index) => {
-              //@ts-ignore
-              if (word?.type === "hint")
-                return <Hint index={index} hint={word as IHint} />;
-              return (
-                <AvailableAnswer
-                  word={word as IAvailableWord}
-                  handleSelectedItem={handleSelectedItem}
-                  showSelected={showSelected}
-                  activeExercise={
-                    activeExercise as ChooseTheRightSolutionExercise
-                  }
-                  key={index}
-                />
-              );
-            })}
+            randomizedData.map((word, index) => (
+              <AvailableAnswer
+                word={word as IAvailableWord}
+                handleSelectedItem={handleSelectedItem}
+                showSelected={showSelected}
+                activeExercise={
+                  activeExercise as ChooseTheRightSolutionExercise
+                }
+                key={index}
+              />
+            ))}
         </div>
       </InteractiveLayout>
     </div>
@@ -170,7 +166,7 @@ function AvailableAnswer({
   return (
     <div
       key={uuid()}
-      className="cursor-pointer h-full w-full aspect-square"
+      className="cursor-pointer h-full w-full"
       onClick={
         activeExercise?.isComplete || activeExercise?.hasFailed
           ? undefined
@@ -190,61 +186,62 @@ function AvailableAnswer({
                 ? "text-color-purple_darker border-color-purple_default !bg-active-card cursor-pointer"
                 : "cursor-pointer text-gray_default",
 
-          "text-left box-border p-2 sm:p-2 border-2 rounded-lg font-bold active:duration-300 active:ease-in outline-none h-full flex flex-col gap-1 capitalize relative z-1"
+          "text-left box-border p-2 sm:p-2 border-2 rounded-lg font-bold active:duration-300 active:ease-in outline-none h-full flex flex-col items-center gap-1 capitalize relative z-1"
         )}
       >
         <div className="h-full w-full absolute rounded-lg striped-bg -z-10 border"></div>
 
+        <p>{word.label}</p>
+
         {word.hasImage && word.imageSrc && (
-          <div className="flex-1 flex justify-center items-center overflow-hidden">
+          <div className="flex-1 p-4 sm:p-6 md:p-8 bg-light-blue rounded-lg flex justify-center items-center overflow-hidden">
             <Image
               src={word.imageSrc}
-              height={200}
-              width={200}
+              height={150}
+              width={150}
               className="rounded-2xl mx-auto "
               alt=""
             />
           </div>
         )}
-        {word.label}
       </div>
     </div>
   );
 }
 
-function Hint({ hint, index }: { hint: IHint; index: number }) {
-  const windowSize = useWindowSize();
-  return (
-    <div className="group bg-white relative rounded-lg p-4 flex flex-col items-center justify-center z-1 text-hint border-2 border-hint">
-      <div className="h-full w-full absolute  rounded-lg striped-bg hint -z-10 border-hint border"></div>
-      <span
-        className={classNames(
-          index % 2 === 0
-            ? "md:-left-[103%] md:flex-row-reverse"
-            : "md:-right-[103%]",
-          "absolute top-1 flex gap-2"
-        )}
-      >
-        {windowSize.width > 768 && (
-          <Image
-            className={index % 2 === 0 ? "rotate-180" : ``}
-            src={HintArrow}
-            width={60}
-            height={10}
-            alt="Arrow"
-          />
-        )}
-        <p
-          className={classNames(
-            index % 2 === 0 ? "mt-[12px]" : "mb-[12px]",
-            "text-hint font-medium text-lg",
-            MoreSugarRegular.className
-          )}
-        >
-          Memory helper
-        </p>
-      </span>
-      <p className="text-hint text-center font-semibold flex">{hint.label}</p>
-    </div>
-  );
-}
+// function Hint({ hint, index }: { hint: IHint; index: number }) {
+//   const windowSize = useWindowSize();
+//   return (
+//     <div className="group bg-white relative rounded-lg p-4 flex flex-col items-center justify-center z-1 text-hint border-2 border-hint">
+//       <div className="h-full w-full absolute  rounded-lg striped-bg hint -z-10 border-hint border"></div>
+//       <span
+//         className={classNames(
+//           index % 2 === 0
+//             ? "md:-left-[103%] md:flex-row-reverse"
+//             : "md:-right-[103%]",
+//           "absolute top-1 flex gap-2"
+//         )}
+//       >
+//         {windowSize.width > 768 && (
+//           <Image
+//             className={index % 2 === 0 ? "rotate-180" : ``}
+//             src={HintArrow}
+//             width={60}
+//             height={10}
+//             alt="Arrow"
+//           />
+//         )}
+//         <p
+//           className={classNames(
+//             index % 2 === 0 ? "mt-[12px]" : "mb-[12px]",
+//             "text-hint font-medium text-lg",
+//             MoreSugarRegular.className
+//           )}
+//         >
+//           Memory helper
+//         </p>
+//       </span>
+//       <p className="text-hint text-center font-semibold flex">{hint.label}</p>
+//     </div>
+//   );
+// }

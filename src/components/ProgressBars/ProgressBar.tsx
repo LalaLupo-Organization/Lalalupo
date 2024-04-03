@@ -45,17 +45,17 @@ export const ProgressBar = ({
 
   return (
     // <div className="container sticky z-30 mx-auto bg-white top-24 mt-16 sm:mb-18 mb-10 w-full sm:px-12 md:px-18 lg:px-44">
-    <div className="sticky z-30 bg-white top-0 pt-20 pb-10 sm:mb-18 mb-10 w-full sm:px-12 md:px-18 lg:px-44">
-      <Container className="md:px-4">
-        <div className="flex items-center gap-4 w-full">
-          <div className="h-5 2xl:h-7 px-1 rounded-lg striped-bg-light md:w-full flex-1  sm:w-3/4  flex items-center w-full ">
+    <div className="sticky z-30 bg-white top-0 pt-20 pb-10 sm:mb-18 mb-10 w-full">
+      <Container className="">
+        <div className="flex items-center gap-4 sm:w-3/4 mx-auto sm:px-2">
+          <div className="h-5 2xl:h-7 p-0.5 rounded-full striped-bg-light flex-1 flex items-center w-full border border-gray-200 ">
             <motion.div
               transition={{ type: "spring" }}
               className={classNames(
                 activeExercise?.hasFailed
                   ? "bg-failed"
                   : "bg-color-purple_default",
-                "h-full rounded-lg relative  transition-all flex pt-1  justify-end"
+                "h-full rounded-full relative  transition-all flex pt-1  justify-end"
               )}
               style={{
                 width: `${((numberOfExercisesComplete + numberOfExercisesFailed) / totalNumberOfExercises) * 100}%`,

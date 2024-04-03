@@ -20,7 +20,7 @@ export default function ButtonInteractiveLesson({
         className={`${shadowColor} flex-1 rounded-primary pb-1`}
       >
         <div
-          className={`tracking-wide items-center py-3 2xl:py-6 justify-center sm:text-base md:text-lg 2xl:text-2xl px-12 lg:px-16 2xl:px-20 rounded-primary font-medium text-center ${background} `}
+          className={`tracking-wide items-center py-3 2xl:py-6 justify-center sm:text-base md:text-lg 2xl:text-2xl sm:px-6 md:px-12 2xl:px-16 rounded-primary font-medium text-center ${background} `}
         >
           {lottie ? lottie : buttonDisplayText}
         </div>

@@ -23,6 +23,7 @@ module.exports = {
         disabled: "#D8D8D8",
         "active-card": "#F0EDFF",
         "nav-border-color": "#E0DFDF",
+        "light-blue": "rgba(36, 107, 253, 0.08)",
       },
       borderRadius: {
         primary: "50px",

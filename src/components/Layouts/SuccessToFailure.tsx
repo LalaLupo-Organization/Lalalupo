@@ -7,6 +7,7 @@ import {
 } from "@heroicons/react/16/solid";
 import classNames from "@/helpers/classNames";
 import useAssessment from "@/hooks/useAssessment";
+import { Icon } from "../Icons/Icon";
 export default function SuccessToFailureLayout({
   children,
   success,
@@ -38,12 +39,18 @@ export default function SuccessToFailureLayout({
       <div className="sm:col-span-5 col-span-4 flex items-center col-start-1 ml-4 sm:ml-0">
         <div>
           {success ? (
-            <CheckIcon className="h-12 sm:h-14 text-color-green_default bg-white rounded-xl" />
+            <Icon
+              name="SuccessTickSquare"
+              className="h-10 sm:h-14 fill-white"
+            />
           ) : (
-            <XMarkIcon className="h-12 sm:h-14 text-xs text-error bg-white rounded-xl" />
+            <Icon
+              name="FailureSquare"
+              className="h-10 sm:h-14 text-xs fill-white"
+            />
           )}
         </div>
-        <div className="pb-4 sm:pb-0 text-white">
+        <div className="pb-2 text-white">
           {success ? (
             <>
               {meaning ? (

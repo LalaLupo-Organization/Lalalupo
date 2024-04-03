@@ -21,35 +21,26 @@ const initialState: LessonState = {
   activeExercise: {
     type: "chooseTheRightSolution",
     _id: "635f9a0fefff76c1f466c9be",
-    solution: "panino",
+    solution: "Latte",
     // availableWords: ["panino", "ravioli", "espresso"],
     availableWords: [
       {
-        label: "panino",
+        label: "Zucchero",
         hasImage: true,
-        imageSrc:
-          "https://imagedelivery.net/_Fh-Z9aj1rlSxXMDl1yqsg/b753daa9-b6c7-4773-a681-e1f881c9f600/character",
+        imageSrc: "/assets/ExercisesImages/Zucchero.png",
       },
       {
-        label: "esspresso",
+        label: "Gelato",
         hasImage: true,
-        imageSrc:
-          "https://img.freepik.com/free-vector/realistic-cup-black-brewed-coffee-saucer-vector-illustration_1284-66002.jpg?w=740&t=st=1711887715~exp=1711888315~hmac=6cf50791b4dbf41e4903160bfddc38baebfdf8c5694b56c358833e34a021576b",
+        imageSrc: "/assets/ExercisesImages/Gelato.png",
       },
       {
-        label: "ravioli",
+        label: "Latte",
         hasImage: true,
-        imageSrc:
-          "https://img.freepik.com/free-vector/national-dishes-from-meat-dough-realistic-set-with-dumplings_98292-8237.jpg?w=900&t=st=1711890354~exp=1711890954~hmac=21369a2cc6a0f75c0fde0fd051bef0e64c0131b708d14444d0e655fcae57a29e",
+        imageSrc: "/assets/ExercisesImages/Milk.png",
       },
     ],
-    hint: {
-      label: "What is sandwich in italian??",
-      hasImage: false,
-      imageSrc: "",
-      type: "hint",
-    },
-    instructions: 'Which one is "Sandwich"?',
+    instructions: 'Which one is "Milk"?',
     displayImage: true,
     displayImageSrc:
       "https://imagedelivery.net/_Fh-Z9aj1rlSxXMDl1yqsg/b753daa9-b6c7-4773-a681-e1f881c9f600/character",
@@ -65,10 +56,19 @@ const initialState: LessonState = {
       // availableWords: ["panino", "ravioli", "espresso"],
       availableWords: [
         {
-          label: "panino",
+          label: "Zucchero",
           hasImage: true,
-          imageSrc:
-            "https://img.freepik.com/free-vector/realistic-cup-black-brewed-coffee-saucer-vector-illustration_1284-66002.jpg?w=740&t=st=1711887715~exp=1711888315~hmac=6cf50791b4dbf41e4903160bfddc38baebfdf8c5694b56c358833e34a021576b",
+          imageSrc: "/assets/ExercisesImages/Zucchero.png",
+        },
+        {
+          label: "Gelato",
+          hasImage: true,
+          imageSrc: "/assets/ExercisesImages/Gelato.png",
+        },
+        {
+          label: "Latte",
+          hasImage: true,
+          imageSrc: "/assets/ExercisesImages/Milk.png",
         },
       ],
       instructions: "What is this?",
