@@ -36,12 +36,12 @@ export default function SuccessToFailureLayout({
           src="https://ispeakitalian.herokuapp.com/incorrect.mp3"
         ></audio>
       )}
-      <div className="sm:col-span-5 col-span-4 flex items-center col-start-1">
+      <div className="flex items-center">
         <div>
           {success ? (
             <Icon
               name="SuccessTickSquare"
-              className="h-10 sm:h-14 fill-color-green_default"
+              className="h-10 sm:h-14 fill-color_green_default"
             />
           ) : (
             <Icon
@@ -63,7 +63,7 @@ export default function SuccessToFailureLayout({
                   </p>
                 </div>
               ) : (
-                <div className="ml-2 text-color-green_default">
+                <div className="ml-2 text-color_green_default">
                   <h1 className="sm:text-xl text-2xl font-bold ">Correct!</h1>
                   <p className="leading-[0.5rem]">You are doing awesome!</p>
                 </div>

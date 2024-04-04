@@ -178,12 +178,12 @@ function AvailableAnswer({
           "bg-white",
           (activeExercise?.isComplete || activeExercise?.hasFailed) &&
             showSelected.word === word.label
-            ? "text-color-purple_darker border-color-purple_default !bg-active-card cursor-not-allowed"
+            ? "text-color_purple_darker border-color_purple_default !bg-active_card cursor-not-allowed"
             : (activeExercise?.isComplete || activeExercise?.hasFailed) &&
                 showSelected.word !== word.label
               ? "text-gray-800  cursor-not-allowed"
               : showSelected.word === word.label
-                ? "text-color-purple_darker border-color-purple_default !bg-active-card cursor-pointer"
+                ? "text-color_purple_darker border-color_purple_default !bg-active_card cursor-pointer"
                 : "cursor-pointer text-gray_default",
 
           "text-left box-border p-2 sm:p-2 border-2 rounded-lg font-bold active:duration-300 active:ease-in outline-none h-full flex flex-col items-center gap-1 capitalize relative z-1"
@@ -194,7 +194,7 @@ function AvailableAnswer({
         <p>{word.label}</p>
 
         {word.hasImage && word.imageSrc && (
-          <div className="flex-1 p-4 sm:p-6 md:p-8 bg-light-blue rounded-lg flex justify-center items-center overflow-hidden">
+          <div className="flex-1 p-4 sm:p-6 md:p-8 bg-light_blue rounded-lg flex justify-center items-center overflow-hidden">
             <Image
               src={word.imageSrc}
               height={150}

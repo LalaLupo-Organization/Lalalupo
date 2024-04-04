@@ -54,9 +54,9 @@ export default function SelectTheMissingWord({ data }: { data: LessonState }) {
 
   return (
     <div
-      className='flex flex-col
+      className="flex flex-col
 
-   justify-center w-full items-center'
+   justify-center w-full items-center"
     >
       <ProgressBar
         remainingExercises={remainingExercises}
@@ -80,7 +80,7 @@ export default function SelectTheMissingWord({ data }: { data: LessonState }) {
                   initial={{ y: "10px" }}
                   animate={{ y: "0px" }}
                   key={uuid()}
-                  className=' inline-block sm:text-base ml-1 border-b-2 relative  font-fredoka tracking-wide border-color-purple_default  border-dashed  text-color-purple_darker text-center font-semibold'
+                  className=" inline-block sm:text-base ml-1 border-b-2 relative  font-fredoka tracking-wide border-color_purple_default  border-dashed  text-color_purple_darker text-center font-semibold"
                   style={{
                     width: `${showSelected.word !== "" ? showSelected.word.length * 13 + "px" : item.length * 13 + "px"}`,
                   }}
@@ -89,7 +89,7 @@ export default function SelectTheMissingWord({ data }: { data: LessonState }) {
                 </motion.span>
               ) : getType(activeExercise) &&
                 item === activeExercise?.underlined ? (
-                <span key={uuid()} className='underline'>
+                <span key={uuid()} className="underline">
                   {" "}
                   {item}{" "}
                 </span>
@@ -99,12 +99,12 @@ export default function SelectTheMissingWord({ data }: { data: LessonState }) {
             )}
         </div>
 
-        <div className='grid grid-cols-3 mt-12 sm:mt-20    flex-wrap justify-center mx-auto w-full '>
+        <div className="grid grid-cols-3 mt-12 sm:mt-20    flex-wrap justify-center mx-auto w-full ">
           {getType(activeExercise) &&
             activeExercise?.availableWords.map((word, index) => (
               <div
                 key={uuid()}
-                className='m-1 cursor-pointer'
+                className="m-1 cursor-pointer"
                 onClick={
                   activeExercise?.isComplete || activeExercise?.hasFailed
                     ? undefined
@@ -115,13 +115,13 @@ export default function SelectTheMissingWord({ data }: { data: LessonState }) {
                   className={classNames(
                     (activeExercise?.isComplete || activeExercise?.hasFailed) &&
                       showSelected.word === word
-                      ? "border-color-purple_default  border-2  text-color-purple_darker font-semibold  bg-purple-100  cursor-not-allowed"
+                      ? "border-color_purple_default  border-2  text-color_purple_darker font-semibold  bg-purple-100  cursor-not-allowed"
                       : (activeExercise?.isComplete ||
                             activeExercise?.hasFailed) &&
                           showSelected.word !== word
                         ? "text-gray-800 opacity-40 bg-gray-50   cursor-not-allowed"
                         : showSelected.word === word
-                          ? "border-color-purple_default border-2 text-color-purple_darker bg-purple-100 font-semibold cursor-pointer"
+                          ? "border-color_purple_default border-2 text-color_purple_darker bg-purple-100 font-semibold cursor-pointer"
                           : "cursor-pointer",
 
                     "text-center bg-white box-border p-2 sm:p-2 border border-2 rounded-lg font-bold active:duration-300 active:ease-in outline-none"

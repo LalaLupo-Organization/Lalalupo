@@ -75,7 +75,7 @@ export default function MissingSyllable({ data }: { data: LessonState }) {
               item === activeExercise?.solution ? (
                 <div key={uuid()}>
                   <span
-                    className=" inline-block  ml-1 border-b-2 relative   text-xl font-fredoka tracking-wider border-color-purple_default  border-dashed  text-color-purple_darker text-center font-semibold"
+                    className=" inline-block  ml-1 border-b-2 relative   text-xl font-fredoka tracking-wider border-color_purple_default  border-dashed  text-color_purple_darker text-center font-semibold"
                     style={{
                       width: `${showSelected.word !== "" ? showSelected.word.length * 13 + "px" : item.length * 13 + "px"}`,
                     }}

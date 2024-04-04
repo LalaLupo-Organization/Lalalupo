@@ -8,16 +8,14 @@ import Container from "../Container";
 type Props = {
   color: string;
   dashed?: boolean;
-  gridColsNumber: number;
+  gridColsNumber?: number; //TODO
   children: React.ReactNode;
   message?: boolean;
 };
 
 export default function BottomNavigation({
   color,
-  gridColsNumber,
   children,
-  dashed = false,
   message = false,
 }: Props) {
   return (
@@ -34,12 +32,12 @@ export default function BottomNavigation({
     >
       <div
         className={classNames(
-          "py-10 px-4 sm:px-6 sm:flex sm:items-center",
+          "py-6 sm:py-10 px-4 sm:px-6 sm:flex sm:items-center",
           color
         )}
       >
         <Container>
-          <div className="flex flex-col gap-2 sm:w-3/4 mx-auto sm:flex-row justify-center sm:justify-between sm:items-center">
+          <div className="flex flex-col gap-3 sm:w-3/4 mx-auto sm:flex-row justify-center sm:justify-between sm:items-center">
             {children}
           </div>
         </Container>

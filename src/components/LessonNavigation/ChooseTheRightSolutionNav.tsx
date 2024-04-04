@@ -39,11 +39,7 @@ export const ChooseTheRightSolutionBottomNav: React.FC = () => {
     // if (true) {
     return (
       <motion.div className="bg-white">
-        <NavbarLayout
-          message
-          color={"bg-color-green_lighter"}
-          gridColsNumber={1}
-        >
+        <NavbarLayout message color={"bg-color_green_lighter"}>
           <SuccessToFailureLayout success={true}>
             {messages.loading ? (
               <ButtonInteractive
@@ -58,7 +54,7 @@ export const ChooseTheRightSolutionBottomNav: React.FC = () => {
                 <Confetti />
                 <ButtonInteractive
                   background={
-                    "bg-color-green_default text-white w-full cursor-pointer  font-semibold text-lg sm:w-[220px] success"
+                    "bg-color_green_default text-white w-full cursor-pointer  font-semibold text-lg sm:w-[220px] success"
                   }
                   lessonButtonClick={lessonButtonClick}
                   buttonDisplayText={"Continue"}
@@ -82,7 +78,7 @@ export const ChooseTheRightSolutionBottomNav: React.FC = () => {
   if (messages.activeExerciseWrongAnswer) {
     return (
       <motion.div>
-        <NavbarLayout message color={"bg-error_lighter"} gridColsNumber={6}>
+        <NavbarLayout message color={"bg-error_lighter"}>
           <SuccessToFailureLayout
             success={false}
             solution={
@@ -126,7 +122,7 @@ export const ChooseTheRightSolutionBottomNav: React.FC = () => {
   }
 
   return (
-    <NavbarLayout dashed color={"bg-white"} gridColsNumber={1}>
+    <NavbarLayout color={"bg-white"}>
       <InActiveToActiveLayout>
         <ButtonInteractive
           background={
@@ -141,7 +137,7 @@ export const ChooseTheRightSolutionBottomNav: React.FC = () => {
         <InActiveToActiveLayout>
           <ButtonInteractive
             background={
-              " bg-disabled border border-gray-200/70 text-disabled-text cursor-not-allowed sm:w-[220px] "
+              " bg-disabled border border-gray-200/70 text-disabled_text cursor-not-allowed sm:w-[220px] "
             }
             lessonButtonClick={null}
             buttonDisplayText={"CHECK"}

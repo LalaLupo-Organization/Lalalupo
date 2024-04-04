@@ -18,7 +18,7 @@ export default function ButtonInteractiveLesson({
 }) {
   const generateStripedBackground = () =>
     status === "success"
-      ? "success-striped-bg border-color-green_default"
+      ? "success-striped-bg border-color_green_default"
       : status == "failure"
         ? "failure-striped-bg border-error"
         : "striped-bg";

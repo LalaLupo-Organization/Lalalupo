@@ -87,9 +87,9 @@ export default function MultipleAnswers({ data }: { data: LessonState }) {
 
   return (
     <div
-      className='flex flex-col
+      className="flex flex-col
 
-   justify-center w-full items-center'
+   justify-center w-full items-center"
     >
       <ProgressBar
         remainingExercises={remainingExercises}
@@ -104,19 +104,19 @@ export default function MultipleAnswers({ data }: { data: LessonState }) {
           instruction={activeExercise && activeExercise.instructions}
         />
         <Image
-          src='https://imagedelivery.net/_Fh-Z9aj1rlSxXMDl1yqsg/519018b0-2574-467e-bbab-9084f1fa5e00/character'
-          alt=''
+          src="https://imagedelivery.net/_Fh-Z9aj1rlSxXMDl1yqsg/519018b0-2574-467e-bbab-9084f1fa5e00/character"
+          alt=""
           width={32}
           height={32}
-          className='w-32 sm:w-44 relative top-2 sm:top-4'
+          className="w-32 sm:w-44 relative top-2 sm:top-4"
         />
 
-        <div className='grid-cols-3   gap-1 border-2 text-sm rounded-xl bg-blue-50 p-1  grid  mb-40 sm:text-base sm:w-full'>
+        <div className="grid-cols-3   gap-1 border-2 text-sm rounded-xl bg-blue-50 p-1  grid  mb-40 sm:text-base sm:w-full">
           {randomized &&
             randomized.map((item, index) => (
               <div
                 key={uuid()}
-                className='row-span-2 cursor-pointer'
+                className="row-span-2 cursor-pointer"
                 onClick={
                   activeExercise?.isComplete || activeExercise?.hasFailed
                     ? undefined
@@ -127,7 +127,7 @@ export default function MultipleAnswers({ data }: { data: LessonState }) {
                   className={classNames(
                     (activeExercise?.isComplete || activeExercise?.hasFailed) &&
                       showSelected[item.italian] === item.italian
-                      ? "border-color-purple_default border-2 text-color-purple_darker bg-purple-100 font-semibold cursor-not-allowed"
+                      ? "border-color_purple_default border-2 text-color_purple_darker bg-purple-100 font-semibold cursor-not-allowed"
                       : (activeExercise?.isComplete ||
                             activeExercise?.hasFailed) &&
                           showSelected[item.italian] !== item.italian
@@ -137,7 +137,7 @@ export default function MultipleAnswers({ data }: { data: LessonState }) {
                             item.correct
                           ? "text-yellow-500 border-yellow-500 cursor-not-allowed border-2"
                           : showSelected[item.italian] === item.italian
-                            ? "border-color-purple_default border-2 text-color-purple_darker bg-purple-100 font-semibold cursor-pointer"
+                            ? "border-color_purple_default border-2 text-color_purple_darker bg-purple-100 font-semibold cursor-pointer"
                             : "cursor-pointer",
 
                     "text-center bg-white box-border p-2 sm:p-2 border border-2 rounded-lg font-bold active:duration-300 active:ease-in outline-none"

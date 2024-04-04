@@ -102,7 +102,7 @@ export default function BottomNavigation() {
       ) : (
         <InActiveToActiveLayout>
           <ButtonInteractiveLesson
-            background={"bg-color-purple_darker text-white cursor-pointer"}
+            background={"bg-color_purple_darker text-white cursor-pointer"}
             lessonButtonClick={lessonButtonClick}
             buttonDisplayText={"CHECK"}
             shadowColor={"bg-color-purple_deep"}

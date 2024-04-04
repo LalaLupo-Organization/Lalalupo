@@ -108,13 +108,13 @@ export default function ListenAndSelect({ data }: { data: LessonState }) {
                   className={classNames(
                     (activeExercise?.isComplete || activeExercise?.hasFailed) &&
                       showSelected.word === word[0]
-                      ? "border-color-purple_default border-2 text-color-purple_darker bg-purple-100 font-semibold cursor-not-allowed"
+                      ? "border-color_purple_default border-2 text-color_purple_darker bg-purple-100 font-semibold cursor-not-allowed"
                       : (activeExercise?.isComplete ||
                             activeExercise?.hasFailed) &&
                           showSelected.word !== word[0]
                         ? "text-gray-800  cursor-not-allowed"
                         : showSelected.word === word[0]
-                          ? "border-color-purple_default border-2 text-color-purple_darker bg-purple-100 font-semibold cursor-pointer"
+                          ? "border-color_purple_default border-2 text-color_purple_darker bg-purple-100 font-semibold cursor-pointer"
                           : "cursor-pointer",
 
                     "text-center flex-1 bg-white box-border p-2 sm:p-2 border border-2 rounded-lg font-bold active:duration-300 active:ease-in outline-none"

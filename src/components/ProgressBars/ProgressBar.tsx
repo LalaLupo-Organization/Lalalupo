@@ -54,7 +54,7 @@ export const ProgressBar = ({
               className={classNames(
                 activeExercise?.hasFailed
                   ? "bg-failed"
-                  : "bg-color-purple_default",
+                  : "bg-color_purple_default",
                 "h-full rounded-full relative  transition-all flex pt-1  justify-end"
               )}
               style={{

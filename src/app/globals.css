@@ -34,7 +34,7 @@
 }
 
 
-.text-color-purple_darker.border-color-purple_default .striped-bg {
+.text-color_purple_darker.border-color_purple_default .striped-bg {
     border: 2px solid #6949FF;
     background: #6949FF !important;
     

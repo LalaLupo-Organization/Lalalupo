@@ -127,7 +127,7 @@ export default function PartOfAWord({ data }: { data: LessonState }) {
                       <div key={uuid()} className=" inline-flex">
                         <input
                           ref={index === activeOTPIndex ? inputRef : null}
-                          className="sm:h-20 sm:w-10 h-20 w-7 cursor-blink focus:border-color-purple_default focus:border-2    border-1 text-color-purple_darker rounded lowercase outline-none text-center text-lg sm:text-xl font-fredoka "
+                          className="sm:h-20 sm:w-10 h-20 w-7 cursor-blink focus:border-color_purple_default focus:border-2    border-1 text-color_purple_darker rounded lowercase outline-none text-center text-lg sm:text-xl font-fredoka "
                           maxLength={1}
                           size={1}
                           value={opt[index]}
