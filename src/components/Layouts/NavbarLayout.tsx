@@ -28,18 +28,14 @@ export default function BottomNavigation({
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       className={classNames(
-        message
-          ? "sm:border-t-2 sm:p-4 sm:px-6"
-          : "py-4 px-2 sm:px-6 border-t-2",
+        message ? "sm:border-t-2" : "border-t-2",
         "fixed left-0 bottom-0 w-full bg-white border-gray-100"
       )}
     >
       <div
         className={classNames(
-          "p-2 py-4 sm:flex sm:items-center",
-          color,
-          dashed ? "sm:py-10 striped-bg-light" : "",
-          message ? "pt-6 pb-3 sm:pb-6 px-4 sm:px-2" : ""
+          "py-10 px-4 sm:px-6 sm:flex sm:items-center",
+          color
         )}
       >
         <Container>

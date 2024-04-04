@@ -41,7 +41,7 @@ export const ChooseTheRightSolutionBottomNav: React.FC = () => {
       <motion.div className="bg-white">
         <NavbarLayout
           message
-          color={"bg-color-green_default"}
+          color={"bg-color-green_lighter"}
           gridColsNumber={1}
         >
           <SuccessToFailureLayout success={true}>
@@ -58,18 +58,19 @@ export const ChooseTheRightSolutionBottomNav: React.FC = () => {
                 <Confetti />
                 <ButtonInteractive
                   background={
-                    "bg-white w-full cursor-pointer text-color-green_default font-semibold text-lg px-16"
+                    "bg-color-green_default text-white w-full cursor-pointer  font-semibold text-lg sm:w-[220px] success"
                   }
                   lessonButtonClick={lessonButtonClick}
                   buttonDisplayText={"Continue"}
                   shadowColor={""}
+                  status="success"
                 />
-                <span
+                {/* <span
                   role="button"
                   className="text-white cursor-pointer block text-sm mt-[-2]"
                 >
                   Report error
-                </span>
+                </span> */}
               </div>
             )}
           </SuccessToFailureLayout>
@@ -81,7 +82,7 @@ export const ChooseTheRightSolutionBottomNav: React.FC = () => {
   if (messages.activeExerciseWrongAnswer) {
     return (
       <motion.div>
-        <NavbarLayout message color={"bg-error"} gridColsNumber={6}>
+        <NavbarLayout message color={"bg-error_lighter"} gridColsNumber={6}>
           <SuccessToFailureLayout
             success={false}
             solution={
@@ -103,18 +104,19 @@ export const ChooseTheRightSolutionBottomNav: React.FC = () => {
               <div className="text-center w-full mt-4 sm:mt-0">
                 <ButtonInteractive
                   background={
-                    "bg-white w-full cursor-pointer text-error font-semibold text-lg px-16"
+                    "bg-error text-white w-full cursor-pointer text-error font-semibold text-lg sm:w-[220px] failure"
                   }
                   lessonButtonClick={lessonButtonClick}
                   buttonDisplayText={"Continue"}
                   shadowColor={""}
+                  status="failure"
                 />
-                <span
+                {/* <span
                   role="button"
                   className="text-white cursor-pointer block text-sm mt-[-2]"
                 >
                   Report error
-                </span>
+                </span> */}
               </div>
             )}
           </SuccessToFailureLayout>
@@ -127,27 +129,33 @@ export const ChooseTheRightSolutionBottomNav: React.FC = () => {
     <NavbarLayout dashed color={"bg-white"} gridColsNumber={1}>
       <InActiveToActiveLayout>
         <ButtonInteractive
-          background={"bg-warning text-white cursor-pointer "}
+          background={
+            "bg-white border border-gray-200/70 text-gray_lighter cursor-pointer sm:w-[132px] "
+          }
           lessonButtonClick={skipCurrentExercise}
-          buttonDisplayText={"Skip"}
+          buttonDisplayText={"SKIP"}
           shadowColor={"bg-gray-200"}
         />
       </InActiveToActiveLayout>
       {!userInput.userInput ? (
         <InActiveToActiveLayout>
           <ButtonInteractive
-            background={"bg-disabled text-white cursor-not-allowed "}
+            background={
+              " bg-disabled border border-gray-200/70 text-disabled-text cursor-not-allowed sm:w-[220px] "
+            }
             lessonButtonClick={null}
-            buttonDisplayText={"Check Answer"}
-            shadowColor={"bg-gray-200"}
+            buttonDisplayText={"CHECK"}
+            // shadowColor={"bg-gray-200"}
           />
         </InActiveToActiveLayout>
       ) : (
         <InActiveToActiveLayout>
           <ButtonInteractive
-            background={"bg-color-purple_darker text-white cursor-pointer"}
+            background={
+              "bg-white border border-gray-200/70 text-gray_default cursor-pointer sm:w-[220px]"
+            }
             lessonButtonClick={lessonButtonClick}
-            buttonDisplayText={"Check Answer"}
+            buttonDisplayText={"CHECK"}
             shadowColor={"bg-color-purple_deep"}
           />
         </InActiveToActiveLayout>

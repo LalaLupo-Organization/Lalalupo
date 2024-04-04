@@ -189,7 +189,7 @@ function AvailableAnswer({
           "text-left box-border p-2 sm:p-2 border-2 rounded-lg font-bold active:duration-300 active:ease-in outline-none h-full flex flex-col items-center gap-1 capitalize relative z-1"
         )}
       >
-        <div className="h-full w-full absolute rounded-lg striped-bg -z-10 border"></div>
+        <div className="inset-0 translate-x-1.5 translate-y-1.5 absolute rounded-lg striped-bg -z-10 border"></div>
 
         <p>{word.label}</p>
 
