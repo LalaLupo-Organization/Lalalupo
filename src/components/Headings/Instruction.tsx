@@ -1,17 +1,24 @@
 import React from "react";
 import localFont from "next/font/local";
+import classNames from "@/helpers/classNames";
 
 const myFont = localFont({
   src: "../../../public/MoreSugarRegular.ttf",
 });
-export default function Instruction({
-  instruction,
-}: {
+
+interface Props {
   instruction: string | null;
-}) {
+  position?: "left" | "center" | "right";
+}
+
+export default function Instruction({ instruction, position }: Props) {
   return (
     <h1
-      className={`${myFont.className} text-xl  sm:text-2xl mb-2  sm:mb-2`}>
+      className={classNames(
+        position ? `text-${position}` : "text-center  sm:text-left",
+        `${myFont.className} text-xl w-[90%] mb-12 sm:mb-0 sm:text-2xl 2xl:text-3xl px-10 2xl:px-6`
+      )}
+    >
       {instruction}
     </h1>
   );

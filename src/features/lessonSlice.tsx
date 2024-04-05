@@ -21,9 +21,26 @@ const initialState: LessonState = {
   activeExercise: {
     type: "chooseTheRightSolution",
     _id: "635f9a0fefff76c1f466c9be",
-    solution: "panino",
-    availableWords: ["panino", "ravioli", "espresso"],
-    instructions: "What is this?",
+    solution: "Latte",
+    // availableWords: ["panino", "ravioli", "espresso"],
+    availableWords: [
+      {
+        label: "Zucchero",
+        hasImage: true,
+        imageSrc: "/assets/ExercisesImages/Zucchero.png",
+      },
+      {
+        label: "Gelato",
+        hasImage: true,
+        imageSrc: "/assets/ExercisesImages/Gelato.png",
+      },
+      {
+        label: "Latte",
+        hasImage: true,
+        imageSrc: "/assets/ExercisesImages/Milk.png",
+      },
+    ],
+    instructions: 'Which one is "Milk"?',
     displayImage: true,
     displayImageSrc:
       "https://imagedelivery.net/_Fh-Z9aj1rlSxXMDl1yqsg/b753daa9-b6c7-4773-a681-e1f881c9f600/character",
@@ -36,7 +53,24 @@ const initialState: LessonState = {
       type: "chooseTheRightSolution",
       _id: "635f9a0fefff76c1f466c9be",
       solution: "panino",
-      availableWords: ["panino", "ravioli", "espresso"],
+      // availableWords: ["panino", "ravioli", "espresso"],
+      availableWords: [
+        {
+          label: "Zucchero",
+          hasImage: true,
+          imageSrc: "/assets/ExercisesImages/Zucchero.png",
+        },
+        {
+          label: "Gelato",
+          hasImage: true,
+          imageSrc: "/assets/ExercisesImages/Gelato.png",
+        },
+        {
+          label: "Latte",
+          hasImage: true,
+          imageSrc: "/assets/ExercisesImages/Milk.png",
+        },
+      ],
       instructions: "What is this?",
       displayImage: true,
       displayImageSrc:
@@ -320,8 +354,16 @@ export const lessonSlice = createSlice({
     },
     putActiveExerciseIntoState: (state) => {
       let found = state.interactiveExercises.find(
-        (item) => !item.isComplete && !item.hasFailed && item
+        (item) => !item.isComplete && !item.hasFailed && !item?.isSkiped && item
       );
+
+      // Check for skipped exercises ??
+      if (!found) {
+        found = state.interactiveExercises.find(
+          (item) =>
+            !item.isComplete && !item.hasFailed && item?.isSkiped && item
+        );
+      }
 
       if (found) {
         state.activeExercise = found;
@@ -339,7 +381,21 @@ export const lessonSlice = createSlice({
         state.numberComplete += 1;
         state.remainingExercises -= 1;
       }
-      //set the interactiveExercise to isComplete
+      // set the interactiveExercise to isComplete
+      const found = state.interactiveExercises.find(
+        (item) => item._id === state.activeExercise?._id
+      );
+      if (found) {
+        Object.assign(found, state.activeExercise);
+      }
+    },
+
+    setSkippedExercise: (state) => {
+      console.log(state.activeExercise);
+      if (state.activeExercise) {
+        state.activeExercise.isSkiped = true;
+      }
+      // set the interactiveExercise to isComplete
       const found = state.interactiveExercises.find(
         (item) => item._id === state.activeExercise?._id
       );
@@ -394,10 +450,12 @@ export const {
   clearCurrentUnit,
   setInteractiveExerciseLength,
   clearActiveExercise,
+  setSkippedExercise,
 } = lessonSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectLesson = (state: RootState) => state.lessonReduxState;
+export const selectLesson = (state: RootState): LessonState =>
+  state.lessonReduxState;
 export const selectAssessment = (state: RootState) => state.lessonReduxState;
 export const selectCurrentUnitIsComplete = (state: RootState) =>
   state.lessonReduxState.isComplete;

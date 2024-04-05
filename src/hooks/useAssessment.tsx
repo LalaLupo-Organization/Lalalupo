@@ -8,6 +8,7 @@ import {
   setIncorrectAnswer,
   clearActiveExercise,
   selectAssessment,
+  setSkippedExercise,
 } from "@/features/lessonSlice";
 import {
   selectUser,
@@ -217,7 +218,6 @@ export default function useAssessment() {
         return;
       }
     }
-    console.log(activeExercise.type);
     if (activeExercise.type === "partOfAWord") {
       console.log("step4");
       if (
@@ -382,5 +382,12 @@ export default function useAssessment() {
     return;
   }
 
-  return { lessonButtonClick };
+  function skipCurrentExercise() {
+    dispatch(setSkippedExercise());
+    dispatch(putActiveExerciseIntoState());
+    dispatch(setAlertsBackToFalse());
+    dispatch(clearUserInput());
+  }
+
+  return { lessonButtonClick, skipCurrentExercise };
 }

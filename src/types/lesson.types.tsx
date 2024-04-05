@@ -19,6 +19,7 @@ export interface BaseExercise {
   instructions: string;
   isComplete: boolean;
   hasFailed: boolean;
+  isSkiped?: boolean;
   solution?: string | string[];
   type: string; // Add this line
   // ...add more base properties here

@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import {
   FlagIcon,
-  XCircleIcon,
+  XMarkIcon,
   BookOpenIcon,
-  CheckCircleIcon,
-} from "@heroicons/react/24/outline";
+  CheckIcon,
+} from "@heroicons/react/16/solid";
 import classNames from "@/helpers/classNames";
 import useAssessment from "@/hooks/useAssessment";
-
+import { Icon } from "../Icons/Icon";
 export default function SuccessToFailureLayout({
   children,
   success,
@@ -28,21 +28,29 @@ export default function SuccessToFailureLayout({
       {success ? (
         <audio
           autoPlay
-          src="https://ispeakitalian.herokuapp.com/correct.mp3"></audio>
+          src="https://ispeakitalian.herokuapp.com/correct.mp3"
+        ></audio>
       ) : (
         <audio
           autoPlay
-          src="https://ispeakitalian.herokuapp.com/incorrect.mp3"></audio>
+          src="https://ispeakitalian.herokuapp.com/incorrect.mp3"
+        ></audio>
       )}
-      <div className="sm:col-span-5 col-span-4 flex items-center col-start-1">
+      <div className="flex items-center">
         <div>
           {success ? (
-            <CheckCircleIcon className="h-16 text-green-500 bg-white rounded-full hidden sm:block" />
+            <Icon
+              name="SuccessTickSquare"
+              className="h-10 sm:h-14 fill-color_green_default"
+            />
           ) : (
-            <XCircleIcon className="h-16 text-red-500 bg-white rounded-full hidden sm:block" />
+            <Icon
+              name="FailureSquare"
+              className="h-10 sm:h-14 text-xs fill-error"
+            />
           )}
         </div>
-        <div className="pb-4 sm:pb-0">
+        <div className="pb-2 text-white">
           {success ? (
             <>
               {meaning ? (
@@ -55,9 +63,10 @@ export default function SuccessToFailureLayout({
                   </p>
                 </div>
               ) : (
-                <h1 className="text-green-700 sm:text-xl text-2xl font-bold  ml-2 leading-7">
-                  Bravo
-                </h1>
+                <div className="ml-2 text-color_green_default">
+                  <h1 className="sm:text-xl text-2xl font-bold ">Correct!</h1>
+                  <p className="leading-[0.5rem]">You are doing awesome!</p>
+                </div>
               )}
             </>
           ) : (
@@ -73,14 +82,16 @@ export default function SuccessToFailureLayout({
                   </p>
                 </div>
               )}
-              <div className="mt-2">
-                <h1 className="text-red-700 text-2xl font-bold  ml-2 leading-7">
+              <div className="ml-2 text-error">
+                {/* <h1 className="text-red-700 text-2xl font-bold  ml-2 leading-7">
                   Correct answer:
                 </h1>
                 <p className=" font-light px-2 ml-1 sm:mb-0 text-red-700">
                   {" "}
                   {solution}{" "}
-                </p>
+                </p> */}
+                <h1 className="sm:text-xl text-2xl font-bold ">Bad Luck!</h1>
+                <p className="leading-[0.5rem]">We believe in you!</p>
               </div>
               {meaning && (
                 <div className="mt-2">

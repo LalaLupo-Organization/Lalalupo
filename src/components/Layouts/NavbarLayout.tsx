@@ -1,27 +1,47 @@
 import React from "react";
 import classNames from "@/helpers/classNames";
+import "@fontsource/nunito";
+import { motion } from "framer-motion";
+import Container from "../Container";
 //classes
 
 type Props = {
   color: string;
-
-  gridColsNumber: number;
+  dashed?: boolean;
+  gridColsNumber?: number; //TODO
   children: React.ReactNode;
+  message?: boolean;
 };
 
 export default function BottomNavigation({
   color,
-  gridColsNumber,
   children,
+  message = false,
 }: Props) {
   return (
-    <div
-      className={`${color} fixed left-0 bottom-0 w-full  px-4 border-t-1`}>
-      <div className="container  mx-auto w-full sm:my-10 my-4">
-        <div className={`grid-cols-${gridColsNumber} grid`}>
-          {children}
-        </div>
+    <motion.div
+      style={{
+        fontFamily: "Nunito",
+      }}
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      className={classNames(
+        message ? "sm:border-t-2" : "border-t-2",
+        "fixed left-0 bottom-0 w-full bg-white border-gray-100"
+      )}
+    >
+      <div
+        className={classNames(
+          "py-6 sm:py-10 px-4 sm:px-6 sm:flex sm:items-center",
+          color
+        )}
+      >
+        <Container>
+          <div className="flex flex-col gap-3 sm:w-3/4 mx-auto sm:flex-row justify-center sm:justify-between sm:items-center">
+            {children}
+          </div>
+        </Container>
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -6,13 +6,13 @@ import { setSingleInput, clearUserInput } from "@/features/userInputSlice";
 // import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
-import VocabularyHelper from "@/components/VocabularyHelper1/VocabularyHelper";
+import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper";
 import parse from "html-react-parser";
 
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import Instruction from "@/components/Headings/Instruction";
-import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble";
-import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters";
+import SpeechBubble from "@/components/SpeechBubble/SpeechBubble";
+import AccentedLetters from "@/components/AccentedLetters/AccentedLetters";
 export default function WriteTheSentence({ data }: { data: LessonState }) {
   const {
     activeExercise,
@@ -61,9 +61,9 @@ export default function WriteTheSentence({ data }: { data: LessonState }) {
 
   return (
     <div
-      className='flex flex-col
+      className="flex flex-col
 
-   justify-center w-full items-center'
+   justify-center w-full items-center"
     >
       <ProgressBar
         remainingExercises={remainingExercises}
@@ -90,16 +90,16 @@ export default function WriteTheSentence({ data }: { data: LessonState }) {
               ? undefined
               : (e) => handleChange(e)
           }
-          name='text'
-          autoComplete='off'
+          name="text"
+          autoComplete="off"
           autoFocus={
             activeExercise?.isComplete || activeExercise?.hasFailed
               ? false
               : true
           }
-          placeholder='Type in Italian'
+          placeholder="Type in Italian"
           value={activeExercise?._id !== activeExerciseId ? "" : input}
-          className='cursor-blink outline-none text-base font-bold text-gray-600  tracking-wider border border-2 bg-gray-100 rounded-lg px-2 pt-2 pb-24'
+          className="cursor-blink outline-none text-base font-bold text-gray-600  tracking-wider border border-2 bg-gray-100 rounded-lg px-2 pt-2 pb-24"
         />
 
         <AccentedLetters

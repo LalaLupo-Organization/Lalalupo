@@ -8,7 +8,7 @@ import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 // import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";
 import Instruction from "@/components/Headings/Instruction";
 import classNames from "@/helpers/classNames";
-import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble";
+import SpeechBubble from "@/components/SpeechBubble/SpeechBubble";
 
 import React, { useState, useRef, useEffect } from "react";
 
@@ -166,9 +166,9 @@ export default function Reorder({ data }: { data: LessonState }) {
 
   return (
     <div
-      className='flex flex-col
+      className="flex flex-col
 
-   justify-center w-full items-center'
+   justify-center w-full items-center"
     >
       <ProgressBar
         remainingExercises={remainingExercises}
@@ -182,24 +182,24 @@ export default function Reorder({ data }: { data: LessonState }) {
         <Instruction
           instruction={activeExercise && activeExercise.instructions}
         />
-        <div className='flex flex-col w-full'>
+        <div className="flex flex-col w-full">
           {english && <SpeechBubble dialogue={english} />}
 
           <div
-            className='destination border-t-2 border-b-2  pt-1 sm:pt-2 h-14 sm:h-16'
+            className="destination border-t-2 border-b-2  pt-1 sm:pt-2 h-14 sm:h-16"
             ref={destinationRef}
           ></div>
-          <div className='border-b-2 mb-8 sm:mb-8 pt-1 h-14 sm:h-16'></div>
+          <div className="border-b-2 mb-8 sm:mb-8 pt-1 h-14 sm:h-16"></div>
 
           <div
-            className='origin flex flex-wrap justify-center items-center w-full mx-auto border-gray-600 '
+            className="origin flex flex-wrap justify-center items-center w-full mx-auto border-gray-600 "
             ref={originRef}
           >
             {randomizedWords &&
               randomizedWords.map((word: string, index: number) => (
                 <div
-                  id='container'
-                  className='sm:mb-2  m-px box-content rounded-lg sm:mx-1 justify-start text-center flex flex-col duration-300 ease-in text-gray-800'
+                  id="container"
+                  className="sm:mb-2  m-px box-content rounded-lg sm:mx-1 justify-start text-center flex flex-col duration-300 ease-in text-gray-800"
                   key={word + "_" + index}
                 >
                   <button

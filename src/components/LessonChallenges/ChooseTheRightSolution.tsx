@@ -1,3 +1,5 @@
+import "@fontsource/nunito";
+import localFont from "next/font/local";
 import { useRef, useState, useEffect } from "react";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { v4 as uuid } from "uuid";
@@ -5,12 +7,24 @@ import { setSingleInput, clearUserInput } from "@/features/userInputSlice";
 import classNames from "@/helpers/classNames";
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 import Instruction from "@/components/Headings/Instruction";
-import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import { BaseExercise, LessonState } from "@/types/lesson.types";
+import HintArrow from "../../../public/HintArrow.svg";
 // import useSpeechSynthesis from "../hooks/useSpeechSynthesis";
 import mockimage from "@/public/sandwich.png";
 import Image from "next/image";
-import { ChooseTheRightSolutionExercise } from "@/types/choose-the-right-solution.types";
+import {
+  ChooseTheRightSolutionExercise,
+  IAvailableWord,
+} from "@/types/choose-the-right-solution.types";
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
+import useWindowSize from "@/hooks/useWindowSize";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import { Icon } from "../Icons/Icon";
+
+const MoreSugarRegular = localFont({
+  src: "../../../public/MoreSugarRegular.ttf",
+  display: "swap",
+});
 export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
   const {
     activeExercise,
@@ -34,11 +48,10 @@ export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
       getType(activeExercise) &&
       activeExercise.availableWords
 
-        .map((item: any) => {
-          return item;
-        })
+        .map((item) => item)
         .sort(() => Math.random() - 0.5)
   );
+  const windowSize = useWindowSize();
   const [showSelected, setShowSelected] = useState({
     word: "",
     status: false,
@@ -61,9 +74,10 @@ export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
       dispatch(clearUserInput());
       setShowSelected({ word: "", status: false });
       setRandomizedData(
+        //@ts-ignore
         () =>
           getType(activeExercise) &&
-          activeExercise.availableWords //@ts-ignore
+          activeExercise.availableWords
             .map((item) => {
               return item;
             })
@@ -74,11 +88,12 @@ export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
   }, [showSelected, activeExercise?._id]);
   return (
     <div
-      className='flex flex-col
+      className="flex flex-col
 
-     justify-center w-full items-center'
+     justify-center w-full items-center"
     >
       <ProgressBar
+        activeExercise={activeExercise}
         remainingExercises={remainingExercises}
         totalNumberOfExercises={totalExercises}
         numberOfExercisesComplete={numberComplete}
@@ -88,26 +103,30 @@ export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
       />
       <InteractiveLayout id={activeExercise && activeExercise._id}>
         <Instruction
+          position="center"
           instruction={activeExercise && activeExercise?.instructions}
         />
 
-        {getType(activeExercise) && activeExercise.displayImage && (
-          <div className=' rounded-2xl pt-8  sm:w-2/4 md:w-1/3  mx-auto'>
+        {/* {getType(activeExercise) && activeExercise.displayImage && (
+          <div className=" rounded-2xl pt-8  sm:w-2/4 md:w-1/3  mx-auto">
             <Image
-              src={mockimage}
+              src={activeExercise.displayImageSrc}
               height={600}
               width={600}
-              className='rounded-2xl mx-auto '
-              alt=''
+              className="rounded-2xl mx-auto "
+              alt=""
             />
           </div>
-        )}
+        )} */}
         <div
+          style={{
+            fontFamily: "Nunito, sans-serif",
+          }}
           className={classNames(
-            getType(activeExercise) && activeExercise.displayImage
-              ? "mt-10"
-              : "mt-18",
-            "grid-cols-1 mx-auto mt-12   flex-wrap justify-center  w-full  sm:w-2/3"
+            // getType(activeExercise) && activeExercise.displayImage
+            //   ? "mt-10"
+            //   : "mt-18",
+            "grid grid-cols-3  mt-12 sm:mt-0 flex-wrap sm:p-10 justify-center  w-full sm:w-[90%] 2xl:w-full gap-3"
           )}
         >
           {randomizedData &&
@@ -115,37 +134,114 @@ export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
             //@ts-ignore
 
             randomizedData.map((word, index) => (
-              <div
-                key={uuid()}
-                className='m-1 flex-1 cursor-pointer'
-                onClick={
-                  activeExercise?.isComplete || activeExercise?.hasFailed
-                    ? undefined
-                    : (e) => handleSelectedItem(e, word)
+              <AvailableAnswer
+                word={word as IAvailableWord}
+                handleSelectedItem={handleSelectedItem}
+                showSelected={showSelected}
+                activeExercise={
+                  activeExercise as ChooseTheRightSolutionExercise
                 }
-              >
-                <div
-                  className={classNames(
-                    (activeExercise?.isComplete || activeExercise?.hasFailed) &&
-                      showSelected.word === word
-                      ? "text-blue_border_darker border-blue_border cursor-not-allowed"
-                      : (activeExercise?.isComplete ||
-                            activeExercise?.hasFailed) &&
-                          showSelected.word !== word
-                        ? "text-gray-800  cursor-not-allowed"
-                        : showSelected.word === word
-                          ? "text-color-purple_darker border-color-purple_default cursor-pointer"
-                          : "cursor-pointer",
-
-                    "text-center bg-white box-border p-2 sm:p-2 border rounded-lg font-bold active:duration-300 active:ease-in outline-none"
-                  )}
-                >
-                  {word}
-                </div>
-              </div>
+                key={index}
+              />
             ))}
         </div>
       </InteractiveLayout>
     </div>
   );
 };
+
+interface IAvailableAnswerProps {
+  word: IAvailableWord;
+  activeExercise: ChooseTheRightSolutionExercise;
+  handleSelectedItem: any;
+  showSelected: any;
+}
+
+function AvailableAnswer({
+  word,
+  activeExercise,
+  handleSelectedItem,
+  showSelected,
+}: IAvailableAnswerProps) {
+  return (
+    <div
+      key={uuid()}
+      className="cursor-pointer h-full w-full"
+      onClick={
+        activeExercise?.isComplete || activeExercise?.hasFailed
+          ? undefined
+          : (e) => handleSelectedItem(e, word.label)
+      }
+    >
+      <div
+        className={classNames(
+          "bg-white",
+          (activeExercise?.isComplete || activeExercise?.hasFailed) &&
+            showSelected.word === word.label
+            ? "text-color_purple_darker border-color_purple_default !bg-active_card cursor-not-allowed"
+            : (activeExercise?.isComplete || activeExercise?.hasFailed) &&
+                showSelected.word !== word.label
+              ? "text-gray-800  cursor-not-allowed"
+              : showSelected.word === word.label
+                ? "text-color_purple_darker border-color_purple_default !bg-active_card cursor-pointer"
+                : "cursor-pointer text-gray_default",
+
+          "text-left box-border p-2 sm:p-2 border-2 rounded-lg font-bold active:duration-300 active:ease-in outline-none h-full flex flex-col items-center gap-1 capitalize relative z-1"
+        )}
+      >
+        <div className="inset-0 translate-x-1.5 translate-y-1.5 absolute rounded-lg striped-bg -z-10 border"></div>
+
+        <p>{word.label}</p>
+
+        {word.hasImage && word.imageSrc && (
+          <div className="flex-1 p-4 sm:p-6 md:p-8 bg-light_blue rounded-lg flex justify-center items-center overflow-hidden">
+            <Image
+              src={word.imageSrc}
+              height={150}
+              width={150}
+              className="rounded-2xl mx-auto "
+              alt=""
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// function Hint({ hint, index }: { hint: IHint; index: number }) {
+//   const windowSize = useWindowSize();
+//   return (
+//     <div className="group bg-white relative rounded-lg p-4 flex flex-col items-center justify-center z-1 text-hint border-2 border-hint">
+//       <div className="h-full w-full absolute  rounded-lg striped-bg hint -z-10 border-hint border"></div>
+//       <span
+//         className={classNames(
+//           index % 2 === 0
+//             ? "md:-left-[103%] md:flex-row-reverse"
+//             : "md:-right-[103%]",
+//           "absolute top-1 flex gap-2"
+//         )}
+//       >
+//         {windowSize.width > 768 && (
+//           <Image
+//             className={index % 2 === 0 ? "rotate-180" : ``}
+//             src={HintArrow}
+//             width={60}
+//             height={10}
+//             alt="Arrow"
+//           />
+//         )}
+//         <p
+//           className={classNames(
+//             index % 2 === 0 ? "mt-[12px]" : "mb-[12px]",
+//             "text-hint font-medium text-lg",
+//             MoreSugarRegular.className
+//           )}
+//         >
+//           Memory helper
+//         </p>
+//       </span>
+//       <p className="text-hint text-center font-semibold flex">{hint.label}</p>
+//     </div>
+//   );
+// }

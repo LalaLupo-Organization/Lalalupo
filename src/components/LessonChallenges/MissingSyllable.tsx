@@ -10,7 +10,7 @@ import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 import Instruction from "@/components/Headings/Instruction";
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import classNames from "@/helpers/classNames";
-import AudioBubble from "@/components/AudioBubble1/AudioBubble";
+import AudioBubble from "@/components/AudioBubble/AudioBubble";
 export default function MissingSyllable({ data }: { data: LessonState }) {
   const {
     activeExercise,
@@ -51,9 +51,9 @@ export default function MissingSyllable({ data }: { data: LessonState }) {
 
   return (
     <div
-      className='flex flex-col
+      className="flex flex-col
 
-   justify-center w-full items-center'
+   justify-center w-full items-center"
     >
       <ProgressBar
         remainingExercises={remainingExercises}
@@ -69,32 +69,32 @@ export default function MissingSyllable({ data }: { data: LessonState }) {
             getType(activeExercise) ? activeExercise.instructions : null
           }
         />
-        <div className='flex'>
+        <div className="flex">
           {getType(activeExercise) &&
             activeExercise.display.map((item) =>
               item === activeExercise?.solution ? (
                 <div key={uuid()}>
                   <span
-                    className=' inline-block  ml-1 border-b-2 relative   text-xl font-fredoka tracking-wider border-color-purple_default  border-dashed  text-color-purple_darker text-center font-semibold'
+                    className=" inline-block  ml-1 border-b-2 relative   text-xl font-fredoka tracking-wider border-color_purple_default  border-dashed  text-color_purple_darker text-center font-semibold"
                     style={{
                       width: `${showSelected.word !== "" ? showSelected.word.length * 13 + "px" : item.length * 13 + "px"}`,
                     }}
                   >
                     {showSelected.word}{" "}
                   </span>{" "}
-                  <span className='ml-2'></span>
+                  <span className="ml-2"></span>
                 </div>
               ) : (
                 <p
                   key={uuid()}
-                  className=' inline-block   border-black  text-xl'
+                  className=" inline-block   border-black  text-xl"
                 >
                   {item}{" "}
                 </p>
               )
             )}
           &nbsp; &nbsp;{" "}
-          <p className='text-gray-700'>
+          <p className="text-gray-700">
             ({getType(activeExercise) && activeExercise?.english})
           </p>
         </div>
@@ -103,12 +103,12 @@ export default function MissingSyllable({ data }: { data: LessonState }) {
           solution={getType(activeExercise) && activeExercise.italian}
         />
 
-        <div className='grid grid-cols-2 -mt-2 gap-y-1 mb-40 flex-wrap  md:w-2/3  sm:w-full'>
+        <div className="grid grid-cols-2 -mt-2 gap-y-1 mb-40 flex-wrap  md:w-2/3  sm:w-full">
           {getType(activeExercise) &&
             activeExercise?.availableWords.map((word) => (
               <div
                 key={uuid()}
-                className='m-1 cursor-pointer'
+                className="m-1 cursor-pointer"
                 onClick={
                   activeExercise?.isComplete || activeExercise?.hasFailed
                     ? undefined

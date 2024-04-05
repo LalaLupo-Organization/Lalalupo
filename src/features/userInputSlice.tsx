@@ -18,19 +18,19 @@ export const userInputSlice = createSlice({
     // Use the PayloadAction type to declare the contents of `action.payload`
     setSingleInput: (
       state,
-      action: PayloadAction<UserInputState["userInput"]>,
+      action: PayloadAction<UserInputState["userInput"]>
     ) => {
       state.userInput = action.payload;
     },
     setArrayInput: (
       state,
-      action: PayloadAction<UserInputState["userArrayInput"]>,
+      action: PayloadAction<UserInputState["userArrayInput"]>
     ) => {
       state.userArrayInput = action.payload;
     },
     setObjectInput: (
       state,
-      action: PayloadAction<UserInputState["userObjectInput"]>,
+      action: PayloadAction<UserInputState["userObjectInput"]>
     ) => {
       state.userObjectInput = action.payload;
     },

@@ -4,14 +4,14 @@ import { TwoBlanksExercise } from "@/types/two-blanks.types";
 import { setArrayInput, clearUserInput } from "@/features/userInputSlice";
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 // import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";
-import VocabularyHelper from "@/components/VocabularyHelper1/VocabularyHelper";
+import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper";
 
 import { useAppDispatch } from "@/hooks/useRedux";
 import { v4 as uuid } from "uuid";
-import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters";
+import AccentedLetters from "@/components/AccentedLetters/AccentedLetters";
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import Instruction from "@/components/Headings/Instruction";
-import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble";
+import SpeechBubble from "@/components/SpeechBubble/SpeechBubble";
 import parse from "html-react-parser";
 export default function TwoBlanks({ data }: { data: LessonState }) {
   const {
@@ -120,9 +120,9 @@ export default function TwoBlanks({ data }: { data: LessonState }) {
 
   return (
     <div
-      className='flex flex-col
+      className="flex flex-col
 
-   justify-center w-full items-center'
+   justify-center w-full items-center"
     >
       <ProgressBar
         remainingExercises={remainingExercises}

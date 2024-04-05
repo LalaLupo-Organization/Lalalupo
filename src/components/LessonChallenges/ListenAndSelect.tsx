@@ -8,7 +8,7 @@ import { setSingleInput, clearUserInput } from "@/features/userInputSlice";
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 
 import classNames from "@/helpers/classNames";
-import AudioBubble from "@/components/AudioBubble1/AudioBubble";
+import AudioBubble from "@/components/AudioBubble/AudioBubble";
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import Instruction from "@/components/Headings/Instruction";
 export default function ListenAndSelect({ data }: { data: LessonState }) {
@@ -70,9 +70,9 @@ export default function ListenAndSelect({ data }: { data: LessonState }) {
 
   return (
     <div
-      className='flex flex-col
+      className="flex flex-col
 
-   justify-center w-full items-center'
+   justify-center w-full items-center"
     >
       <ProgressBar
         remainingExercises={remainingExercises}
@@ -92,12 +92,12 @@ export default function ListenAndSelect({ data }: { data: LessonState }) {
           solution={getType(activeExercise) && activeExercise.audio}
         />
 
-        <div className='flex-col -mt-2 sm:flex-row flex-wrap flex-1 items-center  mx-auto  w-full'>
+        <div className="flex-col -mt-2 sm:flex-row flex-wrap flex-1 items-center  mx-auto  w-full">
           {randomizedData &&
             randomizedData.map((word: [string], index) => (
               <div
                 key={uuid()}
-                className='m-1 flex flex-1  cursor-pointer'
+                className="m-1 flex flex-1  cursor-pointer"
                 onClick={
                   activeExercise?.isComplete || activeExercise?.hasFailed
                     ? undefined
@@ -108,13 +108,13 @@ export default function ListenAndSelect({ data }: { data: LessonState }) {
                   className={classNames(
                     (activeExercise?.isComplete || activeExercise?.hasFailed) &&
                       showSelected.word === word[0]
-                      ? "border-color-purple_default border-2 text-color-purple_darker bg-purple-100 font-semibold cursor-not-allowed"
+                      ? "border-color_purple_default border-2 text-color_purple_darker bg-purple-100 font-semibold cursor-not-allowed"
                       : (activeExercise?.isComplete ||
                             activeExercise?.hasFailed) &&
                           showSelected.word !== word[0]
                         ? "text-gray-800  cursor-not-allowed"
                         : showSelected.word === word[0]
-                          ? "border-color-purple_default border-2 text-color-purple_darker bg-purple-100 font-semibold cursor-pointer"
+                          ? "border-color_purple_default border-2 text-color_purple_darker bg-purple-100 font-semibold cursor-pointer"
                           : "cursor-pointer",
 
                     "text-center flex-1 bg-white box-border p-2 sm:p-2 border border-2 rounded-lg font-bold active:duration-300 active:ease-in outline-none"
@@ -122,7 +122,7 @@ export default function ListenAndSelect({ data }: { data: LessonState }) {
                 >
                   <p>
                     {word[0]}{" "}
-                    <span className='text-gray-500 font-light italic'>
+                    <span className="text-gray-500 font-light italic">
                       {/* {word[1]} */}
                     </span>
                   </p>

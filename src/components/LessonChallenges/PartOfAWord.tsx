@@ -10,8 +10,8 @@ import { useAppDispatch } from "@/hooks/useRedux";
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 import { v4 as uuid } from "uuid";
 import Instruction from "@/components/Headings/Instruction";
-import AudioBubble from "@/components/AudioBubble1/AudioBubble";
-import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
+import AudioBubble from "@/components/AudioBubble/AudioBubble";
+import InteractiveLayout from "@/components/Layouts/InteractiveLayout";
 export default function PartOfAWord({ data }: { data: LessonState }) {
   const {
     activeExercise,
@@ -98,9 +98,9 @@ export default function PartOfAWord({ data }: { data: LessonState }) {
   }, [activeExercise, opt, input, activeOTPIndex]);
   return (
     <div
-      className='flex flex-col
+      className="flex flex-col
 
-   justify-center w-full items-center'
+   justify-center w-full items-center"
     >
       <ProgressBar
         remainingExercises={remainingExercises}
@@ -118,16 +118,16 @@ export default function PartOfAWord({ data }: { data: LessonState }) {
           solution={getType(activeExercise) && activeExercise.word.join("")}
         />
 
-        <div className='  items-center '>
+        <div className="  items-center ">
           {getType(activeExercise) &&
             activeExercise?.word.map((item) => {
               return matchMissing(item)
                 ? item.split("").map((char, index) => {
                     return (
-                      <div key={uuid()} className=' inline-flex'>
+                      <div key={uuid()} className=" inline-flex">
                         <input
                           ref={index === activeOTPIndex ? inputRef : null}
-                          className='sm:h-20 sm:w-10 h-20 w-7 cursor-blink focus:border-color-purple_default focus:border-2    border-1 text-color-purple_darker rounded lowercase outline-none text-center text-lg sm:text-xl font-fredoka '
+                          className="sm:h-20 sm:w-10 h-20 w-7 cursor-blink focus:border-color_purple_default focus:border-2    border-1 text-color_purple_darker rounded lowercase outline-none text-center text-lg sm:text-xl font-fredoka "
                           maxLength={1}
                           size={1}
                           value={opt[index]}
@@ -139,9 +139,9 @@ export default function PartOfAWord({ data }: { data: LessonState }) {
                   })
                 : item.split("").map((char) => {
                     return (
-                      <div key={uuid()} className='inline-flex '>
+                      <div key={uuid()} className="inline-flex ">
                         <input
-                          className='sm:h-20 sm:w-10 h-20 w-7 border-1 lowercase outline-none text-center rounded text-lg sm:text-xl font-fredoka placeholder-black'
+                          className="sm:h-20 sm:w-10 h-20 w-7 border-1 lowercase outline-none text-center rounded text-lg sm:text-xl font-fredoka placeholder-black"
                           maxLength={1}
                           readOnly
                           placeholder={char}

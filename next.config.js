@@ -8,6 +8,13 @@ const nextConfig = {
     unoptimized: true,
     domains: ["tailwindui.com", "img.clerk.com"], // Add any domains you want to use with Next.js Image Optimization
   },
+  webpack: (config) => {
+           config.module.rules.push({
+               test: /\.svg$/,
+               loader: 'svg-inline-loader'
+           });
+           return config;
+       }
 };
 
 // const withBundleAnalyzerConfig = withBundleAnalyzer({
