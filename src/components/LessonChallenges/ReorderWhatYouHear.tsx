@@ -8,7 +8,7 @@ import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import classNames from "@/helpers/classNames";
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 import Instruction from "@/components/Headings/Instruction";
-import AudioBubble from "@/components/SpeechBubble/SpeechBubble";
+import AudioBubble from "@/components/SpeechBubble1/SpeechBubble1";
 import { Settings } from "@/types/settings.types";
 export default function ReorderWhatYouHear({ data }: { data: LessonState }) {
   const {
