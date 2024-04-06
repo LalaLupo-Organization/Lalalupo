@@ -45,10 +45,10 @@ export const ProgressBar = ({
 
   return (
     // <div className="container sticky z-30 mx-auto bg-white top-24 mt-16 sm:mb-18 mb-10 w-full sm:px-12 md:px-18 lg:px-44">
-    <div className="sticky z-30 bg-white top-0 pt-20 pb-10 sm:mb-18 mb-10 w-full">
-      <Container className="">
-        <div className="flex items-center gap-4 sm:w-3/4 mx-auto sm:px-2">
-          <div className="h-5 2xl:h-7 p-0.5 rounded-full striped-bg-light flex-1 flex items-center w-full border border-gray-200 ">
+    <div className='sticky z-30 bg-white top-0 pt-20 pb-10 sm:mb-18 mb-10 w-full'>
+      <Container className=''>
+        <div className='flex items-center gap-4 sm:w-2/3 mx-auto sm:px-2'>
+          <div className='h-5 2xl:h-5 p-0.5 rounded-full striped-bg-light flex-1 flex items-center w-full border border-gray-200 '>
             <motion.div
               transition={{ type: "spring" }}
               className={classNames(
@@ -74,7 +74,7 @@ export const ProgressBar = ({
                 />
               </div>
               <div
-                className="bg-color-purple_lighter rounded-3xl  mx-auto "
+                className='bg-color-purple_lighter rounded-3xl  mx-auto '
                 style={{ height: "4px", width: "92%" }}
               ></div>
             </motion.div>
@@ -86,18 +86,18 @@ export const ProgressBar = ({
                   height={20}
                   width={20}
                   key={uuid()}
-                  src="http://ispeakitalian.herokuapp.com/heart.svg"
-                  className="mr-1"
-                  alt=""
+                  src='http://ispeakitalian.herokuapp.com/heart.svg'
+                  className='mr-1'
+                  alt=''
                 />
               ) : (
                 <Image
                   height={20}
                   width={20}
                   key={uuid()}
-                  src="https://ispeakitalian.herokuapp.com/heart_placeholder.svg"
-                  className="mr-1"
-                  alt=""
+                  src='https://ispeakitalian.herokuapp.com/heart_placeholder.svg'
+                  className='mr-1'
+                  alt=''
                 />
               );
             })}

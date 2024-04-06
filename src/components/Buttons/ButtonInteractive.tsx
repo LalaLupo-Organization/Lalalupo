@@ -23,7 +23,7 @@ export default function ButtonInteractiveLesson({
         ? "failure-striped-bg border-error"
         : "striped-bg";
   return (
-    <div className="flex w-full relative">
+    <div className='flex w-full relative'>
       <div
         className={classNames(
           generateStripedBackground(),
@@ -35,7 +35,7 @@ export default function ButtonInteractiveLesson({
         className={`${shadowColor} flex-1 rounded-primary relative z-1 active:translate-x-0.5 active:translate-y-0.5 smooth-animation`}
       >
         <div
-          className={`tracking-wide uppercase items-center py-3 2xl:py-6 justify-center sm:text-base md:text-lg 2xl:text-2xl rounded-primary font-medium text-center ${background} `}
+          className={`tracking-wider uppercase items-center py-2 2xl:py-3 justify-center sm:text-base md:text-lg 2xl:text-xl rounded-primary font-medium text-center ${background} `}
         >
           {lottie ? lottie : buttonDisplayText}
         </div>

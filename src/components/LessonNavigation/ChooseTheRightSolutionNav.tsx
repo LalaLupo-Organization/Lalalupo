@@ -38,7 +38,7 @@ export const ChooseTheRightSolutionBottomNav: React.FC = () => {
   if (messages.activeExerciseComplete) {
     // if (true) {
     return (
-      <motion.div className="bg-white">
+      <motion.div className='bg-white'>
         <NavbarLayout message color={"bg-color_green_lighter"}>
           <SuccessToFailureLayout success={true}>
             {messages.loading ? (
@@ -50,16 +50,16 @@ export const ChooseTheRightSolutionBottomNav: React.FC = () => {
                 lottie={<Loader />}
               />
             ) : (
-              <div className="text-center w-full mt-4 sm:mt-0">
+              <div className='text-center w-full mt-4 sm:mt-0'>
                 <Confetti />
                 <ButtonInteractive
                   background={
-                    "bg-color_green_default text-white w-full cursor-pointer  font-semibold text-lg sm:w-[220px] success"
+                    "bg-color_green_default text-white w-full cursor-pointer  font-semibold text-lg sm:w-[180px] success"
                   }
                   lessonButtonClick={lessonButtonClick}
-                  buttonDisplayText={"Continue"}
+                  buttonDisplayText={"CONTINUE"}
                   shadowColor={""}
-                  status="success"
+                  status='success'
                 />
                 {/* <span
                   role="button"
@@ -97,15 +97,15 @@ export const ChooseTheRightSolutionBottomNav: React.FC = () => {
                 lottie={<Loader />}
               />
             ) : (
-              <div className="text-center w-full mt-4 sm:mt-0">
+              <div className='text-center w-full mt-4 sm:mt-0'>
                 <ButtonInteractive
                   background={
-                    "bg-error text-white w-full cursor-pointer text-error font-semibold text-lg sm:w-[220px] failure"
+                    "bg-error text-white w-full cursor-pointer text-error font-semibold text-lg sm:w-[180px] failure"
                   }
                   lessonButtonClick={lessonButtonClick}
-                  buttonDisplayText={"Continue"}
+                  buttonDisplayText={"CONTINUE"}
                   shadowColor={""}
-                  status="failure"
+                  status='failure'
                 />
                 {/* <span
                   role="button"
@@ -137,7 +137,7 @@ export const ChooseTheRightSolutionBottomNav: React.FC = () => {
         <InActiveToActiveLayout>
           <ButtonInteractive
             background={
-              " bg-disabled border border-gray-200/70 text-disabled_text cursor-not-allowed sm:w-[220px] "
+              " bg-disabled border border-gray-200/70 text-disabled_text cursor-not-allowed sm:w-[180px]  "
             }
             lessonButtonClick={null}
             buttonDisplayText={"CHECK"}
@@ -148,7 +148,7 @@ export const ChooseTheRightSolutionBottomNav: React.FC = () => {
         <InActiveToActiveLayout>
           <ButtonInteractive
             background={
-              "bg-white border border-gray-200/70 text-gray_default cursor-pointer sm:w-[220px]"
+              "bg-white border border-gray-200/70 text-gray_default cursor-pointer sm:w-[180px]"
             }
             lessonButtonClick={lessonButtonClick}
             buttonDisplayText={"CHECK"}
