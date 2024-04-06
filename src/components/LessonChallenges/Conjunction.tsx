@@ -162,13 +162,13 @@ export default function Conjunction({ data }: { data: LessonState }) {
 
    justify-center w-full items-center'
     >
-      <ProgressBar
+      {/* <ProgressBar
         remainingExercises={remainingExercises}
         totalNumberOfExercises={totalExercises}
         numberOfExercisesComplete={numberComplete}
         interactiveExercises={interactiveExercises}
         numberOfExercisesFailed={numberFailed}
-      />
+      /> */}
       <InteractiveLayout id={activeExercise && activeExercise._id}>
         <Instruction
           instruction={activeExercise && activeExercise.instructions}
