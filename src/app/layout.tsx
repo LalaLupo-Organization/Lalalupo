@@ -9,19 +9,21 @@ import Footer from "@/components/Footers/Footer";
 import { usePathname } from "next/navigation";
 export default function RootLayout({ children }: { children: any }) {
   return (
-    <html lang="en">
-      <ClerkProvider>
-        <ThemeProvider>
-          {/* <body>
+    <html lang='en'>
+      <body>
+        <ClerkProvider>
+          <ThemeProvider>
+            {/* <body>
             <Navbar />
             <FullStoryScript />
 
             {children}
             <Footer />
           </body> */}
-          <LayoutBody>{children}</LayoutBody>
-        </ThemeProvider>
-      </ClerkProvider>
+            <LayoutBody>{children}</LayoutBody>
+          </ThemeProvider>
+        </ClerkProvider>
+      </body>
     </html>
   );
 }
