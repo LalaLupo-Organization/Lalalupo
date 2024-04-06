@@ -88,9 +88,9 @@ export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
   }, [showSelected, activeExercise?._id]);
   return (
     <div
-      className="flex flex-col
+      className='flex flex-col
 
-     justify-center w-full items-center"
+     justify-center w-full items-center'
     >
       <ProgressBar
         activeExercise={activeExercise}
@@ -103,7 +103,7 @@ export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
       />
       <InteractiveLayout id={activeExercise && activeExercise._id}>
         <Instruction
-          position="center"
+          position='center'
           instruction={activeExercise && activeExercise?.instructions}
         />
 
@@ -166,7 +166,7 @@ function AvailableAnswer({
   return (
     <div
       key={uuid()}
-      className="cursor-pointer h-full w-full"
+      className='cursor-pointer h-full w-full'
       onClick={
         activeExercise?.isComplete || activeExercise?.hasFailed
           ? undefined
@@ -189,18 +189,18 @@ function AvailableAnswer({
           "text-left box-border p-2 sm:p-2 border-2 rounded-lg font-bold active:duration-300 active:ease-in outline-none h-full flex flex-col items-center gap-1 capitalize relative z-1"
         )}
       >
-        <div className="inset-0 translate-x-1.5 translate-y-1.5 absolute rounded-lg striped-bg -z-10 border"></div>
+        <div className='inset-0 translate-x-1.5 translate-y-1.5 absolute rounded-lg striped-bg -z-10 border'></div>
 
         <p>{word.label}</p>
 
         {word.hasImage && word.imageSrc && (
-          <div className="flex-1 p-4 sm:p-6 md:p-8 bg-light_blue rounded-lg flex justify-center items-center overflow-hidden">
+          <div className='flex-1 p-4 sm:p-6 md:p-8 bg-light_blue rounded-lg flex justify-center items-center overflow-hidden'>
             <Image
               src={word.imageSrc}
               height={150}
               width={150}
-              className="rounded-2xl mx-auto "
-              alt=""
+              className='rounded-2xl mx-auto '
+              alt=''
             />
           </div>
         )}

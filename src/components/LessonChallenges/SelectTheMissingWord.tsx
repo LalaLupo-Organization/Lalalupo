@@ -54,18 +54,18 @@ export default function SelectTheMissingWord({ data }: { data: LessonState }) {
 
   return (
     <div
-      className="flex flex-col
+      className='flex flex-col
 
-   justify-center w-full items-center"
+   justify-center w-full items-center'
     >
-      <ProgressBar
+      {/* <ProgressBar
         remainingExercises={remainingExercises}
         totalNumberOfExercises={totalExercises}
         numberOfExercisesComplete={numberComplete}
         interactiveExercises={interactiveExercises}
         numberOfExercisesFailed={numberFailed}
         lives={lives && lives}
-      />
+      /> */}
       <InteractiveLayout id={activeExercise && activeExercise._id}>
         <Instruction
           instruction={
@@ -80,7 +80,7 @@ export default function SelectTheMissingWord({ data }: { data: LessonState }) {
                   initial={{ y: "10px" }}
                   animate={{ y: "0px" }}
                   key={uuid()}
-                  className=" inline-block sm:text-base ml-1 border-b-2 relative  font-fredoka tracking-wide border-color_purple_default  border-dashed  text-color_purple_darker text-center font-semibold"
+                  className=' inline-block sm:text-base ml-1 border-b-2 relative  font-fredoka tracking-wide border-color_purple_default  border-dashed  text-color_purple_darker text-center font-semibold'
                   style={{
                     width: `${showSelected.word !== "" ? showSelected.word.length * 13 + "px" : item.length * 13 + "px"}`,
                   }}
@@ -89,7 +89,7 @@ export default function SelectTheMissingWord({ data }: { data: LessonState }) {
                 </motion.span>
               ) : getType(activeExercise) &&
                 item === activeExercise?.underlined ? (
-                <span key={uuid()} className="underline">
+                <span key={uuid()} className='underline'>
                   {" "}
                   {item}{" "}
                 </span>
@@ -99,12 +99,12 @@ export default function SelectTheMissingWord({ data }: { data: LessonState }) {
             )}
         </div>
 
-        <div className="grid grid-cols-3 mt-12 sm:mt-20    flex-wrap justify-center mx-auto w-full ">
+        <div className='grid grid-cols-3 mt-12 sm:mt-20    flex-wrap justify-center mx-auto w-full '>
           {getType(activeExercise) &&
             activeExercise?.availableWords.map((word, index) => (
               <div
                 key={uuid()}
-                className="m-1 cursor-pointer"
+                className='m-1 cursor-pointer'
                 onClick={
                   activeExercise?.isComplete || activeExercise?.hasFailed
                     ? undefined
