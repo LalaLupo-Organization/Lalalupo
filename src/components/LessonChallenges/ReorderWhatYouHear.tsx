@@ -3,12 +3,12 @@ import React, { useState, useRef, useEffect } from "react";
 import { ReorderWhatYouHearExercise } from "@/types/reorder-what-you-hear.types";
 import { setSingleInput, clearUserInput } from "@/features/userInputSlice";
 import { useAppDispatch } from "@/hooks/useRedux";
-import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
+import { InteractiveLayout } from "@/components/Layouts1/InteractiveLayout1";
 // import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";
 import classNames from "@/helpers/classNames";
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 import Instruction from "@/components/Headings/Instruction";
-import AudioBubble from "@/components/SpeechBubble/SpeechBubble";
+import AudioBubble from "@/components/SpeechBubble1/SpeechBubble1";
 import { Settings } from "@/types/settings.types";
 export default function ReorderWhatYouHear({ data }: { data: LessonState }) {
   const {
