@@ -17,7 +17,7 @@ import useAssessment from "@/hooks/useAssessment";
 import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper";
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import Instruction from "@/components/Headings/Instruction";
-import SpeechBubble from "@/components/SpeechBubble/SpeechBubble";
+import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble";
 const SpeechRecognition =
   (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
 const mic: any = new SpeechRecognition();
@@ -94,18 +94,18 @@ export default function SpeakingAndPronunciation({
 
   return (
     <div
-      className="flex flex-col
+      className='flex flex-col
 
-   justify-center w-full items-center"
+   justify-center w-full items-center'
     >
-      <ProgressBar
+      {/* <ProgressBar
         remainingExercises={remainingExercises}
         totalNumberOfExercises={totalExercises}
         numberOfExercisesComplete={numberComplete}
         interactiveExercises={interactiveExercises}
         numberOfExercisesFailed={numberFailed}
         lives={lives && lives}
-      />
+      /> */}
       <InteractiveLayout id={activeExercise && activeExercise._id}>
         <Instruction
           instruction={
@@ -113,7 +113,7 @@ export default function SpeakingAndPronunciation({
           }
         />
 
-        <div className="flex flex-col w-full">
+        <div className='flex flex-col w-full'>
           <SpeechBubble
             dialogue={
               getType(activeExercise) ? activeExercise.display : undefined
@@ -128,11 +128,11 @@ export default function SpeakingAndPronunciation({
               ? undefined
               : handleClick
           }
-          className="flex justify-center cursor-pointer items-center text-sm rounded-2xl pb-1 sm:text-lg bg-gray-300 font-bold  tracking-wider "
+          className='flex justify-center cursor-pointer items-center text-sm rounded-2xl pb-1 sm:text-lg bg-gray-300 font-bold  tracking-wider '
         >
-          <div className="bg-white w-full h-full  px-2 py-4 border border-t-2 border-r-2 border-l-2 rounded-2xl">
-            <div className="flex justify-center cursor-pointer items-center  text-gray-900 h-12">
-              <MicrophoneIcon className="h-6 sm:h-8 mr-1 text-cyan-400" />
+          <div className='bg-white w-full h-full  px-2 py-4 border border-t-2 border-r-2 border-l-2 rounded-2xl'>
+            <div className='flex justify-center cursor-pointer items-center  text-gray-900 h-12'>
+              <MicrophoneIcon className='h-6 sm:h-8 mr-1 text-cyan-400' />
               {isListening ? (
                 <Lottie
                   animationData={audiowave}

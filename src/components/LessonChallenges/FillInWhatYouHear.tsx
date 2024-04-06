@@ -6,7 +6,7 @@ import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 import { v4 as uuid } from "uuid";
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import Instruction from "@/components/Headings/Instruction";
-import AccentedLetters from "@/components/AccentedLetters/AccentedLetters";
+import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters";
 import AudioBubble from "@/components/AudioBubble/AudioBubble";
 
 export default function FillInWhatYouHear({ data }: { data: LessonState }) {
@@ -50,14 +50,14 @@ export default function FillInWhatYouHear({ data }: { data: LessonState }) {
 
   return (
     <>
-      <ProgressBar
+      {/* <ProgressBar
         remainingExercises={remainingExercises}
         totalNumberOfExercises={totalExercises}
         numberOfExercisesComplete={numberComplete}
         interactiveExercises={interactiveExercises}
         numberOfExercisesFailed={numberFailed}
         lives={lives && lives}
-      />
+      /> */}
       <InteractiveLayout id={activeExercise && activeExercise._id}>
         <Instruction
           instruction={activeExercise && activeExercise.instructions}
@@ -71,7 +71,7 @@ export default function FillInWhatYouHear({ data }: { data: LessonState }) {
           }
         />
 
-        <div className="flex outline-none p-2 text-base font-bold text-gray-600 tracking-wider w-full border-2 bg-gray-100 rounded-lg h-32">
+        <div className='flex outline-none p-2 text-base font-bold text-gray-600 tracking-wider w-full border-2 bg-gray-100 rounded-lg h-32'>
           {activeExercise &&
             Array.isArray(activeExercise.solution) &&
             activeExercise.solution.map((word: string) => {
