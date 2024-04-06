@@ -8,7 +8,7 @@ import { InteractiveLayout } from "@/components/Layouts1/InteractiveLayout1";
 import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters";
 
 import Instruction from "@/components/Headings/Instruction";
-import AudioBubble from "@/components/AudioBubble/AudioBubble";
+import AudioBubble from "@/components/AudioBubble1/AudioBubble1";
 export default function TypeInWhatYouHear({ data }: { data: LessonState }) {
   const {
     activeExercise,
