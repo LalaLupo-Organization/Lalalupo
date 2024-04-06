@@ -9,7 +9,7 @@ import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 
 import classNames from "@/helpers/classNames";
 import AudioBubble from "@/components/AudioBubble/AudioBubble";
-import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
+import { InteractiveLayout } from "@/components/Layouts1/InteractiveLayout1";
 import Instruction from "@/components/Headings/Instruction";
 export default function ListenAndSelect({ data }: { data: LessonState }) {
   const {

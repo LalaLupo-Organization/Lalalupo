@@ -6,10 +6,10 @@ import { setSingleInput, clearUserInput } from "@/features/userInputSlice";
 // import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
-import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper";
+import VocabularyHelper from "@/components/VocabularyHelper1/VocabularyHelper1";
 import parse from "html-react-parser";
 
-import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
+import { InteractiveLayout } from "@/components/Layouts1/InteractiveLayout1";
 import Instruction from "@/components/Headings/Instruction";
 import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble1";
 import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters";

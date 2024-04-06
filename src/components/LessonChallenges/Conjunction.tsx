@@ -7,8 +7,8 @@ import { useAppDispatch } from "@/hooks/useRedux";
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 import { v4 as uuid } from "uuid";
 import Instruction from "@/components/Headings/Instruction";
-import ImageOfProfessor from "@/components/Layouts/ImageOfProfessor";
-import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
+import ImageOfProfessor from "@/components/Layouts1/ImageOfProfessor";
+import { InteractiveLayout } from "@/components/Layouts1/InteractiveLayout1";
 import classNames from "@/helpers/classNames";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 import parse from "html-react-parser";
@@ -84,14 +84,14 @@ export default function Conjunction({ data }: { data: LessonState }) {
 
      justify-center w-full items-center'
       >
-        <ProgressBar
+        {/* <ProgressBar
           remainingExercises={remainingExercises}
           totalNumberOfExercises={totalExercises}
           numberOfExercisesComplete={numberComplete}
           interactiveExercises={interactiveExercises}
           numberOfExercisesFailed={numberFailed}
           lives={lives && lives}
-        />
+        /> */}
         <InteractiveLayout id={activeExercise && activeExercise._id}>
           <Instruction instruction={"Lesson review"} />
 

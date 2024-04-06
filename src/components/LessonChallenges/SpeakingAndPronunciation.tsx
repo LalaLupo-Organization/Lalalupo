@@ -14,8 +14,8 @@ import { motion } from "framer-motion";
 import audiowave from "@/public/audiowave.json";
 import Lottie from "lottie-react";
 import useAssessment from "@/hooks/useAssessment";
-import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper";
-import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
+import VocabularyHelper from "@/components/VocabularyHelper1/VocabularyHelper1";
+import { InteractiveLayout } from "@/components/Layouts1/InteractiveLayout1";
 import Instruction from "@/components/Headings/Instruction";
 import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble1";
 const SpeechRecognition =
