@@ -9,7 +9,7 @@ import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 import { v4 as uuid } from "uuid";
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import Instruction from "@/components/Headings/Instruction";
-import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble";
+import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble1";
 import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters";
 import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper";
 import parse from "html-react-parser";

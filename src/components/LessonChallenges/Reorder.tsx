@@ -8,7 +8,7 @@ import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 // import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";
 import Instruction from "@/components/Headings/Instruction";
 import classNames from "@/helpers/classNames";
-import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble";
+import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble1";
 
 import React, { useState, useRef, useEffect } from "react";
 

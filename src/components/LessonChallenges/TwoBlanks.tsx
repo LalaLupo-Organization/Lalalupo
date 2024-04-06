@@ -11,7 +11,7 @@ import { v4 as uuid } from "uuid";
 import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters";
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import Instruction from "@/components/Headings/Instruction";
-import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble";
+import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble1";
 import parse from "html-react-parser";
 export default function TwoBlanks({ data }: { data: LessonState }) {
   const {
