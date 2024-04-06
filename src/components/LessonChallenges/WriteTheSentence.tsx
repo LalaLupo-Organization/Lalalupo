@@ -11,7 +11,7 @@ import parse from "html-react-parser";
 
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import Instruction from "@/components/Headings/Instruction";
-import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble";
+import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble1";
 import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters";
 export default function WriteTheSentence({ data }: { data: LessonState }) {
   const {
