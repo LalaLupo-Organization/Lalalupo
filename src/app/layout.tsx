@@ -1,5 +1,6 @@
 "use client";
 import FullStoryScript from "@/scripts/fullstory";
+import { Suspense } from "react";
 import { ThemeProvider } from "@/providers/themeProvider";
 // These styles apply to every route in the application
 import "./globals.css";
@@ -11,18 +12,20 @@ export default function RootLayout({ children }: { children: any }) {
   return (
     <html lang='en'>
       <body>
-        <ClerkProvider>
-          <ThemeProvider>
-            {/* <body>
+        <Suspense>
+          <ClerkProvider>
+            <ThemeProvider>
+              {/* <body>
             <Navbar />
             <FullStoryScript />
 
             {children}
             <Footer />
           </body> */}
-            <LayoutBody>{children}</LayoutBody>
-          </ThemeProvider>
-        </ClerkProvider>
+              <LayoutBody>{children}</LayoutBody>
+            </ThemeProvider>
+          </ClerkProvider>
+        </Suspense>
       </body>
     </html>
   );
