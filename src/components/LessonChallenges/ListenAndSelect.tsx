@@ -8,7 +8,7 @@ import { setSingleInput, clearUserInput } from "@/features/userInputSlice";
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 
 import classNames from "@/helpers/classNames";
-import AudioBubble from "@/components/AudioBubble/AudioBubble";
+import AudioBubble from "@/components/AudioBubble1/AudioBubble1";
 import { InteractiveLayout } from "@/components/Layouts1/InteractiveLayout1";
 import Instruction from "@/components/Headings/Instruction";
 export default function ListenAndSelect({ data }: { data: LessonState }) {
