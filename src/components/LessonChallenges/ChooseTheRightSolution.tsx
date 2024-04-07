@@ -18,8 +18,6 @@ import {
 } from "@/types/choose-the-right-solution.types";
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import useWindowSize from "@/hooks/useWindowSize";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Icon } from "../Icons/Icon";
 
 const MoreSugarRegular = localFont({
   src: "../../../public/MoreSugarRegular.ttf",
@@ -100,6 +98,7 @@ export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
         interactiveExercises={interactiveExercises}
         numberOfExercisesFailed={numberFailed}
         lives={lives && lives}
+        id={activeExercise && activeExercise._id}
       />
       <InteractiveLayout id={activeExercise && activeExercise._id}>
         <Instruction
@@ -107,27 +106,11 @@ export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
           instruction={activeExercise && activeExercise?.instructions}
         />
 
-        {/* {getType(activeExercise) && activeExercise.displayImage && (
-          <div className=" rounded-2xl pt-8  sm:w-2/4 md:w-1/3  mx-auto">
-            <Image
-              src={activeExercise.displayImageSrc}
-              height={600}
-              width={600}
-              className="rounded-2xl mx-auto "
-              alt=""
-            />
-          </div>
-        )} */}
         <div
           style={{
             fontFamily: "Nunito, sans-serif",
           }}
-          className={classNames(
-            // getType(activeExercise) && activeExercise.displayImage
-            //   ? "mt-10"
-            //   : "mt-18",
-            "grid grid-cols-3  mt-12 sm:mt-0 flex-wrap sm:p-10 justify-center  w-full sm:w-[90%] 2xl:w-full gap-3"
-          )}
+          className='grid sm:grid-cols-3  sm:grid-row-0 grid-cols-6  mt-8 sm:mt-0 flex-wrap sm:p-10 justify-center  w-full sm:w-[90%] 2xl:w-full gap-3'
         >
           {randomizedData &&
             activeExercise &&
@@ -142,6 +125,7 @@ export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
                   activeExercise as ChooseTheRightSolutionExercise
                 }
                 key={index}
+                index={index}
               />
             ))}
         </div>
@@ -153,8 +137,9 @@ export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
 interface IAvailableAnswerProps {
   word: IAvailableWord;
   activeExercise: ChooseTheRightSolutionExercise;
-  handleSelectedItem: any;
-  showSelected: any;
+  handleSelectedItem: (e: React.SyntheticEvent, userAnswer: string) => void;
+  showSelected: { word: string; status: boolean };
+  index: number;
 }
 
 function AvailableAnswer({
@@ -162,11 +147,12 @@ function AvailableAnswer({
   activeExercise,
   handleSelectedItem,
   showSelected,
+  index,
 }: IAvailableAnswerProps) {
   return (
     <div
       key={uuid()}
-      className='cursor-pointer h-full w-full'
+      className={`cursor-pointer h-full w-full sm:col-span-1  ${index === 2 ? " col-span-3 col-start-3 -ml-6 sm:-ml-0 " : " col-span-3"}`}
       onClick={
         activeExercise?.isComplete || activeExercise?.hasFailed
           ? undefined
@@ -186,7 +172,7 @@ function AvailableAnswer({
                 ? "text-color_purple_darker border-color_purple_default !bg-active_card cursor-pointer"
                 : "cursor-pointer text-gray_default",
 
-          "text-left box-border p-2 sm:p-2 border-2 rounded-lg font-bold active:duration-300 active:ease-in outline-none h-full flex flex-col items-center gap-1 capitalize relative z-1"
+          `text-left box-border p-2 sm:p-2 border-2 rounded-lg font-bold active:duration-300 active:ease-in outline-none h-full flex flex-col items-center gap-1 capitalize relative z-1`
         )}
       >
         <div className='inset-0 translate-x-1.5 translate-y-1.5 absolute rounded-lg striped-bg -z-10 border'></div>

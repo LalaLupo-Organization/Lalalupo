@@ -148,11 +148,11 @@ export const ChooseTheRightSolutionBottomNav: React.FC = () => {
         <InActiveToActiveLayout>
           <ButtonInteractive
             background={
-              "bg-white border border-gray-200/70 text-gray_default cursor-pointer sm:w-[180px]"
+              "bg-color_green_default text-white w-full cursor-pointer  font-semibold text-lg sm:w-[180px] success"
             }
             lessonButtonClick={lessonButtonClick}
             buttonDisplayText={"CHECK"}
-            shadowColor={"bg-color-purple_deep"}
+            status='active'
           />
         </InActiveToActiveLayout>
       )}

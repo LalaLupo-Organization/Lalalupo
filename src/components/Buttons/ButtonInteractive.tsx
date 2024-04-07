@@ -14,10 +14,10 @@ export default function ButtonInteractiveLesson({
   buttonDisplayText: string;
   shadowColor?: string;
   lottie?: any;
-  status?: "success" | "failure";
+  status?: "success" | "failure" | "active";
 }) {
   const generateStripedBackground = () =>
-    status === "success"
+    status === "success" || status === "active"
       ? "success-striped-bg border-color_green_default"
       : status == "failure"
         ? "failure-striped-bg border-error"
