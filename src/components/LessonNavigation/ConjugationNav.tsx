@@ -5,10 +5,10 @@ import { useAppSelector } from "@/hooks/useRedux";
 import useAssessment from "@/hooks/useAssessment";
 import ButtonInteractiveLesson from "@/components/Buttons/ButtonInteractive";
 import { selectUserInput } from "@/features/userInputSlice";
-import NavbarLayout from "@/components/Layouts1/NavbarLayout";
-import InActiveToActiveLayout from "@/components/Layouts1/InactiveToActiveLayout";
+import NavbarLayout from "@/components/Layouts/NavbarLayout";
+import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout";
 import { Loader } from "@/components/Loaders1/Loader";
-import SuccessToFailureLayout from "@/components/Layouts1/SuccessToFailure";
+import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure";
 import isArrayItemsEmpty from "@/helpers/isArrayItemsEmpty";
 export default function ConjugationBottomNav() {
   const { lessonButtonClick } = useAssessment();

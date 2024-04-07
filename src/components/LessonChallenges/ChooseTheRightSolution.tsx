@@ -16,7 +16,7 @@ import {
   ChooseTheRightSolutionExercise,
   IAvailableWord,
 } from "@/types/choose-the-right-solution.types";
-import { InteractiveLayout } from "@/components/Layouts1/InteractiveLayout1";
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import useWindowSize from "@/hooks/useWindowSize";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Icon } from "../Icons/Icon";

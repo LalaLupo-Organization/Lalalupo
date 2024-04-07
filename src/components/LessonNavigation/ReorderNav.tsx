@@ -6,9 +6,9 @@ import { selectActiveExercise } from "@/features/lessonSlice";
 import ButtonInteractiveLesson from "@/components/Buttons/ButtonInteractive";
 import { selectUserInput } from "@/features/userInputSlice";
 import { Loader } from "@/components/Loaders1/Loader";
-import NavbarLayout from "@/components/Layouts1/NavbarLayout";
-import InActiveToActiveLayout from "@/components/Layouts1/InactiveToActiveLayout";
-import SuccessToFailureLayout from "@/components/Layouts1/SuccessToFailure";
+import NavbarLayout from "@/components/Layouts/NavbarLayout";
+import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout";
+import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure";
 export default function BottomNavigation() {
   const { lessonButtonClick } = useAssessment();
 

@@ -4,11 +4,11 @@ import { TypeInWhatYouHearExercise } from "@/types/type-in-what-you-hear.types";
 import { setSingleInput, clearUserInput } from "@/features/userInputSlice";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
-import { InteractiveLayout } from "@/components/Layouts1/InteractiveLayout1";
-import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters";
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
+import AccentedLetters from "@/components/AccentedLetters/AccentedLetters";
 
 import Instruction from "@/components/Headings/Instruction";
-import AudioBubble from "@/components/AudioBubble1/AudioBubble1";
+import AudioBubble from "@/components/AudioBubble/AudioBubble";
 export default function TypeInWhatYouHear({ data }: { data: LessonState }) {
   const {
     activeExercise,

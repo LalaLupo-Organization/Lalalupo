@@ -7,9 +7,9 @@ import { selectActiveExercise } from "@/features/lessonSlice";
 import ButtonInteractive from "@/components/Buttons/ButtonInteractive";
 import { selectUserInput } from "@/features/userInputSlice";
 import { Loader } from "@/components/Loaders1/Loader";
-import NavbarLayout from "@/components/Layouts1/NavbarLayout";
-import InActiveToActiveLayout from "@/components/Layouts1/InactiveToActiveLayout";
-import SuccessToFailureLayout from "@/components/Layouts1/SuccessToFailure";
+import NavbarLayout from "@/components/Layouts/NavbarLayout";
+import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout";
+import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure";
 import { motion } from "framer-motion";
 import { Confetti } from "../Confetti/Confetti";
 export const ChooseTheRightSolutionBottomNav: React.FC = () => {

@@ -8,7 +8,7 @@ import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 import parse from "html-react-parser";
 import { motion } from "framer-motion";
 import Instruction from "@/components/Headings/Instruction";
-import { InteractiveLayout } from "@/components/Layouts1/InteractiveLayout1";
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import classNames from "@/helpers/classNames";
 export default function SelectTheMissingWord({ data }: { data: LessonState }) {
   const {
