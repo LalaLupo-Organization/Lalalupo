@@ -11,7 +11,7 @@ import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import Instruction from "@/components/Headings/Instruction";
 import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble1";
 import AccentedLetters from "@/components/AccentedLetters/AccentedLetters";
-import VocabularyHelper from "@/components/VocabularyHelper1/VocabularyHelper1";
+import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper";
 import parse from "html-react-parser";
 
 export default function FillInTheBlanks({ data }: { data: LessonState }) {
