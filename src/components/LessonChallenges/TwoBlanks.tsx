@@ -7,7 +7,7 @@ import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { v4 as uuid } from "uuid";
-import AccentedLetters from "@/components/AccentedLetters/AccentedLetters";
+import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters1";
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
 import Instruction from "@/components/Headings/Instruction";
 import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble1";

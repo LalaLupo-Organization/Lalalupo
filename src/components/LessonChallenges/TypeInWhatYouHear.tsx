@@ -5,7 +5,7 @@ import { setSingleInput, clearUserInput } from "@/features/userInputSlice";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
-import AccentedLetters from "@/components/AccentedLetters/AccentedLetters";
+import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters1";
 
 import Instruction from "@/components/Headings/Instruction";
 import AudioBubble from "@/components/AudioBubble/AudioBubble";
