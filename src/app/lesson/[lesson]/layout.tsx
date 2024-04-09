@@ -3,7 +3,7 @@
 import { useAppSelector } from "@/hooks/useRedux";
 import { selectLesson } from "@/features/lessonSlice";
 import { LessonState } from "@/types/lesson.types";
-import { InteractiveBottomNav } from "@/components/LessonNavigation/ChooseTheRightSolutionNav";
+import { InteractiveBottomNav } from "@/components/LessonNavigation/InteractiveBottomNav";
 import ReorderBottomNav from "@/components/LessonNavigation/ReorderNav";
 import FillInTheBlankNav from "@/components/LessonNavigation/FillnTheBlanksNav";
 import ConjugationNav from "@/components/LessonNavigation/ConjugationNav";
