@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import classNames from "@/helpers/classNames";
 import "@fontsource/nunito";
 import { motion } from "framer-motion";
@@ -37,7 +37,7 @@ export default function BottomNavigation({
         )}
       >
         <Container>
-          <div className='flex flex-col gap-3 sm:w-2/3 mx-auto sm:flex-row justify-center sm:justify-between sm:items-center'>
+          <div className="flex flex-col gap-3 sm:w-2/3 mx-auto sm:flex-row justify-center sm:justify-between sm:items-center">
             {children}
           </div>
         </Container>

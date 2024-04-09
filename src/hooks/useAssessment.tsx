@@ -23,6 +23,7 @@ import {
 import RegexParser from "regex-parser";
 
 import { selectUserInput, clearUserInput } from "@/features/userInputSlice";
+import { IReduxUserObjectInput } from "@/components/LessonChallenges/MatchPairs";
 // import { toast } from "react-toastify";
 
 export default function useAssessment() {
@@ -171,19 +172,17 @@ export default function useAssessment() {
         return;
       }
     }
-    // if (activeExercise.type === "matchPairs" && userObjectInput) {
-    //   let allCorrect = Object.entries(userObjectInput).some(
-    //     (item: [string, any]) => !item[1].correct
-    //   );
-    //   //Has the user matched all the pairs correctly
-    //   if (!allCorrect) {
-    //     setSuccess();
-    //     return;
-    //   } else {
-    //     setFailed();
-    //     return;
-    //   }
-    // }
+    if (activeExercise.type === "matchPairs" && userObjectInput) {
+      const correctExercises = activeExercise.availableWords.pairs.length;
+      let allCorrect =
+        (userObjectInput as IReduxUserObjectInput["userObjectInput"])
+          .successfulPairs.length === correctExercises;
+      //Has the user matched all the pairs correctly
+      if (allCorrect) {
+        setSuccess();
+        return;
+      }
+    }
     if (activeExercise.type === "missingSyllable") {
       if (userInput === activeExercise.solution) {
         setSuccess();

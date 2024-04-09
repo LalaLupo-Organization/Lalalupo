@@ -14,7 +14,7 @@ export const InteractiveLayout = ({
       initial={{ opacity: 0, x: 40 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8 }}
-      className='flex flex-col px-4 pt-4 sm:py-6 justify-center items-center mb-52'
+      className="flex flex-col w-full sm:w-fit pt-4 sm:py-6 justify-center items-center mb-52"
     >
       {children}
     </motion.div>

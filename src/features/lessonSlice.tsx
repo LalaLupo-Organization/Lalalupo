@@ -19,40 +19,63 @@ const initialState: LessonState = {
   numberFailed: 0,
   correctLetters: [],
   activeExercise: {
-    type: "chooseTheRightSolution",
-    _id: "635f9a0fefff76c1f466c9be",
-    solution: "Latte",
-    // availableWords: ["panino", "ravioli", "espresso"],
-    availableWords: [
-      {
-        label: "Zucchero",
-        hasImage: true,
-        imageSrc: "/assets/ExercisesImages/Zucchero.png",
-      },
-      {
-        label: "Gelato",
-        hasImage: true,
-        imageSrc: "/assets/ExercisesImages/Gelato.png",
-      },
-      {
-        label: "Latte",
-        hasImage: true,
-        imageSrc: "/assets/ExercisesImages/Milk.png",
-      },
-    ],
-    instructions: 'Which one is "Milk"?',
-    displayImage: true,
-    displayImageSrc:
-      "https://imagedelivery.net/_Fh-Z9aj1rlSxXMDl1yqsg/b753daa9-b6c7-4773-a681-e1f881c9f600/character",
+    _id: "1234567",
+    instructions: "Match the corresponding words.",
     isComplete: false,
     hasFailed: false,
+    solution: "Some solution here",
+    type: "matchPairs",
+    availableWords: {
+      pairs: [
+        ["attenzione", "attention"],
+        ["stazione", "station"],
+        ["possibile", "possible"],
+      ],
+      column1: {
+        column: "1",
+        read: true,
+      },
+      column2: {
+        column: "2",
+        read: false,
+      },
+    },
   },
+  // activeExercise: {
+  //   type: "chooseTheRightSolution",
+  //   _id: "635f9a0fefff76c1f466c9be",
+  //   solution: "Latte",
+  //   // availableWords: ["panino", "ravioli", "espresso"],
+  //   availableWords: [
+  //     {
+  //       label: "Zucchero",
+  //       hasImage: true,
+  //       imageSrc: "/assets/ExercisesImages/Zucchero.png",
+  //     },
+  //     {
+  //       label: "Gelato",
+  //       hasImage: true,
+  //       imageSrc: "/assets/ExercisesImages/Gelato.png",
+  //     },
+  //     {
+  //       label: "Latte",
+  //       hasImage: true,
+  //       imageSrc: "/assets/ExercisesImages/Milk.png",
+  //     },
+  //   ],
+  //   instructions: 'Which one is "Milk"?',
+  //   displayImage: true,
+  //   displayImageSrc:
+  //     "https://imagedelivery.net/_Fh-Z9aj1rlSxXMDl1yqsg/b753daa9-b6c7-4773-a681-e1f881c9f600/character",
+  //   isComplete: false,
+  //   hasFailed: false,
+  // },
   interactiveExercises: [
     //ChooseTheRightSolution
     {
       type: "chooseTheRightSolution",
       _id: "635f9a0fefff76c1f466c9be",
-      solution: "panino",
+      solution: "Latte",
       // availableWords: ["panino", "ravioli", "espresso"],
       availableWords: [
         {
@@ -71,12 +94,35 @@ const initialState: LessonState = {
           imageSrc: "/assets/ExercisesImages/Milk.png",
         },
       ],
-      instructions: "What is this?",
+      instructions: 'Which one is "Milk"?',
       displayImage: true,
       displayImageSrc:
         "https://imagedelivery.net/_Fh-Z9aj1rlSxXMDl1yqsg/b753daa9-b6c7-4773-a681-e1f881c9f600/character",
       isComplete: false,
       hasFailed: false,
+    },
+    {
+      _id: "1234567",
+      instructions: "Match the corresponding words.",
+      isComplete: false,
+      hasFailed: false,
+      solution: "Some solution here",
+      type: "matchPairs",
+      availableWords: {
+        pairs: [
+          ["attenzione", "attention"],
+          ["stazione", "station"],
+          ["possibile", "possible"],
+        ],
+        column1: {
+          column: "1",
+          read: true,
+        },
+        column2: {
+          column: "2",
+          read: false,
+        },
+      },
     },
     //Reorder
     {

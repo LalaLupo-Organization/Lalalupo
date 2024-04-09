@@ -3,7 +3,7 @@
 import { useAppSelector } from "@/hooks/useRedux";
 import { selectLesson } from "@/features/lessonSlice";
 import { LessonState } from "@/types/lesson.types";
-import { ChooseTheRightSolutionBottomNav } from "@/components/LessonNavigation/ChooseTheRightSolutionNav";
+import { InteractiveBottomNav } from "@/components/LessonNavigation/ChooseTheRightSolutionNav";
 import ReorderBottomNav from "@/components/LessonNavigation/ReorderNav";
 import FillInTheBlankNav from "@/components/LessonNavigation/FillnTheBlanksNav";
 import ConjugationNav from "@/components/LessonNavigation/ConjugationNav";
@@ -18,12 +18,16 @@ import SpeakingAndPronunciationNav from "@/components/LessonNavigation/SpeakingA
 import TwoBlanksNav from "@/components/LessonNavigation/TwoBlanksNav";
 import TypeInWhatYouHearNav from "@/components/LessonNavigation/TypeInWhatYouHearNav";
 import WriteTheSentenceNav from "@/components/LessonNavigation/WriteTheSentenceNav";
+import { selectMessage } from "@/features/userSlice";
+import { selectUserInput } from "@/features/userInputSlice";
 export default function LessonLayout({
   children, // will be a page or nested layout
 }: {
   children: React.ReactNode;
 }) {
   const lesson = useAppSelector((state) => selectLesson(state));
+  const messages = useAppSelector((state) => selectMessage(state));
+  const userInput = useAppSelector((state) => selectUserInput(state));
 
   const {
     activeExercise,
@@ -37,12 +41,34 @@ export default function LessonLayout({
   const getNavigationComponent = (
     activeExercise: LessonState["activeExercise"]
   ) => {
+    // Maybe make it object in next update??
+    const status = messages?.activeExerciseComplete
+      ? "success"
+      : messages?.activeExerciseWrongAnswer
+        ? "failure"
+        : userInput.userInput
+          ? "active"
+          : "disabled";
     //This function
     switch (activeExercise.type) {
       case "chooseTheRightSolution":
-        return <ChooseTheRightSolutionBottomNav />;
-      // case "matchPairs":
-      //   return <BottomNavigation />;
+        return (
+          <InteractiveBottomNav
+            status={status}
+            loading={messages.loading}
+            userInput={userInput}
+            activeExercise={activeExercise}
+          />
+        );
+      case "matchPairs":
+        return (
+          <InteractiveBottomNav
+            status={status}
+            loading={messages.loading}
+            userInput={userInput}
+            activeExercise={activeExercise}
+          />
+        );
       case "conjugation":
         return <ConjugationNav />;
       case "reorder":

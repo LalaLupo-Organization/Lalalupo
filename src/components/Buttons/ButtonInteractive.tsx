@@ -8,13 +8,15 @@ export default function ButtonInteractiveLesson({
   shadowColor,
   lottie,
   status,
+  className,
 }: {
-  background: string;
+  background?: string;
+  className?: string;
   lessonButtonClick: Function | null;
   buttonDisplayText: string;
   shadowColor?: string;
   lottie?: any;
-  status?: "success" | "failure" | "active";
+  status?: "success" | "failure" | "active" | "disabled";
 }) {
   const generateStripedBackground = () =>
     status === "success" || status === "active"
@@ -22,8 +24,9 @@ export default function ButtonInteractiveLesson({
       : status == "failure"
         ? "failure-striped-bg border-error"
         : "striped-bg";
+
   return (
-    <div className='flex w-full relative'>
+    <div className="flex w-full relative">
       <div
         className={classNames(
           generateStripedBackground(),
@@ -35,7 +38,7 @@ export default function ButtonInteractiveLesson({
         className={`${shadowColor} flex-1 rounded-primary relative z-1 active:translate-x-0.5 active:translate-y-0.5 smooth-animation`}
       >
         <div
-          className={`tracking-wider uppercase items-center py-2 2xl:py-3 justify-center sm:text-base md:text-lg 2xl:text-xl rounded-primary font-medium text-center ${background} `}
+          className={`tracking-wider uppercase items-center py-2 2xl:py-3 justify-center sm:text-base md:text-lg 2xl:text-xl rounded-primary font-medium text-center ${background} ${className} `}
         >
           {lottie ? lottie : buttonDisplayText}
         </div>
