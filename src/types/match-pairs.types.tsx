@@ -8,7 +8,32 @@ export type MatchPairsExercise = BaseExercise & {
     column2: { column: string; read: boolean };
   };
   englishAnswers?: string[];
+  successPairAudioURL?: string;
+  successPairAudioScript?: string; // the text for audio file
 };
+
+export interface IRandomizedData {
+  column1: string[];
+  column2: string[];
+}
+
+export interface ISelected {
+  pair: string[];
+  successfulPairs: [string, string][];
+}
+
+export interface IReduxUserObjectInput {
+  userObjectInput: ISelected;
+}
+
+export interface IAvailableAnswerProps {
+  word: string;
+  activeExercise: MatchPairsExercise;
+  handleMatchPair: (e: React.SyntheticEvent, userAnswer: string) => void;
+  userInput: ISelected;
+  index: number;
+  checkIfInSuccessful: (word: string) => boolean;
+}
 
 //?This is the matchpairs data structure - I am going to recreate the matchpairs interactive component as the current one is not how I want it.
 // {

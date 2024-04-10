@@ -173,7 +173,6 @@ import { Loader } from "@/components/Loaders1/Loader";
 import NavbarLayout from "@/components/Layouts/NavbarLayout";
 import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout";
 import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure";
-import { Confetti } from "../Confetti/Confetti";
 import { RootState } from "@/redux/store";
 import { LessonState } from "@/types/lesson.types";
 import classNames from "@/helpers/classNames";
@@ -238,7 +237,6 @@ export const InteractiveBottomNav: React.FC<IInteractiveNavProps> = ({
             />
           ) : (
             <div className="text-center w-full mt-4 sm:mt-0">
-              {status === "success" && <Confetti />}
               <ButtonInteractive
                 background={classNames(
                   status === "success"

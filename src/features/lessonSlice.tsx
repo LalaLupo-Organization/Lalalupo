@@ -20,6 +20,7 @@ const initialState: LessonState = {
   correctLetters: [],
   activeExercise: {
     _id: "1234567",
+    successPairAudioURL: "https://ispeakitalian.herokuapp.com/correct.mp3",
     instructions: "Match the corresponding words.",
     isComplete: false,
     hasFailed: false,
@@ -103,6 +104,7 @@ const initialState: LessonState = {
     },
     {
       _id: "1234567",
+      successPairAudioURL: "https://ispeakitalian.herokuapp.com/correct.mp3",
       instructions: "Match the corresponding words.",
       isComplete: false,
       hasFailed: false,

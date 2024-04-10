@@ -24,7 +24,9 @@ export const Icon: React.FC<IconProps> = ({
     });
 
     svgElement().then((svg) => {
-      svgRef!.current!.innerHTML = svg.default;
+      if (svgRef?.current) {
+        svgRef.current.innerHTML = svg.default;
+      }
     });
   }, [name]);
 

@@ -23,7 +23,7 @@ import {
 import RegexParser from "regex-parser";
 
 import { selectUserInput, clearUserInput } from "@/features/userInputSlice";
-import { IReduxUserObjectInput } from "@/components/LessonChallenges/MatchPairs";
+import { IReduxUserObjectInput } from "@/types/match-pairs.types";
 // import { toast } from "react-toastify";
 
 export default function useAssessment() {

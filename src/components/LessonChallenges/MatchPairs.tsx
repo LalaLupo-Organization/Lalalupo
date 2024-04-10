@@ -14,23 +14,15 @@ import Instruction from "@/components/Headings/Instruction";
 import { BaseExercise, LessonState } from "@/types/lesson.types";
 import Image from "next/image";
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
-import { MatchPairsExercise } from "@/types/match-pairs.types";
+import {
+  MatchPairsExercise,
+  IReduxUserObjectInput,
+  ISelected,
+  IRandomizedData,
+  IAvailableAnswerProps,
+} from "@/types/match-pairs.types";
 import useAssessment from "@/hooks/useAssessment";
 import MatchPairsImage from "../../../public/assets/ExercisesImages/MatchPairsImage.png";
-
-interface IRandomizedData {
-  column1: string[];
-  column2: string[];
-}
-
-interface ISelected {
-  pair: string[];
-  successfulPairs: [string, string][];
-}
-
-export interface IReduxUserObjectInput {
-  userObjectInput: ISelected;
-}
 
 export const MatchPairs = ({ data }: { data: LessonState }) => {
   const {
@@ -50,6 +42,9 @@ export const MatchPairs = ({ data }: { data: LessonState }) => {
     selectUserInput(state)
   ) as IReduxUserObjectInput;
   const { lessonButtonClick } = useAssessment();
+
+  // Starter audio logic.
+  const [audioURL, setAudioURL] = useState<string>("");
 
   const dispatch = useAppDispatch();
 
@@ -155,6 +150,7 @@ export const MatchPairs = ({ data }: { data: LessonState }) => {
       return false;
     }
     if (!userInput?.pair.length) {
+      setAudioURL("");
       dispatch(setObjectInput({ ...userInput, pair: [word] }));
       // setShowSelected({ ...showSelected, pair: [word] });
     } else if (userInput?.pair.length === 1) {
@@ -219,13 +215,17 @@ export const MatchPairs = ({ data }: { data: LessonState }) => {
           ],
         })
       );
+      // play success audio
+      if (activeExercise.successPairAudioURL) {
+        setAudioURL(activeExercise.successPairAudioURL);
+      }
       return true;
     }
 
     dispatch(
       setObjectInput({
         ...userInput,
-        pair: [userInput?.pair[0]],
+        pair: [],
       })
     );
     return false;
@@ -248,86 +248,80 @@ export const MatchPairs = ({ data }: { data: LessonState }) => {
     return userInput?.successfulPairs.flat().includes(word);
   }
   return (
-    <div
-      className="flex flex-col
+    <>
+      {audioURL && <audio autoPlay src={audioURL}></audio>}
+      <div
+        className="flex flex-col
 
      justify-center w-full items-center"
-    >
-      <ProgressBar
-        activeExercise={activeExercise}
-        remainingExercises={remainingExercises}
-        totalNumberOfExercises={totalExercises}
-        numberOfExercisesComplete={numberComplete}
-        interactiveExercises={interactiveExercises}
-        numberOfExercisesFailed={numberFailed}
-        lives={lives && lives}
-        id={activeExercise && activeExercise._id}
-      />
-      <InteractiveLayout id={activeExercise && activeExercise._id}>
-        <Instruction
-          className="w-full mb-12"
-          instruction={activeExercise && activeExercise?.instructions}
+      >
+        <ProgressBar
+          activeExercise={activeExercise}
+          remainingExercises={remainingExercises}
+          totalNumberOfExercises={totalExercises}
+          numberOfExercisesComplete={numberComplete}
+          interactiveExercises={interactiveExercises}
+          numberOfExercisesFailed={numberFailed}
+          lives={lives && lives}
+          id={activeExercise && activeExercise._id}
         />
-        {/* Maybe a component?? */}
-        <div className="w-full">
-          <Image
-            height={12}
-            width={12}
-            src={MatchPairsImage}
-            alt=""
-            className="w-32 sm:w-40 h-full self-end translate-y-[0.65rem] sm:translate-x-2 sm:translate-y-3 relative z-20 mx-auto sm:mx-0"
+        <InteractiveLayout id={activeExercise && activeExercise._id}>
+          <Instruction
+            className="w-full mb-12"
+            instruction={activeExercise && activeExercise?.instructions}
           />
-        </div>
-        <div
-          style={{
-            fontFamily: "Nunito, sans-serif",
-          }}
-          className="grid relative grid-cols-2 sm:mt-0 flex-wrap sm:pb-10 justify-center  w-full 2xl:w-full gap-3"
-        >
-          <div className="flex flex-col gap-3">
-            {typeof randomizedData === "object" &&
-              activeExercise &&
-              randomizedData.column1.map((word, index) => (
-                <PairWord
-                  word={word}
-                  checkIfInSuccessful={checkIfInSuccessful}
-                  handleMatchPair={handleMatchPair}
-                  userInput={userInput}
-                  activeExercise={activeExercise as MatchPairsExercise}
-                  key={index}
-                  index={index}
-                />
-              ))}
+          {/* Maybe a component?? */}
+          <div className="w-full">
+            <Image
+              height={12}
+              width={12}
+              src={MatchPairsImage}
+              alt=""
+              className="w-32 sm:w-40 h-full self-end translate-y-[0.65rem] sm:translate-x-2 sm:translate-y-3 relative z-20 mx-auto sm:mx-0"
+            />
           </div>
-          <div className="flex flex-col gap-3">
-            {typeof randomizedData === "object" &&
-              activeExercise &&
-              randomizedData.column2.map((word, index) => (
-                <PairWord
-                  checkIfInSuccessful={checkIfInSuccessful}
-                  word={word}
-                  handleMatchPair={handleMatchPair}
-                  userInput={userInput}
-                  activeExercise={activeExercise as MatchPairsExercise}
-                  key={index}
-                  index={index + randomizedData.column1.length}
-                />
-              ))}
+          <div
+            style={{
+              fontFamily: "Nunito, sans-serif",
+            }}
+            className="grid relative grid-cols-2 sm:mt-0 flex-wrap sm:pb-10 justify-center  w-full 2xl:w-full gap-3"
+          >
+            <div className="flex flex-col gap-3">
+              {typeof randomizedData === "object" &&
+                activeExercise &&
+                randomizedData.column1.map((word, index) => (
+                  <PairWord
+                    word={word}
+                    checkIfInSuccessful={checkIfInSuccessful}
+                    handleMatchPair={handleMatchPair}
+                    userInput={userInput}
+                    activeExercise={activeExercise as MatchPairsExercise}
+                    key={index}
+                    index={index}
+                  />
+                ))}
+            </div>
+            <div className="flex flex-col gap-3">
+              {typeof randomizedData === "object" &&
+                activeExercise &&
+                randomizedData.column2.map((word, index) => (
+                  <PairWord
+                    checkIfInSuccessful={checkIfInSuccessful}
+                    word={word}
+                    handleMatchPair={handleMatchPair}
+                    userInput={userInput}
+                    activeExercise={activeExercise as MatchPairsExercise}
+                    key={index}
+                    index={index + randomizedData.column1.length}
+                  />
+                ))}
+            </div>
           </div>
-        </div>
-      </InteractiveLayout>
-    </div>
+        </InteractiveLayout>
+      </div>
+    </>
   );
 };
-
-interface IAvailableAnswerProps {
-  word: string;
-  activeExercise: MatchPairsExercise;
-  handleMatchPair: (e: React.SyntheticEvent, userAnswer: string) => void;
-  userInput: ISelected;
-  index: number;
-  checkIfInSuccessful: (word: string) => boolean;
-}
 
 function PairWord({
   word,

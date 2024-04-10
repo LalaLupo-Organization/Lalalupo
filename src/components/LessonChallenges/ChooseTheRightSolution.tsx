@@ -14,6 +14,7 @@ import mockimage from "@/public/sandwich.png";
 import Image from "next/image";
 import {
   ChooseTheRightSolutionExercise,
+  IAvailableAnswerProps,
   IAvailableWord,
 } from "@/types/choose-the-right-solution.types";
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
@@ -133,14 +134,6 @@ export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
     </div>
   );
 };
-
-interface IAvailableAnswerProps {
-  word: IAvailableWord;
-  activeExercise: ChooseTheRightSolutionExercise;
-  handleSelectedItem: (e: React.SyntheticEvent, userAnswer: string) => void;
-  showSelected: { word: string; status: boolean };
-  index: number;
-}
 
 function AvailableAnswer({
   word,

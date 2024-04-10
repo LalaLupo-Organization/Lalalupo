@@ -20,6 +20,7 @@ import TypeInWhatYouHearNav from "@/components/LessonNavigation/TypeInWhatYouHea
 import WriteTheSentenceNav from "@/components/LessonNavigation/WriteTheSentenceNav";
 import { selectMessage } from "@/features/userSlice";
 import { selectUserInput } from "@/features/userInputSlice";
+import { Confetti } from "@/components/Confetti/Confetti";
 export default function LessonLayout({
   children, // will be a page or nested layout
 }: {
@@ -53,21 +54,27 @@ export default function LessonLayout({
     switch (activeExercise.type) {
       case "chooseTheRightSolution":
         return (
-          <InteractiveBottomNav
-            status={status}
-            loading={messages.loading}
-            userInput={userInput}
-            activeExercise={activeExercise}
-          />
+          <>
+            {status === "success" && <Confetti />}
+            <InteractiveBottomNav
+              status={status}
+              loading={messages.loading}
+              userInput={userInput}
+              activeExercise={activeExercise}
+            />
+          </>
         );
       case "matchPairs":
         return (
-          <InteractiveBottomNav
-            status={status}
-            loading={messages.loading}
-            userInput={userInput}
-            activeExercise={activeExercise}
-          />
+          <>
+            {status === "success" && <Confetti />}
+            <InteractiveBottomNav
+              status={status}
+              loading={messages.loading}
+              userInput={userInput}
+              activeExercise={activeExercise}
+            />
+          </>
         );
       case "conjugation":
         return <ConjugationNav />;
