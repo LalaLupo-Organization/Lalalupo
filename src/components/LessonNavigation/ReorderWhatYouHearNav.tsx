@@ -1,44 +1,42 @@
-import { useEffect } from "react";
-import { selectMessage } from "@/features/userSlice";
-import { useAppSelector } from "@/hooks/useRedux";
-import useAssessment from "@/hooks/useAssessment";
-import { selectActiveExercise } from "@/features/lessonSlice";
-import ButtonInteractiveLesson from "@/components/Buttons/ButtonInteractive";
-import { selectUserInput } from "@/features/userInputSlice";
-import NavbarLayout from "@/components/Layouts/NavbarLayout";
-import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout";
-import { Loader } from "@/components/Loaders1/Loader";
-import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure";
-import isArrayItemsEmpty from "@/helpers/isArrayItemsEmpty";
-import { FillInWhatYouHearExercise } from "@/types/fill-in-what-you-hear.types";
-import { BaseExercise } from "@/types/lesson.types";
-import { ReorderWhatYouHearExercise } from "@/types/reorder-what-you-hear.types";
+import { useEffect } from "react"
+import { selectMessage } from "@/features/userSlice"
+import { useAppSelector } from "@/hooks/useRedux"
+import useAssessment from "@/hooks/useAssessment"
+import { selectActiveExercise } from "@/features/lessonSlice"
+import ButtonInteractiveLesson from "@/components/Buttons/ButtonInteractive"
+import { selectUserInput } from "@/features/userInputSlice"
+import NavbarLayout from "@/components/Layouts/NavbarLayout"
+import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout"
+import { Loader } from "@/components/Loaders1/Loader"
+import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure"
+// import isArrayItemsEmpty from "@/helpers/isArrayItemsEmpty"
+// import { FillInWhatYouHearExercise } from "@/types/fill-in-what-you-hear.types"
+import { BaseExercise } from "@/types/lesson.types"
+import { ReorderWhatYouHearExercise } from "@/types/reorder-what-you-hear.types"
 export default function ReorderWhatYouHearNav() {
-  const { lessonButtonClick } = useAssessment();
-  const messages = useAppSelector((state) => selectMessage(state));
-  const userInput = useAppSelector((state) => selectUserInput(state));
-  const activeExercise = useAppSelector((state) => selectActiveExercise(state));
-  function getType(
-    exercise: BaseExercise
-  ): exercise is ReorderWhatYouHearExercise {
-    return exercise.type === "reorderWhatYouHear";
+  const { lessonButtonClick } = useAssessment()
+  const messages = useAppSelector(state => selectMessage(state))
+  const userInput = useAppSelector(state => selectUserInput(state))
+  const activeExercise = useAppSelector(state => selectActiveExercise(state))
+  function getType(exercise: BaseExercise): exercise is ReorderWhatYouHearExercise {
+    return exercise.type === "reorderWhatYouHear"
   }
-  useEffect(() => {}, [messages]);
+  useEffect(
+    () => {},
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [messages]
+  )
   useEffect(() => {
     const handleKeyDown = ({ key }: KeyboardEvent) => {
-      if (
-        (messages.activeExerciseComplete ||
-          messages.activeExerciseWrongAnswer ||
-          userInput.userInput) &&
-        key === "Enter"
-      ) {
-        lessonButtonClick();
+      if ((messages.activeExerciseComplete || messages.activeExerciseWrongAnswer || userInput.userInput) && key === "Enter") {
+        lessonButtonClick()
       }
-    };
-    window.addEventListener("keydown", handleKeyDown);
+    }
+    window.addEventListener("keydown", handleKeyDown)
 
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [userInput, messages]);
+    return () => window.removeEventListener("keydown", handleKeyDown)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userInput, messages])
   if (messages.activeExerciseComplete) {
     return (
       <NavbarLayout color={"bg-green-200"} gridColsNumber={6}>
@@ -61,7 +59,7 @@ export default function ReorderWhatYouHearNav() {
           )}
         </SuccessToFailureLayout>
       </NavbarLayout>
-    );
+    )
   }
 
   if (messages.activeExerciseWrongAnswer) {
@@ -96,7 +94,7 @@ export default function ReorderWhatYouHearNav() {
           )}
         </SuccessToFailureLayout>
       </NavbarLayout>
-    );
+    )
   }
 
   return (
@@ -121,5 +119,5 @@ export default function ReorderWhatYouHearNav() {
         </InActiveToActiveLayout>
       )}
     </NavbarLayout>
-  );
+  )
 }

@@ -1,37 +1,40 @@
-import React from "react";
-import { useEffect } from "react";
-import { selectMessage } from "@/features/userSlice";
-import { useAppSelector } from "@/hooks/useRedux";
-import useAssessment from "@/hooks/useAssessment";
-import ButtonInteractiveLesson from "@/components/Buttons/ButtonInteractive";
-import { selectUserInput } from "@/features/userInputSlice";
-import NavbarLayout from "@/components/Layouts/NavbarLayout";
-import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout";
-import { Loader } from "@/components/Loaders1/Loader";
-import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure";
-import isArrayItemsEmpty from "@/helpers/isArrayItemsEmpty";
+import React from "react"
+import { useEffect } from "react"
+import { selectMessage } from "@/features/userSlice"
+import { useAppSelector } from "@/hooks/useRedux"
+import useAssessment from "@/hooks/useAssessment"
+import ButtonInteractiveLesson from "@/components/Buttons/ButtonInteractive"
+import { selectUserInput } from "@/features/userInputSlice"
+import NavbarLayout from "@/components/Layouts/NavbarLayout"
+import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout"
+import { Loader } from "@/components/Loaders1/Loader"
+import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure"
+import isArrayItemsEmpty from "@/helpers/isArrayItemsEmpty"
 export default function ConjugationBottomNav() {
-  const { lessonButtonClick } = useAssessment();
+  const { lessonButtonClick } = useAssessment()
 
-  const messages = useAppSelector((state) => selectMessage(state));
-  const userInput = useAppSelector((state) => selectUserInput(state));
+  const messages = useAppSelector(state => selectMessage(state))
+  const userInput = useAppSelector(state => selectUserInput(state))
 
-  useEffect(() => {}, [messages]);
+  useEffect(
+    () => {},
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [messages]
+  )
   useEffect(() => {
     const handleKeyDown = ({ key }: KeyboardEvent) => {
       if (
-        (messages.activeExerciseComplete ||
-          messages.activeExerciseWrongAnswer ||
-          userInput.userArrayInput.every(isArrayItemsEmpty)) &&
+        (messages.activeExerciseComplete || messages.activeExerciseWrongAnswer || userInput.userArrayInput.every(isArrayItemsEmpty)) &&
         key === "Enter"
       ) {
-        lessonButtonClick();
+        lessonButtonClick()
       }
-    };
-    window.addEventListener("keydown", handleKeyDown);
+    }
+    window.addEventListener("keydown", handleKeyDown)
 
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [userInput, messages]);
+    return () => window.removeEventListener("keydown", handleKeyDown)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userInput, messages])
   if (messages.activeExerciseComplete) {
     return (
       <NavbarLayout color={"bg-green-100"} gridColsNumber={6}>
@@ -54,7 +57,7 @@ export default function ConjugationBottomNav() {
           )}
         </SuccessToFailureLayout>
       </NavbarLayout>
-    );
+    )
   }
 
   if (messages.activeExerciseWrongAnswer) {
@@ -79,7 +82,7 @@ export default function ConjugationBottomNav() {
           )}
         </SuccessToFailureLayout>
       </NavbarLayout>
-    );
+    )
   }
 
   return (
@@ -104,5 +107,5 @@ export default function ConjugationBottomNav() {
         </InActiveToActiveLayout>
       )}
     </NavbarLayout>
-  );
+  )
 }

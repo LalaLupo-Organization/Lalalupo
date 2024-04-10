@@ -1,42 +1,40 @@
-import { useEffect } from "react";
-import { selectMessage } from "@/features/userSlice";
-import { useAppSelector } from "@/hooks/useRedux";
-import useAssessment from "@/hooks/useAssessment";
-import { selectActiveExercise } from "@/features/lessonSlice";
-import ButtonInteractiveLesson from "@/components/Buttons/ButtonInteractive";
-import { selectUserInput } from "@/features/userInputSlice";
-import NavbarLayout from "@/components/Layouts/NavbarLayout";
-import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout";
-import { Loader } from "@/components/Loaders1/Loader";
-import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure";
-import { BaseExercise } from "@/types/lesson.types";
-import { WriteTheSentenceExercise } from "@/types/write-the-word.types";
+import { useEffect } from "react"
+import { selectMessage } from "@/features/userSlice"
+import { useAppSelector } from "@/hooks/useRedux"
+import useAssessment from "@/hooks/useAssessment"
+import { selectActiveExercise } from "@/features/lessonSlice"
+import ButtonInteractiveLesson from "@/components/Buttons/ButtonInteractive"
+import { selectUserInput } from "@/features/userInputSlice"
+import NavbarLayout from "@/components/Layouts/NavbarLayout"
+import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout"
+import { Loader } from "@/components/Loaders1/Loader"
+import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure"
+import { BaseExercise } from "@/types/lesson.types"
+import { WriteTheSentenceExercise } from "@/types/write-the-word.types"
 export default function WriteTheSentenceNav() {
-  const { lessonButtonClick } = useAssessment();
-  const messages = useAppSelector((state) => selectMessage(state));
-  const userInput = useAppSelector((state) => selectUserInput(state));
-  const activeExercise = useAppSelector((state) => selectActiveExercise(state));
-  function getType(
-    exercise: BaseExercise
-  ): exercise is WriteTheSentenceExercise {
-    return exercise.type === "writeTheSentence";
+  const { lessonButtonClick } = useAssessment()
+  const messages = useAppSelector(state => selectMessage(state))
+  const userInput = useAppSelector(state => selectUserInput(state))
+  const activeExercise = useAppSelector(state => selectActiveExercise(state))
+  function getType(exercise: BaseExercise): exercise is WriteTheSentenceExercise {
+    return exercise.type === "writeTheSentence"
   }
-  useEffect(() => {}, [messages]);
+  useEffect(
+    () => {},
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [messages]
+  )
   useEffect(() => {
     const handleKeyDown = ({ key }: KeyboardEvent) => {
-      if (
-        (messages.activeExerciseComplete ||
-          messages.activeExerciseWrongAnswer ||
-          userInput.userInput) &&
-        key === "Enter"
-      ) {
-        lessonButtonClick();
+      if ((messages.activeExerciseComplete || messages.activeExerciseWrongAnswer || userInput.userInput) && key === "Enter") {
+        lessonButtonClick()
       }
-    };
-    window.addEventListener("keydown", handleKeyDown);
+    }
+    window.addEventListener("keydown", handleKeyDown)
 
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [userInput, messages]);
+    return () => window.removeEventListener("keydown", handleKeyDown)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userInput, messages])
   if (messages.activeExerciseComplete) {
     return (
       <NavbarLayout color={"bg-green-200"} gridColsNumber={6}>
@@ -59,7 +57,7 @@ export default function WriteTheSentenceNav() {
           )}
         </SuccessToFailureLayout>
       </NavbarLayout>
-    );
+    )
   }
 
   if (messages.activeExerciseWrongAnswer) {
@@ -95,7 +93,7 @@ export default function WriteTheSentenceNav() {
           )}
         </SuccessToFailureLayout>
       </NavbarLayout>
-    );
+    )
   }
 
   return (
@@ -120,5 +118,5 @@ export default function WriteTheSentenceNav() {
         </InActiveToActiveLayout>
       )}
     </NavbarLayout>
-  );
+  )
 }

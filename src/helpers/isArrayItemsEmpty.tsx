@@ -1,4 +1,3 @@
-const isArrayItemsEmpty = (currentValue: string) =>
-  currentValue === "";
+const isArrayItemsEmpty = (currentValue: string) => currentValue === ""
 
-export default isArrayItemsEmpty;
+export default isArrayItemsEmpty

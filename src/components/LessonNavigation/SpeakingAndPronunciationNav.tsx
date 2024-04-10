@@ -1,54 +1,48 @@
-import { useEffect } from "react";
-import { selectMessage } from "@/features/userSlice";
-import { useAppSelector } from "@/hooks/useRedux";
-import useAssessment from "@/hooks/useAssessment";
-import { selectActiveExercise } from "@/features/lessonSlice";
-import ButtonInteractiveLesson from "@/components/Buttons/ButtonInteractive";
-import { selectUserInput } from "@/features/userInputSlice";
-import NavbarLayout from "@/components/Layouts/NavbarLayout";
-import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout";
-import { Loader } from "@/components/Loaders1/Loader";
-import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure";
-import isArrayItemsEmpty from "@/helpers/isArrayItemsEmpty";
-import { FillInWhatYouHearExercise } from "@/types/fill-in-what-you-hear.types";
-import { BaseExercise } from "@/types/lesson.types";
-import { SpeakingAndPronunciationExercise } from "@/types/speaking-and-pronunciation.types";
+import { useEffect } from "react"
+import { selectMessage } from "@/features/userSlice"
+import { useAppSelector } from "@/hooks/useRedux"
+import useAssessment from "@/hooks/useAssessment"
+import { selectActiveExercise } from "@/features/lessonSlice"
+import ButtonInteractiveLesson from "@/components/Buttons/ButtonInteractive"
+import { selectUserInput } from "@/features/userInputSlice"
+import NavbarLayout from "@/components/Layouts/NavbarLayout"
+import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout"
+import { Loader } from "@/components/Loaders1/Loader"
+import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure"
+// import isArrayItemsEmpty from "@/helpers/isArrayItemsEmpty"
+// import { FillInWhatYouHearExercise } from "@/types/fill-in-what-you-hear.types"
+import { BaseExercise } from "@/types/lesson.types"
+import { SpeakingAndPronunciationExercise } from "@/types/speaking-and-pronunciation.types"
 export default function SpeakingAndPronunciationNav() {
-  const { lessonButtonClick } = useAssessment();
-  const messages = useAppSelector((state) => selectMessage(state));
-  const userInput = useAppSelector((state) => selectUserInput(state));
-  const activeExercise = useAppSelector((state) => selectActiveExercise(state));
-  function getType(
-    exercise: BaseExercise
-  ): exercise is SpeakingAndPronunciationExercise {
-    return exercise.type === "speakingAndPronunciation";
+  const { lessonButtonClick } = useAssessment()
+  const messages = useAppSelector(state => selectMessage(state))
+  const userInput = useAppSelector(state => selectUserInput(state))
+  const activeExercise = useAppSelector(state => selectActiveExercise(state))
+  function getType(exercise: BaseExercise): exercise is SpeakingAndPronunciationExercise {
+    return exercise.type === "speakingAndPronunciation"
   }
-  useEffect(() => {}, [messages]);
+  useEffect(
+    () => {},
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [messages]
+  )
   useEffect(() => {
     const handleKeyDown = ({ key }: KeyboardEvent) => {
-      if (
-        (messages.activeExerciseComplete ||
-          messages.activeExerciseWrongAnswer ||
-          userInput.userInput) &&
-        key === "Enter"
-      ) {
-        lessonButtonClick();
+      if ((messages.activeExerciseComplete || messages.activeExerciseWrongAnswer || userInput.userInput) && key === "Enter") {
+        lessonButtonClick()
       }
-    };
-    window.addEventListener("keydown", handleKeyDown);
+    }
+    window.addEventListener("keydown", handleKeyDown)
 
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [userInput, messages]);
+    return () => window.removeEventListener("keydown", handleKeyDown)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userInput, messages])
   if (messages.activeExerciseComplete) {
     return (
       <NavbarLayout color={"bg-green-200"} gridColsNumber={6}>
         <SuccessToFailureLayout
           success={true}
-          meaning={
-            getType(activeExercise) &&
-            activeExercise?.displayMeaning &&
-            activeExercise?.english
-          }
+          meaning={getType(activeExercise) && activeExercise?.displayMeaning && activeExercise?.english}
         >
           {messages.loading ? (
             <ButtonInteractiveLesson
@@ -68,7 +62,7 @@ export default function SpeakingAndPronunciationNav() {
           )}
         </SuccessToFailureLayout>
       </NavbarLayout>
-    );
+    )
   }
   if (messages.activeExerciseWrongAnswer) {
     return (
@@ -83,11 +77,7 @@ export default function SpeakingAndPronunciationNav() {
               : undefined
           }
           audioOutput={userInput.userInput}
-          meaning={
-            getType(activeExercise) && activeExercise?.displayMeaning
-              ? activeExercise.english
-              : undefined
-          }
+          meaning={getType(activeExercise) && activeExercise?.displayMeaning ? activeExercise.english : undefined}
         >
           {messages.loading ? (
             <ButtonInteractiveLesson
@@ -107,7 +97,7 @@ export default function SpeakingAndPronunciationNav() {
           )}
         </SuccessToFailureLayout>
       </NavbarLayout>
-    );
+    )
   }
 
   return (
@@ -132,5 +122,5 @@ export default function SpeakingAndPronunciationNav() {
         </InActiveToActiveLayout>
       )}
     </NavbarLayout>
-  );
+  )
 }

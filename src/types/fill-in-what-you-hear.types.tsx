@@ -1,10 +1,10 @@
-import { BaseExercise } from "./lesson.types";
+import { BaseExercise } from "./lesson.types"
 
 export type FillInWhatYouHearExercise = BaseExercise & {
-  type: "fillInWhatYouHear";
+  type: "fillInWhatYouHear"
 
-  solution: string[];
-  displayMeaning: boolean;
-  english: string;
-  missingWord: string;
-};
+  solution: string[]
+  displayMeaning: boolean
+  english: string
+  missingWord: string
+}

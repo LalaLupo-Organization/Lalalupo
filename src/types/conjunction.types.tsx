@@ -1,9 +1,9 @@
-import { BaseExercise } from "./lesson.types";
+import { BaseExercise } from "./lesson.types"
 
 export type ConjugationExercise = BaseExercise & {
-  type: "conjugation";
-  display: string;
+  type: "conjugation"
+  display: string
   availableWords: {
-    pairs: [string, string][];
-  };
-};
+    pairs: [string, string][]
+  }
+}

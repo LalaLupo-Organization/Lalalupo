@@ -1,10 +1,10 @@
-import { BaseExercise } from "./lesson.types";
+import { BaseExercise } from "./lesson.types"
 
 export type ReorderWhatYouHearExercise = BaseExercise & {
-  type: "reorderWhatYouHear";
-  english: string;
-  availableWords: string[];
-};
+  type: "reorderWhatYouHear"
+  english: string
+  availableWords: string[]
+}
 
 const data: ReorderWhatYouHearExercise = {
   type: "reorderWhatYouHear",
@@ -12,20 +12,8 @@ const data: ReorderWhatYouHearExercise = {
   solution: "Mia figlia sta imparando a camminare.",
   instructions: "Reorder the words to replicate the sentence.",
   english: "My daughter is learning to walk.",
-  availableWords: [
-    "Mia",
-    "figlia",
-    "sta",
-    "imparando",
-    "a",
-    "camminare.",
-    "impara",
-    "stai",
-    "Mie",
-    "cammina",
-    "le.",
-  ],
+  availableWords: ["Mia", "figlia", "sta", "imparando", "a", "camminare.", "impara", "stai", "Mie", "cammina", "le."],
 
   isComplete: false,
   hasFailed: false,
-};
+}

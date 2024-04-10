@@ -1,9 +1,9 @@
-import { BaseExercise } from "./lesson.types";
+import { BaseExercise } from "./lesson.types"
 
 export type PartOfAWordExercise = BaseExercise & {
-  type: "partOfAWord";
+  type: "partOfAWord"
 
-  missing: string[];
-  word: string[];
-  english: string;
-};
+  missing: string[]
+  word: string[]
+  english: string
+}

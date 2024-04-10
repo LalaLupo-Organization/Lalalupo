@@ -1,42 +1,42 @@
-import { useEffect } from "react";
-import { selectMessage } from "@/features/userSlice";
-import { useAppSelector } from "@/hooks/useRedux";
-import useAssessment from "@/hooks/useAssessment";
-import { selectActiveExercise } from "@/features/lessonSlice";
-import ButtonInteractiveLesson from "@/components/Buttons/ButtonInteractive";
-import { selectUserInput } from "@/features/userInputSlice";
-import NavbarLayout from "@/components/Layouts/NavbarLayout";
-import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout";
-import { Loader } from "@/components/Loaders1/Loader";
-import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure";
-import isArrayItemsEmpty from "@/helpers/isArrayItemsEmpty";
-import { FillInWhatYouHearExercise } from "@/types/fill-in-what-you-hear.types";
-import { BaseExercise } from "@/types/lesson.types";
-import { PartOfAWordExercise } from "@/types/part-of-a-word.types";
+import { useEffect } from "react"
+import { selectMessage } from "@/features/userSlice"
+import { useAppSelector } from "@/hooks/useRedux"
+import useAssessment from "@/hooks/useAssessment"
+import { selectActiveExercise } from "@/features/lessonSlice"
+import ButtonInteractiveLesson from "@/components/Buttons/ButtonInteractive"
+import { selectUserInput } from "@/features/userInputSlice"
+import NavbarLayout from "@/components/Layouts/NavbarLayout"
+import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout"
+import { Loader } from "@/components/Loaders1/Loader"
+import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure"
+// import isArrayItemsEmpty from "@/helpers/isArrayItemsEmpty"
+// import { FillInWhatYouHearExercise } from "@/types/fill-in-what-you-hear.types"
+import { BaseExercise } from "@/types/lesson.types"
+import { PartOfAWordExercise } from "@/types/part-of-a-word.types"
 export default function PartOfAWordNav() {
-  const { lessonButtonClick } = useAssessment();
-  const messages = useAppSelector((state) => selectMessage(state));
-  const userInput = useAppSelector((state) => selectUserInput(state));
-  const activeExercise = useAppSelector((state) => selectActiveExercise(state));
+  const { lessonButtonClick } = useAssessment()
+  const messages = useAppSelector(state => selectMessage(state))
+  const userInput = useAppSelector(state => selectUserInput(state))
+  const activeExercise = useAppSelector(state => selectActiveExercise(state))
   function getType(exercise: BaseExercise): exercise is PartOfAWordExercise {
-    return exercise.type === "partOfAWord";
+    return exercise.type === "partOfAWord"
   }
-  useEffect(() => {}, [messages]);
+  useEffect(
+    () => {},
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [messages]
+  )
   useEffect(() => {
     const handleKeyDown = ({ key }: KeyboardEvent) => {
-      if (
-        (messages.activeExerciseComplete ||
-          messages.activeExerciseWrongAnswer ||
-          userInput.userInput) &&
-        key === "Enter"
-      ) {
-        lessonButtonClick();
+      if ((messages.activeExerciseComplete || messages.activeExerciseWrongAnswer || userInput.userInput) && key === "Enter") {
+        lessonButtonClick()
       }
-    };
-    window.addEventListener("keydown", handleKeyDown);
+    }
+    window.addEventListener("keydown", handleKeyDown)
 
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [userInput, messages]);
+    return () => window.removeEventListener("keydown", handleKeyDown)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userInput, messages])
   if (messages.activeExerciseComplete) {
     return (
       <NavbarLayout color={"bg-green-200"} gridColsNumber={6}>
@@ -59,7 +59,7 @@ export default function PartOfAWordNav() {
           )}
         </SuccessToFailureLayout>
       </NavbarLayout>
-    );
+    )
   }
 
   if (messages.activeExerciseWrongAnswer) {
@@ -67,11 +67,7 @@ export default function PartOfAWordNav() {
       <NavbarLayout color={"bg-red-200"} gridColsNumber={6}>
         <SuccessToFailureLayout
           success={false}
-          solution={
-            getType(activeExercise) && activeExercise?.word
-              ? activeExercise.word.join("")
-              : undefined
-          }
+          solution={getType(activeExercise) && activeExercise?.word ? activeExercise.word.join("") : undefined}
         >
           {messages.loading ? (
             <ButtonInteractiveLesson
@@ -91,7 +87,7 @@ export default function PartOfAWordNav() {
           )}
         </SuccessToFailureLayout>
       </NavbarLayout>
-    );
+    )
   }
   return (
     <NavbarLayout color={"bg-white"} gridColsNumber={6}>
@@ -115,5 +111,5 @@ export default function PartOfAWordNav() {
         </InActiveToActiveLayout>
       )}
     </NavbarLayout>
-  );
+  )
 }

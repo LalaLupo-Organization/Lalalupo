@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useAppSelector, useAppDispatch } from "./useRedux";
+import { useEffect } from "react"
+import { useAppSelector, useAppDispatch } from "./useRedux"
 import {
   selectToSeeIfAllInteractiveExercisesAreComplete,
   selectActiveExercise,
@@ -9,7 +9,7 @@ import {
   clearActiveExercise,
   selectAssessment,
   setSkippedExercise,
-} from "@/features/lessonSlice";
+} from "@/features/lessonSlice"
 import {
   selectUser,
   setScore,
@@ -19,78 +19,72 @@ import {
   setActivityComplete,
   setAlertsBackToFalse,
   selectMessage,
-} from "@/features/userSlice";
-import RegexParser from "regex-parser";
+} from "@/features/userSlice"
+import RegexParser from "regex-parser"
 
-import { selectUserInput, clearUserInput } from "@/features/userInputSlice";
+import { selectUserInput, clearUserInput } from "@/features/userInputSlice"
 // import { toast } from "react-toastify";
 
 export default function useAssessment() {
-  const dispatch = useAppDispatch();
-  const interactiveExercisesComplete = useAppSelector((state) =>
-    selectToSeeIfAllInteractiveExercisesAreComplete(state)
-  );
-  const activeExercise = useAppSelector((state) => selectActiveExercise(state));
-  const { userInput, userArrayInput, userObjectInput } = useAppSelector(
-    (state) => selectUserInput(state)
-  );
-  const messages = useAppSelector((state) => selectMessage(state));
-  const currentUnitForAssessment = useAppSelector((state) =>
-    selectAssessment(state)
-  );
-  const { numberComplete, totalExercises } = currentUnitForAssessment;
+  const dispatch = useAppDispatch()
+  const interactiveExercisesComplete = useAppSelector(state => selectToSeeIfAllInteractiveExercisesAreComplete(state))
+  const activeExercise = useAppSelector(state => selectActiveExercise(state))
+  const { userInput, userArrayInput, userObjectInput } = useAppSelector(state => selectUserInput(state))
+  const messages = useAppSelector(state => selectMessage(state))
+  const currentUnitForAssessment = useAppSelector(state => selectAssessment(state))
+  const { numberComplete, totalExercises } = currentUnitForAssessment
 
-  const user = useAppSelector((state) => selectUser(state));
+  const user = useAppSelector(state => selectUser(state))
   useEffect(() => {
     if (!activeExercise) {
-      dispatch(putActiveExerciseIntoState());
+      dispatch(putActiveExerciseIntoState())
     }
     // eslint-disable-next-line
-  }, [activeExercise]);
+  }, [activeExercise])
   function setSuccess() {
-    dispatch(setCorrectAnswer());
-    dispatch(setSuccessMessage(true));
+    dispatch(setCorrectAnswer())
+    dispatch(setSuccessMessage(true))
   }
   function setFailed() {
-    dispatch(setIncorrectAnswer());
-    dispatch(setFailedMessage(true));
-    dispatch(clearUserInput());
+    dispatch(setIncorrectAnswer())
+    dispatch(setFailedMessage(true))
+    dispatch(clearUserInput())
   }
 
   function lessonButtonClick(input?: string) {
     //If the user hasn't made choice then I avoid dispatching to reducer and instead send a prompt
     // This conditional checks to see if there is at least one activity not complete, if all activities are complete we return a flasy value, hence that's why I'm looking for a false return.
     if (!interactiveExercisesComplete) {
-      dispatch(setScore({ numberComplete, totalExercises }));
-      dispatch(setLoading(true));
+      dispatch(setScore({ numberComplete, totalExercises }))
+      dispatch(setLoading(true))
       setTimeout(() => {
-        dispatch(setLoading(false));
-        dispatch(setActivityComplete(true));
-      }, 3000);
+        dispatch(setLoading(false))
+        dispatch(setActivityComplete(true))
+      }, 3000)
 
-      return;
+      return
     }
 
     if (activeExercise?.isComplete || activeExercise?.hasFailed) {
-      dispatch(putActiveExerciseIntoState());
-      dispatch(setAlertsBackToFalse());
-      dispatch(clearUserInput());
-      return;
+      dispatch(putActiveExerciseIntoState())
+      dispatch(setAlertsBackToFalse())
+      dispatch(clearUserInput())
+      return
     }
     if (messages.activeExerciseWrongAnswer) {
-      dispatch(setAlertsBackToFalse());
-      dispatch(clearActiveExercise());
+      dispatch(setAlertsBackToFalse())
+      dispatch(clearActiveExercise())
 
-      return;
+      return
     }
     if (!activeExercise?.isComplete) {
       if (activeExercise?.type === "chooseTheRightSolution") {
         if (userInput === activeExercise?.solution) {
-          setSuccess();
-          return;
+          setSuccess()
+          return
         } else {
-          setFailed();
-          return;
+          setFailed()
+          return
         }
       }
 
@@ -105,42 +99,41 @@ export default function useAssessment() {
               .toLowerCase()
               .trim()
               .replace(/[^\w\sÀ-ú’']|_/g, "")
-        );
+        )
         if (result) {
-          setSuccess();
-          return;
+          setSuccess()
+          return
         } else {
-          setFailed();
-          return;
+          setFailed()
+          return
         }
       }
 
       if (activeExercise?.type === "fillInTheBlank") {
         if (activeExercise?.doubleSolution) {
-          let regex = RegexParser(activeExercise.regex);
+          let regex = RegexParser(activeExercise.regex)
 
           if (userInput && regex.test(userInput)) {
             // console.log("TRANSCRIPT FROM GOOGLE API: " + input)
             // console.log("REGEX: " + regex)
-            setSuccess();
-            return;
+            setSuccess()
+            return
           } else {
             // console.log("TRANSCRIPT FROM GOOGLE API: " + input)
             // console.log("REGEX: " + regex)
-            setFailed();
-            return;
+            setFailed()
+            return
           }
         }
 
         if (
-          userInput?.trim().toLowerCase() ===
-            activeExercise.missingWord.toLowerCase() ||
+          userInput?.trim().toLowerCase() === activeExercise.missingWord.toLowerCase() ||
           (activeExercise.couldBeEmpty && userInput === null)
         ) {
-          setSuccess();
+          setSuccess()
         } else {
-          setFailed();
-          return;
+          setFailed()
+          return
         }
       }
       if (activeExercise?.type === "fillInWhatYouHear") {
@@ -148,27 +141,24 @@ export default function useAssessment() {
           userInput
             ?.trim()
             .toLowerCase()
-            .replace(/[^\w\s\À-ú']|_/g, "") ===
-          activeExercise.missingWord
-            .toLowerCase()
-            .replace(/[^\w\s\À-ú']|_/g, "")
+            .replace(/[^\w\s\À-ú']|_/g, "") === activeExercise.missingWord.toLowerCase().replace(/[^\w\s\À-ú']|_/g, "")
         ) {
-          setSuccess();
-          return;
+          setSuccess()
+          return
         } else {
-          setFailed();
-          return;
+          setFailed()
+          return
         }
       }
       if (activeExercise.type === "listenAndSelect") {
         if (userInput && userInput[0] === activeExercise.solution) {
-          setSuccess();
-          return;
+          setSuccess()
+          return
         }
         if (userInput !== activeExercise.solution) {
         }
-        setFailed();
-        return;
+        setFailed()
+        return
       }
     }
     // if (activeExercise.type === "matchPairs" && userObjectInput) {
@@ -186,18 +176,17 @@ export default function useAssessment() {
     // }
     if (activeExercise.type === "missingSyllable") {
       if (userInput === activeExercise.solution) {
-        setSuccess();
-        return;
+        setSuccess()
+        return
       } else {
-        setFailed();
-        return;
+        setFailed()
+        return
       }
     }
     if (activeExercise.type === "multipleAnswers" && userObjectInput) {
       let correctAnswers = activeExercise.availableWords.filter(
-        (word) =>
-          word.italian === userObjectInput[word.italian] && word.correct && word
-      );
+        word => word.italian === userObjectInput[word.italian] && word.correct && word
+      )
 
       if (
         correctAnswers &&
@@ -205,8 +194,8 @@ export default function useAssessment() {
         activeExercise.targetNumber &&
         correctAnswers.length === activeExercise.targetNumber
       ) {
-        setSuccess();
-        return;
+        setSuccess()
+        return
       }
       if (
         correctAnswers &&
@@ -214,121 +203,107 @@ export default function useAssessment() {
         activeExercise.targetNumber &&
         correctAnswers.length < activeExercise.targetNumber
       ) {
-        setFailed();
-        return;
+        setFailed()
+        return
       }
     }
     if (activeExercise.type === "partOfAWord") {
-      console.log("step4");
-      if (
-        userInput?.trim().toLowerCase() ===
-        activeExercise.missing[0].trim().toLowerCase()
-      ) {
-        console.log("step5");
-        setSuccess();
-        return;
+      console.log("step4")
+      if (userInput?.trim().toLowerCase() === activeExercise.missing[0].trim().toLowerCase()) {
+        console.log("step5")
+        setSuccess()
+        return
       } else {
-        setFailed();
-        return;
+        setFailed()
+        return
       }
     }
 
     if (activeExercise.type === "reorder" && activeExercise.solution) {
       if (
         userInput &&
-        userInput.toLowerCase().replace(/\s+/g, "") ===
-          activeExercise.solution.toString().toLowerCase().replace(/\s+/g, "")
+        userInput.toLowerCase().replace(/\s+/g, "") === activeExercise.solution.toString().toLowerCase().replace(/\s+/g, "")
       ) {
-        setSuccess();
-        return;
+        setSuccess()
+        return
       } else {
-        setFailed();
-        return;
+        setFailed()
+        return
       }
     }
-    if (
-      activeExercise.type === "reorderWhatYouHear" &&
-      activeExercise.solution
-    ) {
+    if (activeExercise.type === "reorderWhatYouHear" && activeExercise.solution) {
       if (
         userInput &&
-        userInput.toLowerCase().replace(/\s+/g, "") ===
-          activeExercise.solution.toString().toLowerCase().replace(/\s+/g, "")
+        userInput.toLowerCase().replace(/\s+/g, "") === activeExercise.solution.toString().toLowerCase().replace(/\s+/g, "")
       ) {
-        setSuccess();
-        return;
+        setSuccess()
+        return
       } else {
-        setFailed();
-        return;
+        setFailed()
+        return
       }
     }
     if (activeExercise.type === "selectTheMissingWord") {
       if (userInput === activeExercise.solution) {
-        setSuccess();
-        return;
+        setSuccess()
+        return
       } else {
-        setFailed();
-        return;
+        setFailed()
+        return
       }
     }
     if (activeExercise.type === "speakingAndPronunciation") {
       if (activeExercise.doubleSolution) {
-        let regex = RegexParser(activeExercise.regex);
-        input = input && input.toLowerCase();
+        let regex = RegexParser(activeExercise.regex)
+        input = input && input.toLowerCase()
         if (input && regex.test(input)) {
           // console.log("TRANSCRIPT FROM GOOGLE API: " + input)
           // console.log("REGEX: " + regex)
-          setSuccess();
-          return;
+          setSuccess()
+          return
         } else {
           // console.log("TRANSCRIPT FROM GOOGLE API: " + input)
           // console.log("REGEX: " + regex)
-          setFailed();
-          return;
+          setFailed()
+          return
         }
       }
       let solution =
-        activeExercise?.solution &&
-        activeExercise.type === "speakingAndPronunciation" &&
-        activeExercise?.solution.toString().toLowerCase();
+        activeExercise?.solution && activeExercise.type === "speakingAndPronunciation" && activeExercise?.solution.toString().toLowerCase()
       solution =
         solution &&
         solution
           .replace(/[^\w\s\À-ú']|_/g, "")
           .replace(/\s+/g, " ")
-          .replace(/[?]/, "");
-      input = input && input.toLowerCase();
+          .replace(/[?]/, "")
+      input = input && input.toLowerCase()
       if (input && input.toLowerCase() === solution) {
         //  console.log("TRANSCRIPT FROM GOOGLE API: " + input.toLowerCase())
         //  console.log("MANIPULATED IN CODE1: " + solution)
-        setSuccess();
-        return;
+        setSuccess()
+        return
       } else {
         // console.log("TRANSCRIPT FROM GOOGLE API: " + input.toLowerCase())
         // console.log("MANIPULATED IN CODE2: " + solution)
-        setFailed();
+        setFailed()
 
-        return;
+        return
       }
     }
     if (activeExercise.type === "twoBlanks") {
       if (
-        userArrayInput.join(" ").trim().toLowerCase() ===
-          activeExercise?.solution &&
+        userArrayInput.join(" ").trim().toLowerCase() === activeExercise?.solution &&
         Array.isArray(activeExercise.solution) &&
         activeExercise?.solution.join(" ").trim().toLowerCase()
       ) {
-        setSuccess();
-        return;
+        setSuccess()
+        return
       } else {
-        setFailed();
-        return;
+        setFailed()
+        return
       }
     }
-    if (
-      activeExercise.type === "typeInWhatYouHear" &&
-      activeExercise.solution
-    ) {
+    if (activeExercise.type === "typeInWhatYouHear" && activeExercise.solution) {
       if (
         userInput
           ?.trim()
@@ -339,26 +314,26 @@ export default function useAssessment() {
           .toLowerCase()
           .replace(/[^\w\s\À-ú']|_/g, "")
       ) {
-        setSuccess();
-        return;
+        setSuccess()
+        return
       } else {
-        setFailed();
-        return;
+        setFailed()
+        return
       }
     }
     if (activeExercise.type === "writeTheSentence") {
       if (activeExercise.doubleSolution) {
-        let regex = RegexParser(activeExercise.regex);
+        let regex = RegexParser(activeExercise.regex)
 
         if (userInput && regex.test(userInput)) {
-          console.log("REGEX: " + regex);
+          console.log("REGEX: " + regex)
 
-          setSuccess();
-          return;
+          setSuccess()
+          return
         } else {
-          console.log("REGEX: " + regex);
-          setFailed();
-          return;
+          console.log("REGEX: " + regex)
+          setFailed()
+          return
         }
       }
       if (
@@ -372,22 +347,22 @@ export default function useAssessment() {
             .toLowerCase()
             .replace(/[^\w\s\À-ú']|_/g, "")
       ) {
-        setSuccess();
-        return;
+        setSuccess()
+        return
       } else {
-        setFailed();
-        return;
+        setFailed()
+        return
       }
     }
-    return;
+    return
   }
 
   function skipCurrentExercise() {
-    dispatch(setSkippedExercise());
-    dispatch(putActiveExerciseIntoState());
-    dispatch(setAlertsBackToFalse());
-    dispatch(clearUserInput());
+    dispatch(setSkippedExercise())
+    dispatch(putActiveExerciseIntoState())
+    dispatch(setAlertsBackToFalse())
+    dispatch(clearUserInput())
   }
 
-  return { lessonButtonClick, skipCurrentExercise };
+  return { lessonButtonClick, skipCurrentExercise }
 }

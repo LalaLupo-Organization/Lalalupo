@@ -1,5 +1,5 @@
-import classNames from "@/helpers/classNames";
-import React from "react";
+import classNames from "@/helpers/classNames"
+import React from "react"
 
 export default function ButtonInteractiveLesson({
   background,
@@ -9,26 +9,23 @@ export default function ButtonInteractiveLesson({
   lottie,
   status,
 }: {
-  background: string;
-  lessonButtonClick: Function | null;
-  buttonDisplayText: string;
-  shadowColor?: string;
-  lottie?: any;
-  status?: "success" | "failure" | "active";
+  background: string
+  lessonButtonClick: Function | null
+  buttonDisplayText: string
+  shadowColor?: string
+  lottie?: any
+  status?: "success" | "failure" | "active"
 }) {
   const generateStripedBackground = () =>
     status === "success" || status === "active"
       ? "success-striped-bg border-color_green_default"
       : status == "failure"
         ? "failure-striped-bg border-error"
-        : "striped-bg";
+        : "striped-bg"
   return (
-    <div className='flex w-full relative'>
+    <div className="flex w-full relative">
       <div
-        className={classNames(
-          generateStripedBackground(),
-          "inset-0 translate-x-1 translate-y-1 absolute rounded-primary  z-0 border"
-        )}
+        className={classNames(generateStripedBackground(), "inset-0 translate-x-1 translate-y-1 absolute rounded-primary  z-0 border")}
       ></div>
       <button
         onClick={lessonButtonClick ? () => lessonButtonClick() : undefined}
@@ -41,5 +38,5 @@ export default function ButtonInteractiveLesson({
         </div>
       </button>
     </div>
-  );
+  )
 }

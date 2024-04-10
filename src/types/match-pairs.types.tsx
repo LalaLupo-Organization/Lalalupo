@@ -1,14 +1,14 @@
-import { BaseExercise } from "./lesson.types";
+import { BaseExercise } from "./lesson.types"
 
 export type MatchPairsExercise = BaseExercise & {
-  type: "matchPairs";
+  type: "matchPairs"
   availableWords: {
-    pairs: [string, string][]; //just make sure this is and array of arrays
-    column1: { column: string; read: boolean };
-    column2: { column: string; read: boolean };
-  };
-  englishAnswers?: string[];
-};
+    pairs: [string, string][] //just make sure this is and array of arrays
+    column1: { column: string; read: boolean }
+    column2: { column: string; read: boolean }
+  }
+  englishAnswers?: string[]
+}
 
 //?This is the matchpairs data structure - I am going to recreate the matchpairs interactive component as the current one is not how I want it.
 // {

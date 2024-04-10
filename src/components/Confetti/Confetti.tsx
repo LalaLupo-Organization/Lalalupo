@@ -1,9 +1,9 @@
-import Lottie from "lottie-react";
-import { motion } from "framer-motion";
-import confetti from "@/public/confetti.json";
-import { useEffect, useState } from "react";
+import Lottie from "lottie-react"
+import { motion } from "framer-motion"
+import confetti from "@/public/confetti.json"
+import { useEffect, useState } from "react"
 export const Confetti = () => {
-  const [play, setPlay] = useState(true);
+  const [play, setPlay] = useState(true)
   return play ? (
     <motion.div
       initial={{ opacity: 1 }}
@@ -22,5 +22,5 @@ export const Confetti = () => {
     </motion.div>
   ) : (
     <></>
-  );
-};
+  )
+}
