@@ -10,7 +10,7 @@ import Footer from "@/components/Footers/Footer";
 import { usePathname } from "next/navigation";
 export default function RootLayout({ children }: { children: any }) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body>
         <Suspense>
           <ClerkProvider>
@@ -35,12 +35,12 @@ function LayoutBody({ children }: { children: any }) {
   const pathname = usePathname();
   const isLesson = pathname.match(/\/lesson\/\d+/gi);
   return (
-    <body>
+    <>
       {!isLesson && <Navbar />}
       <FullStoryScript />
 
       {children}
       {!isLesson && <Footer />}
-    </body>
+    </>
   );
 }
