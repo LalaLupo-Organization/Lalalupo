@@ -1,25 +1,20 @@
-import { BaseExercise, LessonState } from "@/types/lesson.types"
-import React, { useState, useEffect, useMemo } from "react"
-import { TwoBlanksExercise } from "@/types/two-blanks.types"
-import { setArrayInput, clearUserInput } from "@/features/userInputSlice"
-import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
-// import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";
-import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper"
-import { useAppDispatch } from "@/hooks/useRedux"
-import { v4 as uuid } from "uuid"
 import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters1"
-import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
 import Instruction from "@/components/Headings/Instruction"
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
 import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble1"
-import parse from "html-react-parser"
+import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper"
+import { clearUserInput, setArrayInput } from "@/features/userInputSlice"
+import { useAppDispatch } from "@/hooks/useRedux"
+import { BaseExercise, LessonState } from "@/types/lesson.types"
+import { TwoBlanksExercise } from "@/types/two-blanks.types"
+import { useEffect, useState } from "react"
 export default function TwoBlanks({ data }: { data: LessonState }) {
-  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
+  const { activeExercise } = data
   function getType(exercise: BaseExercise): exercise is TwoBlanksExercise {
     return exercise.type === "twoBlanks"
   }
   // const speak = useSpeechSynthesis();
 
-  const [input, setInput] = useState("")
   const [autoFocus, setAutoFocus] = useState<any>({})
 
   const [blanks, setBlanks] = useState<any>({
@@ -34,14 +29,6 @@ export default function TwoBlanks({ data }: { data: LessonState }) {
   const dispatch = useAppDispatch()
   const [activeExerciseId, setActiveExerciseId] = useState(() => activeExercise?._id)
   const dialogue = getType(activeExercise) && activeExercise?.english.map(phrase => phrase + " ")
-  const handleChange = (e: any) => {
-    setInput(e.target.value)
-    setBlanks({ ...blanks, [e.target.name]: e.target.value })
-    setAutoFocus({ [e.target.name]: true })
-  }
-  const handleOnClick = (e: any) => {
-    setAutoFocus({ [e.target.name]: true })
-  }
 
   const insertAccentedVowel = (e: any) => {
     if (autoFocus.first)
@@ -83,7 +70,7 @@ export default function TwoBlanks({ data }: { data: LessonState }) {
     if (activeExercise && activeExercise._id !== activeExerciseId) {
       setActiveExerciseId(() => activeExercise?._id)
       dispatch(clearUserInput())
-      setInput("")
+      // setInput()
       setAutoFocus({})
       setBlanks({
         first: "",

@@ -1,9 +1,7 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import type { RootState } from "@/redux/store"
 import { UserInputState } from "@/types/userInput.types"
-// Define a type for the slice state
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
-// Define the initial state using that type
 const initialState: UserInputState = {
   userInput: null,
   userArrayInput: [],
@@ -26,7 +24,7 @@ export const userInputSlice = createSlice({
       state.userObjectInput = action.payload
     },
 
-    clearUserInput: state => initialState,
+    clearUserInput: () => initialState,
   },
 })
 

@@ -1,20 +1,18 @@
 import { BaseExercise, LessonState } from "@/types/lesson.types"
-import React, { useState, useEffect } from "react"
+import React, { useEffect, useState } from "react"
 // import '../style.css';
+import { clearUserInput, setSingleInput } from "@/features/userInputSlice"
 import { WriteTheSentenceExercise } from "@/types/write-the-word.types"
-import { setSingleInput, clearUserInput } from "@/features/userInputSlice"
 // import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";
-import { useAppDispatch } from "@/hooks/useRedux"
-import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
 import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper"
-import parse from "html-react-parser"
+import { useAppDispatch } from "@/hooks/useRedux"
 
-import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
-import Instruction from "@/components/Headings/Instruction"
-import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble1"
 import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters1"
+import Instruction from "@/components/Headings/Instruction"
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
+import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble1"
 export default function WriteTheSentence({ data }: { data: LessonState }) {
-  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
+  const { activeExercise } = data
   function getType(exercise: BaseExercise): exercise is WriteTheSentenceExercise {
     return exercise.type === "writeTheSentence"
   }

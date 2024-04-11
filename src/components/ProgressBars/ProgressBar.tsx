@@ -1,25 +1,23 @@
-import { useEffect, useState } from "react"
+import { XMarkIcon } from "@heroicons/react/24/outline"
 import { motion } from "framer-motion"
 import Lottie from "lottie-react"
-import bubbles from "@/public/bubbles.json"
-import classNames from "@/helpers/classNames"
-import { useAppDispatch } from "@/hooks/useRedux"
-// import { setExitDisplay } from "../features/userSlice";
-import { v4 as uuid } from "uuid"
 import Image from "next/image"
-import { LessonState } from "@/types/lesson.types"
-import { XMarkIcon } from "@heroicons/react/24/outline"
 import Link from "next/link"
+import { useEffect, useState } from "react"
+import { v4 as uuid } from "uuid"
+
+import bubbles from "@/public/bubbles.json"
+
+import classNames from "@/helpers/classNames"
+
+import { LessonState } from "@/types/lesson.types"
 
 import Container from "../Container"
 export const ProgressBar = ({
-  remainingExercises,
   totalNumberOfExercises,
   numberOfExercisesComplete,
-  interactiveExercises,
   lives,
   numberOfExercisesFailed,
-  color = "bg-default_progress_bar",
   activeExercise,
   id,
 }: {
@@ -33,8 +31,7 @@ export const ProgressBar = ({
   activeExercise: LessonState["activeExercise"]
   id: string | null
 }) => {
-  const dispatch = useAppDispatch()
-  const [hearts, setHeart] = useState(() => {
+  const [hearts] = useState(() => {
     return [1, 2, 3]
   })
   const [play, setPlay] = useState(false)

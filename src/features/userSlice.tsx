@@ -1,15 +1,14 @@
-import { createSlice, createAsyncThunk, PayloadAction, current } from "@reduxjs/toolkit"
+import { calculateCourseAverage, calculateLessonAverage, calculateUnitAverage } from "@/helpers/calculateAverageLessonScore"
 import type { RootState } from "@/redux/store"
-import { UserState, ActivityFields } from "@/types/user-progress.types"
 import { api } from "@/services/api"
+import { ActivityFields, UserState } from "@/types/user-progress.types"
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { event } from "react-fullstory"
-
-import { calculateLessonAverage, calculateUnitAverage, calculateCourseAverage } from "@/helpers/calculateAverageLessonScore"
 export const updateUserDatabase = createAsyncThunk(
   //first arg is the action name:
   "auth/update",
   //second arg is a function called payload creator:
-  async (updateUser: Function, thunkAPI: any) => {
+  async (updateUser: any, thunkAPI: any) => {
     try {
       const user = await thunkAPI.getState().user
 
@@ -72,7 +71,7 @@ export const userSlice = createSlice({
     ) => {
       state.score = Math.round((action.payload.numberComplete / action.payload.totalExercises) * 100)
     },
-    clearScore: (state: UserState) => initialState,
+    clearScore: () => initialState,
 
     setCurrentActivity: (state: UserState, action: PayloadAction<UserState["current"]>) => {
       state.current = action.payload
@@ -83,9 +82,9 @@ export const userSlice = createSlice({
     updateOrSetUsersPercentageScoreAndQualityScore: (state: UserState, action: PayloadAction<{ activityScore: number }>) => {
       // Please note that for state.current to return a value you must access the activity from the dashboard
       if (state?.user?.iSpeakItalian && state.current) {
-        let lesson = state.user?.iSpeakItalian.units[state.current.unit][state.current.index]
-        let activity = lesson.activities.find((activity: ActivityFields) => activity._id === state.current?._id && activity)
-        let unitStats = state.user?.iSpeakItalian.unitStats
+        const lesson = state.user?.iSpeakItalian.units[state.current.unit][state.current.index]
+        const activity = lesson.activities.find((activity: ActivityFields) => activity._id === state.current?._id && activity)
+        const unitStats = state.user?.iSpeakItalian.unitStats
 
         if (activity && state.user) {
           if (activity?.activityScore >= action.payload.activityScore) return
@@ -115,10 +114,10 @@ export const userSlice = createSlice({
       if (state.current?.isComplete) return
       //Otherwise, I will need to find that specific activity in the ispeakitalian object to update
       if (state?.user?.iSpeakItalian && state.current) {
-        let courseStats = state.user?.iSpeakItalian.courseStats
-        let unitStats = state.user?.iSpeakItalian.unitStats
-        let lesson = state.user?.iSpeakItalian.units[state.current.unit][state.current.index]
-        let activity = lesson.activities.find((activity: ActivityFields) => activity._id === state.current?._id && activity)
+        const courseStats = state.user?.iSpeakItalian.courseStats
+        const unitStats = state.user?.iSpeakItalian.unitStats
+        const lesson = state.user?.iSpeakItalian.units[state.current.unit][state.current.index]
+        const activity = lesson.activities.find((activity: ActivityFields) => activity._id === state.current?._id && activity)
         // If the user score is below 60 than simply return
         if (state.score < 60) return
         if (activity && !activity?.isComplete) {
@@ -152,10 +151,10 @@ export const userSlice = createSlice({
       //2. If the user completes the assessment than we must set that assessment to isComplete to true
 
       if (state?.user?.iSpeakItalian && state.current) {
-        let lesson = state.user?.iSpeakItalian.units[state.current.unit][state.current.index]
-        let activity = lesson.activities.find((activity: ActivityFields) => activity._id === state.current?._id && activity)
-        let unitStats = state.user?.iSpeakItalian.unitStats
-        let courseStats = state.user?.iSpeakItalian.courseStats
+        const lesson = state.user?.iSpeakItalian.units[state.current.unit][state.current.index]
+        const activity = lesson.activities.find((activity: ActivityFields) => activity._id === state.current?._id && activity)
+        const unitStats = state.user?.iSpeakItalian.unitStats
+        const courseStats = state.user?.iSpeakItalian.courseStats
 
         if (activity && !activity.isComplete) {
           activity.isComplete = true
@@ -178,14 +177,14 @@ export const userSlice = createSlice({
           }
         } else {
           //else make the next assessment available to the user
-          let found = lesson.activities.find((item: any) => !item.isAvailable && item)
+          const found = lesson.activities.find((item: any) => !item.isAvailable && item)
           if (found) {
             found.isAvailable = true
           }
         }
       }
     },
-    setUserToNull: (state: UserState) => initialState,
+    setUserToNull: () => initialState,
 
     setLessonUnlock: (state: UserState, action: PayloadAction<boolean>) => {
       state.messages.lessonUnlock = action.payload

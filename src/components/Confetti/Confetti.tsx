@@ -1,7 +1,7 @@
-import Lottie from "lottie-react"
-import { motion } from "framer-motion"
 import confetti from "@/public/confetti.json"
-import { useEffect, useState } from "react"
+import { motion } from "framer-motion"
+import Lottie from "lottie-react"
+import { useState } from "react"
 export const Confetti = () => {
   const [play, setPlay] = useState(true)
   return play ? (

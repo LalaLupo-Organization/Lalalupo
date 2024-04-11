@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react"
-import { ArrowUpIcon, ArrowDownIcon } from "@heroicons/react/24/solid"
-import { v4 as uuid } from "uuid"
+import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/24/solid"
 import { motion } from "framer-motion"
-export default function AccentedLetters({ insertAccentedVowel, activeExercise }: { insertAccentedVowel: Function; activeExercise: any }) {
+import { useEffect, useState } from "react"
+import { v4 as uuid } from "uuid"
+export default function AccentedLetters({ insertAccentedVowel, activeExercise }: { insertAccentedVowel: any; activeExercise: any }) {
   const [vowelCase, setVowelCase] = useState("lowercase")
-  const [littleVowels, setLittleVowles] = useState(["à", "è", "é", "ì", "ò", "ù"])
-  const [bigVowels, setBigVowles] = useState(["À", "È", "Ì", "Ò", "Ù"])
+  const [littleVowels] = useState(["à", "è", "é", "ì", "ò", "ù"])
+  const [bigVowels] = useState(["À", "È", "Ì", "Ò", "Ù"])
   const setCase = () => {
     vowelCase === "capitalize" ? setVowelCase("lowercase") : setVowelCase("capitalize")
   }

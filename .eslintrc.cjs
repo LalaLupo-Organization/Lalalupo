@@ -43,34 +43,34 @@ module.exports = {
         bracketSpacing: true,
       },
     ],
-    "simple-import-sort/imports": [
-      "error",
-      {
-        groups: [
-          // Packages `react` related packages come first.
-          ["^react", "^@?\\w"],
-          // Internal packages.
-          ["^(@/components)(/.*|$)"],
-          ["^(@/features)(/.*|$)"],
-          ["^(@/public)(/.*|$)"],
-          ["^(@/helpers)(/.*|$)"],
-          ["^(@/hooks)(/.*|$)"],
-          ["^(@/types)(/.*|$)"],
-          ["^(@/providers)(/.*|$)"],
-          ["^(@/redux)(/.*|$)"],
-          ["^(@/services)(/.*|$)"],
-          ["^(@/sanity)(/.*|$)"],
-          ["^(@/scripts)(/.*|$)"],
-          ["^(@/studio)(/.*|$)"],
-          ["^(@/stories)(/.*|$)"],
-          ["^(@/types)(/.*|$)"],
-          // Side effect imports.
-          ["^\\u0000"],
-          // Other relative imports. Put same-folder imports and `.` last.
-          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
-        ],
-      },
-    ],
+    // "simple-import-sort/imports": [
+    //   "error",
+    //   {
+    //     groups: [
+    //       // Packages `react` related packages come first.
+    //       ["^react", "^@?\\w"],
+    //       // Internal packages.
+    //       ["^(@/components)(/.*|$)"],
+    //       ["^(@/features)(/.*|$)"],
+    //       ["^(@/public)(/.*|$)"],
+    //       ["^(@/helpers)(/.*|$)"],
+    //       ["^(@/hooks)(/.*|$)"],
+    //       ["^(@/types)(/.*|$)"],
+    //       ["^(@/providers)(/.*|$)"],
+    //       ["^(@/redux)(/.*|$)"],
+    //       ["^(@/services)(/.*|$)"],
+    //       ["^(@/sanity)(/.*|$)"],
+    //       ["^(@/scripts)(/.*|$)"],
+    //       ["^(@/studio)(/.*|$)"],
+    //       ["^(@/stories)(/.*|$)"],
+    //       ["^(@/types)(/.*|$)"],
+    //       // Side effect imports.
+    //       ["^\\u0000"],
+    //       // Other relative imports. Put same-folder imports and `.` last.
+    //       ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+    //     ],
+    //   },
+    // ],
   },
   overrides: [
     {

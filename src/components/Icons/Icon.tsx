@@ -14,10 +14,6 @@ export const Icon: React.FC<IconProps> = ({ name, className = "", ...props }) =>
   useEffect(() => {
     const svgElement = async () => await import(`../../../public/assets/icons/${name}.svg`)
 
-    svgElement().catch(e => {
-      console.error("<strong>On loading the SVG</strong>", e)
-    })
-
     svgElement().then(svg => {
       svgRef!.current!.innerHTML = svg.default
     })

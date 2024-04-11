@@ -1,4 +1,4 @@
-import { languageChallenges } from "../objects/languageChallenges";
+import { languageChallenges } from "../objects/languageChallenges"
 
 const courseStructure = {
   name: "courseStructure",
@@ -183,17 +183,11 @@ const courseStructure = {
       subtitle: "lessonNumber",
       media: "icon",
     },
-    preview: ({
-      unitTitle,
-      lessonNumber,
-    }: {
-      unitTitle: string;
-      lessonNumber: string;
-    }) => ({
+    preview: ({ unitTitle, lessonNumber }: { unitTitle: string; lessonNumber: string }) => ({
       title: `Unit ${unitTitle || "No Language"}`,
       subtitle: `Lesson ${lessonNumber || "No Language"}`,
     }),
   },
-};
+}
 
-export default courseStructure;
+export default courseStructure

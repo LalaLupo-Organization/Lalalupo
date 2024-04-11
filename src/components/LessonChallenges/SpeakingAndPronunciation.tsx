@@ -1,33 +1,29 @@
-import { BaseExercise, LessonState } from "@/types/lesson.types"
-import React, { useState, useEffect } from "react"
-import { SpeakingAndPronunciationExercise } from "@/types/speaking-and-pronunciation.types"
-import { clearUserInput, selectUserInput, setSingleInput } from "@/features/userInputSlice"
-import { MicrophoneIcon } from "@heroicons/react/24/solid"
-// import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";
-import { useAppDispatch, useAppSelector } from "@/hooks/useRedux"
-import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
-import { motion } from "framer-motion"
-import audiowave from "@/public/audiowave.json"
-import Lottie from "lottie-react"
-import useAssessment from "@/hooks/useAssessment"
-import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper"
-import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
 import Instruction from "@/components/Headings/Instruction"
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
 import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble1"
+import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper"
+import { clearUserInput, setSingleInput } from "@/features/userInputSlice"
+import useAssessment from "@/hooks/useAssessment"
+import { useAppDispatch } from "@/hooks/useRedux"
+import audiowave from "@/public/audiowave.json"
+import { BaseExercise, LessonState } from "@/types/lesson.types"
+import { SpeakingAndPronunciationExercise } from "@/types/speaking-and-pronunciation.types"
+import { MicrophoneIcon } from "@heroicons/react/24/solid"
+import { motion } from "framer-motion"
+import Lottie from "lottie-react"
+import { useEffect, useState } from "react"
 const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
 const mic: any = new SpeechRecognition()
 mic.continuous = true
 mic.lang = "it-IT"
 export default function SpeakingAndPronunciation({ data }: { data: LessonState }) {
-  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
+  const { activeExercise } = data
   function getType(exercise: BaseExercise): exercise is SpeakingAndPronunciationExercise {
     return exercise.type === "speakingAndPronunciation"
   }
-  const userInput = useAppSelector(state => selectUserInput(state))
   const [isListening, setIsListening] = useState(false)
   const { lessonButtonClick } = useAssessment()
-  const [userSpeech, setUserSpeech] = useState("")
-  const [savedSpeech, setSavedSpeech] = useState([])
+  const [userSpeech] = useState("")
   const dispatch = useAppDispatch()
   // const speak = useSpeechSynthesis();
   const [activeExerciseId, setActiveExerciseId] = useState(() => activeExercise?._id)

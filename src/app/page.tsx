@@ -1,12 +1,9 @@
 "use client"
 
-import { useState } from "react"
-import { Hero } from "@/components/Sections/Hero"
 import { FeatureScreenshotOnRight } from "@/components/Sections/FeatureScreenshotOnRight"
+import { Hero } from "@/components/Sections/Hero"
 
 export default function HomePage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
   return (
     <div className="bg-white">
       <div className="relative isolate pt-14">

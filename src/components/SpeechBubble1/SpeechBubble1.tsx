@@ -1,5 +1,4 @@
 "use client"
-import React from "react"
 import parse from "html-react-parser"
 import Image from "next/image"
 
@@ -9,7 +8,7 @@ type BubbleProps = {
   solution?: string | null // Add this line
 }
 
-export default function SpeechBubble({ dialogue, english, solution }: BubbleProps) {
+export default function SpeechBubble({ dialogue, english }: BubbleProps) {
   return (
     <div className="flex flex-col w-full">
       <div className="flex">

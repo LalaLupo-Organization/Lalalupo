@@ -1,26 +1,20 @@
-import { LessonState } from "@/types/lesson.types"
-import React, { useState, useEffect } from "react"
-import { setSingleInput, clearUserInput } from "@/features/userInputSlice"
-import { useAppDispatch } from "@/hooks/useRedux"
-import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
-import { v4 as uuid } from "uuid"
-import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
-import Instruction from "@/components/Headings/Instruction"
 import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters1"
 import AudioBubble from "@/components/AudioBubble/AudioBubble"
+import Instruction from "@/components/Headings/Instruction"
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
+import { clearUserInput, setSingleInput } from "@/features/userInputSlice"
+import { useAppDispatch } from "@/hooks/useRedux"
+import { LessonState } from "@/types/lesson.types"
+import React, { useEffect, useState } from "react"
+import { v4 as uuid } from "uuid"
 
 export default function FillInWhatYouHear({ data }: { data: LessonState }) {
-  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
+  const { activeExercise } = data
 
   const [input, setInput] = useState("")
   const dispatch = useAppDispatch()
 
   const [activeExerciseId, setActiveExerciseId] = useState(activeExercise?._id)
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setSingleInput(e.target.value))
-    setInput(e.target.value)
-  }
 
   const insertAccentedVowel = (e: React.MouseEvent<HTMLButtonElement>) => {
     setInput(input + e.currentTarget.innerText)

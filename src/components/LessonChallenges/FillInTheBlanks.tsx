@@ -1,21 +1,18 @@
-import { BaseExercise, LessonState } from "@/types/lesson.types"
-import React, { useState, useEffect, useRef } from "react"
-
-import { FillInTheBlankExercise } from "@/types/fill-in-the-blanks.types"
-import { setSingleInput, clearUserInput } from "@/features/userInputSlice"
-// import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";
-import { useAppDispatch } from "@/hooks/useRedux"
-import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
-import { v4 as uuid } from "uuid"
-import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
-import Instruction from "@/components/Headings/Instruction"
-import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble1"
 import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters1"
+import Instruction from "@/components/Headings/Instruction"
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
+import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble1"
 import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper"
+import { clearUserInput, setSingleInput } from "@/features/userInputSlice"
+import { useAppDispatch } from "@/hooks/useRedux"
+import { FillInTheBlankExercise } from "@/types/fill-in-the-blanks.types"
+import { BaseExercise, LessonState } from "@/types/lesson.types"
 import parse from "html-react-parser"
+import { useEffect, useState } from "react"
+import { v4 as uuid } from "uuid"
 
 export default function FillInTheBlanks({ data }: { data: LessonState }) {
-  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
+  const { activeExercise } = data
   function getType(exercise: BaseExercise): exercise is FillInTheBlankExercise {
     return exercise.type === "fillInTheBlank"
   }

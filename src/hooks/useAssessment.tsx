@@ -1,28 +1,27 @@
-import { useEffect } from "react"
-import { useAppSelector, useAppDispatch } from "./useRedux"
 import {
-  selectToSeeIfAllInteractiveExercisesAreComplete,
-  selectActiveExercise,
-  setCorrectAnswer,
-  putActiveExerciseIntoState,
-  setIncorrectAnswer,
   clearActiveExercise,
+  putActiveExerciseIntoState,
+  selectActiveExercise,
   selectAssessment,
+  selectToSeeIfAllInteractiveExercisesAreComplete,
+  setCorrectAnswer,
+  setIncorrectAnswer,
   setSkippedExercise,
 } from "@/features/lessonSlice"
 import {
-  selectUser,
-  setScore,
-  setSuccessMessage,
-  setLoading,
-  setFailedMessage,
+  selectMessage,
   setActivityComplete,
   setAlertsBackToFalse,
-  selectMessage,
+  setFailedMessage,
+  setLoading,
+  setScore,
+  setSuccessMessage,
 } from "@/features/userSlice"
+import { useEffect } from "react"
 import RegexParser from "regex-parser"
+import { useAppDispatch, useAppSelector } from "./useRedux"
 
-import { selectUserInput, clearUserInput } from "@/features/userInputSlice"
+import { clearUserInput, selectUserInput } from "@/features/userInputSlice"
 // import { toast } from "react-toastify";
 
 export default function useAssessment() {
@@ -34,7 +33,7 @@ export default function useAssessment() {
   const currentUnitForAssessment = useAppSelector(state => selectAssessment(state))
   const { numberComplete, totalExercises } = currentUnitForAssessment
 
-  const user = useAppSelector(state => selectUser(state))
+  // const user = useAppSelector(state => selectUser(state))
   useEffect(() => {
     if (!activeExercise) {
       dispatch(putActiveExerciseIntoState())
@@ -89,7 +88,7 @@ export default function useAssessment() {
       }
 
       if (activeExercise.type === "conjugation") {
-        let result = userArrayInput.every(
+        const result = userArrayInput.every(
           (element, index) =>
             element
               .toLowerCase()
@@ -111,7 +110,7 @@ export default function useAssessment() {
 
       if (activeExercise?.type === "fillInTheBlank") {
         if (activeExercise?.doubleSolution) {
-          let regex = RegexParser(activeExercise.regex)
+          const regex = RegexParser(activeExercise.regex)
 
           if (userInput && regex.test(userInput)) {
             // console.log("TRANSCRIPT FROM GOOGLE API: " + input)
@@ -141,7 +140,7 @@ export default function useAssessment() {
           userInput
             ?.trim()
             .toLowerCase()
-            .replace(/[^\w\s\À-ú']|_/g, "") === activeExercise.missingWord.toLowerCase().replace(/[^\w\s\À-ú']|_/g, "")
+            .replace(/[^\w\sÀ-ú']|_/g, "") === activeExercise.missingWord.toLowerCase().replace(/[^\w\sÀ-ú']|_/g, "")
         ) {
           setSuccess()
           return
@@ -156,9 +155,9 @@ export default function useAssessment() {
           return
         }
         if (userInput !== activeExercise.solution) {
+          setFailed()
+          return
         }
-        setFailed()
-        return
       }
     }
     // if (activeExercise.type === "matchPairs" && userObjectInput) {
@@ -184,7 +183,7 @@ export default function useAssessment() {
       }
     }
     if (activeExercise.type === "multipleAnswers" && userObjectInput) {
-      let correctAnswers = activeExercise.availableWords.filter(
+      const correctAnswers = activeExercise.availableWords.filter(
         word => word.italian === userObjectInput[word.italian] && word.correct && word
       )
 
@@ -208,9 +207,7 @@ export default function useAssessment() {
       }
     }
     if (activeExercise.type === "partOfAWord") {
-      console.log("step4")
       if (userInput?.trim().toLowerCase() === activeExercise.missing[0].trim().toLowerCase()) {
-        console.log("step5")
         setSuccess()
         return
       } else {
@@ -254,7 +251,7 @@ export default function useAssessment() {
     }
     if (activeExercise.type === "speakingAndPronunciation") {
       if (activeExercise.doubleSolution) {
-        let regex = RegexParser(activeExercise.regex)
+        const regex = RegexParser(activeExercise.regex)
         input = input && input.toLowerCase()
         if (input && regex.test(input)) {
           // console.log("TRANSCRIPT FROM GOOGLE API: " + input)
@@ -268,16 +265,16 @@ export default function useAssessment() {
           return
         }
       }
-      let solution =
+      const solution =
         activeExercise?.solution && activeExercise.type === "speakingAndPronunciation" && activeExercise?.solution.toString().toLowerCase()
-      solution =
+      const updatedSolution =
         solution &&
         solution
-          .replace(/[^\w\s\À-ú']|_/g, "")
+          .replace(/[^\w\sÀ-ú']|_/g, "")
           .replace(/\s+/g, " ")
           .replace(/[?]/, "")
       input = input && input.toLowerCase()
-      if (input && input.toLowerCase() === solution) {
+      if (input && input.toLowerCase() === updatedSolution) {
         //  console.log("TRANSCRIPT FROM GOOGLE API: " + input.toLowerCase())
         //  console.log("MANIPULATED IN CODE1: " + solution)
         setSuccess()
@@ -308,11 +305,11 @@ export default function useAssessment() {
         userInput
           ?.trim()
           .toLowerCase()
-          .replace(/[^\w\s\À-ú']|_/g, "") ===
+          .replace(/[^\w\sÀ-ú']|_/g, "") ===
         activeExercise?.solution
           .toString()
           .toLowerCase()
-          .replace(/[^\w\s\À-ú']|_/g, "")
+          .replace(/[^\w\sÀ-ú']|_/g, "")
       ) {
         setSuccess()
         return
@@ -323,15 +320,12 @@ export default function useAssessment() {
     }
     if (activeExercise.type === "writeTheSentence") {
       if (activeExercise.doubleSolution) {
-        let regex = RegexParser(activeExercise.regex)
+        const regex = RegexParser(activeExercise.regex)
 
         if (userInput && regex.test(userInput)) {
-          console.log("REGEX: " + regex)
-
           setSuccess()
           return
         } else {
-          console.log("REGEX: " + regex)
           setFailed()
           return
         }
@@ -341,11 +335,11 @@ export default function useAssessment() {
         userInput
           ?.trim()
           .toLowerCase()
-          .replace(/[^\w\s\À-ú']|_/g, "") ===
+          .replace(/[^\w\sÀ-ú']|_/g, "") ===
           activeExercise.solution
             .toString()
             .toLowerCase()
-            .replace(/[^\w\s\À-ú']|_/g, "")
+            .replace(/[^\w\sÀ-ú']|_/g, "")
       ) {
         setSuccess()
         return

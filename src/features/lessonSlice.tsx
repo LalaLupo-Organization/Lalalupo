@@ -1,9 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import type { RootState } from "@/redux/store"
 import { LessonState } from "@/types/lesson.types"
-// import { AssessmentState } from "../models/test.model";
-
-// Define a type for the slice state
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 // Define the initial state using that type
 const initialState: LessonState = {
@@ -326,7 +323,7 @@ export const lessonSlice = createSlice({
         state.activeExercise = found
       }
     },
-    clearCurrentUnit: state => initialState,
+    clearCurrentUnit: () => initialState,
     setInteractiveExerciseLength: state => {
       state.totalExercises = state.interactiveExercises.length
       state.remainingExercises = state.interactiveExercises.length
@@ -346,7 +343,6 @@ export const lessonSlice = createSlice({
     },
 
     setSkippedExercise: state => {
-      console.log(state.activeExercise)
       if (state.activeExercise) {
         state.activeExercise.isSkiped = true
       }
@@ -379,7 +375,7 @@ export const lessonSlice = createSlice({
         Object.assign(found, state.activeExercise)
       }
 
-      let filtered = state.interactiveExercises.map(item => {
+      const filtered = state.interactiveExercises.map(item => {
         if (item._id === state.activeExercise?._id) {
           item.hasFailed = true
         }

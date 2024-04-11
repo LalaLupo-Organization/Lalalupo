@@ -1,9 +1,5 @@
-import React from "react"
-import {} from "@heroicons/react/24/solid"
-// import useSpeechSynthesis from '@/hooks/useSpeechSynthesis';
 import Image from "next/image"
-export default function AudioBubble({ solution }: { solution: any }) {
-  //   const speak = useSpeechSynthesis();
+export default function AudioBubble() {
   return (
     <div className="flex flex-col w-full">
       <div className="flex">

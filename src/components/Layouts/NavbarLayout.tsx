@@ -1,7 +1,7 @@
-import React from "react"
 import classNames from "@/helpers/classNames"
 import "@fontsource/nunito"
 import { motion } from "framer-motion"
+import React from "react"
 import Container from "../Container"
 //classes
 

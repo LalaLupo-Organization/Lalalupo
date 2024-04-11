@@ -1,6 +1,5 @@
-import React from "react"
-import localFont from "next/font/local"
 import classNames from "@/helpers/classNames"
+import localFont from "next/font/local"
 
 const myFont = localFont({
   src: "../../../public/MoreSugarRegular.ttf",

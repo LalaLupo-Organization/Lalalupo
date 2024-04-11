@@ -1,11 +1,11 @@
 "use client"
 import orderOneGreen from "@/public/orderedListOne.svg"
-import orderTwoGreen from "@/public/orderedListTwo.svg"
 import orderOneRed from "@/public/orderedListOneNeg.svg"
-import orderTwoRed from "@/public/orderedListTwoNeg.svg"
 import orderThreeRed from "@/public/orderedListThreeNeg.svg"
-import Image from "next/image"
+import orderTwoGreen from "@/public/orderedListTwo.svg"
+import orderTwoRed from "@/public/orderedListTwoNeg.svg"
 import localFont from "next/font/local"
+import Image from "next/image"
 import { v4 as uuid } from "uuid"
 const myFont = localFont({ src: "../../../public/MoreSugarRegular.ttf" })
 

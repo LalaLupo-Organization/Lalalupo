@@ -1,5 +1,5 @@
-import React from "react"
 import { motion } from "framer-motion"
+import React from "react"
 
 export const InteractiveLayout = ({ id, children }: { id: string | null; children: React.ReactNode }) => {
   return (

@@ -1,11 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit"
 import lessonReducer from "@/features/lessonSlice"
 import userInputReducer from "@/features/userInputSlice"
 import userReducer from "@/features/userSlice"
 import { api } from "@/services/api"
-import { setupListeners } from "@reduxjs/toolkit/query"
-import { useDispatch } from "react-redux"
-// import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from "@reduxjs/toolkit"
 
 export const makeStore = () => {
   return configureStore({

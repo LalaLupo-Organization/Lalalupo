@@ -1,7 +1,7 @@
 "use client"
 
-import { createContext } from "react"
 import StoreProvider from "@/redux/StoreProvider"
+import { createContext } from "react"
 
 export const ThemeContext = createContext({})
 

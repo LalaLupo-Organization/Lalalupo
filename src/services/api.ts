@@ -1,13 +1,10 @@
-import { BaseQueryApi, createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react"
-import { SanityDocument } from "@/types/sanity-io.types"
-import client from "@/sanity/src/parts/config"
-import { collection, getDoc, doc, DocumentData } from "firebase/firestore"
 import { db } from "@/firebase/firebase"
-import { CustomErrorType } from "@/types/sanity-io.types"
-import { User } from "@/types/user-progress.types"
-import { HomePageData } from "@/types/homepage-data.types"
+import client from "@/sanity/src/parts/config"
 import { AboutPageData } from "@/types/aboutpage-data.types"
-import { LanguageSelect } from "@/types/languageSelect.types"
+import { HomePageData } from "@/types/homepage-data.types"
+import { User } from "@/types/user-progress.types"
+import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react"
+import { doc, getDoc } from "firebase/firestore"
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fakeBaseQuery(),
@@ -28,7 +25,7 @@ export const api = createApi({
       },
     }),
     getLesson: builder.query<any, { index: string }>({
-      queryFn: async ({ index }) => {
+      queryFn: async () => {
         try {
           const data = await client.fetch<any[]>(
             `*[_type == "courseStructure" && languageCode == "en-it" && lessonNumber == 1] 

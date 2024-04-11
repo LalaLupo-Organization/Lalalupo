@@ -1,24 +1,22 @@
-import { BaseExercise, LessonState } from "@/types/lesson.types"
-import React, { useState, useEffect, useRef } from "react"
-// import '../style.css';
-import { ConjugationExercise } from "@/types/conjunction.types"
-import { setArrayInput, clearUserInput } from "@/features/userInputSlice"
-import { useAppDispatch } from "@/hooks/useRedux"
-import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
-import { v4 as uuid } from "uuid"
 import Instruction from "@/components/Headings/Instruction"
 import ImageOfProfessor from "@/components/Layouts/ImageOfProfessor"
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
+import { clearUserInput, setArrayInput } from "@/features/userInputSlice"
 import classNames from "@/helpers/classNames"
+import { useAppDispatch } from "@/hooks/useRedux"
+import { ConjugationExercise } from "@/types/conjunction.types"
+import { BaseExercise, LessonState } from "@/types/lesson.types"
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid"
 import parse from "html-react-parser"
+import React, { useEffect, useState } from "react"
+import { v4 as uuid } from "uuid"
 
 type Input = {
   [name: string]: string
 }
 
 export default function Conjunction({ data }: { data: LessonState }) {
-  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
+  const { activeExercise } = data
   function getType(exercise: BaseExercise): exercise is ConjugationExercise {
     return exercise.type === "conjugation"
   }
@@ -67,7 +65,7 @@ export default function Conjunction({ data }: { data: LessonState }) {
   }, [])
 
   if (activeExercise?.hasFailed) {
-    let results = Object.values(inputFields)
+    const results = Object.values(inputFields)
     return (
       <div
         className="flex flex-col
@@ -83,7 +81,7 @@ export default function Conjunction({ data }: { data: LessonState }) {
           lives={lives && lives}
         /> */}
         <InteractiveLayout id={activeExercise && activeExercise._id}>
-          <Instruction instruction={"Lesson review"} />
+          <Instruction instruction="Lesson review" />
 
           <div className="flex flex-col">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">

@@ -1,23 +1,20 @@
 "use client"
-import { BaseExercise, LessonState } from "@/types/lesson.types"
-import { useState, useEffect, useRef } from "react"
-import { useAppDispatch } from "@/hooks/useRedux"
-import { v4 as uuid } from "uuid"
-import { ListenAndSelectExercise } from "@/types/listen-and-select.types"
-import { setSingleInput, clearUserInput } from "@/features/userInputSlice"
-import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
-
-import classNames from "@/helpers/classNames"
-import AudioBubble from "@/components/AudioBubble/AudioBubble"
-import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
 import Instruction from "@/components/Headings/Instruction"
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
+import { clearUserInput, setSingleInput } from "@/features/userInputSlice"
+import classNames from "@/helpers/classNames"
+import { useAppDispatch } from "@/hooks/useRedux"
+import { BaseExercise, LessonState } from "@/types/lesson.types"
+import { ListenAndSelectExercise } from "@/types/listen-and-select.types"
+import { useEffect, useState } from "react"
+import { v4 as uuid } from "uuid"
 export default function ListenAndSelect({ data }: { data: LessonState }) {
-  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
+  const { activeExercise } = data
   function getType(exercise: BaseExercise): exercise is ListenAndSelectExercise {
     return exercise.type === "listenAndSelect"
   }
   const dispatch = useAppDispatch()
-  const synthRef = useRef(window.speechSynthesis)
+  // const synthRef = useRef(window.speechSynthesis)
 
   const [randomizedData, setRandomizedData] = useState(
     () =>
@@ -72,11 +69,11 @@ export default function ListenAndSelect({ data }: { data: LessonState }) {
       /> */}
       <InteractiveLayout id={activeExercise && activeExercise._id}>
         <Instruction instruction={getType(activeExercise) ? activeExercise.instructions : null} />
-        <AudioBubble solution={getType(activeExercise) && activeExercise.audio} />
+        {/* <AudioBubble solution={getType(activeExercise) && activeExercise.audio} /> */}
 
         <div className="flex-col -mt-2 sm:flex-row flex-wrap flex-1 items-center  mx-auto  w-full">
           {randomizedData &&
-            randomizedData.map((word: [string], index) => (
+            randomizedData.map((word: [string]) => (
               <div
                 key={uuid()}
                 className="m-1 flex flex-1  cursor-pointer"

@@ -1,9 +1,9 @@
 "use client"
-import React, { useState } from "react"
-import Link from "next/link"
 import localFont from "next/font/local"
 import Image from "next/image"
-// Font files can be colocated inside of `pages`
+import Link from "next/link"
+import React from "react"
+
 const myFont = localFont({ src: "../../../public/MoreSugarRegular.ttf" })
 export const Hero: React.FC = () => {
   return (

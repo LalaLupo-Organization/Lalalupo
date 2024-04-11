@@ -1,12 +1,8 @@
-import React, { useEffect } from "react"
-import { FlagIcon, XMarkIcon, BookOpenIcon, CheckIcon } from "@heroicons/react/16/solid"
-import classNames from "@/helpers/classNames"
-import useAssessment from "@/hooks/useAssessment"
+import React from "react"
 import { Icon } from "../Icons/Icon"
 export default function SuccessToFailureLayout({
   children,
   success,
-  solution,
   meaning,
   audioOutput,
 }: {
@@ -16,7 +12,7 @@ export default function SuccessToFailureLayout({
   meaning?: any
   audioOutput?: any
 }) {
-  const { lessonButtonClick } = useAssessment()
+  // const { lessonButtonClick } = useAssessment()
 
   return (
     <>

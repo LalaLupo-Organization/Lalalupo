@@ -1,19 +1,17 @@
 "use client"
-import { BaseExercise, LessonState } from "@/types/lesson.types"
-import { useState, useEffect } from "react"
-import { useAppDispatch } from "@/hooks/useRedux"
-import { v4 as uuid } from "uuid"
-import { MultipleAnswersExercise } from "@/types/multiple-answers.types"
-import { setObjectInput, clearUserInput } from "@/features/userInputSlice"
-import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
-import ImageOfProfessor from "@/components/Layouts/ImageOfProfessor"
-import classNames from "@/helpers/classNames"
-import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
 import Instruction from "@/components/Headings/Instruction"
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
+import { clearUserInput, setObjectInput } from "@/features/userInputSlice"
+import classNames from "@/helpers/classNames"
+import { useAppDispatch } from "@/hooks/useRedux"
+import { BaseExercise, LessonState } from "@/types/lesson.types"
+import { MultipleAnswersExercise } from "@/types/multiple-answers.types"
 import Image from "next/image"
+import { useEffect, useState } from "react"
+import { v4 as uuid } from "uuid"
 // import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";
 export default function MultipleAnswers({ data }: { data: LessonState }) {
-  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
+  const { activeExercise } = data
   function getType(exercise: BaseExercise): exercise is MultipleAnswersExercise {
     return exercise.type === "multipleAnswers"
   }
@@ -30,7 +28,7 @@ export default function MultipleAnswers({ data }: { data: LessonState }) {
   }
 
   const handleSelectedItem = (e: React.SyntheticEvent, word: string) => {
-    if (showSelected.hasOwnProperty(word)) {
+    if (Object.prototype.hasOwnProperty.call(showSelected, word)) {
       removeItems(word)
       return
     }
@@ -88,7 +86,7 @@ export default function MultipleAnswers({ data }: { data: LessonState }) {
 
         <div className="grid-cols-3   gap-1 border-2 text-sm rounded-xl bg-blue-50 p-1  grid  mb-40 sm:text-base sm:w-full">
           {randomized &&
-            randomized.map((item, index) => (
+            randomized.map(item => (
               <div
                 key={uuid()}
                 className="row-span-2 cursor-pointer"

@@ -1,5 +1,4 @@
 import classNames from "@/helpers/classNames"
-import React from "react"
 
 export default function ButtonInteractiveLesson({
   background,
@@ -10,7 +9,7 @@ export default function ButtonInteractiveLesson({
   status,
 }: {
   background: string
-  lessonButtonClick: Function | null
+  lessonButtonClick: any
   buttonDisplayText: string
   shadowColor?: string
   lottie?: any

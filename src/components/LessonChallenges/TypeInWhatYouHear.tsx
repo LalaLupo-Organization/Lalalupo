@@ -1,19 +1,14 @@
-import { BaseExercise, LessonState } from "@/types/lesson.types"
-import React, { useState, useEffect } from "react"
-import { TypeInWhatYouHearExercise } from "@/types/type-in-what-you-hear.types"
-import { setSingleInput, clearUserInput } from "@/features/userInputSlice"
-import { useAppDispatch } from "@/hooks/useRedux"
-import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
-import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
 import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters1"
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
+import { clearUserInput, setSingleInput } from "@/features/userInputSlice"
+import { useAppDispatch } from "@/hooks/useRedux"
+import { LessonState } from "@/types/lesson.types"
+import React, { useEffect, useState } from "react"
 
-import Instruction from "@/components/Headings/Instruction"
 import AudioBubble from "@/components/AudioBubble/AudioBubble"
+import Instruction from "@/components/Headings/Instruction"
 export default function TypeInWhatYouHear({ data }: { data: LessonState }) {
-  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
-  function getType(exercise: BaseExercise): exercise is TypeInWhatYouHearExercise {
-    return exercise.type === "typeInWhatYouHear"
-  }
+  const { activeExercise } = data
 
   const [input, setInput] = useState("")
   const dispatch = useAppDispatch()
@@ -54,7 +49,8 @@ export default function TypeInWhatYouHear({ data }: { data: LessonState }) {
       /> */}
       <InteractiveLayout id={activeExercise && activeExercise._id}>
         <Instruction instruction={activeExercise && activeExercise.instructions} />
-        <AudioBubble solution={getType(activeExercise) && activeExercise.audio} />
+        {/* @ts-ignore */}
+        <AudioBubble solution={activeExercise.audio} />
 
         <input
           onChange={activeExercise?.isComplete || activeExercise?.hasFailed ? undefined : e => handleChange(e)}

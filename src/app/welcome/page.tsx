@@ -1,4 +1,3 @@
-import React, { Suspense } from "react"
 import { UserProfile } from "@clerk/nextjs"
 const Welcome = () => {
   return (

@@ -1,19 +1,15 @@
 "use client"
-import { BaseExercise, LessonState } from "@/types/lesson.types"
-
-import React, { useState, useEffect, useRef } from "react"
-// import '../style.css';
-import { PartOfAWordExercise } from "@/types/part-of-a-word.types"
-import { setSingleInput, clearUserInput } from "@/features/userInputSlice"
-// import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";
-import { useAppDispatch } from "@/hooks/useRedux"
-import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
-import { v4 as uuid } from "uuid"
-import Instruction from "@/components/Headings/Instruction"
 import AudioBubble from "@/components/AudioBubble/AudioBubble"
+import Instruction from "@/components/Headings/Instruction"
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
+import { clearUserInput, setSingleInput } from "@/features/userInputSlice"
+import { useAppDispatch } from "@/hooks/useRedux"
+import { BaseExercise, LessonState } from "@/types/lesson.types"
+import { PartOfAWordExercise } from "@/types/part-of-a-word.types"
+import React, { useEffect, useRef, useState } from "react"
+import { v4 as uuid } from "uuid"
 export default function PartOfAWord({ data }: { data: LessonState }) {
-  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
+  const { activeExercise } = data
   function getType(exercise: BaseExercise): exercise is PartOfAWordExercise {
     return exercise.type === "partOfAWord"
   }
@@ -21,14 +17,14 @@ export default function PartOfAWord({ data }: { data: LessonState }) {
   //hooks
   const inputRef = useRef<HTMLInputElement>(null)
   const [input, setInput] = useState<any>({})
-  const [opt, setOpt] = useState<string[]>(new Array())
+  const [opt, setOpt] = useState<string[]>([])
   const [activeOTPIndex, setActiveOTPIndex] = useState<number>(0)
 
   const dispatch = useAppDispatch()
   // const speak = useSpeechSynthesis();
   const [activeExerciseId, setActiveExerciseId] = useState(() => activeExercise?._id)
 
-  const handleKeyDown = ({ key, target }: React.KeyboardEvent<HTMLInputElement>, index: number) => {
+  const handleKeyDown = ({ key }: React.KeyboardEvent<HTMLInputElement>, index: number) => {
     currentOTPIndex = index
     if (key === "Backspace") {
       const filter = opt.filter((item, i) => i !== index && item)
@@ -91,6 +87,7 @@ export default function PartOfAWord({ data }: { data: LessonState }) {
       /> */}
       <InteractiveLayout id={activeExercise && activeExercise._id}>
         <Instruction instruction={activeExercise && activeExercise.instructions} />
+        {/* @ts-ignore */}
         <AudioBubble solution={getType(activeExercise) && activeExercise.word.join("")} />
 
         <div className="  items-center ">

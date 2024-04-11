@@ -1,18 +1,15 @@
 "use client"
-import { BaseExercise, LessonState } from "@/types/lesson.types"
-import { useRef, useState, useEffect } from "react"
-import { useAppDispatch } from "@/hooks/useRedux"
-import { v4 as uuid } from "uuid"
-import { MissingSyllableExercise } from "@/types/missing-syllables.types"
-import { setSingleInput, clearUserInput } from "@/features/userInputSlice"
-
-import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
 import Instruction from "@/components/Headings/Instruction"
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
+import { clearUserInput, setSingleInput } from "@/features/userInputSlice"
 import classNames from "@/helpers/classNames"
-import AudioBubble from "@/components/AudioBubble/AudioBubble"
+import { useAppDispatch } from "@/hooks/useRedux"
+import { BaseExercise, LessonState } from "@/types/lesson.types"
+import { MissingSyllableExercise } from "@/types/missing-syllables.types"
+import { useEffect, useState } from "react"
+import { v4 as uuid } from "uuid"
 export default function MissingSyllable({ data }: { data: LessonState }) {
-  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
+  const { activeExercise } = data
   function getType(exercise: BaseExercise): exercise is MissingSyllableExercise {
     return exercise.type === "missingSyllable"
   }
@@ -78,7 +75,7 @@ export default function MissingSyllable({ data }: { data: LessonState }) {
           &nbsp; &nbsp; <p className="text-gray-700">({getType(activeExercise) && activeExercise?.english})</p>
         </div>
 
-        <AudioBubble solution={getType(activeExercise) && activeExercise.italian} />
+        {/* <AudioBubble solution={getType(activeExercise) && activeExercise.italian} /> */}
 
         <div className="grid grid-cols-2 -mt-2 gap-y-1 mb-40 flex-wrap  md:w-2/3  sm:w-full">
           {getType(activeExercise) &&

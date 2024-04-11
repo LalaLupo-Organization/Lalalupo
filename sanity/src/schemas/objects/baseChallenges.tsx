@@ -32,4 +32,4 @@ export const baseChallenges = {
       of: [{ type: "string" }],
     },
   ],
-};
+}

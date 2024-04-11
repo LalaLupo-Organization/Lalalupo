@@ -1,17 +1,16 @@
-import { BaseExercise, LessonState } from "@/types/lesson.types"
-import { useRef, useState, useEffect } from "react"
-import { useAppDispatch } from "@/hooks/useRedux"
-import { v4 as uuid } from "uuid"
-import { SelectTheMissingWordExercise } from "@/types/select-the-missing-word.types"
-import { setSingleInput, clearUserInput } from "@/features/userInputSlice"
-import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
-import parse from "html-react-parser"
-import { motion } from "framer-motion"
 import Instruction from "@/components/Headings/Instruction"
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
+import { clearUserInput, setSingleInput } from "@/features/userInputSlice"
 import classNames from "@/helpers/classNames"
+import { useAppDispatch } from "@/hooks/useRedux"
+import { BaseExercise, LessonState } from "@/types/lesson.types"
+import { SelectTheMissingWordExercise } from "@/types/select-the-missing-word.types"
+import { motion } from "framer-motion"
+import parse from "html-react-parser"
+import { useEffect, useRef, useState } from "react"
+import { v4 as uuid } from "uuid"
 export default function SelectTheMissingWord({ data }: { data: LessonState }) {
-  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
+  const { activeExercise } = data
   function getType(exercise: BaseExercise): exercise is SelectTheMissingWordExercise {
     return exercise.type === "selectTheMissingWord"
   }
@@ -85,7 +84,7 @@ export default function SelectTheMissingWord({ data }: { data: LessonState }) {
 
         <div className="grid grid-cols-3 mt-12 sm:mt-20    flex-wrap justify-center mx-auto w-full ">
           {getType(activeExercise) &&
-            activeExercise?.availableWords.map((word, index) => (
+            activeExercise?.availableWords.map(word => (
               <div
                 key={uuid()}
                 className="m-1 cursor-pointer"

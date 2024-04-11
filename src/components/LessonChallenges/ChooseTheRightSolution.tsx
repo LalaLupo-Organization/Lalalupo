@@ -1,49 +1,33 @@
-import "@fontsource/nunito"
-import localFont from "next/font/local"
-import { useRef, useState, useEffect } from "react"
-import { useAppDispatch } from "@/hooks/useRedux"
-import { v4 as uuid } from "uuid"
-import { setSingleInput, clearUserInput } from "@/features/userInputSlice"
-import classNames from "@/helpers/classNames"
-import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
 import Instruction from "@/components/Headings/Instruction"
-import { BaseExercise, LessonState } from "@/types/lesson.types"
-import HintArrow from "../../../public/HintArrow.svg"
-// import useSpeechSynthesis from "../hooks/useSpeechSynthesis";
-import mockimage from "@/public/sandwich.png"
-import Image from "next/image"
-import { ChooseTheRightSolutionExercise, IAvailableWord } from "@/types/choose-the-right-solution.types"
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
-import useWindowSize from "@/hooks/useWindowSize"
+import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
+import { clearUserInput, setSingleInput } from "@/features/userInputSlice"
+import classNames from "@/helpers/classNames"
+import { useAppDispatch } from "@/hooks/useRedux"
+import { ChooseTheRightSolutionExercise, IAvailableWord } from "@/types/choose-the-right-solution.types"
+import { BaseExercise, LessonState } from "@/types/lesson.types"
+import "@fontsource/nunito"
+import Image from "next/image"
+import { useEffect, useState } from "react"
+import { v4 as uuid } from "uuid"
 
-const MoreSugarRegular = localFont({
-  src: "../../../public/MoreSugarRegular.ttf",
-  display: "swap",
-})
 export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
   const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
   function getType(exercise: BaseExercise): exercise is ChooseTheRightSolutionExercise {
     return exercise.type === "chooseTheRightSolution"
   }
-  // const speak = useSpeechSynthesis();
   const dispatch = useAppDispatch()
 
   const [randomizedData, setRandomizedData] = useState(
-    () =>
-      getType(activeExercise) &&
-      activeExercise.availableWords.map(item => item).sort(() => Math.random() - 0.5)
+    () => getType(activeExercise) && activeExercise.availableWords.map(item => item).sort(() => Math.random() - 0.5)
   )
-  const windowSize = useWindowSize()
+
   const [showSelected, setShowSelected] = useState({
     word: "",
     status: false,
   })
   const [activeExerciseId, setActiveExerciseId] = useState(() => activeExercise?._id)
   const handleSelectedItem = (e: React.SyntheticEvent, userAnswer: string) => {
-    if (getType(activeExercise) && activeExercise.displayImage) {
-      // speak(userAnswer);
-    }
-
     dispatch(setSingleInput(userAnswer))
     setShowSelected({ word: userAnswer, status: true })
   }
@@ -153,40 +137,3 @@ function AvailableAnswer({ word, activeExercise, handleSelectedItem, showSelecte
     </div>
   )
 }
-
-// function Hint({ hint, index }: { hint: IHint; index: number }) {
-//   const windowSize = useWindowSize();
-//   return (
-//     <div className="group bg-white relative rounded-lg p-4 flex flex-col items-center justify-center z-1 text-hint border-2 border-hint">
-//       <div className="h-full w-full absolute  rounded-lg striped-bg hint -z-10 border-hint border"></div>
-//       <span
-//         className={classNames(
-//           index % 2 === 0
-//             ? "md:-left-[103%] md:flex-row-reverse"
-//             : "md:-right-[103%]",
-//           "absolute top-1 flex gap-2"
-//         )}
-//       >
-//         {windowSize.width > 768 && (
-//           <Image
-//             className={index % 2 === 0 ? "rotate-180" : ``}
-//             src={HintArrow}
-//             width={60}
-//             height={10}
-//             alt="Arrow"
-//           />
-//         )}
-//         <p
-//           className={classNames(
-//             index % 2 === 0 ? "mt-[12px]" : "mb-[12px]",
-//             "text-hint font-medium text-lg",
-//             MoreSugarRegular.className
-//           )}
-//         >
-//           Memory helper
-//         </p>
-//       </span>
-//       <p className="text-hint text-center font-semibold flex">{hint.label}</p>
-//     </div>
-//   );
-// }

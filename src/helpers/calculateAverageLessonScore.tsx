@@ -1,5 +1,4 @@
 import { ActivityFields, UnitStructure } from "@/types/user-progress.types"
-//This function assumes that the first array item is a readng without any activityScore
 export function calculateLessonAverage(array: any) {
   let average = 0
   array.forEach((item: ActivityFields) => {

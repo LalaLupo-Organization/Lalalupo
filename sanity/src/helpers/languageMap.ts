@@ -1,8 +1,8 @@
 // Language code map
 
 type LanguageCodeMap = {
-  [language: string]: string;
-};
+  [language: string]: string
+}
 export const languageCodeMap: LanguageCodeMap = {
   Arabic: "ar-sa",
   Chinese: "ch",
@@ -25,4 +25,4 @@ export const languageCodeMap: LanguageCodeMap = {
   French: "fr",
   Irish: "ga",
   // Add more languages as needed
-};
+}
