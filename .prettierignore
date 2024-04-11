@@ -1,2 +1,10 @@
 .next
 node_modules
+package.json
+.cache
+.shadowenv.d
+.vscode
+build
+public
+.github
+

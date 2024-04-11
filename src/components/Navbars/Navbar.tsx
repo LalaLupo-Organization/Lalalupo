@@ -1,18 +1,16 @@
-'use client'
-import { useState } from 'react'
-import { Dialog } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import Image from 'next/image'
-import Link from 'next/link'
-import { UserButton } from "@clerk/nextjs";
-import { useSession } from "@clerk/clerk-react";
-// const navigation = [
- 
-// ]
+"use client"
+
+import { useSession } from "@clerk/clerk-react"
+import { UserButton } from "@clerk/nextjs"
+import { Dialog } from "@headlessui/react"
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
+import Image from "next/image"
+import Link from "next/link"
+import { useState } from "react"
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { isLoaded, session, isSignedIn } = useSession();
+  const { session } = useSession()
   return (
     <header className="from-white to-transparent bg-gradient-to-b  sticky top-0 z-50  ">
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-6 lg:px-8" aria-label="Global">
@@ -30,16 +28,20 @@ export default function Navbar() {
           ))} */}
         </div>
         <div className="flex flex-1 items-center justify-end gap-x-6">
-        {!session &&  <Link href="sign-in" className="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-gray-900">
-            Log in
-          </Link>}
-          {!session &&     <Link
-            href="sign-up"
-            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Sign up
-          </Link>}
-      
+          {!session && (
+            <Link href="sign-in" className="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-gray-900">
+              Log in
+            </Link>
+          )}
+          {!session && (
+            <Link
+              href="sign-up"
+              className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Sign up
+            </Link>
+          )}
+
           <UserButton />
         </div>
         <div className="flex lg:hidden">
@@ -59,23 +61,17 @@ export default function Navbar() {
           <div className="flex items-center gap-x-6">
             <a href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
+              <Image className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
             </a>
-           {!session &&<Link
-              href="sign-up"
-              className="ml-auto rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Sign up
-            </Link> } 
-            <button
-              type="button"
-              className="-m-2.5 rounded-md p-2.5 text-gray-700"
-              onClick={() => setMobileMenuOpen(false)}
-            >
+            {!session && (
+              <Link
+                href="sign-up"
+                className="ml-auto rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Sign up
+              </Link>
+            )}
+            <button type="button" className="-m-2.5 rounded-md p-2.5 text-gray-700" onClick={() => setMobileMenuOpen(false)}>
               <span className="sr-only">Close menu</span>
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
             </button>
@@ -94,12 +90,14 @@ export default function Navbar() {
                 ))} */}
               </div>
               <div className="py-6">
-              {!session &&<Link
-                  href="sign-in"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Log in
-                </Link>}
+                {!session && (
+                  <Link
+                    href="sign-in"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Log in
+                  </Link>
+                )}
               </div>
             </div>
           </div>

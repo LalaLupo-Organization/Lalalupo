@@ -1,16 +1,16 @@
-"use client";
-import FullStoryScript from "@/scripts/fullstory";
-import { Suspense } from "react";
-import { ThemeProvider } from "@/providers/themeProvider";
+"use client"
+import { ThemeProvider } from "@/providers/themeProvider"
+import FullStoryScript from "@/scripts/fullstory"
+import { Suspense } from "react"
 // These styles apply to every route in the application
-import "./globals.css";
-import Navbar from "@/components/Navbars/Navbar";
-import { ClerkProvider } from "@clerk/nextjs";
-import Footer from "@/components/Footers/Footer";
-import { usePathname } from "next/navigation";
+import Footer from "@/components/Footers/Footer"
+import Navbar from "@/components/Navbars/Navbar"
+import { ClerkProvider } from "@clerk/nextjs"
+import { usePathname } from "next/navigation"
+import "./globals.css"
 export default function RootLayout({ children }: { children: any }) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body>
         <Suspense>
           <ClerkProvider>
@@ -28,12 +28,12 @@ export default function RootLayout({ children }: { children: any }) {
         </Suspense>
       </body>
     </html>
-  );
+  )
 }
 
 function LayoutBody({ children }: { children: any }) {
-  const pathname = usePathname();
-  const isLesson = pathname.match(/\/lesson\/\d+/gi);
+  const pathname = usePathname()
+  const isLesson = pathname.match(/\/lesson\/\d+/gi)
   return (
     <body>
       {!isLesson && <Navbar />}
@@ -42,5 +42,5 @@ function LayoutBody({ children }: { children: any }) {
       {children}
       {!isLesson && <Footer />}
     </body>
-  );
+  )
 }

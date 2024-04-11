@@ -1,6 +1,6 @@
-"use client";
-import Script from "next/script";
-import { v4 as uuid } from "uuid";
+"use client"
+import Script from "next/script"
+import { v4 as uuid } from "uuid"
 const FullStoryScript = () => (
   <Script
     id={uuid()}
@@ -26,6 +26,6 @@ const FullStoryScript = () => (
       return g._w[s].apply(this,arguments)}),g._v="2.0.0")}(window,document,window._fs_namespace,"script",window._fs_script);`,
     }}
   />
-);
+)
 
-export default FullStoryScript;
+export default FullStoryScript

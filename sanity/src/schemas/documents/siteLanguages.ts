@@ -1,5 +1,5 @@
 // languageMap.ts
-import { languageCodeMap } from "../../helpers/languageMap";
+import { languageCodeMap } from "../../helpers/languageMap"
 
 const siteLanguages = {
   name: "siteLanguages",
@@ -49,13 +49,13 @@ const siteLanguages = {
               icon: "icon",
             },
             prepare(selection: any) {
-              const { language, languageCode, icon, active } = selection;
+              const { language, languageCode, icon } = selection
 
               return {
                 title: `${language} (${languageCode})`,
                 subtitle: `Language`,
                 media: icon,
-              };
+              }
             },
           },
         },
@@ -68,13 +68,13 @@ const siteLanguages = {
       icon: "languages.0.icon", // Assuming you have an "icon" field in the first object of "languages" array
     },
     prepare(selection: any) {
-      const { title, icon } = selection;
+      const { icon } = selection
       return {
         title: "Available Languages",
         media: icon,
-      };
+      }
     },
   },
-};
+}
 
-export default siteLanguages;
+export default siteLanguages

@@ -1,9 +1,9 @@
 export type LanguageSelect = {
-  totalUserCount: number;
-  language: string;
+  totalUserCount: number
+  language: string
   icon: {
     asset: {
-      url: string;
-    };
-  };
-};
+      url: string
+    }
+  }
+}

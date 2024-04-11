@@ -1,4 +1,4 @@
-import { languageCodeMap } from "../../helpers/languageMap";
+import { languageCodeMap } from "../../helpers/languageMap"
 
 const aboutpage = {
   title: "About Page",
@@ -24,5 +24,5 @@ const aboutpage = {
       type: "string",
     },
   ],
-};
-export default aboutpage;
+}
+export default aboutpage

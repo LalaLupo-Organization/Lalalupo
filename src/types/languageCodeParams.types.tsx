@@ -1,5 +1,5 @@
 export interface LocalParamProps {
   params: {
-    lang: string;
-  };
+    lang: string
+  }
 }

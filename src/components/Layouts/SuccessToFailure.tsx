@@ -1,53 +1,32 @@
-import React, { useEffect } from "react";
-import {
-  FlagIcon,
-  XMarkIcon,
-  BookOpenIcon,
-  CheckIcon,
-} from "@heroicons/react/16/solid";
-import classNames from "@/helpers/classNames";
-import useAssessment from "@/hooks/useAssessment";
-import { Icon } from "../Icons/Icon";
+import React from "react"
+import { Icon } from "../Icons/Icon"
 export default function SuccessToFailureLayout({
   children,
   success,
-  solution,
   meaning,
   audioOutput,
 }: {
-  children: React.ReactNode;
-  success: boolean;
-  solution?: string;
-  meaning?: any;
-  audioOutput?: any;
+  children: React.ReactNode
+  success: boolean
+  solution?: string
+  meaning?: any
+  audioOutput?: any
 }) {
-  const { lessonButtonClick } = useAssessment();
+  // const { lessonButtonClick } = useAssessment()
 
   return (
     <>
       {success ? (
-        <audio
-          autoPlay
-          src="https://ispeakitalian.herokuapp.com/correct.mp3"
-        ></audio>
+        <audio autoPlay src="https://ispeakitalian.herokuapp.com/correct.mp3"></audio>
       ) : (
-        <audio
-          autoPlay
-          src="https://ispeakitalian.herokuapp.com/incorrect.mp3"
-        ></audio>
+        <audio autoPlay src="https://ispeakitalian.herokuapp.com/incorrect.mp3"></audio>
       )}
       <div className="flex items-center">
         <div>
           {success ? (
-            <Icon
-              name="SuccessTickSquare"
-              className="h-10 sm:h-14 fill-color_green_default"
-            />
+            <Icon name="SuccessTickSquare" className="h-10 sm:h-14 fill-color_green_default" />
           ) : (
-            <Icon
-              name="FailureSquare"
-              className="h-10 sm:h-14 text-xs fill-error"
-            />
+            <Icon name="FailureSquare" className="h-10 sm:h-14 text-xs fill-error" />
           )}
         </div>
         <div className="pb-2 text-white">
@@ -55,12 +34,8 @@ export default function SuccessToFailureLayout({
             <>
               {meaning ? (
                 <div className="mt-2">
-                  <h1 className="text-green-700 text-2xl font-bold  ml-2 leading-7">
-                    Meaning of answer:
-                  </h1>
-                  <p className=" font-light px-2 ml-1 sm:mb-0 text-green-700">
-                    {meaning}
-                  </p>
+                  <h1 className="text-green-700 text-2xl font-bold  ml-2 leading-7">Meaning of answer:</h1>
+                  <p className=" font-light px-2 ml-1 sm:mb-0 text-green-700">{meaning}</p>
                 </div>
               ) : (
                 <div className="ml-2 text-color_green_default">
@@ -73,13 +48,8 @@ export default function SuccessToFailureLayout({
             <>
               {audioOutput && (
                 <div className="mt-2">
-                  <h1 className="text-red-700 text-2xl font-bold  ml-2 leading-7">
-                    You said:
-                  </h1>
-                  <p className=" font-light px-2 ml-1 sm:mb-0 text-red-700 truncate">
-                    {" "}
-                    {audioOutput}{" "}
-                  </p>
+                  <h1 className="text-red-700 text-2xl font-bold  ml-2 leading-7">You said:</h1>
+                  <p className=" font-light px-2 ml-1 sm:mb-0 text-red-700 truncate"> {audioOutput} </p>
                 </div>
               )}
               <div className="ml-2 text-error">
@@ -95,13 +65,8 @@ export default function SuccessToFailureLayout({
               </div>
               {meaning && (
                 <div className="mt-2">
-                  <h1 className="text-red-700 text-2xl font-bold  ml-2 leading-7">
-                    Meaning of answer:
-                  </h1>
-                  <p className=" font-light px-2 ml-1 sm:mb-0 text-red-700">
-                    {" "}
-                    {meaning}{" "}
-                  </p>
+                  <h1 className="text-red-700 text-2xl font-bold  ml-2 leading-7">Meaning of answer:</h1>
+                  <p className=" font-light px-2 ml-1 sm:mb-0 text-red-700"> {meaning} </p>
                 </div>
               )}
             </>
@@ -131,5 +96,5 @@ export default function SuccessToFailureLayout({
         </div>{' '} */}
       </div>
     </>
-  );
+  )
 }

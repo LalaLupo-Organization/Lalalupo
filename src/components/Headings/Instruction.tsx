@@ -1,14 +1,13 @@
-import React from "react";
-import localFont from "next/font/local";
-import classNames from "@/helpers/classNames";
+import classNames from "@/helpers/classNames"
+import localFont from "next/font/local"
 
 const myFont = localFont({
   src: "../../../public/MoreSugarRegular.ttf",
-});
+})
 
 interface Props {
-  instruction: string | null;
-  position?: "left" | "center" | "right";
+  instruction: string | null
+  position?: "left" | "center" | "right"
 }
 
 export default function Instruction({ instruction, position }: Props) {
@@ -21,5 +20,5 @@ export default function Instruction({ instruction, position }: Props) {
     >
       {instruction}
     </h1>
-  );
+  )
 }
