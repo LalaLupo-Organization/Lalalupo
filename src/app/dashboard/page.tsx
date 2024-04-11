@@ -1,4 +1,12 @@
 // "use client"
+
+export const Dashboard = () => {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+    </div>
+  )
+}
 // import { Dialog, Transition } from "@headlessui/react"
 
 // import { useGetCourseStructureQuery, useGetUserQuery } from "@/services/api"
