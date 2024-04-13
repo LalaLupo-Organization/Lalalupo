@@ -104,7 +104,7 @@ export default function SpeakingAndPronunciationNav() {
         <InActiveToActiveLayout>
           <ButtonInteractiveLesson
             background="bg-gray-200 text-gray-600 cursor-not-allowed"
-            lessonButtonClick={null}
+            lessonButtonClick={() => null}
             buttonDisplayText="CHECK"
             shadowColor="bg-gray-200"
           />

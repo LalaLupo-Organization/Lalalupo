@@ -11,7 +11,7 @@ export default function ButtonInteractiveLesson({
 }: {
   background?: string
   className?: string
-  lessonButtonClick: () => void
+  lessonButtonClick: () => void | null
   buttonDisplayText: string
   shadowColor?: string
   lottie?: any
