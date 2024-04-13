@@ -1,7 +1,7 @@
 import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters1"
 import Instruction from "@/components/Headings/Instruction"
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
-import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble1"
+import SpeechBubble from "@/components/SpeechBubble/SpeechBubble"
 import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper"
 import { clearUserInput, setSingleInput } from "@/features/userInputSlice"
 import { useAppDispatch } from "@/hooks/useRedux"

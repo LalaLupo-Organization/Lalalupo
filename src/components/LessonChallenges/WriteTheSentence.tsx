@@ -10,7 +10,7 @@ import { useAppDispatch } from "@/hooks/useRedux"
 import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters1"
 import Instruction from "@/components/Headings/Instruction"
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
-import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble1"
+import SpeechBubble from "@/components/SpeechBubble/SpeechBubble"
 export default function WriteTheSentence({ data }: { data: LessonState }) {
   const { activeExercise } = data
   function getType(exercise: BaseExercise): exercise is WriteTheSentenceExercise {

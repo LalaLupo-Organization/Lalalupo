@@ -39,6 +39,7 @@ const initialState: LessonState = {
       },
     },
   },
+
   // activeExercise: {
   //   type: "chooseTheRightSolution",
   //   _id: "635f9a0fefff76c1f466c9be",
@@ -357,10 +358,10 @@ export const lessonSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    putInteractiveExerciseDataIntoState: (state, action: PayloadAction<LessonState>) => {
+    putInteractiveExerciseDataIntoState: (state: LessonState, action: PayloadAction<LessonState>) => {
       state = action.payload
     },
-    putActiveExerciseIntoState: state => {
+    putActiveExerciseIntoState: (state: LessonState) => {
       let found = state.interactiveExercises.find(item => !item.isComplete && !item.hasFailed && !item?.isSkiped && item)
 
       // Check for skipped exercises ??
@@ -373,12 +374,12 @@ export const lessonSlice = createSlice({
       }
     },
     clearCurrentUnit: () => initialState,
-    setInteractiveExerciseLength: state => {
+    setInteractiveExerciseLength: (state: LessonState) => {
       state.totalExercises = state.interactiveExercises.length
       state.remainingExercises = state.interactiveExercises.length
     },
 
-    setCorrectAnswer: state => {
+    setCorrectAnswer: (state: LessonState) => {
       if (state.activeExercise) {
         state.activeExercise.isComplete = true
         state.numberComplete += 1
@@ -391,7 +392,7 @@ export const lessonSlice = createSlice({
       }
     },
 
-    setSkippedExercise: state => {
+    setSkippedExercise: (state: LessonState) => {
       if (state.activeExercise) {
         state.activeExercise.isSkiped = true
       }
@@ -402,15 +403,15 @@ export const lessonSlice = createSlice({
       }
     },
 
-    clearActiveExercise: state => {
+    clearActiveExercise: (state: LessonState) => {
       state.activeExercise = initialState.activeExercise
     },
 
-    setLives: (state, action: PayloadAction<number>) => {
+    setLives: (state: LessonState, action: PayloadAction<number>) => {
       state.lives = action.payload
     },
 
-    setIncorrectAnswer: state => {
+    setIncorrectAnswer: (state: LessonState) => {
       if (state.activeExercise) {
         state.activeExercise.hasFailed = true
         state.numberFailed += 1
@@ -455,7 +456,7 @@ export const selectAssessment = (state: RootState) => state.lessonReduxState
 export const selectCurrentUnitIsComplete = (state: RootState) => state.lessonReduxState.isComplete
 export const selectActiveExercise = (state: RootState) => state.lessonReduxState.activeExercise
 export const selectToSeeIfAllInteractiveExercisesAreComplete = (state: RootState) => {
-  const found = state.lessonReduxState.interactiveExercises?.some(item => !item.isComplete && !item.hasFailed && item)
+  const found = state.lessonReduxState.interactiveExercises?.some((item: any) => !item.isComplete && !item.hasFailed && item)
   return found
 }
 export const selectTotalNumberOfExercises = (state: RootState) => state.lessonReduxState.totalExercises
