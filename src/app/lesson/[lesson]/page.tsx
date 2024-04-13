@@ -18,7 +18,6 @@ import SpeakingAndPronunciation from "@/components/LessonChallenges/SpeakingAndP
 import TwoBlanks from "@/components/LessonChallenges/TwoBlanks"
 import TypeInWhatYouHear from "@/components/LessonChallenges/TypeInWhatYouHear"
 import WriteTheSentence from "@/components/LessonChallenges/WriteTheSentence"
-import { useParams } from "next/navigation"
 export default function Lessons() {
   const lesson = useAppSelector(state => selectLesson(state))
 

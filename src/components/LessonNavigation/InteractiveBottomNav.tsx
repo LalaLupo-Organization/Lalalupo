@@ -165,32 +165,27 @@
 //   );
 // };
 
-"use client";
-import { useEffect } from "react";
-import useAssessment from "@/hooks/useAssessment";
-import ButtonInteractive from "@/components/Buttons/ButtonInteractive";
-import { Loader } from "@/components/Loaders1/Loader";
-import NavbarLayout from "@/components/Layouts/NavbarLayout";
-import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout";
-import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure";
-import { RootState } from "@/redux/store";
-import { LessonState } from "@/types/lesson.types";
-import classNames from "@/helpers/classNames";
+"use client"
+import { useEffect } from "react"
+import useAssessment from "@/hooks/useAssessment"
+import ButtonInteractive from "@/components/Buttons/ButtonInteractive"
+import { Loader } from "@/components/Loaders1/Loader"
+import NavbarLayout from "@/components/Layouts/NavbarLayout"
+import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout"
+import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure"
+import { RootState } from "@/redux/store"
+import { LessonState } from "@/types/lesson.types"
+import classNames from "@/helpers/classNames"
 
 export interface IInteractiveNavProps {
-  status: "success" | "failure" | "disabled" | "active";
-  loading: boolean;
-  userInput: RootState["userInputReduxState"];
-  activeExercise: LessonState["activeExercise"];
+  status: "success" | "failure" | "disabled" | "active"
+  loading: boolean
+  userInput: RootState["userInputReduxState"]
+  activeExercise: LessonState["activeExercise"]
 }
 
-export const InteractiveBottomNav: React.FC<IInteractiveNavProps> = ({
-  userInput,
-  status,
-  activeExercise,
-  loading,
-}) => {
-  const { lessonButtonClick, skipCurrentExercise } = useAssessment();
+export const InteractiveBottomNav: React.FC<IInteractiveNavProps> = ({ userInput, status, activeExercise, loading }) => {
+  const { lessonButtonClick, skipCurrentExercise } = useAssessment()
   const conditionalObject = {
     navBGColor: {
       success: "bg-color_green_lighter",
@@ -198,30 +193,26 @@ export const InteractiveBottomNav: React.FC<IInteractiveNavProps> = ({
       disabled: "bg-white",
       active: "bg-white",
     },
-  };
-  const isMessage = status === "failure" || status === "success";
+  }
+  const isMessage = status === "failure" || status === "success"
 
   useEffect(() => {
     const handleKeyDown = ({ key }: KeyboardEvent) => {
       if (status !== "disabled" && userInput.userInput && key === "Enter") {
-        lessonButtonClick();
+        lessonButtonClick()
       }
-    };
-    window.addEventListener("keydown", handleKeyDown);
+    }
+    window.addEventListener("keydown", handleKeyDown)
 
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [userInput, status, lessonButtonClick]);
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [userInput, status, lessonButtonClick])
 
   return (
-    <NavbarLayout
-      message={isMessage}
-      color={conditionalObject.navBGColor[status]}
-    >
+    <NavbarLayout message={isMessage} color={conditionalObject.navBGColor[status]}>
       {isMessage && (
         <SuccessToFailureLayout
           solution={
-            activeExercise?.type === "chooseTheRightSolution" &&
-            typeof activeExercise?.solution === "string"
+            activeExercise?.type === "chooseTheRightSolution" && typeof activeExercise?.solution === "string"
               ? activeExercise.solution
               : undefined
           }
@@ -229,24 +220,22 @@ export const InteractiveBottomNav: React.FC<IInteractiveNavProps> = ({
         >
           {loading ? (
             <ButtonInteractive
-              background={"bg-green-600 cursor-pointer text-white"}
+              background="bg-green-600 cursor-pointer text-white"
               lessonButtonClick={lessonButtonClick}
-              buttonDisplayText={"LOADING..."}
-              shadowColor={"bg-green-800"}
+              buttonDisplayText="LOADING..."
+              shadowColor="bg-green-800"
               lottie={<Loader />}
             />
           ) : (
             <div className="text-center w-full mt-4 sm:mt-0">
               <ButtonInteractive
                 background={classNames(
-                  status === "success"
-                    ? "bg-color_green_default success"
-                    : "bg-error failure",
+                  status === "success" ? "bg-color_green_default success" : "bg-error failure",
                   "w-full cursor-pointer font-semibold text-lg sm:w-[180px] text-white"
                 )}
                 lessonButtonClick={lessonButtonClick}
-                buttonDisplayText={"CONTINUE"}
-                shadowColor={""}
+                buttonDisplayText="CONTINUE"
+                shadowColor=""
                 status={status}
               />
             </div>
@@ -257,12 +246,10 @@ export const InteractiveBottomNav: React.FC<IInteractiveNavProps> = ({
         <>
           <InActiveToActiveLayout>
             <ButtonInteractive
-              background={
-                "bg-white border border-gray-200/70 text-gray_lighter cursor-pointer sm:w-[132px]"
-              }
+              background="bg-white border border-gray-200/70 text-gray_lighter cursor-pointer sm:w-[132px]"
               lessonButtonClick={skipCurrentExercise}
-              buttonDisplayText={"SKIP"}
-              shadowColor={"bg-gray-200"}
+              buttonDisplayText="SKIP"
+              shadowColor="bg-gray-200"
             />
           </InActiveToActiveLayout>
           <InActiveToActiveLayout>
@@ -284,5 +271,5 @@ export const InteractiveBottomNav: React.FC<IInteractiveNavProps> = ({
         </>
       )}
     </NavbarLayout>
-  );
-};
+  )
+}

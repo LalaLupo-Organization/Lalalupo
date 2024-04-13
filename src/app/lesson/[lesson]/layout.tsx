@@ -30,7 +30,7 @@ export default function LessonLayout({
   const messages = useAppSelector(state => selectMessage(state))
   const userInput = useAppSelector(state => selectUserInput(state))
 
-  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = lesson
+  const { activeExercise } = lesson
   const getNavigationComponent = (activeExercise: LessonState["activeExercise"]) => {
     // Maybe make it object in next update??
     const status = messages?.activeExerciseComplete

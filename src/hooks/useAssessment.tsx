@@ -163,7 +163,7 @@ export default function useAssessment() {
     }
     if (activeExercise.type === "matchPairs" && userObjectInput) {
       const correctExercises = activeExercise.availableWords.pairs.length
-      let allCorrect = (userObjectInput as IReduxUserObjectInput["userObjectInput"]).successfulPairs.length === correctExercises
+      const allCorrect = (userObjectInput as IReduxUserObjectInput["userObjectInput"]).successfulPairs.length === correctExercises
       //Has the user matched all the pairs correctly
       if (allCorrect) {
         setSuccess()

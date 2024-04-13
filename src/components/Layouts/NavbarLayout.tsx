@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import classNames from "@/helpers/classNames"
 import "@fontsource/nunito"
 import { motion, useAnimation } from "framer-motion"

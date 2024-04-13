@@ -19,18 +19,5 @@ export const Icon: React.FC<IconProps> = ({ name, className = "", ...props }) =>
     })
   }, [name])
 
-    svgElement().then((svg) => {
-      if (svgRef?.current) {
-        svgRef.current.innerHTML = svg.default;
-      }
-    });
-  }, [name]);
-
-  return (
-    <svg
-      className={classNames("aspect-square", className)}
-      ref={svgRef}
-      {...props}
-    ></svg>
-  );
-};
+  return <svg className={classNames("aspect-square", className)} ref={svgRef} {...props}></svg>
+}

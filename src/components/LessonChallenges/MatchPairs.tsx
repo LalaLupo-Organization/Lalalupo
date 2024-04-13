@@ -1,15 +1,15 @@
 import "@fontsource/nunito"
-import React, { useRef, useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux"
 import { v4 as uuid } from "uuid"
-import { setSingleInput, clearUserInput, setObjectInput, selectUserInput } from "@/features/userInputSlice"
+import { setObjectInput, selectUserInput } from "@/features/userInputSlice"
 import classNames from "@/helpers/classNames"
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
 import Instruction from "@/components/Headings/Instruction"
 import { BaseExercise, LessonState } from "@/types/lesson.types"
 import Image from "next/image"
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
-import { MatchPairsExercise, IReduxUserObjectInput, ISelected, IRandomizedData, IAvailableAnswerProps } from "@/types/match-pairs.types"
+import { MatchPairsExercise, IReduxUserObjectInput, IRandomizedData, IAvailableAnswerProps } from "@/types/match-pairs.types"
 import useAssessment from "@/hooks/useAssessment"
 import MatchPairsImage from "../../../public/assets/ExercisesImages/MatchPairsImage.png"
 
@@ -44,13 +44,7 @@ export const MatchPairs = ({ data }: { data: LessonState }) => {
     () => getType(activeExercise) && generateRandomizedData(activeExercise.availableWords.pairs)
   )
   const [activeExerciseId, setActiveExerciseId] = useState(() => activeExercise?._id)
-  const handleSelectedItem = (e: React.SyntheticEvent, userAnswer: string) => {
-    // if (getType(activeExercise) && activeExercise.displayImage) {
-    //   // speak(userAnswer);
-    // }
-    // dispatch(setSingleInput(userAnswer));
-    // setShowSelected({ word: userAnswer, status: true });
-  }
+
   ;[]
   //@ts-ignore
   useEffect(() => {
@@ -58,12 +52,9 @@ export const MatchPairs = ({ data }: { data: LessonState }) => {
       setActiveExerciseId(() => activeExercise?._id)
       // dispatch(clearUserInput());
       // setShowSelected({ word: "" });
-      setRandomizedData(
-        //@ts-ignore
-        () => getType(activeExercise) && generateRandomizedData(activeExercise.availableWords.pairs)
-      )
+      setRandomizedData(() => getType(activeExercise) && generateRandomizedData(activeExercise.availableWords.pairs))
     }
-    //eslint-disable-next-line
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInput?.successfulPairs.length, activeExercise?._id])
 
   useEffect(() => {
@@ -80,12 +71,14 @@ export const MatchPairs = ({ data }: { data: LessonState }) => {
         clearTimeout(timeoutId)
       }
     }
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInput?.pair?.length])
 
   useEffect(() => {
     if (userInput?.successfulPairs.length > 2) {
       lessonButtonClick()
     }
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInput?.successfulPairs])
 
   useEffect(() => {
@@ -95,6 +88,7 @@ export const MatchPairs = ({ data }: { data: LessonState }) => {
         successfulPairs: [],
       })
     )
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // function handleMatchPair(e: React.SyntheticEvent, word: string) {
@@ -136,6 +130,7 @@ export const MatchPairs = ({ data }: { data: LessonState }) => {
         dispatch(
           setObjectInput({
             ...userInput,
+            //eslint-disable-next-line no-unsafe-optional-chaining
             pair: [...userInput?.pair, word],
           })
         )
@@ -177,6 +172,7 @@ export const MatchPairs = ({ data }: { data: LessonState }) => {
       dispatch(
         setObjectInput({
           pair: [],
+          //eslint-disable-next-line no-unsafe-optional-chaining
           successfulPairs: [...userInput?.successfulPairs, pair as [string, string]],
         })
       )
