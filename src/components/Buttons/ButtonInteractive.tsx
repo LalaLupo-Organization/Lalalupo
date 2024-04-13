@@ -25,7 +25,7 @@ export default function ButtonInteractiveLesson({
         : "striped-bg";
 
   return (
-    <div className="flex w-full relative">
+
     <div className="flex w-full relative">
       <div
         className={classNames(generateStripedBackground(), "inset-0 translate-x-1 translate-y-1 absolute rounded-primary  z-0 border")}

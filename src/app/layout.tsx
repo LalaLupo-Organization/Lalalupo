@@ -11,7 +11,6 @@ import "./globals.css"
 export default function RootLayout({ children }: { children: any }) {
   return (
     <html lang="en">
-    <html lang="en">
       <body>
         <Suspense>
           <ClerkProvider>
