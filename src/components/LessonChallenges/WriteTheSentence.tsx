@@ -1,51 +1,37 @@
-import { BaseExercise, LessonState } from "@/types/lesson.types";
-import React, { useState, useEffect } from "react";
+import { BaseExercise, LessonState } from "@/types/lesson.types"
+import React, { useEffect, useState } from "react"
 // import '../style.css';
-import { WriteTheSentenceExercise } from "@/types/write-the-word.types";
-import { setSingleInput, clearUserInput } from "@/features/userInputSlice";
+import { clearUserInput, setSingleInput } from "@/features/userInputSlice"
+import { WriteTheSentenceExercise } from "@/types/write-the-word.types"
 // import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";
-import { useAppDispatch } from "@/hooks/useRedux";
-import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
-import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper";
-import parse from "html-react-parser";
+import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper"
+import { useAppDispatch } from "@/hooks/useRedux"
 
-import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
-import Instruction from "@/components/Headings/Instruction";
-import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble1";
-import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters1";
+import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters1"
+import Instruction from "@/components/Headings/Instruction"
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
+import SpeechBubble from "@/components/SpeechBubble1/SpeechBubble1"
 export default function WriteTheSentence({ data }: { data: LessonState }) {
-  const {
-    activeExercise,
-    totalExercises,
-    lives,
-    numberComplete,
-    interactiveExercises,
-    numberFailed,
-    remainingExercises,
-  } = data;
-  function getType(
-    exercise: BaseExercise
-  ): exercise is WriteTheSentenceExercise {
-    return exercise.type === "writeTheSentence";
+  const { activeExercise } = data
+  function getType(exercise: BaseExercise): exercise is WriteTheSentenceExercise {
+    return exercise.type === "writeTheSentence"
   }
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState("")
 
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
   // const speak = useSpeechSynthesis();
 
-  const [activeExerciseId, setActiveExerciseId] = useState(
-    () => activeExercise?._id
-  );
+  const [activeExerciseId, setActiveExerciseId] = useState(() => activeExercise?._id)
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    dispatch(setSingleInput(e.currentTarget.value));
-    setInput(e.currentTarget.value);
-  };
+    dispatch(setSingleInput(e.currentTarget.value))
+    setInput(e.currentTarget.value)
+  }
 
   const insertAccentedVowel = (e: any) => {
-    setInput(input + e.target.innerText);
-    dispatch(setSingleInput(input + e.target.innerText));
-  };
+    setInput(input + e.target.innerText)
+    dispatch(setSingleInput(input + e.target.innerText))
+  }
 
   useEffect(() => {
     if (activeExercise?.isComplete) {
@@ -53,17 +39,18 @@ export default function WriteTheSentence({ data }: { data: LessonState }) {
     }
 
     if (activeExercise && activeExercise._id !== activeExerciseId) {
-      setActiveExerciseId(() => activeExercise?._id);
-      dispatch(clearUserInput());
-      setInput("");
+      setActiveExerciseId(() => activeExercise?._id)
+      dispatch(clearUserInput())
+      setInput("")
     }
-  }, [activeExercise]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeExercise])
 
   return (
     <div
-      className='flex flex-col
+      className="flex flex-col
 
-   justify-center w-full items-center'
+   justify-center w-full items-center"
     >
       {/* <ProgressBar
         remainingExercises={remainingExercises}
@@ -74,48 +61,27 @@ export default function WriteTheSentence({ data }: { data: LessonState }) {
         lives={lives && lives}
       /> */}
       <InteractiveLayout id={activeExercise && activeExercise._id}>
-        <Instruction
-          instruction={activeExercise && activeExercise?.instructions}
-        />
+        <Instruction instruction={activeExercise && activeExercise?.instructions} />
         <SpeechBubble
-          dialogue={
-            getType(activeExercise) ? activeExercise.display : undefined
-          }
+          dialogue={getType(activeExercise) ? activeExercise.display : undefined}
           english={getType(activeExercise) ? activeExercise.english : undefined}
         />
 
         <input
-          onChange={
-            activeExercise?.isComplete || activeExercise?.hasFailed
-              ? undefined
-              : (e) => handleChange(e)
-          }
-          name='text'
-          autoComplete='off'
-          autoFocus={
-            activeExercise?.isComplete || activeExercise?.hasFailed
-              ? false
-              : true
-          }
-          placeholder='Type in Italian'
+          onChange={activeExercise?.isComplete || activeExercise?.hasFailed ? undefined : e => handleChange(e)}
+          name="text"
+          autoComplete="off"
+          autoFocus={activeExercise?.isComplete || activeExercise?.hasFailed ? false : true}
+          placeholder="Type in Italian"
           value={activeExercise?._id !== activeExerciseId ? "" : input}
-          className='cursor-blink outline-none text-base font-bold text-gray-600  tracking-wider border border-2 bg-gray-100 rounded-lg px-2 pt-2 pb-24'
+          className="cursor-blink outline-none text-base font-bold text-gray-600  tracking-wider border border-2 bg-gray-100 rounded-lg px-2 pt-2 pb-24"
         />
 
-        <AccentedLetters
-          insertAccentedVowel={insertAccentedVowel}
-          activeExercise={activeExercise}
-        />
-        {getType(activeExercise) &&
-          activeExercise?.vocabularyHelper &&
-          activeExercise?.vocabularyHelper.length > 0 && (
-            <VocabularyHelper
-              data={
-                getType(activeExercise) ? activeExercise?.vocabularyHelper : []
-              }
-            />
-          )}
+        <AccentedLetters insertAccentedVowel={insertAccentedVowel} activeExercise={activeExercise} />
+        {getType(activeExercise) && activeExercise?.vocabularyHelper && activeExercise?.vocabularyHelper.length > 0 && (
+          <VocabularyHelper data={getType(activeExercise) ? activeExercise?.vocabularyHelper : []} />
+        )}
       </InteractiveLayout>
     </div>
-  );
+  )
 }

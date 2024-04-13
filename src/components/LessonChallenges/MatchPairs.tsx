@@ -1,121 +1,92 @@
-import "@fontsource/nunito";
-import React, { useRef, useState, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
-import { v4 as uuid } from "uuid";
-import {
-  setSingleInput,
-  clearUserInput,
-  setObjectInput,
-  selectUserInput,
-} from "@/features/userInputSlice";
-import classNames from "@/helpers/classNames";
-import { ProgressBar } from "@/components/ProgressBars/ProgressBar";
-import Instruction from "@/components/Headings/Instruction";
-import { BaseExercise, LessonState } from "@/types/lesson.types";
-import Image from "next/image";
-import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout";
-import {
-  MatchPairsExercise,
-  IReduxUserObjectInput,
-  ISelected,
-  IRandomizedData,
-  IAvailableAnswerProps,
-} from "@/types/match-pairs.types";
-import useAssessment from "@/hooks/useAssessment";
-import MatchPairsImage from "../../../public/assets/ExercisesImages/MatchPairsImage.png";
+import "@fontsource/nunito"
+import React, { useRef, useState, useEffect } from "react"
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux"
+import { v4 as uuid } from "uuid"
+import { setSingleInput, clearUserInput, setObjectInput, selectUserInput } from "@/features/userInputSlice"
+import classNames from "@/helpers/classNames"
+import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
+import Instruction from "@/components/Headings/Instruction"
+import { BaseExercise, LessonState } from "@/types/lesson.types"
+import Image from "next/image"
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
+import { MatchPairsExercise, IReduxUserObjectInput, ISelected, IRandomizedData, IAvailableAnswerProps } from "@/types/match-pairs.types"
+import useAssessment from "@/hooks/useAssessment"
+import MatchPairsImage from "../../../public/assets/ExercisesImages/MatchPairsImage.png"
 
 export const MatchPairs = ({ data }: { data: LessonState }) => {
-  const {
-    activeExercise,
-    totalExercises,
-    lives,
-    numberComplete,
-    interactiveExercises,
-    numberFailed,
-    remainingExercises,
-  } = data;
+  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
   function getType(exercise: BaseExercise): exercise is MatchPairsExercise {
-    return exercise.type === "matchPairs";
+    return exercise.type === "matchPairs"
   }
   // const speak = useSpeechSynthesis();
-  const { userObjectInput: userInput } = useAppSelector((state) =>
-    selectUserInput(state)
-  ) as IReduxUserObjectInput;
-  const { lessonButtonClick } = useAssessment();
+  const { userObjectInput: userInput } = useAppSelector(state => selectUserInput(state)) as IReduxUserObjectInput
+  const { lessonButtonClick } = useAssessment()
 
   // Starter audio logic.
-  const [audioURL, setAudioURL] = useState<string>("");
+  const [audioURL, setAudioURL] = useState<string>("")
 
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
   // EN - IT
   function generateRandomizedData(pairs: [string, string][]): IRandomizedData {
     const firstArrayElments = pairs
       .flat()
       .filter((_, index) => index % 2 === 0)
-      .sort(() => Math.random() - 0.5);
+      .sort(() => Math.random() - 0.5)
     const secondArrayElments = pairs
       .flat()
       .filter((_, index) => index % 2 === 1)
-      .sort(() => Math.random() - 0.5);
-    return { column1: firstArrayElments, column2: secondArrayElments };
+      .sort(() => Math.random() - 0.5)
+    return { column1: firstArrayElments, column2: secondArrayElments }
   }
 
-  const [randomizedData, setRandomizedData] = useState<
-    boolean | IRandomizedData
-  >(
-    () =>
-      getType(activeExercise) &&
-      generateRandomizedData(activeExercise.availableWords.pairs)
-  );
-  const [activeExerciseId, setActiveExerciseId] = useState(
-    () => activeExercise?._id
-  );
+  const [randomizedData, setRandomizedData] = useState<boolean | IRandomizedData>(
+    () => getType(activeExercise) && generateRandomizedData(activeExercise.availableWords.pairs)
+  )
+  const [activeExerciseId, setActiveExerciseId] = useState(() => activeExercise?._id)
   const handleSelectedItem = (e: React.SyntheticEvent, userAnswer: string) => {
     // if (getType(activeExercise) && activeExercise.displayImage) {
     //   // speak(userAnswer);
     // }
     // dispatch(setSingleInput(userAnswer));
     // setShowSelected({ word: userAnswer, status: true });
-  };
-  [];
+  }
+  ;[]
   //@ts-ignore
   useEffect(() => {
     if (activeExercise && activeExercise?._id !== activeExerciseId) {
-      setActiveExerciseId(() => activeExercise?._id);
+      setActiveExerciseId(() => activeExercise?._id)
       // dispatch(clearUserInput());
       // setShowSelected({ word: "" });
       setRandomizedData(
         //@ts-ignore
-        () =>
-          getType(activeExercise) &&
-          generateRandomizedData(activeExercise.availableWords.pairs)
-      );
+        () => getType(activeExercise) && generateRandomizedData(activeExercise.availableWords.pairs)
+      )
     }
     //eslint-disable-next-line
-  }, [userInput?.successfulPairs.length, activeExercise?._id]);
+  }, [userInput?.successfulPairs.length, activeExercise?._id])
 
   useEffect(() => {
-    let timeoutId: null | NodeJS.Timeout;
+    let timeoutId: null | NodeJS.Timeout
 
     if (userInput?.pair.length === 2) {
       timeoutId = setTimeout(() => {
-        checkPairValidity();
-      }, 500); // Adjust the timeout duration as needed
+        checkPairValidity()
+      }, 500) // Adjust the timeout duration as needed
     }
 
     return () => {
       if (timeoutId) {
-        clearTimeout(timeoutId);
+        clearTimeout(timeoutId)
       }
-    };
-  }, [userInput?.pair?.length]);
+    }
+  }, [userInput?.pair?.length])
 
   useEffect(() => {
     if (userInput?.successfulPairs.length > 2) {
-      lessonButtonClick();
+      lessonButtonClick()
     }
-  }, [userInput?.successfulPairs]);
+  }, [userInput?.successfulPairs])
 
   useEffect(() => {
     dispatch(
@@ -123,8 +94,8 @@ export const MatchPairs = ({ data }: { data: LessonState }) => {
         pair: [],
         successfulPairs: [],
       })
-    );
-  }, []);
+    )
+  }, [])
 
   // function handleMatchPair(e: React.SyntheticEvent, word: string) {
   //   if (showSelected.pair.length === 2 || checkIfInSuccessful(word)) {
@@ -147,16 +118,16 @@ export const MatchPairs = ({ data }: { data: LessonState }) => {
 
   function handleMatchPair(e: React.SyntheticEvent, word: string) {
     if (userInput?.pair.length === 2 || checkIfInSuccessful(word)) {
-      return false;
+      return false
     }
     if (!userInput?.pair.length) {
-      setAudioURL("");
-      dispatch(setObjectInput({ ...userInput, pair: [word] }));
+      setAudioURL("")
+      dispatch(setObjectInput({ ...userInput, pair: [word] }))
       // setShowSelected({ ...showSelected, pair: [word] });
     } else if (userInput?.pair.length === 1) {
       if (userInput?.pair[0] === word) {
         // setShowSelected({ ...showSelected, pair: [] });
-        dispatch(setObjectInput({ ...userInput, pair: [] }));
+        dispatch(setObjectInput({ ...userInput, pair: [] }))
       } else if (checkIfSameColumn(word)) {
         // setShowSelected({
         //   ...showSelected,
@@ -167,7 +138,7 @@ export const MatchPairs = ({ data }: { data: LessonState }) => {
             ...userInput,
             pair: [...userInput?.pair, word],
           })
-        );
+        )
       }
     }
   }
@@ -198,28 +169,22 @@ export const MatchPairs = ({ data }: { data: LessonState }) => {
   //   return false;
   // }
   function checkPairValidity() {
-    const { pair } = userInput;
+    const { pair } = userInput
     const pairOriginalArray =
       getType(activeExercise) &&
-      activeExercise.availableWords.pairs.find(
-        (originalPair) =>
-          originalPair.includes(pair[0]) && originalPair.includes(pair[1])
-      );
+      activeExercise.availableWords.pairs.find(originalPair => originalPair.includes(pair[0]) && originalPair.includes(pair[1]))
     if (pairOriginalArray) {
       dispatch(
         setObjectInput({
           pair: [],
-          successfulPairs: [
-            ...userInput?.successfulPairs,
-            pair as [string, string],
-          ],
+          successfulPairs: [...userInput?.successfulPairs, pair as [string, string]],
         })
-      );
+      )
       // play success audio
       if (activeExercise.successPairAudioURL) {
-        setAudioURL(activeExercise.successPairAudioURL);
+        setAudioURL(activeExercise.successPairAudioURL)
       }
-      return true;
+      return true
     }
 
     dispatch(
@@ -227,25 +192,21 @@ export const MatchPairs = ({ data }: { data: LessonState }) => {
         ...userInput,
         pair: [],
       })
-    );
-    return false;
+    )
+    return false
   }
 
   function checkIfSameColumn(word: string) {
-    const allPairs =
-      getType(activeExercise) && activeExercise.availableWords.pairs.flat();
-    if (
-      allPairs &&
-      allPairs.indexOf(userInput.pair[0]) % 2 === allPairs.indexOf(word) % 2
-    ) {
-      return false;
+    const allPairs = getType(activeExercise) && activeExercise.availableWords.pairs.flat()
+    if (allPairs && allPairs.indexOf(userInput.pair[0]) % 2 === allPairs.indexOf(word) % 2) {
+      return false
     }
 
-    return true;
+    return true
   }
 
   function checkIfInSuccessful(word: string): boolean {
-    return userInput?.successfulPairs.flat().includes(word);
+    return userInput?.successfulPairs.flat().includes(word)
   }
   return (
     <>
@@ -266,10 +227,7 @@ export const MatchPairs = ({ data }: { data: LessonState }) => {
           id={activeExercise && activeExercise._id}
         />
         <InteractiveLayout id={activeExercise && activeExercise._id}>
-          <Instruction
-            className="w-full mb-12"
-            instruction={activeExercise && activeExercise?.instructions}
-          />
+          <Instruction className="w-full mb-12" instruction={activeExercise && activeExercise?.instructions} />
           {/* Maybe a component?? */}
           <div className="w-full">
             <Image
@@ -320,35 +278,22 @@ export const MatchPairs = ({ data }: { data: LessonState }) => {
         </InteractiveLayout>
       </div>
     </>
-  );
-};
+  )
+}
 
-function PairWord({
-  word,
-  activeExercise,
-  handleMatchPair,
-  userInput,
-  index,
-  checkIfInSuccessful,
-}: IAvailableAnswerProps) {
+function PairWord({ word, activeExercise, handleMatchPair, userInput, index, checkIfInSuccessful }: IAvailableAnswerProps) {
   const checkIfActive = () => {
-    return userInput?.pair.includes(word);
-  };
+    return userInput?.pair.includes(word)
+  }
 
   return (
     <div
       key={uuid()}
       className={classNames(
-        checkIfInSuccessful(word)
-          ? "opacity-40 cursor-not-allowed"
-          : "cursor-pointer",
+        checkIfInSuccessful(word) ? "opacity-40 cursor-not-allowed" : "cursor-pointer",
         `h-full sm:w-[300px] md:w-[344px] relative text-gray_default font-semibold`
       )}
-      onClick={
-        activeExercise?.isComplete || activeExercise?.hasFailed
-          ? undefined
-          : (e) => handleMatchPair(e, word)
-      }
+      onClick={activeExercise?.isComplete || activeExercise?.hasFailed ? undefined : e => handleMatchPair(e, word)}
     >
       <div className="inset-0 translate-x-0.5 translate-y-1 absolute rounded-lg striped-bg-darker -z-10 border border-gray_lighter"></div>
       <div
@@ -367,5 +312,5 @@ function PairWord({
         </span>
       </div>
     </div>
-  );
+  )
 }

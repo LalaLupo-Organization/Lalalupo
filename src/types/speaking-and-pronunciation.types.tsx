@@ -1,11 +1,11 @@
-import { BaseExercise } from "./lesson.types";
+import { BaseExercise } from "./lesson.types"
 
 export type SpeakingAndPronunciationExercise = BaseExercise & {
-  type: "speakingAndPronunciation";
-  regex: string;
-  doubleSolution: boolean;
-  vocabularyHelper: string[];
-  display: string;
-  english: string;
-  displayMeaning: boolean;
-};
+  type: "speakingAndPronunciation"
+  regex: string
+  doubleSolution: boolean
+  vocabularyHelper: string[]
+  display: string
+  english: string
+  displayMeaning: boolean
+}

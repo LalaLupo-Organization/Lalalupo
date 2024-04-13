@@ -1,5 +1,4 @@
-import classNames from "@/helpers/classNames";
-import React from "react";
+import classNames from "@/helpers/classNames"
 
 export default function ButtonInteractiveLesson({
   background,
@@ -27,11 +26,9 @@ export default function ButtonInteractiveLesson({
 
   return (
     <div className="flex w-full relative">
+    <div className="flex w-full relative">
       <div
-        className={classNames(
-          generateStripedBackground(),
-          "inset-0 translate-x-1 translate-y-1 absolute rounded-primary  z-0 border"
-        )}
+        className={classNames(generateStripedBackground(), "inset-0 translate-x-1 translate-y-1 absolute rounded-primary  z-0 border")}
       ></div>
       <button
         onClick={lessonButtonClick ? () => lessonButtonClick() : undefined}
@@ -44,5 +41,5 @@ export default function ButtonInteractiveLesson({
         </div>
       </button>
     </div>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import { baseChallenges } from "./baseChallenges";
+import { baseChallenges } from "./baseChallenges"
 
 export const languageChallenges = {
   name: "languageChallenges",
@@ -89,10 +89,10 @@ export const languageChallenges = {
       ],
       hidden: ({ parent }: any) => {
         if (parent.selectOption === undefined) {
-          return true;
+          return true
         }
         if (parent.selectOption !== "chooseTheRightSolution") {
-          return true;
+          return true
         }
       },
     },
@@ -135,10 +135,10 @@ export const languageChallenges = {
       ],
       hidden: ({ parent }: any) => {
         if (parent.selectOption === undefined) {
-          return true;
+          return true
         }
         if (parent.selectOption !== "conjugation") {
-          return true;
+          return true
         }
       },
     },
@@ -179,10 +179,10 @@ export const languageChallenges = {
       ],
       hidden: ({ parent }: any) => {
         if (parent.selectOption === undefined) {
-          return true;
+          return true
         }
         if (parent.selectOption !== "fillInTheBlanks") {
-          return true;
+          return true
         }
       },
     },
@@ -211,10 +211,10 @@ export const languageChallenges = {
       ],
       hidden: ({ parent }: any) => {
         if (parent.selectOption === undefined) {
-          return true;
+          return true
         }
         if (parent.selectOption !== "fillInWhatYouHear") {
-          return true;
+          return true
         }
       },
     },
@@ -255,10 +255,10 @@ export const languageChallenges = {
       ],
       hidden: ({ parent }: any) => {
         if (parent.selectOption === undefined) {
-          return true;
+          return true
         }
         if (parent.selectOption !== "listenAndSelect") {
-          return true;
+          return true
         }
       },
     },
@@ -313,10 +313,10 @@ export const languageChallenges = {
       ],
       hidden: ({ parent }: any) => {
         if (parent.selectOption === undefined) {
-          return true;
+          return true
         }
         if (parent.selectOption !== "matchPairs") {
-          return true;
+          return true
         }
       },
     },
@@ -352,10 +352,10 @@ export const languageChallenges = {
       ],
       hidden: ({ parent }: any) => {
         if (parent.selectOption === undefined) {
-          return true;
+          return true
         }
         if (parent.selectOption !== "missingSyllable") {
-          return true;
+          return true
         }
       },
     },
@@ -406,10 +406,10 @@ export const languageChallenges = {
       ],
       hidden: ({ parent }: any) => {
         if (parent.selectOption === undefined) {
-          return true;
+          return true
         }
         if (parent.selectOption !== "multipleAnswers") {
-          return true;
+          return true
         }
       },
     },
@@ -440,10 +440,10 @@ export const languageChallenges = {
       ],
       hidden: ({ parent }: any) => {
         if (parent.selectOption === undefined) {
-          return true;
+          return true
         }
         if (parent.selectOption !== "partOfAWord") {
-          return true;
+          return true
         }
       },
     },
@@ -468,10 +468,10 @@ export const languageChallenges = {
       ],
       hidden: ({ parent }: any) => {
         if (parent.selectOption === undefined) {
-          return true;
+          return true
         }
         if (parent.selectOption !== "reorderWhatYouHear") {
-          return true;
+          return true
         }
       },
     },
@@ -496,10 +496,10 @@ export const languageChallenges = {
       ],
       hidden: ({ parent }: any) => {
         if (parent.selectOption === undefined) {
-          return true;
+          return true
         }
         if (parent.selectOption !== "reorder") {
-          return true;
+          return true
         }
       },
     },
@@ -526,10 +526,10 @@ export const languageChallenges = {
       ],
       hidden: ({ parent }: any) => {
         if (parent.selectOption === undefined) {
-          return true;
+          return true
         }
         if (parent.selectOption !== "selectTheMissingWord") {
-          return true;
+          return true
         }
       },
     },
@@ -564,10 +564,10 @@ export const languageChallenges = {
       ],
       hidden: ({ parent }: any) => {
         if (parent.selectOption === undefined) {
-          return true;
+          return true
         }
         if (parent.selectOption !== "speakingAndPronunciation") {
-          return true;
+          return true
         }
       },
     },
@@ -599,10 +599,10 @@ export const languageChallenges = {
       ],
       hidden: ({ parent }: any) => {
         if (parent.selectOption === undefined) {
-          return true;
+          return true
         }
         if (parent.selectOption !== "twoBlanks") {
-          return true;
+          return true
         }
       },
     },
@@ -636,10 +636,10 @@ export const languageChallenges = {
       ],
       hidden: ({ parent }: any) => {
         if (parent.selectOption === undefined) {
-          return true;
+          return true
         }
         if (parent.selectOption !== "typeInWhatYouHear") {
-          return true;
+          return true
         }
       },
     },
@@ -674,12 +674,12 @@ export const languageChallenges = {
       ],
       hidden: ({ parent }: any) => {
         if (parent.selectOption === undefined) {
-          return true;
+          return true
         }
         if (parent.selectOption !== "writeTheSentence") {
-          return true;
+          return true
         }
       },
     },
   ],
-};
+}
