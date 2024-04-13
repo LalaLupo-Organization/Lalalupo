@@ -1,9 +1,5 @@
-import React, { useEffect } from "react"
-import { FlagIcon, XMarkIcon, BookOpenIcon, CheckIcon } from "@heroicons/react/16/solid"
-import classNames from "@/helpers/classNames"
-import useAssessment from "@/hooks/useAssessment"
+import React from "react"
 import { Icon } from "../Icons/Icon"
-import { motion } from "framer-motion"
 
 export default function SuccessToFailureLayout({
   children,
