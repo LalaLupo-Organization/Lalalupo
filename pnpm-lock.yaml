@@ -138,6 +138,9 @@ devDependencies:
   '@eslint/js':
     specifier: ^9.0.0
     version: 9.0.0
+  '@next/eslint-plugin-next':
+    specifier: ^14.2.1
+    version: 14.2.1
   '@types/google-libphonenumber':
     specifier: ^7.4.30
     version: 7.4.30
@@ -3205,6 +3208,12 @@ packages:
 
   /@next/eslint-plugin-next@14.1.4:
     resolution: {integrity: sha512-n4zYNLSyCo0Ln5b7qxqQeQ34OZKXwgbdcx6kmkQbywr+0k6M3Vinft0T72R6CDAcDrne2IAgSud4uWCzFgc5HA==}
+    dependencies:
+      glob: 10.3.10
+    dev: true
+
+  /@next/eslint-plugin-next@14.2.1:
+    resolution: {integrity: sha512-Fp+mthEBjkn8r9qd6o4JgxKp0IDEzW0VYHD8ZC05xS5/lFNwHKuOdr2kVhWG7BQCO9L6eeepshM1Wbs2T+LgSg==}
     dependencies:
       glob: 10.3.10
     dev: true
