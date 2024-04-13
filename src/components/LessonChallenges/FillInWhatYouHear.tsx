@@ -1,4 +1,5 @@
 import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters1"
+import AudioBubble from "@/components/AudioBubble/AudioBubble"
 import Instruction from "@/components/Headings/Instruction"
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
 import { clearUserInput, setSingleInput } from "@/features/userInputSlice"
@@ -45,12 +46,12 @@ export default function FillInWhatYouHear({ data }: { data: LessonState }) {
       /> */}
       <InteractiveLayout id={activeExercise && activeExercise._id}>
         <Instruction instruction={activeExercise && activeExercise.instructions} />
-        {/* <AudioBubble
+        <AudioBubble
           solution={
             activeExercise &&
             (typeof activeExercise.solution === "string" ? activeExercise.solution.split("").join(" ") : activeExercise.solution)
           }
-        /> */}
+        />
 
         <div className="flex outline-none p-2 text-base font-bold text-gray-600 tracking-wider w-full border-2 bg-gray-100 rounded-lg h-32">
           {activeExercise &&

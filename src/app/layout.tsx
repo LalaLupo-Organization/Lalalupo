@@ -35,12 +35,12 @@ function LayoutBody({ children }: { children: any }) {
   const pathname = usePathname()
   const isLesson = pathname.match(/\/lesson\/\d+/gi)
   return (
-    <body>
+    <>
       {!isLesson && <Navbar />}
       <FullStoryScript />
 
       {children}
       {!isLesson && <Footer />}
-    </body>
+    </>
   )
 }

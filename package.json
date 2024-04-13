@@ -6,7 +6,6 @@
     "dev": "concurrently \"next dev\"",
     "build": "next build",
     "start": "next start",
-    "preinstall": "npx only-allow pnpm",
     "watch": "npx tailwindcss -i src/app/globals.css -o dist/output.css --watch",
     "kill": "killall -9 node java",
     "storybook": "storybook dev -p 6006",
@@ -19,13 +18,7 @@
     "generate": "shopify app generate",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint ."
   },
-  "engines": {
-    "npm": "please-use-pnpm",
-    "yarn": "please-use-pnpm",
-    "pnpm": ">= 8.0.0"
-  },
   "dependencies": {
-    "@clerk/clerk-react": "^4.30.10",
     "@clerk/nextjs": "^4.29.5",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
@@ -73,7 +66,6 @@
     "@commitlint/config-conventional": "^18.4.3",
     "@eslint/eslintrc": "^3.0.2",
     "@eslint/js": "^9.0.0",
-    "@next/eslint-plugin-next": "^14.2.1",
     "@types/google-libphonenumber": "^7.4.30",
     "@types/negotiator": "^0.6.1",
     "@types/node": "^20.11.16",
@@ -89,7 +81,6 @@
     "eslint-plugin-react": "^7.34.1",
     "husky": "^8.0.0",
     "lint-staged": "^15.2.2",
-    "only-allow": "^1.2.1",
     "postcss": "^8",
     "prettier": "^3.1.1",
     "pretty-quick": "^4.0.0",

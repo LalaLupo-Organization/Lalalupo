@@ -1,38 +1,61 @@
 "use client"
 
-import { ChooseTheRightSolutionBottomNav } from "@/components/LessonNavigation/ChooseTheRightSolutionNav"
-import ConjugationNav from "@/components/LessonNavigation/ConjugationNav"
-import FillInWhatYouHearNav from "@/components/LessonNavigation/FillInWhatYouHear"
+import { useAppSelector } from "@/hooks/useRedux"
+import { selectLesson } from "@/features/lessonSlice"
+import { LessonState } from "@/types/lesson.types"
+import { InteractiveBottomNav } from "@/components/LessonNavigation/InteractiveBottomNav"
+import ReorderBottomNav from "@/components/LessonNavigation/ReorderNav"
 import FillInTheBlankNav from "@/components/LessonNavigation/FillnTheBlanksNav"
+import ConjugationNav from "@/components/LessonNavigation/ConjugationNav"
+import ReorderWhatYouHearNav from "@/components/LessonNavigation/ReorderWhatYouHearNav"
+import FillInWhatYouHearNav from "@/components/LessonNavigation/FillInWhatYouHear"
 import ListenAndSelectNav from "@/components/LessonNavigation/ListenAndSelectNav"
 import MissingSyllableNav from "@/components/LessonNavigation/MissingSyllableNav"
 import MultipleAnswersNav from "@/components/LessonNavigation/MultipleAnswersNav"
 import PartOfAWordNav from "@/components/LessonNavigation/PartOfAWordNav"
-import ReorderBottomNav from "@/components/LessonNavigation/ReorderNav"
-import ReorderWhatYouHearNav from "@/components/LessonNavigation/ReorderWhatYouHearNav"
 import SelectTheMissingWordNav from "@/components/LessonNavigation/SelectTheMissingWordNav"
 import SpeakingAndPronunciationNav from "@/components/LessonNavigation/SpeakingAndPronunciationNav"
 import TwoBlanksNav from "@/components/LessonNavigation/TwoBlanksNav"
 import TypeInWhatYouHearNav from "@/components/LessonNavigation/TypeInWhatYouHearNav"
 import WriteTheSentenceNav from "@/components/LessonNavigation/WriteTheSentenceNav"
-import { selectLesson } from "@/features/lessonSlice"
-import { useAppSelector } from "@/hooks/useRedux"
-import { LessonState } from "@/types/lesson.types"
+import { selectMessage } from "@/features/userSlice"
+import { selectUserInput } from "@/features/userInputSlice"
+import { Confetti } from "@/components/Confetti/Confetti"
 export default function LessonLayout({
   children, // will be a page or nested layout
 }: {
   children: React.ReactNode
 }) {
   const lesson = useAppSelector(state => selectLesson(state))
+  const messages = useAppSelector(state => selectMessage(state))
+  const userInput = useAppSelector(state => selectUserInput(state))
 
-  const { activeExercise } = lesson
+  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = lesson
   const getNavigationComponent = (activeExercise: LessonState["activeExercise"]) => {
+    // Maybe make it object in next update??
+    const status = messages?.activeExerciseComplete
+      ? "success"
+      : messages?.activeExerciseWrongAnswer
+        ? "failure"
+        : userInput.userInput
+          ? "active"
+          : "disabled"
     //This function
     switch (activeExercise.type) {
       case "chooseTheRightSolution":
-        return <ChooseTheRightSolutionBottomNav />
-      // case "matchPairs":
-      //   return <BottomNavigation />;
+        return (
+          <>
+            {status === "success" && <Confetti />}
+            <InteractiveBottomNav status={status} loading={messages.loading} userInput={userInput} activeExercise={activeExercise} />
+          </>
+        )
+      case "matchPairs":
+        return (
+          <>
+            {status === "success" && <Confetti />}
+            <InteractiveBottomNav status={status} loading={messages.loading} userInput={userInput} activeExercise={activeExercise} />
+          </>
+        )
       case "conjugation":
         return <ConjugationNav />
       case "reorder":

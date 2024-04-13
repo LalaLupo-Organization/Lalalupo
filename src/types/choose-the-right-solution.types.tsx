@@ -12,3 +12,11 @@ export type ChooseTheRightSolutionExercise = BaseExercise & {
   displayImage: boolean
   displayImageSrc: string
 }
+
+export interface IAvailableAnswerProps {
+  word: IAvailableWord
+  activeExercise: ChooseTheRightSolutionExercise
+  handleSelectedItem: (e: React.SyntheticEvent, userAnswer: string) => void
+  showSelected: { word: string; status: boolean }
+  index: number
+}

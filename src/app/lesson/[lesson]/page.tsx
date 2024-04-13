@@ -3,6 +3,7 @@ import { selectLesson } from "@/features/lessonSlice"
 import { useAppSelector } from "@/hooks/useRedux"
 //Interactive Components
 import { ChooseTheRightSolution } from "@/components/LessonChallenges/ChooseTheRightSolution"
+import { MatchPairs } from "@/components/LessonChallenges/MatchPairs"
 import Conjunction from "@/components/LessonChallenges/Conjunction"
 import FillInTheBlank from "@/components/LessonChallenges/FillInTheBlanks"
 import FillInWhatYouHear from "@/components/LessonChallenges/FillInWhatYouHear"
@@ -17,6 +18,7 @@ import SpeakingAndPronunciation from "@/components/LessonChallenges/SpeakingAndP
 import TwoBlanks from "@/components/LessonChallenges/TwoBlanks"
 import TypeInWhatYouHear from "@/components/LessonChallenges/TypeInWhatYouHear"
 import WriteTheSentence from "@/components/LessonChallenges/WriteTheSentence"
+import { useParams } from "next/navigation"
 export default function Lessons() {
   const lesson = useAppSelector(state => selectLesson(state))
 
@@ -28,8 +30,8 @@ export default function Lessons() {
     // sanityLessonData.exercise[0].selectOption
     case "chooseTheRightSolution":
       return <ChooseTheRightSolution data={lesson} />
-    // case "matchPairs":
-    //   return <MatchPairs data={lesson} />;
+    case "matchPairs":
+      return <MatchPairs data={lesson} />
     case "conjugation":
       return <Conjunction data={lesson} />
 

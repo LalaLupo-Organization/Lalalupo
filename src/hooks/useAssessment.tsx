@@ -21,7 +21,8 @@ import { useEffect } from "react"
 import RegexParser from "regex-parser"
 import { useAppDispatch, useAppSelector } from "./useRedux"
 
-import { clearUserInput, selectUserInput } from "@/features/userInputSlice"
+import { selectUserInput, clearUserInput } from "@/features/userInputSlice"
+import { IReduxUserObjectInput } from "@/types/match-pairs.types"
 // import { toast } from "react-toastify";
 
 export default function useAssessment() {
@@ -160,19 +161,15 @@ export default function useAssessment() {
         }
       }
     }
-    // if (activeExercise.type === "matchPairs" && userObjectInput) {
-    //   let allCorrect = Object.entries(userObjectInput).some(
-    //     (item: [string, any]) => !item[1].correct
-    //   );
-    //   //Has the user matched all the pairs correctly
-    //   if (!allCorrect) {
-    //     setSuccess();
-    //     return;
-    //   } else {
-    //     setFailed();
-    //     return;
-    //   }
-    // }
+    if (activeExercise.type === "matchPairs" && userObjectInput) {
+      const correctExercises = activeExercise.availableWords.pairs.length
+      let allCorrect = (userObjectInput as IReduxUserObjectInput["userObjectInput"]).successfulPairs.length === correctExercises
+      //Has the user matched all the pairs correctly
+      if (allCorrect) {
+        setSuccess()
+        return
+      }
+    }
     if (activeExercise.type === "missingSyllable") {
       if (userInput === activeExercise.solution) {
         setSuccess()

@@ -1,15 +1,24 @@
-import Instruction from "@/components/Headings/Instruction"
-import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
-import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
-import { clearUserInput, setSingleInput } from "@/features/userInputSlice"
-import classNames from "@/helpers/classNames"
-import { useAppDispatch } from "@/hooks/useRedux"
-import { ChooseTheRightSolutionExercise, IAvailableWord } from "@/types/choose-the-right-solution.types"
-import { BaseExercise, LessonState } from "@/types/lesson.types"
 import "@fontsource/nunito"
-import Image from "next/image"
-import { useEffect, useState } from "react"
+import localFont from "next/font/local"
+import { useRef, useState, useEffect } from "react"
+import { useAppDispatch } from "@/hooks/useRedux"
 import { v4 as uuid } from "uuid"
+import { setSingleInput, clearUserInput } from "@/features/userInputSlice"
+import classNames from "@/helpers/classNames"
+import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
+import Instruction from "@/components/Headings/Instruction"
+import { BaseExercise, LessonState } from "@/types/lesson.types"
+import HintArrow from "../../../public/HintArrow.svg"
+// import useSpeechSynthesis from "../hooks/useSpeechSynthesis";
+import mockimage from "@/public/sandwich.png"
+import Image from "next/image"
+import { ChooseTheRightSolutionExercise, IAvailableAnswerProps, IAvailableWord } from "@/types/choose-the-right-solution.types"
+import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
+
+// const MoreSugarRegular = localFont({
+//   src: "../../../public/MoreSugarRegular.ttf",
+//   display: "swap",
+// });
 
 export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
   const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
@@ -67,7 +76,7 @@ export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
         id={activeExercise && activeExercise._id}
       />
       <InteractiveLayout id={activeExercise && activeExercise._id}>
-        <Instruction position="center" instruction={activeExercise && activeExercise?.instructions} />
+        <Instruction position="center" className="px-10 w-[90%]" instruction={activeExercise && activeExercise?.instructions} />
 
         <div
           style={{
@@ -93,14 +102,6 @@ export const ChooseTheRightSolution = ({ data }: { data: LessonState }) => {
       </InteractiveLayout>
     </div>
   )
-}
-
-interface IAvailableAnswerProps {
-  word: IAvailableWord
-  activeExercise: ChooseTheRightSolutionExercise
-  handleSelectedItem: (e: React.SyntheticEvent, userAnswer: string) => void
-  showSelected: { word: string; status: boolean }
-  index: number
 }
 
 function AvailableAnswer({ word, activeExercise, handleSelectedItem, showSelected, index }: IAvailableAnswerProps) {

@@ -8,14 +8,16 @@ const myFont = localFont({
 interface Props {
   instruction: string | null
   position?: "left" | "center" | "right"
+  className?: string
 }
 
-export default function Instruction({ instruction, position }: Props) {
+export default function Instruction({ instruction, position, className = "" }: Props) {
   return (
     <h1
       className={classNames(
         position ? `text-${position}` : "text-center  sm:text-left",
-        `${myFont.className} text-xl w-[90%] mb-0 sm:mb-12 sm:text-2xl 2xl:text-3xl px-10 2xl:px-6`
+        `${myFont.className} text-xl mb-0 sm:mb-12 sm:text-2xl 2xl:text-3xl 2xl:px-6`,
+        className
       )}
     >
       {instruction}
