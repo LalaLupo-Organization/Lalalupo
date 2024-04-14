@@ -15,6 +15,7 @@ type Props = {
 
 export default function BottomNavigation({ color, children, message = false }: Props) {
   const controls = useAnimation()
+
   useEffect(() => {
     // Initial animation when component mounts
     controls.start({
