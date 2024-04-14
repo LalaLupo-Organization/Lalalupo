@@ -115,6 +115,7 @@ export default function ReorderWhatYouHear({ data }: { data: LessonState }) {
         nodes.forEach(node => node.remove())
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedWords, activeExercise])
 
   return (
