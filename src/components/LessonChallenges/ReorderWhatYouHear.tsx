@@ -1,38 +1,32 @@
-import { BaseExercise, LessonState } from "@/types/lesson.types"
 import React, { useState, useRef, useEffect } from "react"
+import { BaseExercise, LessonState } from "@/types/lesson.types"
 import { ReorderWhatYouHearExercise } from "@/types/reorder-what-you-hear.types"
 import { setSingleInput, clearUserInput } from "@/features/userInputSlice"
 import { useAppDispatch } from "@/hooks/useRedux"
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
-// import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";
 import classNames from "@/helpers/classNames"
 import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
 import Instruction from "@/components/Headings/Instruction"
 import AudioBubble from "@/components/SpeechBubble/SpeechBubble"
 import { Settings } from "@/types/settings.types"
+
 export default function ReorderWhatYouHear({ data }: { data: LessonState }) {
   const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
+  const dispatch = useAppDispatch()
+
+  const [isAnimating, setIsAnimating] = useState(false)
+  const [activeExerciseId, setActiveExerciseId] = useState(activeExercise?._id)
+  const [selectedWords, setSelectedWords] = useState<string[]>([])
+  const [randomizedWords, setRandomizedWords] = useState(
+    getType(activeExercise) ? activeExercise?.availableWords?.map(word => word).sort(() => Math.random() - 0.5) : []
+  )
+
+  const destinationRef = useRef<HTMLDivElement>(null)
+  const originRef = useRef<HTMLDivElement>(null)
+
   function getType(exercise: BaseExercise): exercise is ReorderWhatYouHearExercise {
     return exercise.type === "reorderWhatYouHear"
   }
-  //hooks
-  const [isAnimating, setIsAnimating] = useState(false)
-  const dispatch = useAppDispatch()
-
-  const [activeExerciseId, setActiveExerciseId] = useState(() => activeExercise?._id)
-  // const speak = useSpeechSynthesis();
-
-  const [selectedWords, setSelectedWords] = useState<string[]>([])
-  const [randomizedWords, setRandomizedWords] = useState(
-    () =>
-      getType(activeExercise) &&
-      activeExercise?.availableWords &&
-      activeExercise?.availableWords.map(word => word).sort(() => Math.random() - 0.5)
-  )
-
-  // Refs
-  const destinationRef = useRef<HTMLDivElement>(null)
-  const originRef = useRef<HTMLDivElement>(null)
 
   const flip = (node: HTMLElement, settings: Settings) => {
     const invert = {
@@ -75,7 +69,6 @@ export default function ReorderWhatYouHear({ data }: { data: LessonState }) {
     rect = node.getBoundingClientRect()
     const last = { top: rect.top, left: rect.left }
 
-    // Animation flip function
     flip(node, { first, last })
   }
 
@@ -104,7 +97,6 @@ export default function ReorderWhatYouHear({ data }: { data: LessonState }) {
   //eslint-disable-next-line
   const handleMove = (event: React.MouseEvent<HTMLButtonElement>, userAnswer: string) => {
     const node = event.target as HTMLElement
-    // speak(userAnswer);
 
     if (isAnimating) return
     node.closest("#container") ? move(node) : putback(node)
@@ -114,25 +106,19 @@ export default function ReorderWhatYouHear({ data }: { data: LessonState }) {
     dispatch(setSingleInput(selectedWords.join(" ")))
 
     if (activeExercise && activeExercise._id !== activeExerciseId) {
-      setRandomizedWords(() => getType(activeExercise) && activeExercise?.availableWords.map(word => word).sort(() => Math.random() - 0.5))
+      setRandomizedWords(getType(activeExercise) ? activeExercise?.availableWords?.map(word => word).sort(() => Math.random() - 0.5) : [])
       setSelectedWords([])
-      setActiveExerciseId(() => activeExercise?._id)
+      setActiveExerciseId(activeExercise?._id)
       dispatch(clearUserInput())
       const nodes = destinationRef.current?.querySelectorAll(".word")
       if (nodes) {
-        for (let i = 0; i < nodes.length; i++) {
-          nodes[i].remove()
-        }
+        nodes.forEach(node => node.remove())
       }
     }
   }, [selectedWords, activeExercise])
 
   return (
-    <div
-      className="flex flex-col
-
-   justify-center w-full items-center"
-    >
+    <div className="flex flex-col justify-center w-full items-center">
       <ProgressBar
         activeExercise={activeExercise}
         remainingExercises={remainingExercises}
@@ -147,24 +133,22 @@ export default function ReorderWhatYouHear({ data }: { data: LessonState }) {
         <Instruction instruction={activeExercise && activeExercise.instructions} />
         <div className="flex flex-col w-full">
           <AudioBubble
-            solution={activeExercise && (typeof activeExercise.solution === "string" ? activeExercise.solution.split("").join(" ") : null)}
+            solution={activeExercise && typeof activeExercise.solution === "string" ? activeExercise.solution.split("").join(" ") : null}
           />
-
-          <div className="destination border-t-2 border-b-2  pt-1 sm:pt-2 h-14 sm:h-16" ref={destinationRef}></div>
+          <div className="destination border-t-2 border-b-2 pt-1 sm:pt-2 h-14 sm:h-16" ref={destinationRef}></div>
           <div className="border-b-2 mb-8 sm:mb-8 pt-1 h-14 sm:h-16"></div>
-
           <div className="origin flex flex-wrap justify-center items-center w-full mx-auto border-gray-600 " ref={originRef}>
             {randomizedWords &&
               randomizedWords.map((word, index) => (
                 <div
                   id="container"
-                  className="sm:mb-2  m-px box-content rounded-lg sm:mx-1 justify-start text-center flex flex-col duration-300 ease-in text-gray-800"
+                  className="sm:mb-2 m-px box-content rounded-lg sm:mx-1 justify-start text-center flex flex-col duration-300 ease-in text-gray-800"
                   key={word + "_" + index}
                 >
                   <button
                     className={classNames(
                       activeExercise?.isComplete || activeExercise?.hasFailed ? "cursor-not-allowed" : "cursor-pointer",
-                      "text-gray-800 word bg-white  box-border p-2 sm:p-2 border-2 rounded-lg cursor-pointer font-bold active:duration-300 active:ease-in outline-none"
+                      "text-gray-800 word bg-white box-border p-2 sm:p-2 border-2 rounded-lg cursor-pointer font-bold active:duration-300 active:ease-in outline-none"
                     )}
                     onClick={activeExercise?.isComplete || activeExercise?.hasFailed ? undefined : e => handleMove(e, word)}
                     name={word}

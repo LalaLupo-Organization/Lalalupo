@@ -16,28 +16,15 @@ const initialState: LessonState = {
   numberFailed: 0,
   correctLetters: [],
   activeExercise: {
-    _id: "1234567",
-    successPairAudioURL: "https://ispeakitalian.herokuapp.com/correct.mp3",
-    instructions: "Match the corresponding words.",
+    type: "reorderWhatYouHear",
+    _id: "123456",
+    solution: "Mia figlia sta imparando a camminare.",
+    instructions: "Reorder the words to replicate the sentence.",
+    english: "My daughter is learning to walk.",
+    availableWords: ["Mia", "figlia", "sta", "imparando", "a", "camminare.", "impara", "stai", "Mie", "cammina", "le."],
+
     isComplete: false,
     hasFailed: false,
-    solution: "Some solution here",
-    type: "matchPairs",
-    availableWords: {
-      pairs: [
-        ["attenzione", "attention"],
-        ["stazione", "station"],
-        ["possibile", "possible"],
-      ],
-      column1: {
-        column: "1",
-        read: true,
-      },
-      column2: {
-        column: "2",
-        read: false,
-      },
-    },
   },
 
   // activeExercise: {

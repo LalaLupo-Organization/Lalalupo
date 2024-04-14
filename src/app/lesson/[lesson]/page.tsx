@@ -12,7 +12,7 @@ import MissingSyllable from "@/components/LessonChallenges/MissingSyllable"
 import MultipleAnswers from "@/components/LessonChallenges/MultipleAnswers"
 import PartOfAWord from "@/components/LessonChallenges/PartOfAWord"
 import Reorder from "@/components/LessonChallenges/Reorder"
-// import ReorderWhatYouHear from "@/components/LessonChallenges/ReorderWhatYouHear"
+import ReorderWhatYouHear from "@/components/LessonChallenges/ReorderWhatYouHear"
 import SelectTheMissingWord from "@/components/LessonChallenges/SelectTheMissingWord"
 import SpeakingAndPronunciation from "@/components/LessonChallenges/SpeakingAndPronunciation"
 import TwoBlanks from "@/components/LessonChallenges/TwoBlanks"
@@ -35,8 +35,8 @@ export default function Lessons() {
       return <Conjunction data={lesson} />
     case "reorder":
       return <Reorder data={lesson} />
-    // case "reorderWhatYouHear":
-    //   return <ReorderWhatYouHear data={lesson} />
+    case "reorderWhatYouHear":
+      return <ReorderWhatYouHear data={lesson} />
     case "fillInTheBlank":
       return <FillInTheBlank data={lesson} />
     case "fillInWhatYouHear":
