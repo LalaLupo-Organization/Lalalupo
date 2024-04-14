@@ -17,7 +17,7 @@ export const Hero: React.FC = () => {
         <div className="sm:flex items-center mx-auto  justify-center mt-4">
           <Link
             href="sign-up"
-            className="inline-flex register sm:w-auto w-full items-center justify-center rounded-md border border-transparent px-8 py-4 text-xl font-semibold text-white bg-gradient-to-r from-indigo-500 from-10%  to-purple-500 to-90%"
+            className="inline-flex register action-button  bg-indigo-500 sm:w-auto w-full items-center justify-center rounded-md border border-transparent px-8 py-4 text-xl  text-white"
           >
             Get started here
           </Link>
