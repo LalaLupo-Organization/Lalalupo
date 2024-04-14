@@ -119,6 +119,7 @@ export default function Reorder({ data }: { data: LessonState }) {
         nodes.forEach(node => node.remove())
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedWords, activeExercise])
 
   const english = getType(activeExercise) && activeExercise?.displayText
