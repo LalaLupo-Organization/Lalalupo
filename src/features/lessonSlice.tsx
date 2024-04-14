@@ -15,47 +15,46 @@ const initialState: LessonState = {
   numberComplete: 0,
   numberFailed: 0,
   correctLetters: [],
-  activeExercise: {
-    type: "reorderWhatYouHear",
-    _id: "123456",
-    solution: "Mia figlia sta imparando a camminare.",
-    instructions: "Reorder the words to replicate the sentence.",
-    english: "My daughter is learning to walk.",
-    availableWords: ["Mia", "figlia", "sta", "imparando", "a", "camminare.", "impara", "stai", "Mie", "cammina", "le."],
-
-    isComplete: false,
-    hasFailed: false,
-  },
-
   // activeExercise: {
-  //   type: "chooseTheRightSolution",
-  //   _id: "635f9a0fefff76c1f466c9be",
-  //   solution: "Latte",
-  //   // availableWords: ["panino", "ravioli", "espresso"],
-  //   availableWords: [
-  //     {
-  //       label: "Zucchero",
-  //       hasImage: true,
-  //       imageSrc: "/assets/ExercisesImages/Zucchero.png",
-  //     },
-  //     {
-  //       label: "Gelato",
-  //       hasImage: true,
-  //       imageSrc: "/assets/ExercisesImages/Gelato.png",
-  //     },
-  //     {
-  //       label: "Latte",
-  //       hasImage: true,
-  //       imageSrc: "/assets/ExercisesImages/Milk.png",
-  //     },
-  //   ],
-  //   instructions: 'Which one is "Milk"?',
-  //   displayImage: true,
-  //   displayImageSrc:
-  //     "https://imagedelivery.net/_Fh-Z9aj1rlSxXMDl1yqsg/b753daa9-b6c7-4773-a681-e1f881c9f600/character",
+  //   type: "reorderWhatYouHear",
+  //   _id: "123456",
+  //   solution: "Mia figlia sta imparando a camminare.",
+  //   instructions: "Reorder the words to replicate the sentence.",
+  //   english: "My daughter is learning to walk.",
+  //   availableWords: ["Mia", "figlia", "sta", "imparando", "a", "camminare.", "impara", "stai", "Mie", "cammina", "le."],
+
   //   isComplete: false,
   //   hasFailed: false,
   // },
+
+  activeExercise: {
+    type: "chooseTheRightSolution",
+    _id: "635f9a0fefff76c1f466c9be",
+    solution: "Latte",
+    // availableWords: ["panino", "ravioli", "espresso"],
+    availableWords: [
+      {
+        label: "Zucchero",
+        hasImage: true,
+        imageSrc: "/assets/ExercisesImages/Zucchero.png",
+      },
+      {
+        label: "Gelato",
+        hasImage: true,
+        imageSrc: "/assets/ExercisesImages/Gelato.png",
+      },
+      {
+        label: "Latte",
+        hasImage: true,
+        imageSrc: "/assets/ExercisesImages/Milk.png",
+      },
+    ],
+    instructions: 'Which one is "Milk"?',
+    displayImage: true,
+    displayImageSrc: "https://imagedelivery.net/_Fh-Z9aj1rlSxXMDl1yqsg/b753daa9-b6c7-4773-a681-e1f881c9f600/character",
+    isComplete: false,
+    hasFailed: false,
+  },
   interactiveExercises: [
     //ChooseTheRightSolution
     {
