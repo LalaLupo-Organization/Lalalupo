@@ -13,6 +13,9 @@ module.exports = {
       colors: {
         gray_default: "#686868",
         gray_lighter: "#D8D8D8",
+        gray_reorder_bg: "#E7E4E4",
+        gray_reorder_border: "#C1BDBD",
+        gray_reorder_text: "#877F7F",
         primary: "#6949FF",
         color_purple_default: "#6949FF",
         color_purple_darker: "#6949FF",

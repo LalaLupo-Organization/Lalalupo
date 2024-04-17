@@ -1,11 +1,11 @@
 import classNames from "@/helpers/classNames"
 import { useEffect, useRef } from "react"
 
-type IconsType = "SuccessTickSquare" | "FailureSquare"
+type IconsType = "SuccessTickSquare" | "FailureSquare" | "AudioIcon"
 
 interface IconProps extends React.SVGAttributes<HTMLOrSVGElement> {
   name: IconsType
-  className: string
+  className?: string
 }
 
 export const Icon: React.FC<IconProps> = ({ name, className = "", ...props }) => {

@@ -1,34 +1,62 @@
 "use client"
-import parse from "html-react-parser"
 import Image from "next/image"
+import MatchPairsImage from "../../../public/assets/ExercisesImages/MatchPairsImage.png"
+import classNames from "@/helpers/classNames"
+import { Icon } from "../Icons/Icon"
+import { useEffect, useState } from "react"
 
 type BubbleProps = {
-  dialogue?: string
-  english?: string
-  solution?: string | null // Add this line
+  displayText: string
+  solution?: string | null // audio
+  displayTextAudioURL?: string
+  imageClassName?: string
+  audio?: boolean
 }
 
-export default function SpeechBubble({ dialogue, english }: BubbleProps) {
-  return (
-    <div className="flex flex-col w-full">
-      <div className="flex">
-        <Image
-          height={12}
-          width={12}
-          src="https://imagedelivery.net/_Fh-Z9aj1rlSxXMDl1yqsg/0aa64a3d-0747-48a2-3ca3-f17ca2e77400/character"
-          alt=""
-          className="w-32 sm:w-40 h-full self-end"
-        />
-        <div className="relative mb-6 text-sm sm:text-base border-r-2 border-l-2 border-t-2 border-b-2 self-start mt-8 sm:mt-8 py-4 ml-2 px-4 rounded-lg font-bold text-gray-700">
-          <p>{dialogue && parse(dialogue)}</p>
-          <p className="text-gray-400 tracking-tight font-light">{english && parse(english)}</p>
+export default function SpeechBubble({ imageClassName = "", displayText, audio = false, solution, displayTextAudioURL }: BubbleProps) {
+  const [isPlaying, setIsPlaying] = useState(false)
+  const audioElement = new Audio(audio ? solution! : displayTextAudioURL!)
 
-          <div
-            className="absolute flex self-center h-4 border-b-2 bg-white border-l-2 w-4 rotate-45 transform bottom-4 rounded-l"
-            style={{ left: "-10px" }}
-          ></div>
+  const playAudio = () => {
+    audioElement.addEventListener("ended", () => {
+      setIsPlaying(false) // Set isPlaying to false once audio finishes playing
+    })
+
+    if (audioElement) {
+      if (isPlaying) {
+        audioElement.pause()
+        setIsPlaying(false)
+      } else {
+        audioElement.play()
+        setIsPlaying(true)
+      }
+    }
+  }
+
+  const handleEnded = () => {
+    setIsPlaying(false)
+  }
+
+  useEffect(() => {
+    return () => {
+      audioElement.removeEventListener("ended", handleEnded)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  return (
+    <div className="w-full">
+      <div className="flex flex-col-reverse items-center sm:flex-row">
+        <Image height={12} width={12} src={MatchPairsImage} alt="" className={classNames("w-32 sm:w-40 h-full", imageClassName)} />
+        <div className="relative mb-6 text-sm  border-r-2 border-l-2 border-t-2 border-b-2 mt-8 sm:mt-8 py-4 ml-2 px-4 rounded-lg font-bold text-gray_reorder_text underline underline-offset-2 flex items-center gap-2">
+          {solution && audio && <AudioIcon playAudio={playAudio} />}
+          <p {...(!audio && { onClick: () => playAudio() })}>{displayText}</p>
         </div>
       </div>
     </div>
   )
+}
+
+function AudioIcon({ playAudio }: { playAudio: () => void }) {
+  return <Icon onClick={playAudio} role="button" name="AudioIcon" className="w-4 sm:w-5 cursor-pointer" />
 }

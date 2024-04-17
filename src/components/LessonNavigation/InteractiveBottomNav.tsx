@@ -27,6 +27,14 @@ export const InteractiveBottomNav: React.FC<IInteractiveNavProps> = ({ userInput
       active: "bg-white",
     },
   }
+
+  const generateCheckingText = () => {
+    if (activeExercise.type === "reorderWhatYouHear" || activeExercise.type === "reorder") {
+      return "CONTINUE"
+    }
+
+    return "CHECK"
+  }
   const isMessage = status === "failure" || status === "success"
 
   useEffect(() => {
@@ -95,7 +103,7 @@ export const InteractiveBottomNav: React.FC<IInteractiveNavProps> = ({ userInput
               )}
               lessonButtonClick={userInput.userInput ? lessonButtonClick : () => null}
               buttonDisplayText={
-                "CHECK"
+                userInput.userInput ? generateCheckingText() : "CHECK"
                 // activeExercise.type === "matchPairs" ? "CONTINUE" : "CHECK"
               }
               status={status}

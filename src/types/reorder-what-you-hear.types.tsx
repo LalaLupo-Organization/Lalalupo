@@ -1,7 +1,13 @@
 import { BaseExercise } from "./lesson.types"
 
+export interface IAvailableWord {
+  word: string
+  wordAudioURL: string
+}
+
 export type ReorderWhatYouHearExercise = BaseExercise & {
   type: "reorderWhatYouHear"
-  english: string
-  availableWords: string[]
+  displayText: string
+  solutionAudioURL: string
+  availableWords: IAvailableWord[]
 }
