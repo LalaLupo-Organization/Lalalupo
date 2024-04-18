@@ -161,13 +161,13 @@ export default function ReorderWhatYouHear({ data }: { data: LessonState }) {
           />
           <div
             className={classNames(
-              "destination flex gap-x-4 flex-wrap items-center border-t-2  border-b-2 pt-1.5 sm:pt-2  h-16",
+              "destination px-3 sm:px-10 flex gap-x-3 flex-wrap items-center border-t-2  border-b-2 pt-1.5 sm:pt-2  h-16",
               adjustPaddingTop ? "" : ""
             )}
             ref={destinationRef}
           ></div>
-          {addNewLine && <div className="border-b-2 mb-8 sm:mb-8 pt-1 h-16"></div>}
-          <div className="origin flex flex-wrap gap-4 justify-center items-center w-full mt-10 mx-auto border-gray-600" ref={originRef}>
+          {addNewLine && <div className="border-b-2 mb-8 sm:mb-8 pt-1 h-16 px-3 sm:px-10"></div>}
+          <div className="origin flex flex-wrap gap-3 justify-center items-center w-full mt-10 mx-auto border-gray-600" ref={originRef}>
             {randomizedWords &&
               randomizedWords.map((word, index) => (
                 <ReorderWhatYouHearWord

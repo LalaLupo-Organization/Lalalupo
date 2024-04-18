@@ -4,7 +4,7 @@ import MatchPairsImage from "../../../public/assets/ExercisesImages/MatchPairsIm
 import classNames from "@/helpers/classNames"
 import { Icon } from "../Icons/Icon"
 import { useEffect, useState } from "react"
-
+import useWindowSize from "@/hooks/useWindowSize"
 type BubbleProps = {
   displayText: string
   solution?: string | null // audio
@@ -14,6 +14,7 @@ type BubbleProps = {
 }
 
 export default function SpeechBubble({ imageClassName = "", displayText, audio = false, solution, displayTextAudioURL }: BubbleProps) {
+  const { width } = useWindowSize()
   const [isPlaying, setIsPlaying] = useState(false)
   const audioElement = new Audio(audio ? solution! : displayTextAudioURL!)
 
@@ -46,11 +47,21 @@ export default function SpeechBubble({ imageClassName = "", displayText, audio =
 
   return (
     <div className="w-full">
-      <div className="flex flex-col-reverse items-center sm:flex-row">
+      <div className="flex flex-col-reverse sm:gap-x-3 items-center sm:flex-row">
         <Image height={12} width={12} src={MatchPairsImage} alt="" className={classNames("w-32 sm:w-40 h-full", imageClassName)} />
-        <div className="relative mb-6 text-sm  border-r-2 border-l-2 border-t-2 border-b-2 mt-8 sm:mt-8 py-4 ml-2 px-4 rounded-lg font-bold text-gray_reorder_text underline underline-offset-2 flex items-center gap-2">
-          {solution && audio && <AudioIcon playAudio={playAudio} />}
-          <p {...(!audio && { onClick: () => playAudio() })}>{displayText}</p>
+        <div
+          className={classNames(
+            "relative mb-6 text-sm mt-8 rounded-lg font-bold text-gray_reorder_text underline underline-offset-2 flex items-center gap-2 h-[80px]",
+            displayText.length <= 24 ? "w-[256px]" : displayText.length <= 35 ? "w-[275px]" : "w-[300px]"
+          )}
+        >
+          <Icon name={width >= 640 ? "DesktopTextBubble" : "MobileTextBubble"} square={false} className="w-full" />
+          <div className={classNames("absolute w-full px-4  flex items-center justify-center gap-2", width >= 640 ? "pl-8" : "")}>
+            {solution && audio && <AudioIcon playAudio={playAudio} />}
+            <p className="underline underline-offset-1 text-center" title={displayText} {...(!audio && { onClick: () => playAudio() })}>
+              {displayText}
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -58,5 +69,5 @@ export default function SpeechBubble({ imageClassName = "", displayText, audio =
 }
 
 function AudioIcon({ playAudio }: { playAudio: () => void }) {
-  return <Icon onClick={playAudio} role="button" name="AudioIcon" className="w-4 sm:w-5 cursor-pointer" />
+  return <Icon onClick={playAudio} role="button" name="AudioIcon" className="w-5 sm:w-6 cursor-pointer" />
 }

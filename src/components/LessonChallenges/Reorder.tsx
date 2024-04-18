@@ -159,7 +159,7 @@ export default function Reorder({ data }: { data: LessonState }) {
       />
       <InteractiveLayout id={activeExercise && activeExercise._id}>
         <Instruction className="w-full" instruction={activeExercise && activeExercise.instructions} />
-        <div className="flex flex-col w-full mt-14 sm:mt-0">
+        <div className="flex flex-col w-full mt-14 sm:mt-0 max-w-[640px]">
           {true && (
             <SpeechBubble
               displayTextAudioURL={getType(activeExercise) ? activeExercise.displayTextAudioURL : ""}
@@ -169,18 +169,15 @@ export default function Reorder({ data }: { data: LessonState }) {
           )}
           <div
             className={classNames(
-              "destination flex gap-x-4 flex-wrap items-center border-t-2  border-b-2 pt-1.5 sm:pt-2  h-16",
+              "destination px-3 sm:px-10 flex gap-x-3 flex-wrap items-center border-t-2  border-b-2 pt-1.5 sm:pt-2  h-16",
               adjustPaddingTop ? "" : ""
             )}
             ref={destinationRef}
           ></div>
-          {addNewLine && <div className="border-b-2 mb-8 sm:mb-8 pt-1 h-16"></div>}
-          <div
-            className="origin flex flex-wrap gap-4 justify-center items-center w-full mx-auto mt-10 border-gray-600 max-w-[640px] "
-            ref={originRef}
-          >
+          {addNewLine && <div className="border-b-2 mb-8 sm:mb-8 pt-1 h-16 px-3 sm:px-10"></div>}
+          <div className="origin flex flex-wrap gap-3 justify-center items-center w-full mt-10 mx-auto border-gray-600" ref={originRef}>
             {randomizedWords &&
-              randomizedWords.map((word, index: number) => (
+              randomizedWords.map((word, index) => (
                 <ReorderWord
                   picked={selectedWords.includes(word.word)}
                   handleMove={handleMove}

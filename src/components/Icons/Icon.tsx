@@ -1,14 +1,15 @@
 import classNames from "@/helpers/classNames"
 import { useEffect, useRef } from "react"
 
-type IconsType = "SuccessTickSquare" | "FailureSquare" | "AudioIcon"
+type IconsType = "SuccessTickSquare" | "FailureSquare" | "AudioIcon" | "MobileTextBubble" | "DesktopTextBubble"
 
 interface IconProps extends React.SVGAttributes<HTMLOrSVGElement> {
   name: IconsType
   className?: string
+  square?: boolean
 }
 
-export const Icon: React.FC<IconProps> = ({ name, className = "", ...props }) => {
+export const Icon: React.FC<IconProps> = ({ name, className = "", square = true, ...props }) => {
   const svgRef = useRef<SVGSVGElement>(null)
 
   useEffect(() => {
@@ -19,5 +20,5 @@ export const Icon: React.FC<IconProps> = ({ name, className = "", ...props }) =>
     })
   }, [name])
 
-  return <svg className={classNames("aspect-square", className)} ref={svgRef} {...props}></svg>
+  return <svg className={classNames(square ? "aspect-square" : "", className)} ref={svgRef} {...props}></svg>
 }
