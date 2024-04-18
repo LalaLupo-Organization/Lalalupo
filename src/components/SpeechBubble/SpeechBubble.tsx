@@ -6,7 +6,9 @@ import { Icon } from "../Icons/Icon"
 import { useEffect, useState } from "react"
 import useWindowSize from "@/hooks/useWindowSize"
 type BubbleProps = {
-  displayText: string
+  dialogue?: string
+  english?: string
+  displayText?: string
   solution?: string | null // audio
   displayTextAudioURL?: string
   imageClassName?: string
@@ -44,6 +46,8 @@ export default function SpeechBubble({ imageClassName = "", displayText, audio =
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  if (!displayText) return <div></div>
 
   return (
     <div className="w-full">
