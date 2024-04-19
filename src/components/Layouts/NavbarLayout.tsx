@@ -16,14 +16,14 @@ type Props = {
 export default function BottomNavigation({ color, children, message = false }: Props) {
   const controls = useAnimation()
 
-  useEffect(() => {
-    // Initial animation when component mounts
-    controls.start({
-      opacity: 1,
-      y: 0,
-      transition: { ease: "easeInOut" },
-    })
-  }, [controls])
+  // useEffect(() => {
+  //   // Initial animation when component mounts
+  //   controls.start({
+  //     opacity: 1,
+  //     y: 0,
+  //     transition: { ease: "easeInOut" },
+  //   })
+  // }, [])
 
   useEffect(() => {
     // Whenever the state of the navbar changes, it should be triggered
@@ -39,7 +39,8 @@ export default function BottomNavigation({ color, children, message = false }: P
           y: 0,
         })
       })
-  }, [message, controls])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [message])
   return (
     <motion.div
       style={{
