@@ -5,15 +5,7 @@ import classNames from "@/helpers/classNames"
 import { Icon } from "../Icons/Icon"
 import { useEffect, useState } from "react"
 import useWindowSize from "@/hooks/useWindowSize"
-type BubbleProps = {
-  dialogue?: string
-  english?: string
-  displayText?: string
-  solution?: string | null // audio
-  displayTextAudioURL?: string
-  imageClassName?: string
-  audio?: boolean
-}
+import { BubbleProps, PlayAudioProps } from "@/types/speech-bubble.types"
 
 export default function SpeechBubble({ imageClassName = "", displayText, audio = false, solution, displayTextAudioURL }: BubbleProps) {
   const { width } = useWindowSize()
@@ -78,6 +70,6 @@ export default function SpeechBubble({ imageClassName = "", displayText, audio =
   )
 }
 
-function AudioIcon({ playAudio }: { playAudio: () => void }) {
+function AudioIcon({ playAudio }: PlayAudioProps) {
   return <Icon onClick={playAudio} role="button" name="AudioIcon" className="w-5 sm:w-6 cursor-pointer" />
 }

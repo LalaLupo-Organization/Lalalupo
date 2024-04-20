@@ -1,13 +1,6 @@
 import classNames from "@/helpers/classNames"
+import { IconProps } from "@/types/icon.types"
 import { useEffect, useRef } from "react"
-
-type IconsType = "SuccessTickSquare" | "FailureSquare" | "AudioIcon" | "MobileTextBubble" | "DesktopTextBubble"
-
-interface IconProps extends React.SVGAttributes<HTMLOrSVGElement> {
-  name: IconsType
-  className?: string
-  square?: boolean
-}
 
 export const Icon: React.FC<IconProps> = ({ name, className = "", square = true, ...props }) => {
   const svgRef = useRef<SVGSVGElement>(null)

@@ -11,16 +11,7 @@ import classNames from "@/helpers/classNames"
 import SpeechBubble from "@/components/SpeechBubble/SpeechBubble"
 import useWindowSize from "@/hooks/useWindowSize"
 import { ReorderWord } from "./ReorderWord"
-
-interface Ordinator {
-  top: number
-  left: number
-}
-
-interface Settings {
-  first: Ordinator
-  last: Ordinator
-}
+import { Settings } from "@/types/settings.types"
 
 export default function Reorder({ data }: { data: LessonState }) {
   const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
