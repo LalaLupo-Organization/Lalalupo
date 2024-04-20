@@ -52,7 +52,13 @@ export default function SpeechBubble({ imageClassName = "", displayText, audio =
   return (
     <div className="w-full">
       <div className="flex flex-col-reverse sm:gap-x-3 items-center sm:flex-row">
-        <Image height={12} width={12} src={MatchPairsImage} alt="" className={classNames("w-32 sm:w-40 h-full", imageClassName)} />
+        <Image
+          height={12}
+          width={12}
+          src={MatchPairsImage}
+          alt=""
+          className={classNames("w-28 sm:w-40 h-full translate-y-2.5 sm:translate-y-4", imageClassName)}
+        />
         <div
           className={classNames(
             "relative mb-6 text-sm mt-8 rounded-lg font-bold text-gray_reorder_text underline underline-offset-2 flex items-center gap-2 h-[80px]",

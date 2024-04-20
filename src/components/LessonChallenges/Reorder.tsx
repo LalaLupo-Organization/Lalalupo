@@ -10,6 +10,7 @@ import Instruction from "@/components/Headings/Instruction"
 import classNames from "@/helpers/classNames"
 import SpeechBubble from "@/components/SpeechBubble/SpeechBubble"
 import useWindowSize from "@/hooks/useWindowSize"
+import { ReorderWord } from "./ReorderWord"
 
 interface Ordinator {
   top: number
@@ -36,8 +37,6 @@ export default function Reorder({ data }: { data: LessonState }) {
 
   const addNewLine =
     getType(activeExercise) && ((activeExercise.availableWords.length > 5 && width < 640) || activeExercise.availableWords.length >= 8)
-
-  const adjustPaddingTop = addNewLine && ((selectedWords.length >= 5 && width < 640) || selectedWords.length >= 8)
 
   const destinationRef = useRef<HTMLDivElement>(null)
   const originRef = useRef<HTMLDivElement>(null)
@@ -163,19 +162,18 @@ export default function Reorder({ data }: { data: LessonState }) {
           {true && (
             <SpeechBubble
               displayTextAudioURL={getType(activeExercise) ? activeExercise.displayTextAudioURL : ""}
-              imageClassName="translate-y-3"
+              // imageClassName="translate-y-2 sm:translate-y-4"
               displayText={getType(activeExercise) ? activeExercise.displayText : ""}
             />
           )}
           <div
             className={classNames(
-              "destination px-3 sm:px-10 flex gap-x-3 flex-wrap items-center border-t-2  border-b-2 pt-1.5 sm:pt-2  h-16",
-              adjustPaddingTop ? "" : ""
+              "destination px-3 sm:px-10 flex gap-x-3 flex-wrap items-center border-t-2  border-b-2 pt-1.5 sm:pt-2  h-14 sm:h-16"
             )}
             ref={destinationRef}
           ></div>
-          {addNewLine && <div className="border-b-2 mb-8 sm:mb-8 pt-1 h-16 px-3 sm:px-10"></div>}
-          <div className="origin flex flex-wrap gap-3 justify-center items-center w-full mt-10 mx-auto border-gray-600" ref={originRef}>
+          {addNewLine && <div className="border-b-2 mb-4 sm:mb-8 pt-1 h-14 sm:h-16 px-3 sm:px-10"></div>}
+          <div className="origin flex flex-wrap gap-3 justify-center items-center w-full mx-auto border-gray-600" ref={originRef}>
             {randomizedWords &&
               randomizedWords.map((word, index) => (
                 <ReorderWord
@@ -189,43 +187,6 @@ export default function Reorder({ data }: { data: LessonState }) {
           </div>
         </div>
       </InteractiveLayout>
-    </div>
-  )
-}
-
-export interface ReorderProps {
-  activeExercise: LessonState["activeExercise"]
-  word: string
-  handleMove: (e: React.MouseEvent<HTMLButtonElement>, userAnswer: any) => void
-  picked: boolean
-}
-
-export function ReorderWord({ activeExercise, word, handleMove, picked }: ReorderProps) {
-  return (
-    <div
-      id="container"
-      className={classNames(
-        activeExercise?.isComplete || activeExercise?.hasFailed ? "cursor-not-allowed" : "cursor-pointer",
-        " word rounded-lg justify-start text-center box-content flex flex-col border  ease-in bg-gray_reorder_bg",
-        picked ? "border-gray_reorder_border" : "border-transparent"
-      )}
-    >
-      <button
-        className={classNames(
-          activeExercise?.isComplete || activeExercise?.hasFailed ? "cursor-not-allowed" : "cursor-pointer",
-          "text-gray_reorder_text word bg-white border border-gray_reorder_border  rounded-lg cursor-pointer font-bold active:duration-300 active:ease-in outline-none p-2 sm:px-4 relative",
-          picked ? "mb-6" : ""
-        )}
-        onClick={activeExercise?.isComplete || activeExercise?.hasFailed ? undefined : e => handleMove(e, word)}
-        name={word}
-      >
-        {word}
-        <span
-          className={classNames(
-            "inset-0  absolute translate-x-0.5 translate-y-1 rounded-lg -z-10 border border-gray_reorder_border duration-300 ease-in  striped-bg-darker"
-          )}
-        ></span>
-      </button>
     </div>
   )
 }
