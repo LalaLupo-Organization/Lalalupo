@@ -53,7 +53,7 @@ export default function SpeechBubble({ imageClassName = "", displayText, audio =
         />
         <div
           className={classNames(
-            "relative mb-6 text-sm mt-8 rounded-lg font-bold text-gray_reorder_text underline underline-offset-2 flex items-center gap-2 h-[80px]",
+            "relative -mb-3 text-sm -mt-8 rounded-lg font-bold text-gray_reorder_text underline underline-offset-2 flex items-center gap-2 h-[80px]",
             displayText.length <= 24 ? "w-[256px]" : displayText.length <= 35 ? "w-[275px]" : "w-[300px]"
           )}
         >
