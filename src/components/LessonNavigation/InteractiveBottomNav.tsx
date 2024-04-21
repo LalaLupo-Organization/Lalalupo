@@ -6,16 +6,8 @@ import { Loader } from "@/components/Loaders1/Loader"
 import NavbarLayout from "@/components/Layouts/NavbarLayout"
 import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout"
 import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure"
-import { RootState } from "@/redux/store"
-import { LessonState } from "@/types/lesson.types"
 import classNames from "@/helpers/classNames"
-
-export interface IInteractiveNavProps {
-  status: "success" | "failure" | "disabled" | "active"
-  loading: boolean
-  userInput: RootState["userInputReduxState"]
-  activeExercise: LessonState["activeExercise"]
-}
+import { IInteractiveNavProps } from "@/types/interactive-bottom-nav.types"
 
 export const InteractiveBottomNav: React.FC<IInteractiveNavProps> = ({ userInput, status, activeExercise, loading }) => {
   const { lessonButtonClick, skipCurrentExercise } = useAssessment()
@@ -26,6 +18,14 @@ export const InteractiveBottomNav: React.FC<IInteractiveNavProps> = ({ userInput
       disabled: "bg-white",
       active: "bg-white",
     },
+  }
+
+  const generateCheckingText = () => {
+    if (activeExercise.type === "reorderWhatYouHear" || activeExercise.type === "reorder") {
+      return "CONTINUE"
+    }
+
+    return "CHECK"
   }
   const isMessage = status === "failure" || status === "success"
 
@@ -95,7 +95,7 @@ export const InteractiveBottomNav: React.FC<IInteractiveNavProps> = ({ userInput
               )}
               lessonButtonClick={userInput.userInput ? lessonButtonClick : () => null}
               buttonDisplayText={
-                "CHECK"
+                userInput.userInput ? generateCheckingText() : "CHECK"
                 // activeExercise.type === "matchPairs" ? "CONTINUE" : "CHECK"
               }
               status={status}

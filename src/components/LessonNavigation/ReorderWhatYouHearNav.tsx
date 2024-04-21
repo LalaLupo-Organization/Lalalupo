@@ -70,7 +70,7 @@ export default function ReorderWhatYouHearNav() {
                 : activeExercise.solution // Use directly if it's a string
               : undefined // Fallback to undefined if not applicable
           }
-          meaning={getType(activeExercise) && activeExercise?.english}
+          // meaning={getType(activeExercise) && activeExercise?.english}
         >
           {messages.loading ? (
             <ButtonInteractiveLesson

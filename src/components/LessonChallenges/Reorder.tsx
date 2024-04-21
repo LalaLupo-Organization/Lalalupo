@@ -9,27 +9,25 @@ import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
 import Instruction from "@/components/Headings/Instruction"
 import classNames from "@/helpers/classNames"
 import SpeechBubble from "@/components/SpeechBubble/SpeechBubble"
-
-interface Ordinator {
-  top: number
-  left: number
-}
-
-interface Settings {
-  first: Ordinator
-  last: Ordinator
-}
+import useWindowSize from "@/hooks/useWindowSize"
+import { ReorderWord } from "./ReorderWord"
+import { Settings } from "@/types/settings.types"
 
 export default function Reorder({ data }: { data: LessonState }) {
   const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
+  const { width } = useWindowSize()
   const dispatch = useAppDispatch()
   const [isAnimating, setIsAnimating] = useState(false)
   const [activeExerciseId, setActiveExerciseId] = useState(activeExercise?._id)
   const [selectedWords, setSelectedWords] = useState<string[]>([])
+  const [activeAudioURL, setActiveAudioURL] = useState<string | null>()
   const getType = (exercise: BaseExercise): exercise is ReorderExercise => exercise.type === "reorder"
   const [randomizedWords, setRandomizedWords] = useState(
     getType(activeExercise) ? activeExercise.availableWords.map(word => word).sort(() => Math.random() - 0.5) : []
   )
+
+  const addNewLine =
+    getType(activeExercise) && ((activeExercise.availableWords.length > 5 && width < 640) || activeExercise.availableWords.length >= 8)
 
   const destinationRef = useRef<HTMLDivElement>(null)
   const originRef = useRef<HTMLDivElement>(null)
@@ -62,6 +60,10 @@ export default function Reorder({ data }: { data: LessonState }) {
     const bounding = node.getBoundingClientRect()
     setIsAnimating(true)
     setSelectedWords(word => [...word, node.innerText])
+
+    if (getType(activeExercise)) {
+      setActiveAudioURL(activeExercise.availableWords.find(word => word.word === node.innerText)?.wordAudioURL)
+    }
 
     node.dataset.id = `${id}`
     container.dataset.id = `${id}`
@@ -98,12 +100,20 @@ export default function Reorder({ data }: { data: LessonState }) {
     container.style.width = ""
     container.removeAttribute("data-id")
     node.removeAttribute("data-id")
+    return clearCurrentAudioState()
   }
+
+  function clearCurrentAudioState() {
+    setActiveAudioURL(null)
+  }
+
   // eslint-disable-next-line
   const handleMove = (event: React.MouseEvent<HTMLButtonElement>, userAnswer: any) => {
     const node = event.target as HTMLElement
     if (isAnimating) return
-    node.closest("#container") ? move(node) : putback(node)
+    if (node.closest("#container")) {
+      move(node)
+    } else putback(node)
   }
 
   useEffect(() => {
@@ -122,10 +132,11 @@ export default function Reorder({ data }: { data: LessonState }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedWords, activeExercise])
 
-  const english = getType(activeExercise) && activeExercise?.displayText
+  // const english = getType(activeExercise) && activeExercise?.displayText
 
   return (
-    <div className="flex flex-col justify-center w-full items-center">
+    <div className="flex flex-col justify-center w-full items-center overflow-x-hidden">
+      {activeAudioURL && <audio autoPlay src={activeAudioURL}></audio>}
       <ProgressBar
         activeExercise={activeExercise}
         remainingExercises={remainingExercises}
@@ -137,33 +148,32 @@ export default function Reorder({ data }: { data: LessonState }) {
         id={activeExercise && activeExercise._id}
       />
       <InteractiveLayout id={activeExercise && activeExercise._id}>
-        <Instruction instruction={activeExercise && activeExercise.instructions} />
-        <div className="flex flex-col w-full">
-          {english && <SpeechBubble dialogue={english} />}
-          <div className="destination border-t-2 border-b-2 pt-1 sm:pt-2 h-14 sm:h-16" ref={destinationRef}></div>
-          <div className="border-b-2 mb-8 sm:mb-8 pt-1 h-14 sm:h-16"></div>
-          <div className="origin flex flex-wrap justify-center items-center w-full mx-auto border-gray-600 " ref={originRef}>
+        <Instruction className="w-full" instruction={activeExercise && activeExercise.instructions} />
+        <div className="flex flex-col w-full mt-14 sm:mt-0 max-w-[640px]">
+          {true && (
+            <SpeechBubble
+              displayTextAudioURL={getType(activeExercise) ? activeExercise.displayTextAudioURL : ""}
+              // imageClassName="translate-y-2 sm:translate-y-4"
+              displayText={getType(activeExercise) ? activeExercise.displayText : ""}
+            />
+          )}
+          <div
+            className={classNames(
+              "destination px-3 sm:px-10 flex gap-x-3 flex-wrap items-center border-t-2  border-b-2 pt-1.5 sm:pt-2  h-14 sm:h-16"
+            )}
+            ref={destinationRef}
+          ></div>
+          {addNewLine && <div className="border-b-2 mb-4 sm:mb-8 pt-1 h-14 sm:h-16 px-3 sm:px-10"></div>}
+          <div className="origin flex flex-wrap gap-3 justify-center items-center w-full mx-auto border-gray-600" ref={originRef}>
             {randomizedWords &&
-              randomizedWords.map((word: string, index: number) => (
-                <div
-                  id="container"
-                  className={classNames(
-                    activeExercise?.isComplete || activeExercise?.hasFailed ? "cursor-not-allowed" : "cursor-pointer",
-                    "text-gray-800 word bg-white box-content rounded-lg sm:mx-1 justify-start text-center flex flex-col duration-300 ease-in"
-                  )}
-                  key={word + "_" + index}
-                >
-                  <button
-                    className={classNames(
-                      activeExercise?.isComplete || activeExercise?.hasFailed ? "cursor-not-allowed" : "cursor-pointer",
-                      "text-gray-800 word bg-white box-border p-2 sm:p-2 border-2 rounded-lg cursor-pointer font-bold active:duration-300 active:ease-in outline-none"
-                    )}
-                    onClick={activeExercise?.isComplete || activeExercise?.hasFailed ? undefined : e => handleMove(e, word)}
-                    name={word}
-                  >
-                    {word}
-                  </button>
-                </div>
+              randomizedWords.map((word, index) => (
+                <ReorderWord
+                  picked={selectedWords.includes(word.word)}
+                  handleMove={handleMove}
+                  activeExercise={activeExercise}
+                  word={word.word}
+                  key={index}
+                />
               ))}
           </div>
         </div>

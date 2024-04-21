@@ -4,10 +4,10 @@ import { useAppSelector } from "@/hooks/useRedux"
 import { selectLesson } from "@/features/lessonSlice"
 import { LessonState } from "@/types/lesson.types"
 import { InteractiveBottomNav } from "@/components/LessonNavigation/InteractiveBottomNav"
-import ReorderBottomNav from "@/components/LessonNavigation/ReorderNav"
+// import ReorderBottomNav from "@/components/LessonNavigation/ReorderNav"
 import FillInTheBlankNav from "@/components/LessonNavigation/FillnTheBlanksNav"
 import ConjugationNav from "@/components/LessonNavigation/ConjugationNav"
-import ReorderWhatYouHearNav from "@/components/LessonNavigation/ReorderWhatYouHearNav"
+// import ReorderWhatYouHearNav from "@/components/LessonNavigation/ReorderWhatYouHearNav"
 import FillInWhatYouHearNav from "@/components/LessonNavigation/FillInWhatYouHear"
 import ListenAndSelectNav from "@/components/LessonNavigation/ListenAndSelectNav"
 import MissingSyllableNav from "@/components/LessonNavigation/MissingSyllableNav"
@@ -58,10 +58,10 @@ export default function LessonLayout({
         )
       case "conjugation":
         return <ConjugationNav />
-      case "reorder":
-        return <ReorderBottomNav />
-      case "reorderWhatYouHear":
-        return <ReorderWhatYouHearNav />
+      // case "reorder":
+      //   return <ReorderBottomNav />
+      // case "reorderWhatYouHear":
+      //   return <ReorderWhatYouHearNav />
       case "fillInTheBlank":
         return <FillInTheBlankNav />
       case "fillInWhatYouHear":
@@ -85,7 +85,12 @@ export default function LessonLayout({
       case "writeTheSentence":
         return <WriteTheSentenceNav />
       default:
-        return null
+        return (
+          <>
+            {status === "success" && <Confetti />}
+            <InteractiveBottomNav status={status} loading={messages.loading} userInput={userInput} activeExercise={activeExercise} />
+          </>
+        )
     }
   }
   return (

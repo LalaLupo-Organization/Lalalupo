@@ -1,5 +1,11 @@
+import classNames from "@/helpers/classNames"
 import Image from "next/image"
-export default function AudioBubble() {
+
+interface AudioBubbleProps {
+  imageClassName?: string
+}
+
+export default function AudioBubble({ imageClassName = "" }: AudioBubbleProps) {
   return (
     <div className="flex flex-col w-full">
       <div className="flex">
@@ -8,10 +14,10 @@ export default function AudioBubble() {
           width={16}
           src="https://imagedelivery.net/_Fh-Z9aj1rlSxXMDl1yqsg/8d7b9872-1551-48c7-7bdb-0a1ce7e85a00/character"
           alt=""
-          className="w-32 sm:w-40 h-full self-end"
+          className={classNames("w-32 sm:w-40 h-full", imageClassName)}
         />
 
-        <div className="relative flex text-sm sm:text-base border-r-2 border-l-2 border-t-2 border-b-2 self-start mt-4 sm:mt-8 ml-3  rounded-2xl font-bold text-gray-700">
+        <div className="relative flex text-sm sm:text-base border-r-2 border-l-2 border-t-2 border-b-2 mt-4 sm:mt-8 ml-3  rounded-2xl font-bold text-gray-700">
           <div
             className="h-full border-r-2  py-4 flex justify-center  px-6 cursor-pointer"
             //    onClick={() => solution && speak(solution)}

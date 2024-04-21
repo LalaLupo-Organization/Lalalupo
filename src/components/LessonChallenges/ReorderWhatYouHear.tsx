@@ -9,17 +9,24 @@ import { ProgressBar } from "@/components/ProgressBars/ProgressBar"
 import Instruction from "@/components/Headings/Instruction"
 import AudioBubble from "@/components/SpeechBubble/SpeechBubble"
 import { Settings } from "@/types/settings.types"
+import useWindowSize from "@/hooks/useWindowSize"
+import { ReorderWord } from "./ReorderWord"
 
 export default function ReorderWhatYouHear({ data }: { data: LessonState }) {
+  const { width } = useWindowSize()
   const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
   const dispatch = useAppDispatch()
 
   const [isAnimating, setIsAnimating] = useState(false)
   const [activeExerciseId, setActiveExerciseId] = useState(activeExercise?._id)
   const [selectedWords, setSelectedWords] = useState<string[]>([])
+  const [activeAudioURL, setActiveAudioURL] = useState<string | null>()
   const [randomizedWords, setRandomizedWords] = useState(
     getType(activeExercise) ? activeExercise?.availableWords?.map(word => word).sort(() => Math.random() - 0.5) : []
   )
+
+  const addNewLine =
+    getType(activeExercise) && ((activeExercise.availableWords.length > 5 && width < 640) || activeExercise.availableWords.length >= 8)
 
   const destinationRef = useRef<HTMLDivElement>(null)
   const originRef = useRef<HTMLDivElement>(null)
@@ -58,6 +65,10 @@ export default function ReorderWhatYouHear({ data }: { data: LessonState }) {
     setIsAnimating(true)
     setSelectedWords(word => [...word, node.innerText])
 
+    if (getType(activeExercise)) {
+      setActiveAudioURL(activeExercise.availableWords.find(word => word.word === node.innerText)?.wordAudioURL)
+    }
+
     node.dataset.id = `${id}`
     container.dataset.id = `${id}`
 
@@ -93,6 +104,11 @@ export default function ReorderWhatYouHear({ data }: { data: LessonState }) {
     container.style.width = ""
     container.removeAttribute("data-id")
     node.removeAttribute("data-id")
+    return clearCurrentAudioState()
+  }
+
+  function clearCurrentAudioState() {
+    setActiveAudioURL(null)
   }
   //eslint-disable-next-line
   const handleMove = (event: React.MouseEvent<HTMLButtonElement>, userAnswer: string) => {
@@ -120,6 +136,8 @@ export default function ReorderWhatYouHear({ data }: { data: LessonState }) {
 
   return (
     <div className="flex flex-col justify-center w-full items-center">
+      {activeAudioURL && <audio autoPlay src={activeAudioURL}></audio>}
+
       <ProgressBar
         activeExercise={activeExercise}
         remainingExercises={remainingExercises}
@@ -131,32 +149,31 @@ export default function ReorderWhatYouHear({ data }: { data: LessonState }) {
         id={activeExercise && activeExercise._id}
       />
       <InteractiveLayout id={activeExercise && activeExercise._id}>
-        <Instruction instruction={activeExercise && activeExercise.instructions} />
-        <div className="flex flex-col w-full">
+        <Instruction className="w-full" instruction={activeExercise && activeExercise.instructions} />
+        <div className="flex flex-col w-full mt-14 sm:mt-0 max-w-[640px] mx-auto">
           <AudioBubble
-            solution={activeExercise && typeof activeExercise.solution === "string" ? activeExercise.solution.split("").join(" ") : null}
+            solution={getType(activeExercise) ? activeExercise.solutionAudioURL : null}
+            audio
+            displayText={getType(activeExercise) ? activeExercise.displayText : ""}
+            // imageClassName="translate-y-2 sm:translate-y-4"
           />
-          <div className="destination border-t-2 border-b-2 pt-1 sm:pt-2 h-14 sm:h-16" ref={destinationRef}></div>
-          <div className="border-b-2 mb-8 sm:mb-8 pt-1 h-14 sm:h-16"></div>
-          <div className="origin flex flex-wrap justify-center items-center w-full mx-auto border-gray-600 " ref={originRef}>
+          <div
+            className={classNames(
+              "destination px-3 sm:px-10 flex gap-x-3 flex-wrap items-center border-t-2  border-b-2 pt-1.5 sm:pt-2  h-14 sm:h-16"
+            )}
+            ref={destinationRef}
+          ></div>
+          {addNewLine && <div className="border-b-2 mb-4 sm:mb-8 pt-1 h-14 sm:h-16 px-3 sm:px-10"></div>}
+          <div className="origin flex flex-wrap gap-3 justify-center items-center w-full mx-auto border-gray-600" ref={originRef}>
             {randomizedWords &&
               randomizedWords.map((word, index) => (
-                <div
-                  id="container"
-                  className="sm:mb-2 m-px box-content rounded-lg sm:mx-1 justify-start text-center flex flex-col duration-300 ease-in text-gray-800"
-                  key={word + "_" + index}
-                >
-                  <button
-                    className={classNames(
-                      activeExercise?.isComplete || activeExercise?.hasFailed ? "cursor-not-allowed" : "cursor-pointer",
-                      "text-gray-800 word bg-white box-border p-2 sm:p-2 border-2 rounded-lg cursor-pointer font-bold active:duration-300 active:ease-in outline-none"
-                    )}
-                    onClick={activeExercise?.isComplete || activeExercise?.hasFailed ? undefined : e => handleMove(e, word)}
-                    name={word}
-                  >
-                    {word}
-                  </button>
-                </div>
+                <ReorderWord
+                  picked={selectedWords.includes(word.word)}
+                  handleMove={handleMove}
+                  activeExercise={activeExercise}
+                  word={word.word}
+                  key={index}
+                />
               ))}
           </div>
         </div>
