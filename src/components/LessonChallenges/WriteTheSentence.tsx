@@ -7,12 +7,14 @@ import { WriteTheSentenceExercise } from "@/types/write-the-word.types"
 import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper"
 import { useAppDispatch } from "@/hooks/useRedux"
 
-import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters1"
+import AccentedLetters from "@/components/AccentedLetters/AccentedLetters"
 import Instruction from "@/components/Headings/Instruction"
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
 import SpeechBubble from "@/components/SpeechBubble/SpeechBubble"
+import { ProgressBar } from "../ProgressBars/ProgressBar"
+import TextArea from "../TextAreas/TextArea"
 export default function WriteTheSentence({ data }: { data: LessonState }) {
-  const { activeExercise } = data
+  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
   function getType(exercise: BaseExercise): exercise is WriteTheSentenceExercise {
     return exercise.type === "writeTheSentence"
   }
@@ -23,7 +25,7 @@ export default function WriteTheSentence({ data }: { data: LessonState }) {
 
   const [activeExerciseId, setActiveExerciseId] = useState(() => activeExercise?._id)
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
     dispatch(setSingleInput(e.currentTarget.value))
     setInput(e.currentTarget.value)
   }
@@ -52,35 +54,32 @@ export default function WriteTheSentence({ data }: { data: LessonState }) {
 
    justify-center w-full items-center"
     >
-      {/* <ProgressBar
+      <ProgressBar
+        activeExercise={activeExercise}
         remainingExercises={remainingExercises}
         totalNumberOfExercises={totalExercises}
         numberOfExercisesComplete={numberComplete}
         interactiveExercises={interactiveExercises}
         numberOfExercisesFailed={numberFailed}
         lives={lives && lives}
-      /> */}
+        id={activeExercise && activeExercise._id}
+      />
       <InteractiveLayout id={activeExercise && activeExercise._id}>
         <Instruction instruction={activeExercise && activeExercise?.instructions} />
         <SpeechBubble
-          dialogue={getType(activeExercise) ? activeExercise.display : undefined}
-          english={getType(activeExercise) ? activeExercise.english : undefined}
+          color="text-black"
+          // displayTextAudioURL={getType(activeExercise) ? activeExercise.displayTextAudioURL : ""}
+          imageClassName="!translate-y-7 sm:!translate-y-9 !w-40 sm:!w-48"
+          displayText={getType(activeExercise) ? activeExercise.displayText : ""}
+          teacher="teacherTwo"
         />
 
-        <input
-          onChange={activeExercise?.isComplete || activeExercise?.hasFailed ? undefined : e => handleChange(e)}
-          name="text"
-          autoComplete="off"
-          autoFocus={activeExercise?.isComplete || activeExercise?.hasFailed ? false : true}
-          placeholder="Type in Italian"
-          value={activeExercise?._id !== activeExerciseId ? "" : input}
-          className="cursor-blink outline-none text-base font-bold text-gray-600  tracking-wider border border-2 bg-gray-100 rounded-lg px-2 pt-2 pb-24"
-        />
+        {getType(activeExercise) && (
+          <TextArea activeExercise={activeExercise} activeExerciseId={activeExerciseId} input={input} handleChange={handleChange} />
+        )}
 
         <AccentedLetters insertAccentedVowel={insertAccentedVowel} activeExercise={activeExercise} />
-        {getType(activeExercise) && activeExercise?.vocabularyHelper && activeExercise?.vocabularyHelper.length > 0 && (
-          <VocabularyHelper data={getType(activeExercise) ? activeExercise?.vocabularyHelper : []} />
-        )}
+        {getType(activeExercise) && <VocabularyHelper data={activeExercise?.vocabularyHelper ?? []} />}
       </InteractiveLayout>
     </div>
   )

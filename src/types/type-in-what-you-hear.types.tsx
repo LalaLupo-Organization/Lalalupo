@@ -5,5 +5,6 @@ export type TypeInWhatYouHearExercise = BaseExercise & {
   english: string
   doubleSolution: boolean
   displayMeaning: boolean
+  vocabularyHelper?: string[]
   audio: string
 }

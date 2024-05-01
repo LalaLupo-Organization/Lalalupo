@@ -4,6 +4,7 @@ export type FillInWhatYouHearExercise = BaseExercise & {
   type: "fillInWhatYouHear"
   solution: string[]
   displayMeaning: boolean
+  vocabularyHelper?: string[]
   english: string
   missingWord: string
 }

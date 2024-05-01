@@ -1,4 +1,12 @@
-type IconsType = "SuccessTickSquare" | "FailureSquare" | "AudioIcon" | "MobileTextBubble" | "DesktopTextBubble"
+type IconsType =
+  | "SuccessTickSquare"
+  | "FailureSquare"
+  | "AudioIcon"
+  | "MobileTextBubble"
+  | "DesktopTextBubble"
+  | "AccentedLettersArrow"
+  | "PlayAudio"
+  | "SlowAudio"
 
 export interface IconProps extends React.SVGAttributes<HTMLOrSVGElement> {
   name: IconsType

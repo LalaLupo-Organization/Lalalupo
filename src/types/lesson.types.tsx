@@ -20,6 +20,7 @@ export interface BaseExercise {
   isComplete: boolean
   hasFailed: boolean
   isSkiped?: boolean
+  languageCode?: "en-it" | "it-en"
   solution?: string | string[]
   type: string // Add this line
   // ...add more base properties here

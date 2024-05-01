@@ -4,7 +4,7 @@ export type WriteTheSentenceExercise = BaseExercise & {
   type: "writeTheSentence"
   regex: string
   displayMeaning: boolean
-  display: string
+  displayText: string
   doubleSolution: boolean
   vocabularyHelper: string[]
   english: string

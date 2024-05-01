@@ -1,15 +1,24 @@
-import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters1"
+import AccentedLetters from "@/components/AccentedLetters/AccentedLetters"
 // import AudioBubble from "@/components/AudioBubble/AudioBubble"
 import Instruction from "@/components/Headings/Instruction"
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
 import { clearUserInput, setSingleInput } from "@/features/userInputSlice"
 import { useAppDispatch } from "@/hooks/useRedux"
-import { LessonState } from "@/types/lesson.types"
+import { BaseExercise, LessonState } from "@/types/lesson.types"
 import React, { useEffect, useState } from "react"
 import { v4 as uuid } from "uuid"
+import VocabularyHelper from "../VocabularyHelper/VocabularyHelper"
+import { FillInWhatYouHearExercise } from "@/types/fill-in-what-you-hear.types"
+import { ProgressBar } from "../ProgressBars/ProgressBar"
+import AudioBubble from "../AudioBubble/AudioBubble"
+import Input from "../Inputs/Input"
 
 export default function FillInWhatYouHear({ data }: { data: LessonState }) {
-  const { activeExercise } = data
+  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
+
+  function getType(exercise: BaseExercise): exercise is FillInWhatYouHearExercise {
+    return exercise.type === "fillInWhatYouHear"
+  }
 
   const [input, setInput] = useState("")
   const dispatch = useAppDispatch()
@@ -19,6 +28,11 @@ export default function FillInWhatYouHear({ data }: { data: LessonState }) {
   const insertAccentedVowel = (e: React.MouseEvent<HTMLButtonElement>) => {
     setInput(input + e.currentTarget.innerText)
     dispatch(setSingleInput(input + e.currentTarget.innerText))
+  }
+
+  const handleChange = (e: any) => {
+    dispatch(setSingleInput(e.target.value))
+    setInput(e.target.value)
   }
 
   useEffect(() => {
@@ -35,33 +49,42 @@ export default function FillInWhatYouHear({ data }: { data: LessonState }) {
   }, [activeExercise])
 
   return (
-    <>
-      {/* <ProgressBar
+    <div
+      className="flex flex-col
+
+     justify-center w-full items-center"
+    >
+      <ProgressBar
+        activeExercise={activeExercise}
         remainingExercises={remainingExercises}
         totalNumberOfExercises={totalExercises}
         numberOfExercisesComplete={numberComplete}
         interactiveExercises={interactiveExercises}
         numberOfExercisesFailed={numberFailed}
         lives={lives && lives}
-      /> */}
+        id={activeExercise && activeExercise._id}
+      />
       <InteractiveLayout id={activeExercise && activeExercise._id}>
-        <Instruction instruction={activeExercise && activeExercise.instructions} />
-        {/* <AudioBubble
-          solution={
-            activeExercise &&
-            (typeof activeExercise.solution === "string" ? activeExercise.solution.split("").join(" ") : activeExercise.solution)
-          }
-        /> */}
+        <Instruction className="w-full" instruction={activeExercise && activeExercise.instructions} />
+        <AudioBubble imageClassName="!translate-y-7 sm:!translate-y-9 !w-40 sm:!w-48" />
 
-        <div className="flex outline-none p-2 text-base font-bold text-gray-600 tracking-wider w-full border-2 bg-gray-100 rounded-lg h-32">
-          {activeExercise &&
+        <div className="flex outline-none p-5 py-4 text-base w-full font-bold text-black  tracking-wider border-2 bg-gray-100 rounded-lg h-32 relative z-1">
+          {getType(activeExercise) &&
             Array.isArray(activeExercise.solution) &&
-            activeExercise.solution.map((word: string) => {
-              return <div key={uuid()}>{word}</div>
-            })}
+            activeExercise.solution.map(word => (
+              <Input
+                key={uuid()}
+                activeExercise={activeExercise}
+                activeExerciseId={activeExerciseId}
+                word={word}
+                handleChange={handleChange}
+                input={input}
+              />
+            ))}
         </div>
         <AccentedLetters insertAccentedVowel={insertAccentedVowel} activeExercise={activeExercise} />
+        {getType(activeExercise) && <VocabularyHelper data={activeExercise?.vocabularyHelper ?? []} />}
       </InteractiveLayout>
-    </>
+    </div>
   )
 }

@@ -287,7 +287,7 @@ function PairWord({ word, activeExercise, handleMatchPair, userInput, index, che
       key={uuid()}
       className={classNames(
         checkIfInSuccessful(word) ? "opacity-40 cursor-not-allowed" : "cursor-pointer",
-        `h-full sm:w-[300px] md:w-[344px] relative text-gray_default font-semibold`
+        `h-full sm:w-[300px] md:w-[335px] relative text-gray_default font-semibold`
       )}
       onClick={activeExercise?.isComplete || activeExercise?.hasFailed ? undefined : e => handleMatchPair(e, word)}
     >

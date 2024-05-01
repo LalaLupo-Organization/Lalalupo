@@ -5,7 +5,7 @@ export type FillInTheBlankExercise = BaseExercise & {
   displayText: string
   couldBeEmpty: any
   doubleSolution: boolean
-  vocabularyHelper: string[]
+  vocabularyHelper?: string[]
   missingWord: string
   availableWords: string[]
   regex: string

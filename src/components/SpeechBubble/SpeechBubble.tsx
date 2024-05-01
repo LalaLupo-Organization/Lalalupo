@@ -1,16 +1,31 @@
 "use client"
 import Image from "next/image"
-import MatchPairsImage from "../../../public/assets/ExercisesImages/MatchPairsImage.png"
+import Teacher1 from "../../../public/assets/ExercisesImages/MatchPairsImage.png"
+import Teacher2 from "../../../public/assets/ExercisesImages/Teacher2.png"
 import classNames from "@/helpers/classNames"
 import { Icon } from "../Icons/Icon"
 import { useEffect, useState } from "react"
 import useWindowSize from "@/hooks/useWindowSize"
 import { BubbleProps, PlayAudioProps } from "@/types/speech-bubble.types"
 
-export default function SpeechBubble({ imageClassName = "", displayText, audio = false, solution, displayTextAudioURL }: BubbleProps) {
+export default function SpeechBubble({
+  className = "",
+  imageClassName = "",
+  displayText,
+  audio = false,
+  solution,
+  displayTextAudioURL,
+  teacher = "teacherOne",
+  underlined = false,
+  color = "text-gray_reorder_text",
+}: BubbleProps) {
   const { width } = useWindowSize()
   const [isPlaying, setIsPlaying] = useState(false)
   const audioElement = new Audio(audio ? solution! : displayTextAudioURL!)
+  const images = {
+    teacherOne: Teacher1,
+    teacherTwo: Teacher2,
+  }
 
   const playAudio = () => {
     audioElement.addEventListener("ended", () => {
@@ -42,28 +57,31 @@ export default function SpeechBubble({ imageClassName = "", displayText, audio =
   if (!displayText) return <div></div>
 
   return (
-    <div className="w-full">
-      <div className="flex flex-col-reverse sm:gap-x-3 items-center sm:flex-row">
-        <Image
-          height={12}
-          width={12}
-          src={MatchPairsImage}
-          alt=""
-          className={classNames("w-28 sm:w-40 h-full translate-y-2.5 sm:translate-y-4", imageClassName)}
-        />
-        <div
-          className={classNames(
-            "relative mb-6 text-sm mt-8 rounded-lg font-bold text-gray_reorder_text underline underline-offset-2 flex items-center gap-2 h-[80px]",
-            displayText.length <= 24 ? "w-[256px]" : displayText.length <= 35 ? "w-[275px]" : "w-[300px]"
-          )}
-        >
-          <Icon name={width >= 640 ? "DesktopTextBubble" : "MobileTextBubble"} square={false} className="w-full" />
-          <div className={classNames("absolute w-full px-4  flex items-center justify-center gap-2", width >= 640 ? "pl-8" : "")}>
-            {solution && audio && <AudioIcon playAudio={playAudio} />}
-            <p className="underline underline-offset-1 text-center" title={displayText} {...(!audio && { onClick: () => playAudio() })}>
-              {displayText}
-            </p>
-          </div>
+    <div className={classNames("flex flex-col-reverse sm:gap-x-3 items-center sm:flex-row w-full", className)}>
+      <Image
+        height={12}
+        width={12}
+        src={images[teacher]}
+        alt=""
+        className={classNames("w-28 sm:w-40 h-full translate-y-2.5 sm:translate-y-4", imageClassName)}
+      />
+      <div
+        className={classNames(
+          "relative mb-6 text-sm mt-8 rounded-lg font-bold underline underline-offset-2 flex items-center gap-2 h-[80px]",
+          color,
+          displayText.length <= 24 ? "w-[256px]" : displayText.length <= 35 ? "w-[275px]" : "w-[300px]"
+        )}
+      >
+        <Icon name={width >= 640 ? "DesktopTextBubble" : "MobileTextBubble"} square={false} className="w-full" />
+        <div className={classNames("absolute w-full px-4  flex items-center justify-center gap-2", width >= 640 ? "pl-8" : "")}>
+          {solution && audio && <AudioIcon playAudio={playAudio} />}
+          <p
+            className={classNames("text-center", underlined ? "underline underline-offset-1" : "")}
+            title={displayText}
+            {...(!audio && { onClick: () => playAudio() })}
+          >
+            {displayText}
+          </p>
         </div>
       </div>
     </div>

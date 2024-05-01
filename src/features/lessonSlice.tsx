@@ -35,29 +35,29 @@ const initialState: LessonState = {
   //   isComplete: false,
   //   hasFailed: false,
   // },
-  activeExercise: {
-    type: "reorderWhatYouHear",
-    _id: "123456",
-    solution: "Mia figlia sta imparando a camminare.",
-    instructions: "Reorder the words to replicate the sentence.",
-    displayText: "My daughter is learning to walk.",
-    solutionAudioURL: "https://ispeakitalian.herokuapp.com/correct.mp3",
-    availableWords: [
-      { word: "Mia", wordAudioURL: "https://example.com/Mia.mp3" },
-      { word: "figlia", wordAudioURL: "https://example.com/figlia.mp3" },
-      { word: "sta", wordAudioURL: "https://ispeakitalian.herokuapp.com/correct.mp3" },
-      { word: "imparando", wordAudioURL: "https://example.com/imparando.mp3" },
-      { word: "a", wordAudioURL: "https://example.com/a.mp3" },
-      { word: "camminare.", wordAudioURL: "https://ispeakitalian.herokuapp.com/incorrect.mp3" },
-      { word: "impara", wordAudioURL: "https://example.com/impara.mp3" },
-      { word: "stai", wordAudioURL: "https://example.com/stai.mp3" },
-      { word: "Mie", wordAudioURL: "https://example.com/Mie.mp3" },
-      { word: "cammina", wordAudioURL: "https://example.com/cammina.mp3" },
-      { word: "le.", wordAudioURL: "https://example.com/le..mp3" },
-    ],
-    isComplete: false,
-    hasFailed: false,
-  },
+  // activeExercise: {
+  //   type: "reorderWhatYouHear",
+  //   _id: "123456",
+  //   solution: "Mia figlia sta imparando a camminare.",
+  //   instructions: "Reorder the words to replicate the sentence.",
+  //   displayText: "My daughter is learning to walk.",
+  //   solutionAudioURL: "https://ispeakitalian.herokuapp.com/correct.mp3",
+  //   availableWords: [
+  //     { word: "Mia", wordAudioURL: "https://example.com/Mia.mp3" },
+  //     { word: "figlia", wordAudioURL: "https://example.com/figlia.mp3" },
+  //     { word: "sta", wordAudioURL: "https://ispeakitalian.herokuapp.com/correct.mp3" },
+  //     { word: "imparando", wordAudioURL: "https://example.com/imparando.mp3" },
+  //     { word: "a", wordAudioURL: "https://example.com/a.mp3" },
+  //     { word: "camminare.", wordAudioURL: "https://ispeakitalian.herokuapp.com/incorrect.mp3" },
+  //     { word: "impara", wordAudioURL: "https://example.com/impara.mp3" },
+  //     { word: "stai", wordAudioURL: "https://example.com/stai.mp3" },
+  //     { word: "Mie", wordAudioURL: "https://example.com/Mie.mp3" },
+  //     { word: "cammina", wordAudioURL: "https://example.com/cammina.mp3" },
+  //     { word: "le.", wordAudioURL: "https://example.com/le..mp3" },
+  //   ],
+  //   isComplete: false,
+  //   hasFailed: false,
+  // },
 
   // activeExercise: {
   //   type: "chooseTheRightSolution",
@@ -88,7 +88,123 @@ const initialState: LessonState = {
   //   isComplete: false,
   //   hasFailed: false,
   // },
+  activeExercise: {
+    type: "fillInTheBlank",
+    _id: "12345",
+    languageCode: "it-en",
+    instructions: "Fill in the blank with the correct conjugation of the verb.",
+    displayText: "We are looking for a job.",
+    couldBeEmpty: "",
+    regex: "",
+    doubleSolution: false,
+    availableWords: ["here"],
+    isComplete: false,
+    hasFailed: false,
+    missingWord: "cerchiamo",
+    solution: ["Noi", "cerchiamo", "un lavoro."],
+    vocabularyHelper: ["to look for = cercare"],
+  },
+  // activeExercise: {
+  //   _id: "12234",
+  //   languageCode: "it-en",
+  //   type: "fillInWhatYouHear",
+  //   solution: ["Abbiamo deciso", "che fare."],
+  //   instructions: "Type the missing word(s).",
+  //   displayMeaning: true,
+  //   english: "We decided what to do.",
+  //   missingWord: "Abbiamo deciso",
+  //   vocabularyHelper: ["exercise = esercizio", "simple = semplice"],
+
+  //   isComplete: false,
+  //   hasFailed: false,
+  // },
+  // activeExercise: {
+  //   type: "writeTheSentence",
+  //   _id: "1223423",
+  //   solution: "L'esercizio è semplice.",
+  //   instructions: "Translate this into Italian. Include the subject pronoun (if present).",
+  //   displayMeaning: false,
+  //   regex: "",
+  //   displayText: "The exercise is simple.",
+  //   doubleSolution: false,
+  //   vocabularyHelper: ["exercise = esercizio", "simple = semplice"],
+  //   english: "",
+  //   isComplete: false,
+  //   hasFailed: false,
+  // },
+  // activeExercise: {
+  //   type: "typeInWhatYouHear",
+  //   _id: "123434",
+  //   solution: "Sai chi mi ha scritto?",
+  //   instructions: "Type what you hear.",
+  //   english: "Do you<sup>(s)</sup> know who wrote to me?",
+  //   doubleSolution: false,
+  //   displayMeaning: true,
+  //   audio: "Sai chi mi ha scritto?",
+
+  //   isComplete: false,
+  //   hasFailed: false,
+  // },
   interactiveExercises: [
+    //FillInTheBlankExercise
+    {
+      type: "fillInTheBlank",
+      _id: "12345",
+      instructions: "Fill in the blank with the correct conjugation of the verb.",
+      displayText: "We are looking for a job.",
+      couldBeEmpty: "",
+      regex: "",
+      doubleSolution: false,
+      availableWords: ["here"],
+      isComplete: false,
+      hasFailed: false,
+      missingWord: "cerchiamo",
+      solution: ["Noi", "cerchiamo", "un lavoro."],
+      vocabularyHelper: ["to look for = cercare"],
+    },
+    //FillInWhatYouHear
+    {
+      _id: "122345",
+      languageCode: "it-en",
+      type: "fillInWhatYouHear",
+      solution: ["Abbiamo deciso", "che fare."],
+      instructions: "Type the missing word(s).",
+      displayMeaning: true,
+      english: "We decided what to do.",
+      missingWord: "Abbiamo deciso",
+
+      isComplete: false,
+      hasFailed: false,
+    },
+    //typeInWhatYouHear
+    {
+      type: "typeInWhatYouHear",
+      _id: "123434",
+      solution: "Sai chi mi ha scritto?",
+      instructions: "Type what you hear.",
+      english: "Do you<sup>(s)</sup> know who wrote to me?",
+      doubleSolution: false,
+      displayMeaning: true,
+      audio: "Sai chi mi ha scritto?",
+
+      isComplete: false,
+      hasFailed: false,
+    },
+    //writeTheSentence
+    {
+      type: "writeTheSentence",
+      _id: "1223423",
+      solution: "L'esercizio è semplice.",
+      instructions: "Translate this into Italian. Include the subject pronoun (if present).",
+      displayMeaning: false,
+      regex: "",
+      displayText: "The exercise is simple.",
+      doubleSolution: false,
+      vocabularyHelper: ["exercise = esercizio", "simple = semplice"],
+      english: "",
+      isComplete: false,
+      hasFailed: false,
+    },
     {
       type: "reorder",
       _id: "12345",
@@ -163,78 +279,74 @@ const initialState: LessonState = {
         },
       },
     },
-    //Reorder
     {
-      type: "reorder",
-      _id: "12345",
-      solution: "Non giocare con il fuoco!",
-      instructions: "Reorder the words to translate the sentence.",
-      displayText: "Do not play with fire!",
-      displayTextAudioURL: "https://ispeakitalian.herokuapp.com/correct.mp3",
+      type: "reorderWhatYouHear",
+      _id: "123456",
+      solution: "Mia figlia sta imparando a camminare.",
+      instructions: "Reorder the words to replicate the sentence.",
+      displayText: "My daughter is learning to walk.", // This language is the foreign language
+      solutionAudioURL: "", // spoken language
+      // Here words will be the spoken language
       availableWords: [
-        { word: "Non", wordAudioURL: "https://example.com/Non.mp3" },
-        { word: "giocare", wordAudioURL: "https://example.com/giocare.mp3" },
-        { word: "con", wordAudioURL: "https://example.com/con.mp3" },
-        { word: "il", wordAudioURL: "https://example.com/il.mp3" },
-        { word: "fuoco!", wordAudioURL: "https://example.com/fuoco!.mp3" },
-        { word: "gioco", wordAudioURL: "https://example.com/gioco.mp3" },
-        { word: "lo", wordAudioURL: "https://example.com/lo.mp3" },
-        { word: "fuochi!", wordAudioURL: "https://example.com/fuochi!.mp3" },
-        { word: "suonare", wordAudioURL: "https://example.com/suonare.mp3" },
+        { word: "Mia", wordAudioURL: "https://example.com/Mia.mp3" },
+        { word: "figlia", wordAudioURL: "https://example.com/figlia.mp3" },
+        { word: "sta", wordAudioURL: "https://example.com/sta.mp3" },
+        { word: "imparando", wordAudioURL: "https://example.com/imparando.mp3" },
+        { word: "a", wordAudioURL: "https://example.com/a.mp3" },
+        { word: "camminare.", wordAudioURL: "https://example.com/camminare..mp3" },
+        { word: "impara", wordAudioURL: "https://example.com/impara.mp3" },
+        { word: "stai", wordAudioURL: "https://example.com/stai.mp3" },
+        { word: "Mie", wordAudioURL: "https://example.com/Mie.mp3" },
+        { word: "cammina", wordAudioURL: "https://example.com/cammina.mp3" },
+        { word: "le.", wordAudioURL: "https://example.com/le..mp3" },
       ],
       isComplete: false,
       hasFailed: false,
     },
-    //ConjugationExercise
-    {
-      _id: "12345",
-      instructions: "Match the corresponding words.",
-      isComplete: false,
-      hasFailed: false,
-      solution: "Some solution here",
-      display: "ANDARE (TO GO)",
-      type: "conjugation",
+    //Reorder
+    // {
+    //   type: "reorder",
+    //   _id: "12345",
+    //   solution: "Non giocare con il fuoco!",
+    //   instructions: "Reorder the words to translate the sentence.",
+    //   displayText: "Do not play with fire!",
+    //   displayTextAudioURL: "https://ispeakitalian.herokuapp.com/correct.mp3",
+    //   availableWords: [
+    //     { word: "Non", wordAudioURL: "https://example.com/Non.mp3" },
+    //     { word: "giocare", wordAudioURL: "https://example.com/giocare.mp3" },
+    //     { word: "con", wordAudioURL: "https://example.com/con.mp3" },
+    //     { word: "il", wordAudioURL: "https://example.com/il.mp3" },
+    //     { word: "fuoco!", wordAudioURL: "https://example.com/fuoco!.mp3" },
+    //     { word: "gioco", wordAudioURL: "https://example.com/gioco.mp3" },
+    //     { word: "lo", wordAudioURL: "https://example.com/lo.mp3" },
+    //     { word: "fuochi!", wordAudioURL: "https://example.com/fuochi!.mp3" },
+    //     { word: "suonare", wordAudioURL: "https://example.com/suonare.mp3" },
+    //   ],
+    //   isComplete: false,
+    //   hasFailed: false,
+    // },
+    // //ConjugationExercise
+    // {
+    //   _id: "12345",
+    //   instructions: "Match the corresponding words.",
+    //   isComplete: false,
+    //   hasFailed: false,
+    //   solution: "Some solution here",
+    //   display: "ANDARE (TO GO)",
+    //   type: "conjugation",
 
-      availableWords: {
-        pairs: [
-          ["io", "andrei"],
-          ["tu", "andresti"],
-          ["lui/lei", "andrebbe"],
-          ["noi", "andremmo"],
-          ["voi", "andreste"],
-          ["loro", "andrebbero"],
-        ],
-      },
-    },
-    //FillInTheBlankExercise
-    {
-      type: "fillInTheBlank",
-      _id: "12345",
-      instructions: "Fill in the blank with the correct conjugation of the verb.",
-      displayText: "We are looking for a job.",
-      couldBeEmpty: "",
-      regex: "",
-      doubleSolution: false,
-      availableWords: ["here"],
-      isComplete: false,
-      hasFailed: false,
-      missingWord: "cerchiamo",
-      solution: ["Noi", "cerchiamo", "un lavoro."],
-      vocabularyHelper: ["to look for = cercare"],
-    },
-    //FillInWhatYouHear
-    {
-      _id: "12234",
-      type: "fillInWhatYouHear",
-      solution: ["Abbiamo deciso", "che fare."],
-      instructions: "Type the missing word(s).",
-      displayMeaning: true,
-      english: "We decided what to do.",
-      missingWord: "Abbiamo deciso",
+    //   availableWords: {
+    //     pairs: [
+    //       ["io", "andrei"],
+    //       ["tu", "andresti"],
+    //       ["lui/lei", "andrebbe"],
+    //       ["noi", "andremmo"],
+    //       ["voi", "andreste"],
+    //       ["loro", "andrebbero"],
+    //     ],
+    //   },
+    // },
 
-      isComplete: false,
-      hasFailed: false,
-    },
     //ListenAndSelect
     {
       type: "listenAndSelect",
@@ -248,20 +360,20 @@ const initialState: LessonState = {
       isComplete: false,
       hasFailed: false,
     },
-    //missingSyllable
-    {
-      type: "missingSyllable",
-      _id: "1234455",
-      solution: "gni",
-      instructions: "Select the missing part of the word.",
-      display: ["ra", "gni"],
-      italian: "ragni",
-      english: "spiders",
-      availableWords: ["ni", "gni"],
+    // //missingSyllable
+    // {
+    //   type: "missingSyllable",
+    //   _id: "1234455",
+    //   solution: "gni",
+    //   instructions: "Select the missing part of the word.",
+    //   display: ["ra", "gni"],
+    //   italian: "ragni",
+    //   english: "spiders",
+    //   availableWords: ["ni", "gni"],
 
-      isComplete: false,
-      hasFailed: false,
-    },
+    //   isComplete: false,
+    //   hasFailed: false,
+    // },
     //multipleAnswers
     {
       type: "multipleAnswers",
@@ -372,48 +484,19 @@ const initialState: LessonState = {
       isComplete: false,
       hasFailed: false,
     },
-    //twoBlanks
-    {
-      type: "twoBlanks",
-      _id: "123454",
-      solution: ["sei uscito", "Sono uscito"],
-      instructions: "Fill in the blanks with the correct conjugation of the verb.",
-      vocabularyHelper: ["to go out = uscire"],
-      italian: ["Paolo, quando", "sei uscito", "?", "Sono uscito", "questo pomeriggio."],
-      english: ["Paul, when did you go out? I went out this afternoon."],
+    // //twoBlanks
+    // {
+    //   type: "twoBlanks",
+    //   _id: "123454",
+    //   solution: ["sei uscito", "Sono uscito"],
+    //   instructions: "Fill in the blanks with the correct conjugation of the verb.",
+    //   vocabularyHelper: ["to go out = uscire"],
+    //   italian: ["Paolo, quando", "sei uscito", "?", "Sono uscito", "questo pomeriggio."],
+    //   english: ["Paul, when did you go out? I went out this afternoon."],
 
-      isComplete: false,
-      hasFailed: false,
-    },
-    //typeInWhatYouHear
-    {
-      type: "typeInWhatYouHear",
-      _id: "123434",
-      solution: "Sai chi mi ha scritto?",
-      instructions: "Type what you hear.",
-      english: "Do you<sup>(s)</sup> know who wrote to me?",
-      doubleSolution: false,
-      displayMeaning: true,
-      audio: "Sai chi mi ha scritto?",
-
-      isComplete: false,
-      hasFailed: false,
-    },
-    //writeTheSentence
-    {
-      type: "writeTheSentence",
-      _id: "1223423",
-      solution: "L'esercizio è semplice.",
-      instructions: "Translate this into Italian. Include the subject pronoun (if present).",
-      displayMeaning: false,
-      regex: "",
-      display: "The exercise is simple.",
-      doubleSolution: false,
-      vocabularyHelper: ["exercise = esercizio", "simple = semplice"],
-      english: "",
-      isComplete: false,
-      hasFailed: false,
-    },
+    //   isComplete: false,
+    //   hasFailed: false,
+    // },
   ],
 }
 
@@ -426,11 +509,11 @@ export const lessonSlice = createSlice({
       state = action.payload
     },
     putActiveExerciseIntoState: (state: LessonState) => {
-      let found = state.interactiveExercises.find(item => !item.isComplete && !item.hasFailed && !item?.isSkiped && item)
+      let found = state.interactiveExercises.find(item => !item.isComplete && !item.hasFailed && !item?.isSkiped)
 
       // Check for skipped exercises ??
       if (!found) {
-        found = state.interactiveExercises.find(item => !item.isComplete && !item.hasFailed && item?.isSkiped && item)
+        found = state.interactiveExercises.find(item => !item.isComplete && !item.hasFailed && item?.isSkiped)
       }
 
       if (found) {
