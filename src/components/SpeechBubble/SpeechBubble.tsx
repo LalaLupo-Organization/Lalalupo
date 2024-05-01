@@ -18,6 +18,7 @@ export default function SpeechBubble({
   teacher = "teacherOne",
   underlined = false,
   color = "text-gray_reorder_text",
+  font = "bold",
 }: BubbleProps) {
   const { width } = useWindowSize()
   const [isPlaying, setIsPlaying] = useState(false)
@@ -67,7 +68,8 @@ export default function SpeechBubble({
       />
       <div
         className={classNames(
-          "relative mb-6 text-sm mt-8 rounded-lg font-bold underline underline-offset-2 flex items-center gap-2 h-[80px]",
+          "relative sm:mb-6 text-sm mt-8 rounded-lg underline underline-offset-2 flex items-center gap-2 h-[80px]",
+          `font-${font}`,
           color,
           displayText.length <= 24 ? "w-[256px]" : displayText.length <= 35 ? "w-[275px]" : "w-[300px]"
         )}

@@ -10,6 +10,7 @@ export interface BubbleProps {
   teacher?: "teacherOne" | "teacherTwo"
   underlined?: boolean
   color?: string
+  font?: "light" | "normal" | "medium" | "semibold" | "bold"
 }
 
 export interface PlayAudioProps {

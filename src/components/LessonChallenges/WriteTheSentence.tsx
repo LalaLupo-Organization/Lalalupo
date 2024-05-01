@@ -68,6 +68,7 @@ export default function WriteTheSentence({ data }: { data: LessonState }) {
         <Instruction instruction={activeExercise && activeExercise?.instructions} />
         <SpeechBubble
           color="text-black"
+          font="medium"
           // displayTextAudioURL={getType(activeExercise) ? activeExercise.displayTextAudioURL : ""}
           imageClassName="!translate-y-7 sm:!translate-y-9 !w-40 sm:!w-48"
           displayText={getType(activeExercise) ? activeExercise.displayText : ""}

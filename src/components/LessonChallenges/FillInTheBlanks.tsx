@@ -68,6 +68,7 @@ export default function FillInTheBlanks({ data }: { data: LessonState }) {
           color="text-black"
           // displayTextAudioURL={getType(activeExercise) ? activeExercise.displayTextAudioURL : ""}
           imageClassName="!translate-y-7 sm:!translate-y-9 !w-40 sm:!w-48"
+          font="medium"
           displayText={getType(activeExercise) ? activeExercise.displayText : ""}
           teacher="teacherTwo"
         />
