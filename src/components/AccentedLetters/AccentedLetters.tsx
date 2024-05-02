@@ -5,12 +5,12 @@ import { v4 as uuid } from "uuid"
 import StrippedBg from "../StrippedBackground"
 import { Icon } from "../Icons/Icon"
 import { AccentedLetterButtonProps, AccentedLettersProps } from "@/types/accented-letters.types"
-export default function AccentedLetters({ insertAccentedVowel, activeExercise }: AccentedLettersProps) {
+export default function AccentedLetters({ insertAccentedVowel, activeExercise, display = true }: AccentedLettersProps) {
   const [isUppercase, setIsUppercase] = useState(false)
   const vowels = ["à", "è", "é", "ì", "ò", "ù"]
   const toggleLettersCase = () => setIsUppercase(!isUppercase)
 
-  return activeExercise.languageCode === "it-en" ? (
+  return display ? (
     <div className="w-full">
       <div className="flex items-center gap-1.5 mt-4">
         <AccentedLetterButton onClick={toggleLettersCase}>

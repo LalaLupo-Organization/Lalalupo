@@ -5,6 +5,7 @@ import { ReactNode } from "react"
 export interface AccentedLettersProps {
   insertAccentedVowel: (e: any) => void
   activeExercise: LessonState["activeExercise"]
+  display?: boolean
 }
 
 export interface AccentedLetterButtonProps extends HTMLMotionProps<"button"> {

@@ -86,7 +86,11 @@ export default function FillInTheBlanks({ data }: { data: LessonState }) {
               />
             ))}
         </div>
-        <AccentedLetters insertAccentedVowel={insertAccentedVowel} activeExercise={activeExercise} />
+        <AccentedLetters
+          display={activeExercise.languageCode === "it-en"}
+          insertAccentedVowel={insertAccentedVowel}
+          activeExercise={activeExercise}
+        />
         {getType(activeExercise) && <VocabularyHelper data={activeExercise?.vocabularyHelper || []} />}
       </InteractiveLayout>
     </div>

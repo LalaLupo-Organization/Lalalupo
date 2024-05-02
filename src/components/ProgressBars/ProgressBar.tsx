@@ -46,7 +46,7 @@ export const ProgressBar = ({
 
   return (
     <>
-      <div className="sticky z-30 bg-white top-0  pt-8  sm:mb-24  w-full">
+      <div className="sticky z-30 bg-white top-0  pt-8  w-full">
         <Container className="flex">
           <div className="flex items-center gap-4 w-full sm:w-2/3 mx-auto sm:px-2">
             <div className="h-5 2xl:h-5 p-0.5 rounded-full striped-bg-light flex-1 flex items-center w-full border border-gray-200 ">
