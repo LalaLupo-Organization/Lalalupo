@@ -7,5 +7,5 @@ export type WriteTheSentenceExercise = BaseExercise & {
   displayText: string
   doubleSolution: boolean
   vocabularyHelper: string[]
-  english: string
+  originLanguage: string
 }

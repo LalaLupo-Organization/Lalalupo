@@ -14,7 +14,8 @@ import SpeechBubble from "@/components/SpeechBubble/SpeechBubble"
 import { ProgressBar } from "../ProgressBars/ProgressBar"
 import TextArea from "../TextAreas/TextArea"
 export default function WriteTheSentence({ data }: { data: LessonState }) {
-  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
+  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises, languageCode } =
+    data
   function getType(exercise: BaseExercise): exercise is WriteTheSentenceExercise {
     return exercise.type === "writeTheSentence"
   }
@@ -79,7 +80,7 @@ export default function WriteTheSentence({ data }: { data: LessonState }) {
           <TextArea activeExercise={activeExercise} activeExerciseId={activeExerciseId} input={input} handleChange={handleChange} />
         )}
 
-        <AccentedLetters insertAccentedVowel={insertAccentedVowel} activeExercise={activeExercise} />
+        <AccentedLetters languageCode={languageCode} insertAccentedVowel={insertAccentedVowel} activeExercise={activeExercise} />
         {getType(activeExercise) && <VocabularyHelper data={activeExercise?.vocabularyHelper ?? []} />}
       </InteractiveLayout>
     </div>

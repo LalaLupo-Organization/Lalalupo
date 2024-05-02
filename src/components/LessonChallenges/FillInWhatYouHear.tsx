@@ -14,7 +14,8 @@ import AudioBubble from "../AudioBubble/AudioBubble"
 import Input from "../Inputs/Input"
 
 export default function FillInWhatYouHear({ data }: { data: LessonState }) {
-  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
+  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises, languageCode } =
+    data
 
   function getType(exercise: BaseExercise): exercise is FillInWhatYouHearExercise {
     return exercise.type === "fillInWhatYouHear"
@@ -82,7 +83,7 @@ export default function FillInWhatYouHear({ data }: { data: LessonState }) {
               />
             ))}
         </div>
-        <AccentedLetters insertAccentedVowel={insertAccentedVowel} activeExercise={activeExercise} />
+        <AccentedLetters languageCode={languageCode} insertAccentedVowel={insertAccentedVowel} activeExercise={activeExercise} />
         {getType(activeExercise) && <VocabularyHelper data={activeExercise?.vocabularyHelper ?? []} />}
       </InteractiveLayout>
     </div>

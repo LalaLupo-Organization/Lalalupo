@@ -2,9 +2,9 @@ import { BaseExercise } from "./lesson.types"
 
 export type TypeInWhatYouHearExercise = BaseExercise & {
   type: "typeInWhatYouHear"
-  english: string
+  originLanguage: string
   doubleSolution: boolean
   displayMeaning: boolean
   vocabularyHelper?: string[]
-  audio: string
+  solutionAudioURL: string
 }

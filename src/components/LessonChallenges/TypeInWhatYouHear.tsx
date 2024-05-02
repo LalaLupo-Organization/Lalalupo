@@ -12,7 +12,8 @@ import TextArea from "../TextAreas/TextArea"
 import VocabularyHelper from "../VocabularyHelper/VocabularyHelper"
 import { TypeInWhatYouHearExercise } from "@/types/type-in-what-you-hear.types"
 export default function TypeInWhatYouHear({ data }: { data: LessonState }) {
-  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
+  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises, languageCode } =
+    data
 
   const [input, setInput] = useState("")
   const dispatch = useAppDispatch()
@@ -66,7 +67,7 @@ export default function TypeInWhatYouHear({ data }: { data: LessonState }) {
           <TextArea activeExercise={activeExercise} activeExerciseId={activeExerciseId} input={input} handleChange={handleChange} />
         )}
 
-        <AccentedLetters insertAccentedVowel={insertAccentedVowel} activeExercise={activeExercise} />
+        <AccentedLetters languageCode={languageCode} insertAccentedVowel={insertAccentedVowel} activeExercise={activeExercise} />
         {getType(activeExercise) && <VocabularyHelper data={activeExercise?.vocabularyHelper ?? []} />}
       </InteractiveLayout>
     </div>
