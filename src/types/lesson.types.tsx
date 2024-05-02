@@ -20,7 +20,6 @@ export interface BaseExercise {
   isComplete: boolean
   hasFailed: boolean
   isSkiped?: boolean
-  languageCode?: "en-it" | "it-en"
   solution?: string | string[]
   type: string // Add this line
   // ...add more base properties here
@@ -29,6 +28,7 @@ export interface BaseExercise {
 export type LessonState = {
   _id: string
   __v: number
+  languageCode: "en-it" | "it-en" // Other codes....
   isComplete: boolean
   hasFailed: boolean
   attempts: number

@@ -13,7 +13,8 @@ import { ProgressBar } from "../ProgressBars/ProgressBar"
 import Input from "../Inputs/Input"
 
 export default function FillInTheBlanks({ data }: { data: LessonState }) {
-  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises } = data
+  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises, languageCode } =
+    data
 
   function getType(exercise: BaseExercise): exercise is FillInTheBlankExercise {
     return exercise.type === "fillInTheBlank"
@@ -86,11 +87,7 @@ export default function FillInTheBlanks({ data }: { data: LessonState }) {
               />
             ))}
         </div>
-        <AccentedLetters
-          display={activeExercise.languageCode === "it-en"}
-          insertAccentedVowel={insertAccentedVowel}
-          activeExercise={activeExercise}
-        />
+        <AccentedLetters display={languageCode === "it-en"} insertAccentedVowel={insertAccentedVowel} activeExercise={activeExercise} />
         {getType(activeExercise) && <VocabularyHelper data={activeExercise?.vocabularyHelper || []} />}
       </InteractiveLayout>
     </div>

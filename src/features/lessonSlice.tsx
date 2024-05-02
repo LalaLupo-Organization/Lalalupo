@@ -6,6 +6,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 const initialState: LessonState = {
   _id: "kdsmfndskfnk4ner0frfiw4mof",
   __v: 0,
+  languageCode: "it-en",
   isComplete: false,
   hasFailed: false,
   attempts: 0,
@@ -91,7 +92,6 @@ const initialState: LessonState = {
   activeExercise: {
     type: "fillInTheBlank",
     _id: "12345",
-    languageCode: "it-en",
     instructions: "Fill in the blank with the correct conjugation of the verb.",
     displayText: "We are looking for a job.",
     couldBeEmpty: "",
@@ -165,7 +165,6 @@ const initialState: LessonState = {
     //FillInWhatYouHear
     {
       _id: "122345",
-      languageCode: "it-en",
       type: "fillInWhatYouHear",
       solution: ["Abbiamo deciso", "che fare."],
       instructions: "Type the missing word(s).",
