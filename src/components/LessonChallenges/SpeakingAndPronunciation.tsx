@@ -1,7 +1,7 @@
 import Instruction from "@/components/Headings/Instruction"
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
 import SpeechBubble from "@/components/SpeechBubble/SpeechBubble"
-import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper"
+// import VocabularyHelper from "@/components/Helper/Helper"
 import { clearUserInput, setSingleInput } from "@/features/userInputSlice"
 import useAssessment from "@/hooks/useAssessment"
 import { useAppDispatch } from "@/hooks/useRedux"
@@ -101,9 +101,9 @@ export default function SpeakingAndPronunciation({ data }: { data: LessonState }
           </div>
         </motion.div>
       </InteractiveLayout>
-      {getType(activeExercise) && activeExercise?.vocabularyHelper && activeExercise?.vocabularyHelper.length > 0 && (
+      {/* {getType(activeExercise) && activeExercise?.vocabularyHelper && activeExercise?.vocabularyHelper.length > 0 && (
         <VocabularyHelper data={activeExercise.vocabularyHelper} />
-      )}
+      )} */}
     </div>
   )
 }

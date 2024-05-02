@@ -1,4 +1,4 @@
-import { BaseExercise } from "./lesson.types"
+import { BaseExercise, Helper } from "./lesson.types"
 
 export type WriteTheSentenceExercise = BaseExercise & {
   type: "writeTheSentence"
@@ -6,6 +6,6 @@ export type WriteTheSentenceExercise = BaseExercise & {
   displayMeaning: boolean
   displayText: string
   doubleSolution: boolean
-  vocabularyHelper: string[]
+  helper?: Helper[]
   originLanguage: string
 }

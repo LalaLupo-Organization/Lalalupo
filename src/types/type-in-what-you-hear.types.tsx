@@ -1,10 +1,10 @@
-import { BaseExercise } from "./lesson.types"
+import { BaseExercise, Helper } from "./lesson.types"
 
 export type TypeInWhatYouHearExercise = BaseExercise & {
   type: "typeInWhatYouHear"
   originLanguage: string
   doubleSolution: boolean
   displayMeaning: boolean
-  vocabularyHelper?: string[]
+  helper?: Helper[]
   solutionAudioURL: string
 }

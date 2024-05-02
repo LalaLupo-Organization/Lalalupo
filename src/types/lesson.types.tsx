@@ -25,6 +25,11 @@ export interface BaseExercise {
   // ...add more base properties here
 }
 
+export interface Helper {
+  type: "Vocabulary" | "Tip"
+  values: string[]
+}
+
 export type LessonState = {
   _id: string
   __v: number

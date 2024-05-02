@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react"
 import { clearUserInput, setSingleInput } from "@/features/userInputSlice"
 import { WriteTheSentenceExercise } from "@/types/write-the-word.types"
 // import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";
-import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper"
+import Helper from "@/components/Helper/Helper"
 import { useAppDispatch } from "@/hooks/useRedux"
 
 import AccentedLetters from "@/components/AccentedLetters/AccentedLetters"
@@ -81,7 +81,7 @@ export default function WriteTheSentence({ data }: { data: LessonState }) {
         )}
 
         <AccentedLetters languageCode={languageCode} insertAccentedVowel={insertAccentedVowel} activeExercise={activeExercise} />
-        {getType(activeExercise) && <VocabularyHelper data={activeExercise?.vocabularyHelper ?? []} />}
+        {getType(activeExercise) && <Helper data={activeExercise?.helper ?? []} />}
       </InteractiveLayout>
     </div>
   )

@@ -2,7 +2,7 @@ import AccentedLetters from "@/components/AccentedLetters/AccentedLetters"
 import Instruction from "@/components/Headings/Instruction"
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
 import SpeechBubble from "@/components/SpeechBubble/SpeechBubble"
-import VocabularyHelper from "@/components/VocabularyHelper/VocabularyHelper"
+import Helper from "@/components/Helper/Helper"
 import { clearUserInput, setSingleInput } from "@/features/userInputSlice"
 import { useAppDispatch } from "@/hooks/useRedux"
 import { FillInTheBlankExercise } from "@/types/fill-in-the-blanks.types"
@@ -88,7 +88,7 @@ export default function FillInTheBlanks({ data }: { data: LessonState }) {
             ))}
         </div>
         <AccentedLetters languageCode={languageCode} insertAccentedVowel={insertAccentedVowel} activeExercise={activeExercise} />
-        {getType(activeExercise) && <VocabularyHelper data={activeExercise?.vocabularyHelper || []} />}
+        {getType(activeExercise) && <Helper data={activeExercise?.helper || []} />}
       </InteractiveLayout>
     </div>
   )

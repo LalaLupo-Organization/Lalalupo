@@ -7,7 +7,7 @@ import { forwardRef, useEffect, useRef, useState } from "react"
 import { AudioBubbleProps, ButtonProps } from "@/types/audio-bubble.types"
 
 export default function AudioBubble({ imageClassName = "" }: AudioBubbleProps) {
-  const [audio] = useState(new Audio("https://s5-10.ttsmaker-file.com/file/2024-05-01-191440_156327.mp3")) // Will be displayTextAuiodURL.
+  const [audio] = useState(new Audio("https://s5-10.ttsmaker-file.com/file/2024-05-01-191440_156327.mp3")) // Will be solutionAudioURL.
   const [isPlaying, setIsPlaying] = useState(false)
   const [isSlowed, setIsSlowed] = useState(false)
   const playBtnRef = useRef<HTMLButtonElement | null>(null)

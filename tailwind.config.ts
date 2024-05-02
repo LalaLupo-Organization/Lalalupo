@@ -34,6 +34,8 @@ module.exports = {
         vocabulary: "#FEFCEA",
         vocabulary_heading: "#996423",
         vocabulary_text: "#1B1B1B",
+        tip: "#F0F6FE",
+        tip_heading: "#5086DA",
       },
       borderRadius: {
         primary: "7px",

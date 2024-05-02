@@ -9,7 +9,7 @@ import AudioBubble from "@/components/AudioBubble/AudioBubble"
 import Instruction from "@/components/Headings/Instruction"
 import { ProgressBar } from "../ProgressBars/ProgressBar"
 import TextArea from "../TextAreas/TextArea"
-import VocabularyHelper from "../VocabularyHelper/VocabularyHelper"
+import Helper from "../Helper/Helper"
 import { TypeInWhatYouHearExercise } from "@/types/type-in-what-you-hear.types"
 export default function TypeInWhatYouHear({ data }: { data: LessonState }) {
   const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises, languageCode } =
@@ -68,7 +68,7 @@ export default function TypeInWhatYouHear({ data }: { data: LessonState }) {
         )}
 
         <AccentedLetters languageCode={languageCode} insertAccentedVowel={insertAccentedVowel} activeExercise={activeExercise} />
-        {getType(activeExercise) && <VocabularyHelper data={activeExercise?.vocabularyHelper ?? []} />}
+        {getType(activeExercise) && <Helper data={activeExercise?.helper ?? []} />}
       </InteractiveLayout>
     </div>
   )

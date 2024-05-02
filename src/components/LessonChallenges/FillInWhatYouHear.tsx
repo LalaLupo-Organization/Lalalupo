@@ -7,7 +7,7 @@ import { useAppDispatch } from "@/hooks/useRedux"
 import { BaseExercise, LessonState } from "@/types/lesson.types"
 import React, { useEffect, useState } from "react"
 import { v4 as uuid } from "uuid"
-import VocabularyHelper from "../VocabularyHelper/VocabularyHelper"
+import Helper from "../Helper/Helper"
 import { FillInWhatYouHearExercise } from "@/types/fill-in-what-you-hear.types"
 import { ProgressBar } from "../ProgressBars/ProgressBar"
 import AudioBubble from "../AudioBubble/AudioBubble"
@@ -84,7 +84,7 @@ export default function FillInWhatYouHear({ data }: { data: LessonState }) {
             ))}
         </div>
         <AccentedLetters languageCode={languageCode} insertAccentedVowel={insertAccentedVowel} activeExercise={activeExercise} />
-        {getType(activeExercise) && <VocabularyHelper data={activeExercise?.vocabularyHelper ?? []} />}
+        {getType(activeExercise) && <Helper data={activeExercise?.helper ?? []} />}
       </InteractiveLayout>
     </div>
   )

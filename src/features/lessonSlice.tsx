@@ -29,7 +29,10 @@ const initialState: LessonState = {
     hasFailed: false,
     missingWord: "cerchiamo",
     solution: ["Noi", "cerchiamo", "un lavoro."],
-    vocabularyHelper: ["to look for = cercare"],
+    helper: [
+      { type: "Vocabulary", values: ["to look for = cercare"] },
+      { type: "Tip", values: ["Tip 1", "Tip 2"] },
+    ],
   },
   interactiveExercises: [
     //FillInTheBlankExercise
@@ -46,7 +49,7 @@ const initialState: LessonState = {
       hasFailed: false,
       missingWord: "cerchiamo",
       solution: ["Noi", "cerchiamo", "un lavoro."],
-      vocabularyHelper: ["to look for = cercare"],
+      helper: [{ type: "Vocabulary", values: ["to look for = cercare"] }],
     },
     //FillInWhatYouHear
     {
@@ -85,7 +88,7 @@ const initialState: LessonState = {
       regex: "",
       displayText: "The exercise is simple.",
       doubleSolution: false,
-      vocabularyHelper: ["exercise = esercizio", "simple = semplice"],
+      helper: [{ type: "Vocabulary", values: ["exercise = esercizio", "simple = semplice"] }],
       originLanguage: "",
       isComplete: false,
       hasFailed: false,
