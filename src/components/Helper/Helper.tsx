@@ -3,10 +3,10 @@ import { Helper } from "@/types/lesson.types"
 import { v4 as uuid } from "uuid"
 export default function Helpers({ data }: { data: Helper[] }) {
   const isTip = (type: Helper["type"]) => type === "Tip"
-  return data.length ? (
+  return data.length && data.some(({ values }) => values.length > 0) ? (
     <div className="mt-8 sm:mt-12 w-full flex flex-col gap-4">
       {data
-        ?.slice()
+        ?.filter(h => h.values.length > 0)
         .sort((a, b) => {
           if (a.type === "Tip") return -1
           if (b.type === "Tip") return 1
