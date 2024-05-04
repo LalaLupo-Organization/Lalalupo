@@ -17,10 +17,9 @@ const initialState: LessonState = {
   numberFailed: 0,
   correctLetters: [],
   activeExercise: {
-
     type: "fillInTheBlank",
     _id: "12345",
-    instructions: "Fill in the blank with the correct conjugation of the verb.",
+    instructions: "Fill in the blank",
     displayText: "We are looking for a job.",
     couldBeEmpty: "",
     regex: "",
