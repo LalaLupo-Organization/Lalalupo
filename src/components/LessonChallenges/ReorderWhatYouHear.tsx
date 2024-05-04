@@ -150,12 +150,12 @@ export default function ReorderWhatYouHear({ data }: { data: LessonState }) {
       />
       <InteractiveLayout id={activeExercise && activeExercise._id}>
         <Instruction className="w-full" instruction={activeExercise && activeExercise.instructions} />
-        <div className="flex flex-col w-full mt-14 sm:mt-0 max-w-[640px] mx-auto">
+        <div className="flex flex-col w-full mt-14 sm:mt-0 mx-auto">
           <AudioBubble
             solution={getType(activeExercise) ? activeExercise.solutionAudioURL : null}
             audio
+            underlined
             displayText={getType(activeExercise) ? activeExercise.displayText : ""}
-            // imageClassName="translate-y-2 sm:translate-y-4"
           />
           <div
             className={classNames(

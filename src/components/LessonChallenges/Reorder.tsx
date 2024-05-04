@@ -149,14 +149,12 @@ export default function Reorder({ data }: { data: LessonState }) {
       />
       <InteractiveLayout id={activeExercise && activeExercise._id}>
         <Instruction className="w-full" instruction={activeExercise && activeExercise.instructions} />
-        <div className="flex flex-col w-full mt-14 sm:mt-0 max-w-[640px]">
-          {true && (
-            <SpeechBubble
-              displayTextAudioURL={getType(activeExercise) ? activeExercise.displayTextAudioURL : ""}
-              // imageClassName="translate-y-2 sm:translate-y-4"
-              displayText={getType(activeExercise) ? activeExercise.displayText : ""}
-            />
-          )}
+        <div className="flex flex-col w-full mt-14 sm:mt-0">
+          <SpeechBubble
+            displayTextAudioURL={getType(activeExercise) ? activeExercise.displayTextAudioURL : ""}
+            underlined
+            displayText={getType(activeExercise) ? activeExercise.displayText : ""}
+          />
           <div
             className={classNames(
               "destination px-3 sm:px-10 flex gap-x-3 flex-wrap items-center border-t-2  border-b-2 pt-1.5 sm:pt-2  h-14 sm:h-16"

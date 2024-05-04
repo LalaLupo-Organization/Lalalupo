@@ -1,21 +1,30 @@
-import AccentedLetters from "@/components/AccentedLetters1/AccentedLetters1"
+import AccentedLetters from "@/components/AccentedLetters/AccentedLetters"
 import { InteractiveLayout } from "@/components/Layouts/InteractiveLayout"
 import { clearUserInput, setSingleInput } from "@/features/userInputSlice"
 import { useAppDispatch } from "@/hooks/useRedux"
-import { LessonState } from "@/types/lesson.types"
+import { BaseExercise, LessonState } from "@/types/lesson.types"
 import React, { useEffect, useState } from "react"
 
 import AudioBubble from "@/components/AudioBubble/AudioBubble"
 import Instruction from "@/components/Headings/Instruction"
+import { ProgressBar } from "../ProgressBars/ProgressBar"
+import TextArea from "../TextAreas/TextArea"
+import Helper from "../Helper/Helper"
+import { TypeInWhatYouHearExercise } from "@/types/type-in-what-you-hear.types"
 export default function TypeInWhatYouHear({ data }: { data: LessonState }) {
-  const { activeExercise } = data
+  const { activeExercise, totalExercises, lives, numberComplete, interactiveExercises, numberFailed, remainingExercises, languageCode } =
+    data
 
   const [input, setInput] = useState("")
   const dispatch = useAppDispatch()
 
+  function getType(exercise: BaseExercise): exercise is TypeInWhatYouHearExercise {
+    return exercise.type === "typeInWhatYouHear"
+  }
+
   const [activeExerciseId, setActiveExerciseId] = useState(() => activeExercise?._id)
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
     dispatch(setSingleInput(e.currentTarget.value))
     setInput(e.currentTarget.value)
   }
@@ -39,29 +48,27 @@ export default function TypeInWhatYouHear({ data }: { data: LessonState }) {
 
    justify-center w-full items-center"
     >
-      {/* <ProgressBar
+      <ProgressBar
+        activeExercise={activeExercise}
         remainingExercises={remainingExercises}
         totalNumberOfExercises={totalExercises}
         numberOfExercisesComplete={numberComplete}
         interactiveExercises={interactiveExercises}
         numberOfExercisesFailed={numberFailed}
         lives={lives && lives}
-      /> */}
+        id={activeExercise && activeExercise._id}
+      />
       <InteractiveLayout id={activeExercise && activeExercise._id}>
-        <Instruction instruction={activeExercise && activeExercise.instructions} />
+        <Instruction className="w-full" instruction={activeExercise && activeExercise.instructions} />
         {/* @ts-ignore */}
-        <AudioBubble solution={activeExercise.audio} />
+        <AudioBubble imageClassName="!translate-y-7 sm:!translate-y-9 !w-40 sm:!w-48" solution={activeExercise.audio} />
 
-        <input
-          onChange={activeExercise?.isComplete || activeExercise?.hasFailed ? undefined : e => handleChange(e)}
-          name="text"
-          autoComplete="off"
-          autoFocus={activeExercise?.isComplete || activeExercise?.hasFailed ? false : true}
-          placeholder="Type in Italian"
-          value={activeExercise?._id !== activeExerciseId ? "" : input}
-          className="cursor-blink outline-none text-base font-bold text-gray-600  tracking-wider border border-2 bg-gray-100 rounded-lg px-2 pt-2 pb-24"
-        />
-        <AccentedLetters insertAccentedVowel={insertAccentedVowel} activeExercise={activeExercise} />
+        {getType(activeExercise) && (
+          <TextArea activeExercise={activeExercise} activeExerciseId={activeExerciseId} input={input} handleChange={handleChange} />
+        )}
+
+        <AccentedLetters languageCode={languageCode} insertAccentedVowel={insertAccentedVowel} activeExercise={activeExercise} />
+        {getType(activeExercise) && <Helper data={activeExercise?.helper ?? []} />}
       </InteractiveLayout>
     </div>
   )

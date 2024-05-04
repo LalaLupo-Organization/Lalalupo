@@ -1,11 +1,11 @@
-import { BaseExercise } from "./lesson.types"
+import { BaseExercise, Helper } from "./lesson.types"
 
 export type FillInTheBlankExercise = BaseExercise & {
   type: "fillInTheBlank"
   displayText: string
   couldBeEmpty: any
   doubleSolution: boolean
-  vocabularyHelper: string[]
+  helper?: Helper[]
   missingWord: string
   availableWords: string[]
   regex: string

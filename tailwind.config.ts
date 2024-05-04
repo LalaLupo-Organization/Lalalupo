@@ -31,6 +31,11 @@ module.exports = {
         active_card: "#F0EDFF",
         nav_border_color: "#E0DFDF",
         light_blue: "rgba(36, 107, 253, 0.08)",
+        vocabulary: "#FEFCEA",
+        vocabulary_heading: "#996423",
+        vocabulary_text: "#1B1B1B",
+        tip: "#F0F6FE",
+        tip_heading: "#5086DA",
       },
       borderRadius: {
         primary: "7px",
