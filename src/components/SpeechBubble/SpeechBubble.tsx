@@ -58,7 +58,6 @@ export default function SpeechBubble({
   if (!displayText) return <div></div>
 
   return (
-
     <div className={classNames("flex flex-col-reverse sm:gap-x-3 items-center sm:flex-row w-full", className)}>
       <Image
         height={12}
@@ -85,7 +84,6 @@ export default function SpeechBubble({
           >
             {displayText}
           </p>
-
         </div>
       </div>
     </div>

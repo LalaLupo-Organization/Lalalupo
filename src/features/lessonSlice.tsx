@@ -17,7 +17,6 @@ const initialState: LessonState = {
   numberFailed: 0,
   correctLetters: [],
   activeExercise: {
-
     type: "fillInTheBlank",
     _id: "12345",
     instructions: "Fill in the blank",
