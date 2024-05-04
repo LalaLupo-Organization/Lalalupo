@@ -17,6 +17,7 @@ const initialState: LessonState = {
   numberFailed: 0,
   correctLetters: [],
   activeExercise: {
+
     type: "fillInTheBlank",
     _id: "12345",
     instructions: "Fill in the blank",
@@ -25,6 +26,7 @@ const initialState: LessonState = {
     regex: "",
     doubleSolution: false,
     availableWords: ["here"],
+
     isComplete: false,
     hasFailed: false,
     missingWord: "cerchiamo",
@@ -97,7 +99,7 @@ const initialState: LessonState = {
       type: "reorder",
       _id: "12345",
       solution: "Non giocare con il fuoco!",
-      instructions: "Reorder the words to translate the sentence.",
+      instructions: "Reorder the words.",
       displayText: "Do not play with fire!",
       displayTextAudioURL: "https://ispeakitalian.herokuapp.com/correct.mp3",
       availableWords: [
