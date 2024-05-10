@@ -263,10 +263,14 @@ export default function useAssessment() {
         dispatch(clearUserInput())
         return
       }
+      if (!input) {
+        setFailed()
+        return
+      }
+      input = input.toLowerCase()
       if (activeExercise.doubleSolution) {
         const regex = RegexParser(activeExercise.regex)
-        input = input && input.toLowerCase()
-        if (input && regex.test(input)) {
+        if (regex.test(input)) {
           // console.log("TRANSCRIPT FROM GOOGLE API: " + input)
           // console.log("REGEX: " + regex)
           setSuccess()
@@ -282,11 +286,6 @@ export default function useAssessment() {
       const solution = activeExercise?.solution?.toString().toLowerCase() || ""
       const updatedSolution = formatText(solution)
 
-      if (!input) {
-        setFailed()
-        return
-      }
-      input = input.toLowerCase()
       if (formatText(input) === updatedSolution) {
         //  console.log("TRANSCRIPT FROM GOOGLE API: " + input.toLowerCase())
         //  console.log("MANIPULATED IN CODE1: " + solution)
