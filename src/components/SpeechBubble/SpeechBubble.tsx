@@ -160,7 +160,7 @@ function Microphone({ lang }: MicrophoneProps) {
             .join("")
 
           dispatch(setSingleInput(transcript))
-          lessonButtonClick(transcript)
+          lessonButtonClick(transcript, tryCount, 3, setTryCount)
           setIsListening(false)
           mic.stop()
           return

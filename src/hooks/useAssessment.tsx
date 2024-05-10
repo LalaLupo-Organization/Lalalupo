@@ -56,7 +56,7 @@ export default function useAssessment() {
     dispatch(setWarningMessage(true))
   }
 
-  function lessonButtonClick(input?: string) {
+  function lessonButtonClick(input?: string, tryCount?: number, maxTryCount?: number, setTryCount?: (count: number) => void) {
     //If the user hasn't made choice then I avoid dispatching to reducer and instead send a prompt
     // This conditional checks to see if there is at least one activity not complete, if all activities are complete we return a flasy value, hence that's why I'm looking for a false return.
     if (!interactiveExercisesComplete) {
@@ -258,13 +258,29 @@ export default function useAssessment() {
           .replace(/\s+/g, " ")
           .replace(/[?]/, "")
       }
+
+      const handleFailure = () => {
+        if (typeof tryCount === "number" && typeof maxTryCount === "number" && typeof setTryCount === "function") {
+          if (tryCount === maxTryCount) {
+            setFailed()
+            return
+          }
+
+          setWarning()
+          setTryCount(tryCount + 1)
+          return
+        }
+
+        setFailed()
+        return
+      }
       if (messages.warning) {
         dispatch(setAlertsBackToFalse())
         dispatch(clearUserInput())
         return
       }
       if (!input) {
-        setFailed()
+        handleFailure()
         return
       }
       input = input.toLowerCase()
@@ -278,7 +294,7 @@ export default function useAssessment() {
         } else {
           // console.log("TRANSCRIPT FROM GOOGLE API: " + input)
           // console.log("REGEX: " + regex)
-          setFailed()
+          handleFailure()
           return
         }
       }
@@ -294,7 +310,7 @@ export default function useAssessment() {
       } else {
         // console.log("TRANSCRIPT FROM GOOGLE API: " + input.toLowerCase())
         // console.log("MANIPULATED IN CODE2: " + solution)
-        setFailed()
+        handleFailure()
 
         return
       }
