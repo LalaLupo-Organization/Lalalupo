@@ -38,10 +38,7 @@ export default function SpeakingAndPronunciationNav() {
   if (messages.activeExerciseComplete) {
     return (
       <NavbarLayout color="bg-green-200" gridColsNumber={6}>
-        <SuccessToFailureLayout
-          success={true}
-          meaning={getType(activeExercise) && activeExercise?.displayMeaning && activeExercise?.english}
-        >
+        <SuccessToFailureLayout status="success" meaning={getType(activeExercise) && activeExercise?.displayMeaning}>
           {messages.loading ? (
             <ButtonInteractiveLesson
               background="bg-green-400 cursor-pointer text-white"
@@ -66,7 +63,7 @@ export default function SpeakingAndPronunciationNav() {
     return (
       <NavbarLayout color="bg-red-200" gridColsNumber={6}>
         <SuccessToFailureLayout
-          success={false}
+          status="failure"
           solution={
             getType(activeExercise)
               ? Array.isArray(activeExercise?.solution)
@@ -75,7 +72,6 @@ export default function SpeakingAndPronunciationNav() {
               : undefined
           }
           audioOutput={userInput.userInput}
-          meaning={getType(activeExercise) && activeExercise?.displayMeaning ? activeExercise.english : undefined}
         >
           {messages.loading ? (
             <ButtonInteractiveLesson

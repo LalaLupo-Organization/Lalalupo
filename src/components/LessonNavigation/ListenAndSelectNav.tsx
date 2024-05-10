@@ -39,7 +39,7 @@ export default function ListenAndSelectNav() {
   if (messages.activeExerciseComplete) {
     return (
       <NavbarLayout color="bg-green-200" gridColsNumber={6}>
-        <SuccessToFailureLayout success={true} meaning={getType(activeExercise) && activeExercise?.english}>
+        <SuccessToFailureLayout status="success" meaning={getType(activeExercise) && activeExercise?.english}>
           {messages.loading ? (
             <ButtonInteractiveLesson
               background="bg-green-600 cursor-pointer text-white"
@@ -65,7 +65,7 @@ export default function ListenAndSelectNav() {
     return (
       <NavbarLayout color="bg-red-200" gridColsNumber={6}>
         <SuccessToFailureLayout
-          success={false}
+          status="failure"
           solution={getType(activeExercise) && activeExercise?.solution ? activeExercise.solution.toString() : undefined}
         >
           {messages.loading ? (
