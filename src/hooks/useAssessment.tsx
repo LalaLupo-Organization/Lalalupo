@@ -16,6 +16,7 @@ import {
   setLoading,
   setScore,
   setSuccessMessage,
+  setWarningMessage,
 } from "@/features/userSlice"
 import { useEffect } from "react"
 import RegexParser from "regex-parser"
@@ -49,6 +50,10 @@ export default function useAssessment() {
     dispatch(setIncorrectAnswer())
     dispatch(setFailedMessage(true))
     dispatch(clearUserInput())
+  }
+
+  function setWarning() {
+    dispatch(setWarningMessage(true))
   }
 
   function lessonButtonClick(input?: string) {
@@ -247,6 +252,17 @@ export default function useAssessment() {
       }
     }
     if (activeExercise.type === "speakingAndPronunciation") {
+      const formatText = (text: string): string => {
+        return text
+          .replace(/[^\w\sÀ-ú']|_/g, "")
+          .replace(/\s+/g, " ")
+          .replace(/[?]/, "")
+      }
+      if (messages.warning) {
+        dispatch(setAlertsBackToFalse())
+        dispatch(clearUserInput())
+        return
+      }
       if (activeExercise.doubleSolution) {
         const regex = RegexParser(activeExercise.regex)
         input = input && input.toLowerCase()
@@ -262,16 +278,16 @@ export default function useAssessment() {
           return
         }
       }
-      const solution =
-        activeExercise?.solution && activeExercise.type === "speakingAndPronunciation" && activeExercise?.solution.toString().toLowerCase()
-      const updatedSolution =
-        solution &&
-        solution
-          .replace(/[^\w\sÀ-ú']|_/g, "")
-          .replace(/\s+/g, " ")
-          .replace(/[?]/, "")
-      input = input && input.toLowerCase()
-      if (input && input.toLowerCase() === updatedSolution) {
+
+      const solution = activeExercise?.solution?.toString().toLowerCase() || ""
+      const updatedSolution = formatText(solution)
+
+      if (!input) {
+        setFailed()
+        return
+      }
+      input = input.toLowerCase()
+      if (formatText(input) === updatedSolution) {
         //  console.log("TRANSCRIPT FROM GOOGLE API: " + input.toLowerCase())
         //  console.log("MANIPULATED IN CODE1: " + solution)
         setSuccess()
@@ -355,5 +371,5 @@ export default function useAssessment() {
     dispatch(clearUserInput())
   }
 
-  return { lessonButtonClick, skipCurrentExercise }
+  return { lessonButtonClick, skipCurrentExercise, setWarning }
 }

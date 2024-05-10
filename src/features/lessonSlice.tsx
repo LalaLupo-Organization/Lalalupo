@@ -17,23 +17,38 @@ const initialState: LessonState = {
   numberFailed: 0,
   correctLetters: [],
   activeExercise: {
-    type: "fillInTheBlank",
-    _id: "12345",
-    instructions: "Fill in the blank with the correct conjugation of the verb.",
-    displayText: "We are looking for a job.",
-    couldBeEmpty: "",
-    regex: "",
+    type: "speakingAndPronunciation",
+    _id: "2343423",
+    solution: "Vado Da Marco.",
+    micLang: "it-IT",
     doubleSolution: false,
-    availableWords: ["here"],
+    regex: "",
+    instructions: "Say this in Italian. Omit the subject pronoun (if present).",
+    helper: [{ type: "Vocabulary", values: ["to go = andare", "Mark = Marco"] }],
+    displayText: "I am going to Mark's.",
+    displayMeaning: false,
+    solutionAudioURL: "https://ispeakitalian.herokuapp.com/correct.mp3",
     isComplete: false,
     hasFailed: false,
-    missingWord: "cerchiamo",
-    solution: ["Noi", "cerchiamo", "un lavoro."],
-    helper: [
-      { type: "Vocabulary", values: ["to look for = cercare"] },
-      { type: "Tip", values: ["Tip 1", "Tip 2"] },
-    ],
   },
+  // activeExercise: {
+  //   type: "fillInTheBlank",
+  //   _id: "12345",
+  //   instructions: "Fill in the blank with the correct conjugation of the verb.",
+  //   displayText: "We are looking for a job.",
+  //   couldBeEmpty: "",
+  //   regex: "",
+  //   doubleSolution: false,
+  //   availableWords: ["here"],
+  //   isComplete: false,
+  //   hasFailed: false,
+  //   missingWord: "cerchiamo",
+  //   solution: ["Noi", "cerchiamo", "un lavoro."],
+  //   helper: [
+  //     { type: "Vocabulary", values: ["to look for = cercare"] },
+  //     { type: "Tip", values: ["Tip 1", "Tip 2"] },
+  //   ],
+  // },
   interactiveExercises: [
     //FillInTheBlankExercise
     {
@@ -361,14 +376,15 @@ const initialState: LessonState = {
     {
       type: "speakingAndPronunciation",
       _id: "2343423",
-      solution: "Vado da Marco.",
+      solution: "Hello world.",
       doubleSolution: false,
       regex: "",
+      micLang: "en-US",
       instructions: "Say this in Italian. Omit the subject pronoun (if present).",
-      vocabularyHelper: ["to go = andare", "Mark = Marco"],
-      display: "I am going to Mark's.",
+      helper: [{ type: "Vocabulary", values: ["to go = andare", "Mark = Marco"] }],
+      displayText: "I am going to Mark's.",
       displayMeaning: false,
-      english: "",
+      solutionAudioURL: "https://ispeakitalian.herokuapp.com/correct.mp3",
       isComplete: false,
       hasFailed: false,
     },
@@ -429,6 +445,9 @@ export const lessonSlice = createSlice({
 
     setSkippedExercise: (state: LessonState) => {
       if (state.activeExercise) {
+        // if (state.activeExercise.type === "speakingAndPronunciation") {
+        //   state.interactiveExercises = state.interactiveExercises.filter(({ _id }) => _id !== state.activeExercise._id)
+        // }
         state.activeExercise.isSkiped = true
       }
       // set the interactiveExercise to isComplete

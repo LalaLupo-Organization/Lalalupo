@@ -22,6 +22,7 @@ module.exports = {
         color_green_default: "#12D18E",
         color_green_lighter: "#D9FFE3",
         warning: "#FACC15",
+        warning_nav_bg: "#FFF9E6",
         failed: "#FFC107",
         error: "#F75555",
         error_lighter: "#FFD9DB",
@@ -36,6 +37,7 @@ module.exports = {
         vocabulary_text: "#1B1B1B",
         tip: "#F0F6FE",
         tip_heading: "#5086DA",
+        blue_primary: "#3066B1",
       },
       borderRadius: {
         primary: "7px",

@@ -1,3 +1,5 @@
+import { MicSupportedLangs } from "./lesson.types"
+
 export interface BubbleProps {
   dialogue?: string
   english?: string
@@ -11,8 +13,15 @@ export interface BubbleProps {
   underlined?: boolean
   color?: string
   font?: "light" | "normal" | "medium" | "semibold" | "bold"
+  hasMic?: MicSupportedLangs
 }
 
 export interface PlayAudioProps {
   playAudio: () => void
+  className?: string
+  name: "AudioIcon" | "PlayAudio"
+}
+
+export interface MicrophoneProps {
+  lang: MicSupportedLangs
 }

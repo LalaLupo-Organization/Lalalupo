@@ -52,6 +52,7 @@ const initialState: UserState = {
     completedUnit: false,
     upgrade: false,
     loading: false,
+    warning: false,
   },
 }
 
@@ -213,6 +214,9 @@ export const userSlice = createSlice({
     setFailedMessage: (state: UserState, action: PayloadAction<boolean>) => {
       state.messages.activeExerciseWrongAnswer = action.payload
     },
+    setWarningMessage: (state: UserState, action: PayloadAction<boolean>) => {
+      state.messages.warning = action.payload
+    },
     setActivityComplete: (state: UserState, action: PayloadAction<boolean>) => {
       state.messages.activityComplete = action.payload
     },
@@ -240,6 +244,7 @@ export const userSlice = createSlice({
       state.messages.asessmentUnlock = false
       state.messages.unitCompleteScore = false
       state.messages.completedUnit = false
+      state.messages.warning = false
     },
 
     setExitDisplay: (state: UserState, action: PayloadAction<boolean>) => {
@@ -289,6 +294,7 @@ export const {
   updateOrSetUsersPercentageScoreAndQualityScore,
   unlockNextLesson,
   setAssessmentUnlock,
+  setWarningMessage,
 } = userSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
