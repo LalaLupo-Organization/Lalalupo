@@ -68,7 +68,7 @@ export default function SpeechBubble({
 
   return (
     <div className="flex flex-col w-full ">
-      <div className={classNames("flex flex-col-reverse sm:gap-x-3 items-center sm:flex-row w-full rlative z-10", className)}>
+      <div className={classNames("flex flex-col-reverse sm:gap-x-3 items-center sm:flex-row w-full ", className)}>
         <Image
           height={12}
           width={12}
@@ -176,7 +176,7 @@ function Microphone({ lang }: MicrophoneProps) {
       role="button"
       onClick={handleClick}
       disabled={disabled}
-      className="bg-white disabled:bg-disabled disabled:cursor-not-allowed w-full rounded-primary relative z-1 flex justify-center items-center gap-3 h-14 border border-gray_reorder_border"
+      className="bg-white disabled:bg-disabled disabled:cursor-not-allowed w-full rounded-primary flex justify-center items-center gap-3 h-14 relative border border-gray_reorder_border"
     >
       <StrippedBg className="translate-x-1.5 translate-y-1.5 border-gray_reorder_border" />
       <Icon name="Mic" className="w-6" />

@@ -62,6 +62,7 @@ export default function SpeakingAndPronunciation({ data }: { data: LessonState }
           displayTextAudioURL="s"
           imageClassName="!translate-y-3 sm:!translate-y-4 !w-40 sm:!w-48"
           font="medium"
+          className="relative z-[2]"
           displayText={getType(activeExercise) ? activeExercise.displayText : ""}
           teacher="teacherOne"
           hasMic={(getType(activeExercise) && activeExercise.micLang) || undefined}
