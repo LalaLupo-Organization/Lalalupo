@@ -32,7 +32,7 @@ export default function MultipleAnswersNav() {
   if (messages.activeExerciseComplete) {
     return (
       <NavbarLayout color="bg-green-200" gridColsNumber={6}>
-        <SuccessToFailureLayout success={true}>
+        <SuccessToFailureLayout status="success">
           {messages.loading ? (
             <ButtonInteractiveLesson
               background="bg-green-600 cursor-pointer text-white"
@@ -57,7 +57,7 @@ export default function MultipleAnswersNav() {
   if (messages.activeExerciseWrongAnswer) {
     return (
       <NavbarLayout color="bg-red-200" gridColsNumber={6}>
-        <SuccessToFailureLayout success={false} solution="Feedback above">
+        <SuccessToFailureLayout status="failure" solution="Feedback above">
           {messages.loading ? (
             <ButtonInteractiveLesson
               background="bg-red-600 cursor-pointer text-white"

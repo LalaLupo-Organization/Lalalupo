@@ -11,23 +11,30 @@ import { IInteractiveNavProps } from "@/types/interactive-bottom-nav.types"
 
 export const InteractiveBottomNav: React.FC<IInteractiveNavProps> = ({ userInput, status, activeExercise, loading }) => {
   const { lessonButtonClick, skipCurrentExercise } = useAssessment()
+  const { type } = activeExercise
   const conditionalObject = {
     navBGColor: {
       success: "bg-color_green_lighter",
       failure: "bg-error_lighter",
       disabled: "bg-white",
       active: "bg-white",
+      warning: "bg-warning_nav_bg",
     },
   }
 
   const generateCheckingText = () => {
-    if (activeExercise.type === "reorderWhatYouHear" || activeExercise.type === "reorder") {
+    if (type === "reorderWhatYouHear" || type === "reorder") {
       return "CONTINUE"
     }
 
     return "CHECK"
   }
-  const isMessage = status === "failure" || status === "success"
+
+  const generateSkipText = () => {
+    if (type === "speakingAndPronunciation") return "CAN'T SPEAK NOW"
+    return "SKIP"
+  }
+  const isMessage = status === "failure" || status === "success" || status === "warning"
 
   useEffect(() => {
     const handleKeyDown = ({ key }: KeyboardEvent) => {
@@ -49,7 +56,7 @@ export const InteractiveBottomNav: React.FC<IInteractiveNavProps> = ({ userInput
               ? activeExercise.solution
               : undefined
           }
-          success={status === "success"}
+          status={status}
         >
           {loading ? (
             <ButtonInteractive
@@ -63,7 +70,7 @@ export const InteractiveBottomNav: React.FC<IInteractiveNavProps> = ({ userInput
             <div className="text-center w-full mt-4 sm:mt-0">
               <ButtonInteractive
                 background={classNames(
-                  status === "success" ? "bg-color_green_default success" : "bg-error failure",
+                  status === "success" ? "bg-color_green_default success" : status === "warning" ? "bg-warning" : "bg-error failure",
                   "w-full cursor-pointer font-semibold text-lg sm:w-[180px] text-white"
                 )}
                 lessonButtonClick={lessonButtonClick}
@@ -79,9 +86,12 @@ export const InteractiveBottomNav: React.FC<IInteractiveNavProps> = ({ userInput
         <>
           <InActiveToActiveLayout>
             <ButtonInteractive
-              background="bg-white border border-gray-200/70 text-gray_lighter cursor-pointer sm:w-[132px]"
+              background={classNames(
+                "bg-white border border-gray-200/70 text-gray_lighter cursor-pointer",
+                type === "speakingAndPronunciation" ? "sm:w-[232px]" : "sm:w-[132px]"
+              )}
               lessonButtonClick={skipCurrentExercise}
-              buttonDisplayText="SKIP"
+              buttonDisplayText={generateSkipText()}
               shadowColor="bg-gray-200"
             />
           </InActiveToActiveLayout>
@@ -94,10 +104,7 @@ export const InteractiveBottomNav: React.FC<IInteractiveNavProps> = ({ userInput
                 "sm:w-[180px]"
               )}
               lessonButtonClick={userInput.userInput ? lessonButtonClick : () => null}
-              buttonDisplayText={
-                userInput.userInput ? generateCheckingText() : "CHECK"
-                // activeExercise.type === "matchPairs" ? "CONTINUE" : "CHECK"
-              }
+              buttonDisplayText={userInput.userInput ? generateCheckingText() : "CHECK"}
               status={status}
             />
           </InActiveToActiveLayout>

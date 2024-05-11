@@ -6,7 +6,7 @@ import { LessonState } from "@/types/lesson.types"
 import { InteractiveBottomNav } from "@/components/LessonNavigation/InteractiveBottomNav"
 import ListenAndSelectNav from "@/components/LessonNavigation/ListenAndSelectNav"
 import MultipleAnswersNav from "@/components/LessonNavigation/MultipleAnswersNav"
-import SpeakingAndPronunciationNav from "@/components/LessonNavigation/SpeakingAndPronunciationNav"
+// import SpeakingAndPronunciationNav from "@/components/LessonNavigation/SpeakingAndPronunciationNav"
 import { selectMessage } from "@/features/userSlice"
 import { selectUserInput } from "@/features/userInputSlice"
 import { Confetti } from "@/components/Confetti/Confetti"
@@ -30,17 +30,19 @@ export default function LessonLayout({
       ? "success"
       : messages?.activeExerciseWrongAnswer
         ? "failure"
-        : userInput.userInput
-          ? "active"
-          : "disabled"
+        : messages.warning
+          ? "warning"
+          : userInput.userInput
+            ? "active"
+            : "disabled"
     //This function
     switch (activeExercise.type) {
       case "listenAndSelect":
         return <ListenAndSelectNav />
       case "multipleAnswers":
         return <MultipleAnswersNav />
-      case "speakingAndPronunciation":
-        return <SpeakingAndPronunciationNav />
+      // case "speakingAndPronunciation":
+      //   return <SpeakingAndPronunciationNav />
       default:
         return (
           <>

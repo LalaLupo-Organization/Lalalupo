@@ -46,6 +46,7 @@ export interface UserState {
     lessonComplete: boolean
     upgrade: boolean
     loading: boolean
+    warning: boolean
   }
 
   user: {

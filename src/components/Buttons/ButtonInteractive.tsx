@@ -1,4 +1,5 @@
 import classNames from "@/helpers/classNames"
+import { Status } from "@/types/lesson.types"
 
 export default function ButtonInteractiveLesson({
   background,
@@ -15,14 +16,16 @@ export default function ButtonInteractiveLesson({
   buttonDisplayText: string
   shadowColor?: string
   lottie?: any
-  status?: "success" | "failure" | "active" | "disabled"
+  status?: Status
 }) {
   const generateStripedBackground = () =>
     status === "success" || status === "active"
       ? "success-striped-bg border-color_green_default"
       : status == "failure"
         ? "failure-striped-bg border-error"
-        : "striped-bg"
+        : status === "warning"
+          ? "warning-striped-bg border-warning"
+          : "striped-bg"
 
   return (
     <div className="flex w-full relative">

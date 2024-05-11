@@ -1,8 +1,8 @@
 import { RootState } from "@/redux/store"
-import { LessonState } from "./lesson.types"
+import { LessonState, Status } from "./lesson.types"
 
 export interface IInteractiveNavProps {
-  status: "success" | "failure" | "disabled" | "active"
+  status: Status
   loading: boolean
   userInput: RootState["userInputReduxState"]
   activeExercise: LessonState["activeExercise"]

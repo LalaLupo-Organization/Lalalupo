@@ -7,6 +7,7 @@ type IconsType =
   | "AccentedLettersArrow"
   | "PlayAudio"
   | "SlowAudio"
+  | "Mic"
 
 export interface IconProps extends React.SVGAttributes<HTMLOrSVGElement> {
   name: IconsType

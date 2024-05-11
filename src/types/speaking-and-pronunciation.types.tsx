@@ -1,11 +1,12 @@
-import { BaseExercise } from "./lesson.types"
+import { BaseExercise, Helper, MicSupportedLangs } from "./lesson.types"
 
 export type SpeakingAndPronunciationExercise = BaseExercise & {
   type: "speakingAndPronunciation"
   regex: string
   doubleSolution: boolean
-  vocabularyHelper: string[]
-  display: string
-  english: string
+  helper: Helper[]
+  displayText: string
+  solutionAudioURL: string
   displayMeaning: boolean
+  micLang: MicSupportedLangs
 }

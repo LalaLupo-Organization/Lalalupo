@@ -30,6 +30,20 @@ export interface Helper {
   values: string[]
 }
 
+export type Status = "success" | "failure" | "active" | "disabled" | "warning"
+export type MicSupportedLangs =
+  | "en-US"
+  | "en-GB"
+  | "fr-FR"
+  | "de-DE"
+  | "es-ES"
+  | "it-IT"
+  | "pt-BR"
+  | "zh-CN"
+  | "ja-JP"
+  | "ko-KR"
+  | "ru-RU"
+  | "ar-SA"
 export type LessonState = {
   _id: string
   __v: number

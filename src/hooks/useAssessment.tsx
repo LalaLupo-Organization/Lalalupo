@@ -16,6 +16,7 @@ import {
   setLoading,
   setScore,
   setSuccessMessage,
+  setWarningMessage,
 } from "@/features/userSlice"
 import { useEffect } from "react"
 import RegexParser from "regex-parser"
@@ -51,7 +52,11 @@ export default function useAssessment() {
     dispatch(clearUserInput())
   }
 
-  function lessonButtonClick(input?: string) {
+  function setWarning() {
+    dispatch(setWarningMessage(true))
+  }
+
+  function lessonButtonClick(input?: string, tryCount?: number, maxTryCount?: number, setTryCount?: (count: number) => void) {
     //If the user hasn't made choice then I avoid dispatching to reducer and instead send a prompt
     // This conditional checks to see if there is at least one activity not complete, if all activities are complete we return a flasy value, hence that's why I'm looking for a false return.
     if (!interactiveExercisesComplete) {
@@ -247,10 +252,41 @@ export default function useAssessment() {
       }
     }
     if (activeExercise.type === "speakingAndPronunciation") {
+      const formatText = (text: string): string => {
+        return text
+          .replace(/[^\w\sÀ-ú']|_/g, "")
+          .replace(/\s+/g, " ")
+          .replace(/[?]/, "")
+      }
+
+      const handleFailure = () => {
+        if (typeof tryCount === "number" && typeof maxTryCount === "number" && typeof setTryCount === "function") {
+          if (tryCount === maxTryCount) {
+            setFailed()
+            return
+          }
+
+          setWarning()
+          setTryCount(tryCount + 1)
+          return
+        }
+
+        setFailed()
+        return
+      }
+      if (messages.warning) {
+        dispatch(setAlertsBackToFalse())
+        dispatch(clearUserInput())
+        return
+      }
+      if (!input) {
+        handleFailure()
+        return
+      }
+      input = input.toLowerCase()
       if (activeExercise.doubleSolution) {
         const regex = RegexParser(activeExercise.regex)
-        input = input && input.toLowerCase()
-        if (input && regex.test(input)) {
+        if (regex.test(input)) {
           // console.log("TRANSCRIPT FROM GOOGLE API: " + input)
           // console.log("REGEX: " + regex)
           setSuccess()
@@ -258,20 +294,15 @@ export default function useAssessment() {
         } else {
           // console.log("TRANSCRIPT FROM GOOGLE API: " + input)
           // console.log("REGEX: " + regex)
-          setFailed()
+          handleFailure()
           return
         }
       }
-      const solution =
-        activeExercise?.solution && activeExercise.type === "speakingAndPronunciation" && activeExercise?.solution.toString().toLowerCase()
-      const updatedSolution =
-        solution &&
-        solution
-          .replace(/[^\w\sÀ-ú']|_/g, "")
-          .replace(/\s+/g, " ")
-          .replace(/[?]/, "")
-      input = input && input.toLowerCase()
-      if (input && input.toLowerCase() === updatedSolution) {
+
+      const solution = activeExercise?.solution?.toString().toLowerCase() || ""
+      const updatedSolution = formatText(solution)
+
+      if (formatText(input) === updatedSolution) {
         //  console.log("TRANSCRIPT FROM GOOGLE API: " + input.toLowerCase())
         //  console.log("MANIPULATED IN CODE1: " + solution)
         setSuccess()
@@ -279,7 +310,7 @@ export default function useAssessment() {
       } else {
         // console.log("TRANSCRIPT FROM GOOGLE API: " + input.toLowerCase())
         // console.log("MANIPULATED IN CODE2: " + solution)
-        setFailed()
+        handleFailure()
 
         return
       }
@@ -355,5 +386,5 @@ export default function useAssessment() {
     dispatch(clearUserInput())
   }
 
-  return { lessonButtonClick, skipCurrentExercise }
+  return { lessonButtonClick, skipCurrentExercise, setWarning }
 }
