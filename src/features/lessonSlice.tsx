@@ -112,7 +112,7 @@ const initialState: LessonState = {
       type: "reorder",
       _id: "12345",
       solution: "Non giocare con il fuoco!",
-      instructions: "Reorder the words to translate the sentence.",
+      instructions: "Reorder the words.",
       displayText: "Do not play with fire!",
       displayTextAudioURL: "https://ispeakitalian.herokuapp.com/correct.mp3",
       availableWords: [

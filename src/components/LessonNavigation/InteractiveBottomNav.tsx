@@ -2,7 +2,7 @@
 import { useEffect } from "react"
 import useAssessment from "@/hooks/useAssessment"
 import ButtonInteractive from "@/components/Buttons/ButtonInteractive"
-import { Loader } from "@/components/Loaders1/Loader"
+import { Loader } from "@/components/Loaders/Loader"
 import NavbarLayout from "@/components/Layouts/NavbarLayout"
 import InActiveToActiveLayout from "@/components/Layouts/InactiveToActiveLayout"
 import SuccessToFailureLayout from "@/components/Layouts/SuccessToFailure"
