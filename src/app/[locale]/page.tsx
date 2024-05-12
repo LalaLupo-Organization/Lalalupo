@@ -1,9 +1,9 @@
 "use client"
-
 import { FeatureScreenshotOnRight } from "@/components/Sections/FeatureScreenshotOnRight"
+import { useTranslations } from "next-intl"
 import { Hero } from "@/components/Sections/Hero"
-
 export default function HomePage() {
+  const t = useTranslations("Index")
   return (
     <div className="bg-white">
       <div className="relative isolate pt-14">
@@ -24,6 +24,7 @@ export default function HomePage() {
         <div className="mx-auto flex justify-center max-w-7xl px-6 py-24 sm:py-4 ">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
             <div className="flex justify-center">
+              <h1>{t("title")}</h1>;
               <Hero />
             </div>
           </div>

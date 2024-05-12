@@ -14,8 +14,8 @@
     "incremental": true,
     "plugins": [
       {
-        "name": "next",
-      },
+        "name": "next"
+      }
     ],
     "paths": {
       "@/components/*": ["./src/components/*"],
@@ -34,16 +34,9 @@
       "@/scripts/*": ["./src/scripts/*"],
       "@/studio/*": ["./src/app/studio/*"],
       "@/stories/*": ["./src/stories/*"],
-      "@/types/*": ["./src/types/*"],
-    },
+      "@/types/*": ["./src/types/*"]
+    }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "src/components/progress-bar",
-    "next.config.js",
-  ],
-  "exclude": ["node_modules"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/progress-bar", "next.config.js"],
+  "exclude": ["node_modules"]
 }
